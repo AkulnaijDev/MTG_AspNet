@@ -101,6 +101,4 @@
         public string Tcgplayer_Infinite_Decks { get; set; }
         public string Edhrec { get; set; }
     }
-
-
 }

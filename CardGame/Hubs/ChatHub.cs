@@ -1,7 +1,6 @@
 ﻿using CardGame.Models;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Utils;
 
 namespace CardGame.Hubs
@@ -9,7 +8,6 @@ namespace CardGame.Hubs
     public class ChatHub : Hub
     {
         public static List<Room> _roomList = new();
-        
 
         public async Task SendMessage(string user, string message)
         {
@@ -113,24 +111,26 @@ namespace CardGame.Hubs
         {
             var deckItem = JsonConvert.DeserializeObject<DeckItem>(deck);
 
-            try {
+            try
+            {
                 if (String.IsNullOrEmpty(deckId))
                 {
                     var insertedId = SqlUtils.SaveDeck(deckItem); //new deck
                     await Clients.Caller.SendAsync("ConfirmDeckSaved", insertedId);
-                } else
+                }
+                else
                 {
                     SqlUtils.EditDeck(deckItem, deckId); //new deck
                     await Clients.Caller.SendAsync("ConfirmDeckEdited");
                 }
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message + ex.StackTrace);
             }
 
         }
-
 
         public async Task DeleteDeck(string deckId, string username)
         {
@@ -198,7 +198,6 @@ namespace CardGame.Hubs
         }
 
 
-
         public async Task SendGameInvitation(string obj)
         {
             var gameInvitation = JsonConvert.DeserializeObject<GameInvitation>(obj);
@@ -221,18 +220,17 @@ namespace CardGame.Hubs
                     await Clients.Client(playerIds).SendAsync("DisplayGameInvitation", sendObj);
                 }
 
-            } 
+            }
             else
             {
                 await Task.CompletedTask;
             }
 
-           
         }
 
         public bool CheckIfIAmAlreadyInARoom(string myId)
         {
-            if (_roomList.Count >0)
+            if (_roomList.Count > 0)
             {
                 foreach (var room in _roomList)
                 {
@@ -242,7 +240,7 @@ namespace CardGame.Hubs
                     }
                 }
             }
-           
+
             return false;
         }
 
@@ -257,30 +255,28 @@ namespace CardGame.Hubs
             {
                 await Groups.AddToGroupAsync(acceptinPlayerId, roomId);  //enters the room and send event to who is already in there
 
-                var newPlayer = new Player { DeckId = deckId, Name = acceptinPlayerName,  PlayerId = acceptinPlayerId };
+                var newPlayer = new Player { DeckId = deckId, Name = acceptinPlayerName, PlayerId = acceptinPlayerId };
                 _roomList.Where(x => x.RoomId == roomId).First().Players.Add(newPlayer);
 
                 var roomIEnteredIn = JsonConvert.SerializeObject(_roomList.Where(x => x.RoomId == roomId).First());
                 await Clients.Group(roomId).SendAsync("DisplayWhoIsInRoom", roomIEnteredIn);
 
-            } 
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-           
+
         }
 
         public async Task<List<GameCard>> CreatePlayingDeck(string deckId)
         {
             var deck = new List<GameCard>();
 
-
-
             return deck;
         }
-        
-        public async Task StartTheActualGame(string startingGamePlayerId,string teams)
+
+        public async Task StartTheActualGame(string startingGamePlayerId, string teams)
         {
             var room = _roomList.Where(x => x.Players.Any(y => y.PlayerId == startingGamePlayerId)).FirstOrDefault();
             var roomId = room.RoomId;
@@ -292,7 +288,8 @@ namespace CardGame.Hubs
             {
                 var playerDeck = SqlUtils.GetPlayableVersionOfTheDeck(player.DeckId);
 
-                var playerObj = new GamePlayer {
+                var playerObj = new GamePlayer
+                {
                     PlayerId = player.PlayerId,
                     HP = room.GameMode.ToLower() == "commander" ? 40 : 20,
                     Deck = playerDeck,
@@ -313,152 +310,6 @@ namespace CardGame.Hubs
             var gameObj = JsonConvert.SerializeObject(game);
             await Clients.Group(roomId).SendAsync("DisplayGameBoard", gameObj);
         }
-
-
-
-
-    }
-
-    public class SentTeams
-    {
-        public List<Team> Teams { get; set; }
-    }
-    public class Game
-    {
-        public string RoomId { get; set; }
-        public string GameMode { get; set; }
-        public List<Team> Teams { get; set; }
-
-        public List<GamePlayer> Players{get; set;}
-
-    }
-
-    public class GamePlayer
-    {
-        public string PlayerId { get; set; }
-        public List<GameCard> Deck { get; set; }
-        public int HP { get; set; }
-        public string Name { get; set; }
-    } 
-
-
-
-
-    public class Room
-    {
-        public string RoomId { get; set; }
-        public string GameMode { get; set; }
-        public List<Player> Players {get; set;}
-    }
-
-    public class Player
-    {
-        public string PlayerId { get; set; }
-        public string Name { get; set; }
-        public string DeckId { get; set; }
-    }   
-
-    public class MeAndEnteredPlayer
-    {
-        public string EnteredPlayerId { get; set; }
-        public string MyPlayerId { get; set; }
-    }
-
-    public class EnteredPlayer 
-    {
-        public string EnteringPlayerId { get; set; }
-        public string RoomId { get; set; }
-    }
-
-    public class GameInvitation
-    {
-        public string InvitingId { get; set; }
-        public string InvitingPlayerName { get; set; }
-        public List<string> InvitedIds { get; set; }
-
-        public string DeckId { get; set; }
-        public string GameMode { get; set; }
-        public List<Team> Teams {get; set;}
-        public string RoomId { get; set; }
-        public List<Room> Rooms { get; set; }
-    }
-    
-    public class Team
-    {
-        public string TeamName { get; set; }
-        public List<Teammates> Teammates { get; set; }
-    }
-
-    public class Teammates
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-    }
-
-
-    public class GamesMode
-    {
-        public bool Commander = true;  //tutte stessa color identity
-        public bool Pauper = true;  //only common
-        public bool Standard = true; //last 5 expansions
-        public bool Pioneer = true; //after 2012-10-05
-        public bool Extended = true; //all
-        public bool Modern = true;  //after 8th edition 2003-07-28
-        public bool Valid = true;
-    } 
-
-
-    public class JsonCard
-    {
-        public string Source { get; set; }
-        public int CardCount { get; set; }
-        public string Name { get; set; }
-        public int CardLimit { get; set; }
-        public string Key { get; set; }
-    }
-
-
-
-    public class ChatMessage {
-        public string SenderId { get; set; }
-        public string RoomGuid { get; set; }
-        public string Message { get; set; }
-
-        public ChatMessage(string senderId, string roomGuid, string message)
-        {
-            SenderId = senderId;
-            RoomGuid = roomGuid;
-            Message = message;
-        }
-    }
-
-public class AddedInRoom
-{
-    public string AddingUserId { get; set; }
-    public string AddingUsername { get; set; }
-    public string AddedUserId { get; set; }
-    public string AddedUsername { get; set; }
-    public string RoomGuid { get; set; }
-
-    public AddedInRoom(string addingUserId, string addingUsername, string addedUserId, string addedUsername, string roomGuid)
-    {
-        AddingUserId = addingUserId;
-        AddingUsername = addingUsername;
-        AddedUserId = addedUserId;
-        AddedUsername = addedUsername;
-        RoomGuid = roomGuid;
-
     }
 
 }
-
-
-public static class UserHandler
-{
-    public static HashSet<string> ConnectedIds = new HashSet<string>();
-    public static List<User> Users = new List<User>();
-}
-
-
-}
-

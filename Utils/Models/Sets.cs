@@ -1,4 +1,4 @@
-﻿namespace Utils
+﻿namespace Utils.Models
 {
     public class Sets
     {
@@ -12,6 +12,4 @@
         public string Digital { get; set; }
         public string Icon_svg_uri { get; set; }
     }
-
-
 }

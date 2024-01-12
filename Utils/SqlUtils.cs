@@ -1,18 +1,12 @@
-﻿using System;
-using System.Data;
-using System.Net.Http.Json;
-using System.Text.Json.Serialization;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
+using Utils.Models;
 
 namespace Utils
 {
     public class SqlUtils
     {
         public static string _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog = MagicTheGathering; Integrated Security = True";
-
-
-
         public static void NonQueryRequest(string queryString)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -66,17 +60,17 @@ namespace Utils
             var guid = Guid.NewGuid().ToString();
             var deckString = "";
 
-            for (var i=1; i<= deck.Cards.Count; i++)
+            for (var i = 1; i <= deck.Cards.Count; i++)
             {
-                if (deck.Cards[i-1] is not null)
+                if (deck.Cards[i - 1] is not null)
                 {
-                    deckString += (",'" + JsonConvert.SerializeObject(deck.Cards[(i-1)]).Replace("'","''")+"'");
-                } 
+                    deckString += (",'" + JsonConvert.SerializeObject(deck.Cards[(i - 1)]).Replace("'", "''") + "'");
+                }
             }
 
-            for (var i = (deck.Cards.Count+1) ; i <= 100; i++)
+            for (var i = (deck.Cards.Count + 1); i <= 100; i++)
             {
-               deckString += ", NULL";
+                deckString += ", NULL";
             }
 
             var queryString = "INSERT INTO Decks (" +
@@ -120,21 +114,21 @@ namespace Utils
                 {
                     while (reader.Read())
                     {
-                        if(reader["Username"].ToString() == username)
+                        if (reader["Username"].ToString() == username)
                         {
                             results++;
                         }
                     }
                 }
 
-                if (results >0)
+                if (results > 0)
                 {
                     var token = Guid.NewGuid().ToString().Substring(0, 30); ;
                     var query = $"UPDATE Users SET token ='{token}' WHERE Username ='{username}'";
                     NonQueryRequest(query);
                     connection.Close();
                     return token;
-                } 
+                }
                 else
                 {
                     return "";
@@ -196,7 +190,7 @@ namespace Utils
                     {
                         var cardsList = new List<string>();
 
-                        for (var i=1; i<=100; i++)
+                        for (var i = 1; i <= 100; i++)
                         {
                             var number = i.ToString().PadLeft(3, '0'); ;
                             cardsList.Add(reader[$"Card{number}"].ToString());
@@ -210,14 +204,14 @@ namespace Utils
                             Cards = cardsList
                         };
                         results.Add(tmp);
-                    } 
+                    }
                 }
                 connection.Close();
                 return results;
             }
         }
 
-            
+
         public static List<Card> QueryRequestCards(string filter)
         {
             var queryString = "SELECT * From Cards " + filter;
@@ -234,7 +228,7 @@ namespace Utils
                     {
                         var tmp = new Card
                         {
-                            Object= reader["Object"].ToString(),
+                            Object = reader["Object"].ToString(),
                             Id = reader["Id"].ToString(),
                             Oracle_Id = reader["Oracle_Id"].ToString(),
                             Multiverse_ids = reader["Multiverse_ids"].ToString(),
@@ -339,9 +333,7 @@ namespace Utils
                 connection.Close();
                 return results;
             }
-
         }
-
 
 
         public static Deck QueryRequestDeck(string deckId, string username)
@@ -452,7 +444,7 @@ namespace Utils
                             var number = i.ToString().PadLeft(3, '0'); ;
 
                             var cardTmp = reader[$"Card{number}"].ToString();
-                            if (cardTmp !="")
+                            if (cardTmp != "")
                             {
                                 jsonCards.Add(cardTmp);
                             }
@@ -465,7 +457,7 @@ namespace Utils
                 {
                     var obj = JsonConvert.DeserializeObject<CardDeckItem>(jsonCard);
 
-                    for (var i=1; i<= obj.CardCount; i++)
+                    for (var i = 1; i <= obj.CardCount; i++)
                     {
                         var card = new GameCard
                         {
@@ -482,43 +474,4 @@ namespace Utils
             }
         }
     }
-}
-
-public class GameCard
-{
-    public string CardId { get; set; }
-    public string Source { get; set; }
-    public string Name { get; set; }
-}
-
-public class CardCheck
-{
-    public string SetCode { get; set; }
-    public string Rarity { get; set; }
-    public string ColorIdentity { get; set; }
-    public DateTime ReleaseDate { get; set; }
-}
-
-public class Deck
-{
-    public string Name { get; set; }
-    public string Id { get; set; }
-    public string UserId { get; set; }
-    public List<string> Cards { get; set; }
-}
-
-public class DeckItem
-{
-    public string Name { get; set; }
-    public string UserId { get; set; }
-    public List<CardDeckItem> Cards { get; set; }
-}
-
-public class CardDeckItem
-{
-    public string Source { get; set; }
-    public int CardCount { get; set; }
-    public string Name { get; set; }
-    public int Cardlimit { get; set; }
-    public string Key { get; set; }
 }
