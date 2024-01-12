@@ -1,5 +1,5 @@
 ﻿
-# MTG_AspNet
+# MTG_AspNet (MTG stands for My Table Game...obviously)
 
 A homemade solution to play online to MTG with your friends
 
@@ -13,7 +13,9 @@ A homemade solution to play online to MTG with your friends
 
 #### What do I need to run it?
 
-Visual Studio 2022, latest .NET version on your pc, SQL database reachable locally, and if you need to connect externally from your pc an Ngrok account
+Visual Studio 2022, latest .NET version on your pc, SQL database reachable locally, and if you need to connect externally from your pc an Ngrok account.
+
+You also need a lot of images (obviously the ones copyright free) and a database with all those absolutely not scraped info about your game...
 
 #### How do I run it?
 
