@@ -1,0 +1,168 @@
+{
+    "Rules": [
+        {
+            "Name": "Adapt",
+            "Description": "A keyword action that lets a player put +1/+1 counters on a creature if it there none on it yet."
+        },
+        {
+            "Name": "Afflict",
+            "Description": "A triggered keyword ability that makes the defending player lose life for blocking."
+        },
+        {
+            "Name": "Afterlife",
+            "Description": "A triggered keyword ability that creates an amount of white and black Spirit creature tokens with flying when a creature dies."
+        },
+        {
+            "Name": "Aftermath",
+            "Description": "A static keyword ability that lets a player cast one half of a Split Card only from their graveyard. All cards with aftermath were removed from the game as part of the September 27 2018 open beta game update."
+        },
+        {
+            "Name": "Amass",
+            "Description": "A keyword action that gives you a Zombie Army creature token or grows an Army you already have."
+        },
+        {
+            "Name": "Ascend",
+            "Description": "A spell/static keyword ability causing a player to get the designation of the City’s Blessing once he or she controls ten permanents."
+        },
+        {
+            "Name": "Convoke",
+            "Description": "A static keyword ability that lets you tap creatures rather than pay mana to cast a spell."
+        },
+        {
+            "Name": "Crew",
+            "Description": "An activated keyword ability that lets you tap creatures to turn a Vehicle into an artifact creature."
+        },
+        {
+            "Name": "Cycling",
+            "Description": "An activated keyword ability that lets a card be discarded and replaced with a new card."
+        },
+        {
+            "Name": "Deathtouch",
+            "Description": "A static Evergreen keyword ability that causes damage dealt by an object to be especially effective. Any amount of damage dealt is enough to kill the receiving creature."
+        },
+        {
+            "Name": "Defender",
+            "Description": "A static Evergreen keyword ability that prohibits a creature from attacking."
+        },
+        {
+            "Name": "Double Strike",
+            "Description": "A static Evergreen keyword ability that lets a creature deal its combat damage twice."
+        },
+        {
+            "Name": "Embalm",
+            "Description": "An activated ability keyword that lets a player exile a creature card from their graveyard to create a mummified token version of that card."
+        },
+        {
+            "Name": "Enchant",
+            "Description": "A static Evergreen keyword ability that defines what an Aura spell can target and what an Aura permanent can be attached to."
+        },
+        {
+            "Name": "Equip",
+            "Description": "An activated Evergreen keyword ability that lets a player attach an Equipment to a creature they control."
+        },
+        {
+            "Name": "Eternalize",
+            "Description": "An activated keyword ability that lets a player exile a creature card from their graveyard to create an eternalized token version of that card."
+        },
+        {
+            "Name": "Exert",
+            "Description": "A keyword action that stops a permanent from untapping during the next uptap step of the player who exerted it."
+        },
+        {
+            "Name": "Explore",
+            "Description": "A keyword action that causes a player to reveal the top card of their library and then to take different actions depending on whether a land card is revealed this way."
+        },
+        {
+            "Name": "Fabricate",
+            "Description": "A triggered keyword ability that lets you choose whether to create Servo tokens or put +1/+1 counters on a creature when it enters the battlefield."
+        },
+        {
+            "Name": "First Strike",
+            "Description": "A static Evergreen keyword ability that lets a creature deal its combat damage before other creatures."
+        },
+        {
+            "Name": "Flash",
+            "Description": "A static Evergreen keyword ability that lets a player play a card any time they could cast an instant."
+        },
+        {
+            "Name": "Flying",
+            "Description": "A static Evergreen keyword ability that restricts how a creature may be blocked."
+        },
+        {
+            "Name": "Haste",
+            "Description": "A static Evergreen keyword ability that lets a creature ignore the “summoning sickness” rule."
+        },
+        {
+            "Name": "Hexproof",
+            "Description": "A static Evergreen keyword ability that precludes a permanent or player from being targeted by an opponent."
+        },
+        {
+            "Name": "Improvise",
+            "Description": "A static keyword ability that lets you tap artifacts rather than pay mana to cast a spell."
+        },
+        {
+            "Name": "Indestructible",
+            "Description": "A static Evergreen keyword ability that precludes a permanent from being destroyed."
+        },
+        {
+            "Name": "Jump-Start",
+            "Description": "A static keyword ability that lets you play Instants and Sorceries from your graveyard by discarding another card, paying mana and exiling the spell."
+        },
+        {
+            "Name": "Kicker",
+            "Description": "A static keyword ability that represents an optional additional cost. A spell has been kicked if its controller declared the intention to pay any or all of its kicker costs."
+        },
+        {
+            "Name": "Lifelink",
+            "Description": "A static Evergreen keyword ability that causes a player to gain life."
+        },
+        {
+            "Name": "Menace",
+            "Description": "A static/evasion Evergreen keyword ability that makes creatures unblockable by a single creature."
+        },
+        {
+            "Name": "Mentor",
+            "Description": "A triggered keyword ability that lets a player put a +1/+1 counter on another attacking creature with less power when attacking with a creature with Mentor."
+        },
+        {
+            "Name": "Proliferate",
+            "Description": "A keyword action to give an additional counter to any number of players and/or permanents of each kind they already have."
+        },
+        {
+            "Name": "Prowess",
+            "Description": "A triggered Evergreen keyword ability that causes a creature to get +1/+1 whenever its controller casts a noncreature spell."
+        },
+        {
+            "Name": "Reach",
+            "Description": "A static Evergreen keyword ability that allows a creature to block an attacking creature with flying."
+        },
+        {
+            "Name": "Riot",
+            "Description": "A triggered keyword ability that lets a player chosse if a creature enters the battlefield with haste or a +1/+1 counter."
+        },
+        {
+            "Name": "Spectacle",
+            "Description": "A static keyword ability that gives a spell an alternative mana cost and/or altered effect if an opponent lost life this turn."
+        },
+        {
+            "Name": "Surveil",
+            "Description": "A keyword action that means to look at the top cards of your library, put any number of them into your graveyard and the rest on top of your library."
+        },
+        {
+            "Name": "Trample",
+            "Description": "A static Evergreen keyword ability that modifies how a creature assigns combat damage."
+        },
+        {
+            "Name": "Transform",
+            "Description": "A triggered/activated keyword ability that allows to turn double-faced cards upside down."
+        },
+        {
+            "Name": "Vigilance",
+            "Description": "A static Evergreen keyword ability that lets a creature attack without tapping."
+        },
+        {
+            "Name": "Ward",
+            "Description": "A triggered Evergreen keyword ability. Whenever a permanent with ward becomes the target of a spell or ability an opponent controls, counter it unless that player pays an additional cost."
+        }
+    ]
+}

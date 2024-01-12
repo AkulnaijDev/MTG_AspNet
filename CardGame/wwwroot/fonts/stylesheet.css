@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Evil Empire';
+    src: url('EvilEmpire.eot');
+    src: url('EvilEmpire.eot?#iefix') format('embedded-opentype'),
+        url('EvilEmpire.woff2') format('woff2'),
+        url('EvilEmpire.woff') format('woff'),
+        url('EvilEmpire.ttf') format('truetype'),
+        url('EvilEmpire.svg#EvilEmpire') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

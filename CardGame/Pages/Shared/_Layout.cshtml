@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CardGame</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="~/css/boardGame.css" asp-append-version="true" />       
+    <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/deckEditor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/fontawesome.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/initialScreen.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mainMenu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/fonts/stylesheet.css" asp-append-version="true" />
+    
+    <link rel="stylesheet" href="~/CardGame.styles.css" asp-append-version="true" />
+</head>
+<body>
+  
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+   
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+    
+    <script src="~/js/deckEditor.js" asp-append-version="true"></script>
+    <script src="~/js/initialScreen.js" asp-append-version="true"></script>
+    <script src="~/js/mainMenu.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+     <script src="~/js/boardGame.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

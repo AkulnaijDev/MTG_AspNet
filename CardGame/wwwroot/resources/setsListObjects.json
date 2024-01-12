@@ -1,0 +1,3759 @@
+{
+    "Sets":[
+       {
+          "Code":"plg22",
+          "Name":"Love Your LGS 2022",
+          "Status":"Active"
+       },
+       {
+          "Code":"snc",
+          "Name":"Streets of New Capenna",
+          "Status":"Active"
+       },
+       {
+          "Code":"pneo",
+          "Name":"Kamigawa: Neon Dynasty Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pvow",
+          "Name":"Innistrad: Crimson Vow Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"q06",
+          "Name":"Pioneer Challenger Decks 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"j21",
+          "Name":"Jumpstart: Historic Horizons",
+          "Status":"Active"
+       },
+       {
+          "Code":"mafr",
+          "Name":"Adventures in the Forgotten Realms Minigames",
+          "Status":"Active"
+       },
+       {
+          "Code":"ha5",
+          "Name":"Historic Anthology 5",
+          "Status":"Active"
+       },
+       {
+          "Code":"c21",
+          "Name":"Commander 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"khm",
+          "Name":"Kaldheim",
+          "Status":"Active"
+       },
+       {
+          "Code":"plist",
+          "Name":"The List",
+          "Status":"Active"
+       },
+       {
+          "Code":"anb",
+          "Name":"Arena Beginner Set",
+          "Status":"Active"
+       },
+       {
+          "Code":"ss3",
+          "Name":"Signature Spellbook: Chandra",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc20",
+          "Name":"Commander 2020 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"sld",
+          "Name":"Secret Lair Drop",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc19",
+          "Name":"Commander 2019 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmh1",
+          "Name":"Modern Horizons Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"gk2",
+          "Name":"RNA Guild Kit",
+          "Status":"Active"
+       },
+       {
+          "Code":"g18",
+          "Name":"M19 Gift Pack",
+          "Status":"Active"
+       },
+       {
+          "Code":"c18",
+          "Name":"Commander 2018",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm19",
+          "Name":"Core Set 2019 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdom",
+          "Name":"Dominaria Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"rix",
+          "Name":"Rivals of Ixalan",
+          "Status":"Active"
+       },
+       {
+          "Code":"ima",
+          "Name":"Iconic Masters",
+          "Status":"Active"
+       },
+       {
+          "Code":"te01",
+          "Name":"Archenemy: Nicol Bolas Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tcma",
+          "Name":"Commander Anthology Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmm3",
+          "Name":"Modern Masters 2017 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc16",
+          "Name":"Commander 2016 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"tcn2",
+          "Name":"Conspiracy: Take the Crown Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"w16",
+          "Name":"Welcome Deck 2016",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc15",
+          "Name":"Commander 2015 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pori",
+          "Name":"Magic Origins Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"dtk",
+          "Name":"Dragons of Tarkir",
+          "Status":"Active"
+       },
+       {
+          "Code":"tjvc",
+          "Name":"Duel Decks Anthology: Jace vs. Chandra Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc14",
+          "Name":"Commander 2014 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm15",
+          "Name":"Magic 2015 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"thp3",
+          "Name":"Journey into Nyx Hero's Path",
+          "Status":"Active"
+       },
+       {
+          "Code":"pbng",
+          "Name":"Born of the Gods Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"thp1",
+          "Name":"Theros Hero's Path",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmma",
+          "Name":"Modern Masters Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pgtc",
+          "Name":"Gatecrash Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"trtr",
+          "Name":"Return to Ravnica Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tavr",
+          "Name":"Avacyn Restored Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdp13",
+          "Name":"Duels of the Planeswalkers 2013 Promos ",
+          "Status":"Active"
+       },
+       {
+          "Code":"v11",
+          "Name":"From the Vault: Legends",
+          "Status":"Active"
+       },
+       {
+          "Code":"pnph",
+          "Name":"New Phyrexia Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"p11",
+          "Name":"Magic Player Rewards 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddf",
+          "Name":"Duel Decks: Elspeth vs. Tezzeret",
+          "Status":"Active"
+       },
+       {
+          "Code":"proe",
+          "Name":"Rise of the Eldrazi Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmps10",
+          "Name":"Magic Premiere Shop 2010",
+          "Status":"Active"
+       },
+       {
+          "Code":"me3",
+          "Name":"Masters Edition III",
+          "Status":"Active"
+       },
+       {
+          "Code":"tarb",
+          "Name":"Alara Reborn Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmps09",
+          "Name":"Magic Premiere Shop 2009",
+          "Status":"Active"
+       },
+       {
+          "Code":"me2",
+          "Name":"Masters Edition II",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmor",
+          "Name":"Morningtide Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"lrw",
+          "Name":"Lorwyn",
+          "Status":"Active"
+       },
+       {
+          "Code":"ppro",
+          "Name":"Pro Tour Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ptsp",
+          "Name":"Time Spiral Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"gpt",
+          "Name":"Guildpact",
+          "Status":"Active"
+       },
+       {
+          "Code":"prav",
+          "Name":"Ravnica: City of Guilds Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmps",
+          "Name":"Magic Premiere Shop 2005",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmrd",
+          "Name":"Mirrodin Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc03",
+          "Name":"World Championship Decks 2003",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal03",
+          "Name":"Arena League 2003",
+          "Status":"Active"
+       },
+       {
+          "Code":"jud",
+          "Name":"Judgment",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc01",
+          "Name":"World Championship Decks 2001",
+          "Status":"Active"
+       },
+       {
+          "Code":"f01",
+          "Name":"Friday Night Magic 2001",
+          "Status":"Active"
+       },
+       {
+          "Code":"pelp",
+          "Name":"European Land Program",
+          "Status":"Active"
+       },
+       {
+          "Code":"pwor",
+          "Name":"World Championship Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal99",
+          "Name":"Arena League 1999",
+          "Status":"Active"
+       },
+       {
+          "Code":"pexo",
+          "Name":"Exodus Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"por",
+          "Name":"Portal",
+          "Status":"Active"
+       },
+       {
+          "Code":"parl",
+          "Name":"Arena League 1996",
+          "Status":"Active"
+       },
+       {
+          "Code":"4ed",
+          "Name":"Fourth Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"3ed",
+          "Name":"Revised Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"rqs",
+          "Name":"Rivals Quick Start Set",
+          "Status":"Active"
+       },
+       {
+          "Code":"all",
+          "Name":"Alliances",
+          "Status":"Active"
+       },
+       {
+          "Code":"ptc",
+          "Name":"Pro Tour Collector Set",
+          "Status":"Active"
+       },
+       {
+          "Code":"hml",
+          "Name":"Homelands",
+          "Status":"Active"
+       },
+       {
+          "Code":"rin",
+          "Name":"Rinascimento",
+          "Status":"Active"
+       },
+       {
+          "Code":"ren",
+          "Name":"Renaissance",
+          "Status":"Active"
+       },
+       {
+          "Code":"chr",
+          "Name":"Chronicles",
+          "Status":"Active"
+       },
+       {
+          "Code":"ice",
+          "Name":"Ice Age",
+          "Status":"Active"
+       },
+       {
+          "Code":"4bb",
+          "Name":"Fourth Edition Foreign Black Border",
+          "Status":"Active"
+       },
+       {
+          "Code":"plgm",
+          "Name":"DCI Legend Membership",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmei",
+          "Name":"Media Inserts",
+          "Status":"Active"
+       },
+       {
+          "Code":"fem",
+          "Name":"Fallen Empires",
+          "Status":"Active"
+       },
+       {
+          "Code":"phpr",
+          "Name":"HarperPrism Book Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"drk",
+          "Name":"The Dark",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdrc",
+          "Name":"Dragon Con",
+          "Status":"Active"
+       },
+       {
+          "Code":"sum",
+          "Name":"Summer Magic / Edgar",
+          "Status":"Active"
+       },
+       {
+          "Code":"leg",
+          "Name":"Legends",
+          "Status":"Active"
+       },
+       {
+          "Code":"fbb",
+          "Name":"Foreign Black Border",
+          "Status":"Active"
+       },
+       {
+          "Code":"atq",
+          "Name":"Antiquities",
+          "Status":"Active"
+       },
+       {
+          "Code":"arn",
+          "Name":"Arabian Nights",
+          "Status":"Active"
+       },
+       {
+          "Code":"cei",
+          "Name":"Intl. Collectors’ Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"ced",
+          "Name":"Collectors’ Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"2ed",
+          "Name":"Unlimited Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"leb",
+          "Name":"Limited Edition Beta",
+          "Status":"Active"
+       },
+       {
+          "Code":"lea",
+          "Name":"Limited Edition Alpha",
+          "Status":"Active"
+       },
+       {
+          "Code":"tsp",
+          "Name":"Time Spiral",
+          "Status":"Active"
+       },
+       {
+          "Code":"tsb",
+          "Name":"Time Spiral Timeshifted",
+          "Status":"Active"
+       },
+       {
+          "Code":"pcsp",
+          "Name":"Coldsnap Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"csp",
+          "Name":"Coldsnap",
+          "Status":"Active"
+       },
+       {
+          "Code":"cst",
+          "Name":"Coldsnap Theme Decks",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdis",
+          "Name":"Dissension Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"dis",
+          "Name":"Dissension",
+          "Status":"Active"
+       },
+       {
+          "Code":"pcmp",
+          "Name":"Champs and States",
+          "Status":"Active"
+       },
+       {
+          "Code":"pgpt",
+          "Name":"Guildpact Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal06",
+          "Name":"Arena League 2006",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmps06",
+          "Name":"Magic Premiere Shop 2006",
+          "Status":"Active"
+       },
+       {
+          "Code":"pjas",
+          "Name":"Junior APAC Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"f06",
+          "Name":"Friday Night Magic 2006",
+          "Status":"Active"
+       },
+       {
+          "Code":"g06",
+          "Name":"Judge Gift Cards 2006",
+          "Status":"Active"
+       },
+       {
+          "Code":"pgtw",
+          "Name":"Gateway 2006",
+          "Status":"Active"
+       },
+       {
+          "Code":"phuk",
+          "Name":"Hachette UK",
+          "Status":"Active"
+       },
+       {
+          "Code":"p06",
+          "Name":"Magic Player Rewards 2006",
+          "Status":"Active"
+       },
+       {
+          "Code":"p2hg",
+          "Name":"Two-Headed Giant Tournament",
+          "Status":"Active"
+       },
+       {
+          "Code":"rav",
+          "Name":"Ravnica: City of Guilds",
+          "Status":"Active"
+       },
+       {
+          "Code":"psal",
+          "Name":"Salvat 2005",
+          "Status":"Active"
+       },
+       {
+          "Code":"p9ed",
+          "Name":"Ninth Edition Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"9ed",
+          "Name":"Ninth Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"psok",
+          "Name":"Saviors of Kamigawa Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"sok",
+          "Name":"Saviors of Kamigawa",
+          "Status":"Active"
+       },
+       {
+          "Code":"pbok",
+          "Name":"Betrayers of Kamigawa Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"bok",
+          "Name":"Betrayers of Kamigawa",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal05",
+          "Name":"Arena League 2005",
+          "Status":"Active"
+       },
+       {
+          "Code":"pjse",
+          "Name":"Junior Series Europe",
+          "Status":"Active"
+       },
+       {
+          "Code":"g05",
+          "Name":"Judge Gift Cards 2005",
+          "Status":"Active"
+       },
+       {
+          "Code":"p05",
+          "Name":"Magic Player Rewards 2005",
+          "Status":"Active"
+       },
+       {
+          "Code":"f05",
+          "Name":"Friday Night Magic 2005",
+          "Status":"Active"
+       },
+       {
+          "Code":"punh",
+          "Name":"Unhinged Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"unh",
+          "Name":"Unhinged",
+          "Status":"Active"
+       },
+       {
+          "Code":"pchk",
+          "Name":"Champions of Kamigawa Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"chk",
+          "Name":"Champions of Kamigawa",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc04",
+          "Name":"World Championship Decks 2004",
+          "Status":"Active"
+       },
+       {
+          "Code":"p5dn",
+          "Name":"Fifth Dawn Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdst",
+          "Name":"Darksteel Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"5dn",
+          "Name":"Fifth Dawn",
+          "Status":"Active"
+       },
+       {
+          "Code":"dst",
+          "Name":"Darksteel",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal04",
+          "Name":"Arena League 2004",
+          "Status":"Active"
+       },
+       {
+          "Code":"g04",
+          "Name":"Judge Gift Cards 2004",
+          "Status":"Active"
+       },
+       {
+          "Code":"p04",
+          "Name":"Magic Player Rewards 2004",
+          "Status":"Active"
+       },
+       {
+          "Code":"f04",
+          "Name":"Friday Night Magic 2004",
+          "Status":"Active"
+       },
+       {
+          "Code":"mrd",
+          "Name":"Mirrodin",
+          "Status":"Active"
+       },
+       {
+          "Code":"p8ed",
+          "Name":"Eighth Edition Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"8ed",
+          "Name":"Eighth Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"pscg",
+          "Name":"Scourge Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"scg",
+          "Name":"Scourge",
+          "Status":"Active"
+       },
+       {
+          "Code":"plgn",
+          "Name":"Legions Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pons",
+          "Name":"Onslaught Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"lgn",
+          "Name":"Legions",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmoa",
+          "Name":"Magic Online Avatars",
+          "Status":"Active"
+       },
+       {
+          "Code":"pjjt",
+          "Name":"Japan Junior Tournament",
+          "Status":"Active"
+       },
+       {
+          "Code":"p03",
+          "Name":"Magic Player Rewards 2003",
+          "Status":"Active"
+       },
+       {
+          "Code":"g03",
+          "Name":"Judge Gift Cards 2003",
+          "Status":"Active"
+       },
+       {
+          "Code":"f03",
+          "Name":"Friday Night Magic 2003",
+          "Status":"Active"
+       },
+       {
+          "Code":"ovnt",
+          "Name":"Vintage Championship",
+          "Status":"Active"
+       },
+       {
+          "Code":"ons",
+          "Name":"Onslaught",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc02",
+          "Name":"World Championship Decks 2002",
+          "Status":"Active"
+       },
+       {
+          "Code":"phj",
+          "Name":"Hobby Japan Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"prm",
+          "Name":"Magic Online Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pjud",
+          "Name":"Judgment Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ptor",
+          "Name":"Torment Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tor",
+          "Name":"Torment",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal02",
+          "Name":"Arena League 2002",
+          "Status":"Active"
+       },
+       {
+          "Code":"g02",
+          "Name":"Judge Gift Cards 2002",
+          "Status":"Active"
+       },
+       {
+          "Code":"f02",
+          "Name":"Friday Night Magic 2002",
+          "Status":"Active"
+       },
+       {
+          "Code":"pr2",
+          "Name":"Magic Player Rewards 2002",
+          "Status":"Active"
+       },
+       {
+          "Code":"dkm",
+          "Name":"Deckmasters",
+          "Status":"Active"
+       },
+       {
+          "Code":"pody",
+          "Name":"Odyssey Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ody",
+          "Name":"Odyssey",
+          "Status":"Active"
+       },
+       {
+          "Code":"psdg",
+          "Name":"Sega Dreamcast Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"papc",
+          "Name":"Apocalypse Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"apc",
+          "Name":"Apocalypse",
+          "Status":"Active"
+       },
+       {
+          "Code":"7ed",
+          "Name":"Seventh Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"ppls",
+          "Name":"Planeshift Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pls",
+          "Name":"Planeshift",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal01",
+          "Name":"Arena League 2001",
+          "Status":"Active"
+       },
+       {
+          "Code":"g01",
+          "Name":"Judge Gift Cards 2001",
+          "Status":"Active"
+       },
+       {
+          "Code":"mpr",
+          "Name":"Magic Player Rewards 2001",
+          "Status":"Active"
+       },
+       {
+          "Code":"pinv",
+          "Name":"Invasion Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"inv",
+          "Name":"Invasion",
+          "Status":"Active"
+       },
+       {
+          "Code":"btd",
+          "Name":"Beatdown Box Set",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc00",
+          "Name":"World Championship Decks 2000",
+          "Status":"Active"
+       },
+       {
+          "Code":"ppcy",
+          "Name":"Prophecy Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pcy",
+          "Name":"Prophecy",
+          "Status":"Active"
+       },
+       {
+          "Code":"s00",
+          "Name":"Starter 2000",
+          "Status":"Active"
+       },
+       {
+          "Code":"pnem",
+          "Name":"Nemesis Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"nem",
+          "Name":"Nemesis",
+          "Status":"Active"
+       },
+       {
+          "Code":"pal00",
+          "Name":"Arena League 2000",
+          "Status":"Active"
+       },
+       {
+          "Code":"g00",
+          "Name":"Judge Gift Cards 2000",
+          "Status":"Active"
+       },
+       {
+          "Code":"fnm",
+          "Name":"Friday Night Magic 2000",
+          "Status":"Active"
+       },
+       {
+          "Code":"psus",
+          "Name":"Junior Super Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"brb",
+          "Name":"Battle Royale Box Set",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmmq",
+          "Name":"Mercadian Masques Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"mmq",
+          "Name":"Mercadian Masques",
+          "Status":"Active"
+       },
+       {
+          "Code":"pwos",
+          "Name":"Wizards of the Coast Online Store",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc99",
+          "Name":"World Championship Decks 1999",
+          "Status":"Active"
+       },
+       {
+          "Code":"pgru",
+          "Name":"Guru",
+          "Status":"Active"
+       },
+       {
+          "Code":"ptk",
+          "Name":"Portal Three Kingdoms",
+          "Status":"Active"
+       },
+       {
+          "Code":"pptk",
+          "Name":"Portal: Three Kingdoms Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"s99",
+          "Name":"Starter 1999",
+          "Status":"Active"
+       },
+       {
+          "Code":"puds",
+          "Name":"Urza's Destiny Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"uds",
+          "Name":"Urza's Destiny",
+          "Status":"Active"
+       },
+       {
+          "Code":"6ed",
+          "Name":"Classic Sixth Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"pulg",
+          "Name":"Urza's Legacy Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ulg",
+          "Name":"Urza's Legacy",
+          "Status":"Active"
+       },
+       {
+          "Code":"g99",
+          "Name":"Judge Gift Cards 1999",
+          "Status":"Active"
+       },
+       {
+          "Code":"ath",
+          "Name":"Anthologies",
+          "Status":"Active"
+       },
+       {
+          "Code":"pusg",
+          "Name":"Urza's Saga Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"usg",
+          "Name":"Urza's Saga",
+          "Status":"Active"
+       },
+       {
+          "Code":"palp",
+          "Name":"Asia Pacific Land Program",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc98",
+          "Name":"World Championship Decks 1998",
+          "Status":"Active"
+       },
+       {
+          "Code":"tugl",
+          "Name":"Unglued Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ugl",
+          "Name":"Unglued",
+          "Status":"Active"
+       },
+       {
+          "Code":"p02",
+          "Name":"Portal Second Age",
+          "Status":"Active"
+       },
+       {
+          "Code":"l12",
+          "Name":"League Tokens 2012",
+          "Status":"Active"
+       },
+       {
+          "Code":"f12",
+          "Name":"Friday Night Magic 2012",
+          "Status":"Active"
+       },
+       {
+          "Code":"j12",
+          "Name":"Judge Gift Cards 2012",
+          "Status":"Active"
+       },
+       {
+          "Code":"pd3",
+          "Name":"Premium Deck Series: Graveborn",
+          "Status":"Active"
+       },
+       {
+          "Code":"isd",
+          "Name":"Innistrad",
+          "Status":"Active"
+       },
+       {
+          "Code":"tisd",
+          "Name":"Innistrad Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pisd",
+          "Name":"Innistrad Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddh",
+          "Name":"Duel Decks: Ajani vs. Nicol Bolas Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddh",
+          "Name":"Duel Decks: Ajani vs. Nicol Bolas",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm12",
+          "Name":"Magic 2012 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"m12",
+          "Name":"Magic 2012",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm12",
+          "Name":"Magic 2012 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ocmd",
+          "Name":"Commander 2011 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"pcmd",
+          "Name":"Commander 2011 Launch Party",
+          "Status":"Active"
+       },
+       {
+          "Code":"cmd",
+          "Name":"Commander 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"td2",
+          "Name":"Duel Decks: Mirrodin Pure vs. New Phyrexia",
+          "Status":"Active"
+       },
+       {
+          "Code":"nph",
+          "Name":"New Phyrexia",
+          "Status":"Active"
+       },
+       {
+          "Code":"tnph",
+          "Name":"New Phyrexia Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddg",
+          "Name":"Duel Decks: Knights vs. Dragons Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddg",
+          "Name":"Duel Decks: Knights vs. Dragons",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmbs",
+          "Name":"Mirrodin Besieged Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"mbs",
+          "Name":"Mirrodin Besieged",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmbs",
+          "Name":"Mirrodin Besieged Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"me4",
+          "Name":"Masters Edition IV",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmps11",
+          "Name":"Magic Premiere Shop 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdp12",
+          "Name":"Duels of the Planeswalkers 2012 Promos ",
+          "Status":"Active"
+       },
+       {
+          "Code":"pw11",
+          "Name":"Wizards Play Network 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"exo",
+          "Name":"Exodus",
+          "Status":"Active"
+       },
+       {
+          "Code":"psth",
+          "Name":"Stronghold Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"sth",
+          "Name":"Stronghold",
+          "Status":"Active"
+       },
+       {
+          "Code":"jgp",
+          "Name":"Judge Gift Cards 1998",
+          "Status":"Active"
+       },
+       {
+          "Code":"ptmp",
+          "Name":"Tempest Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmp",
+          "Name":"Tempest",
+          "Status":"Active"
+       },
+       {
+          "Code":"wc97",
+          "Name":"World Championship Decks 1997",
+          "Status":"Active"
+       },
+       {
+          "Code":"wth",
+          "Name":"Weatherlight",
+          "Status":"Active"
+       },
+       {
+          "Code":"pvan",
+          "Name":"Vanguard Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"olgc",
+          "Name":"Legacy Championship",
+          "Status":"Active"
+       },
+       {
+          "Code":"f11",
+          "Name":"Friday Night Magic 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"ps11",
+          "Name":"Salvat 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"g11",
+          "Name":"Judge Gift Cards 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"pd2",
+          "Name":"Premium Deck Series: Fire and Lightning",
+          "Status":"Active"
+       },
+       {
+          "Code":"td0",
+          "Name":"Magic Online Theme Decks",
+          "Status":"Active"
+       },
+       {
+          "Code":"som",
+          "Name":"Scars of Mirrodin",
+          "Status":"Active"
+       },
+       {
+          "Code":"tsom",
+          "Name":"Scars of Mirrodin Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"psom",
+          "Name":"Scars of Mirrodin Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddf",
+          "Name":"Duel Decks: Elspeth vs. Tezzeret Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"v10",
+          "Name":"From the Vault: Relics",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm11",
+          "Name":"Magic 2011 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"m11",
+          "Name":"Magic 2011",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm11",
+          "Name":"Magic 2011 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"oarc",
+          "Name":"Archenemy Schemes",
+          "Status":"Active"
+       },
+       {
+          "Code":"arc",
+          "Name":"Archenemy",
+          "Status":"Active"
+       },
+       {
+          "Code":"parc",
+          "Name":"Promotional Schemes",
+          "Status":"Active"
+       },
+       {
+          "Code":"dpa",
+          "Name":"Duels of the Planeswalkers",
+          "Status":"Active"
+       },
+       {
+          "Code":"roe",
+          "Name":"Rise of the Eldrazi",
+          "Status":"Active"
+       },
+       {
+          "Code":"troe",
+          "Name":"Rise of the Eldrazi Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdde",
+          "Name":"Duel Decks: Phyrexia vs. the Coalition Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"dde",
+          "Name":"Duel Decks: Phyrexia vs. the Coalition",
+          "Status":"Active"
+       },
+       {
+          "Code":"pwwk",
+          "Name":"Worldwake Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"twwk",
+          "Name":"Worldwake Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"wwk",
+          "Name":"Worldwake",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdp10",
+          "Name":"Duels of the Planeswalkers 2010 Promos ",
+          "Status":"Active"
+       },
+       {
+          "Code":"pw10",
+          "Name":"Wizards Play Network 2010",
+          "Status":"Active"
+       },
+       {
+          "Code":"g10",
+          "Name":"Judge Gift Cards 2010",
+          "Status":"Active"
+       },
+       {
+          "Code":"p10",
+          "Name":"Magic Player Rewards 2010",
+          "Status":"Active"
+       },
+       {
+          "Code":"f10",
+          "Name":"Friday Night Magic 2010",
+          "Status":"Active"
+       },
+       {
+          "Code":"h09",
+          "Name":"Premium Deck Series: Slivers",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddd",
+          "Name":"Duel Decks: Garruk vs. Liliana Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddd",
+          "Name":"Duel Decks: Garruk vs. Liliana",
+          "Status":"Active"
+       },
+       {
+          "Code":"pzen",
+          "Name":"Zendikar Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"zen",
+          "Name":"Zendikar",
+          "Status":"Active"
+       },
+       {
+          "Code":"tzen",
+          "Name":"Zendikar Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ohop",
+          "Name":"Planechase Planes",
+          "Status":"Active"
+       },
+       {
+          "Code":"hop",
+          "Name":"Planechase",
+          "Status":"Active"
+       },
+       {
+          "Code":"phop",
+          "Name":"Promotional Planes",
+          "Status":"Active"
+       },
+       {
+          "Code":"v09",
+          "Name":"From the Vault: Exiled",
+          "Status":"Active"
+       },
+       {
+          "Code":"m10",
+          "Name":"Magic 2010",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm10",
+          "Name":"Magic 2010 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm10",
+          "Name":"Magic 2010 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"parb",
+          "Name":"Alara Reborn Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"arb",
+          "Name":"Alara Reborn",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddc",
+          "Name":"Duel Decks: Divine vs. Demonic Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddc",
+          "Name":"Duel Decks: Divine vs. Demonic",
+          "Status":"Active"
+       },
+       {
+          "Code":"purl",
+          "Name":"URL/Convention Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pcon",
+          "Name":"Conflux Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tcon",
+          "Name":"Conflux Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"con",
+          "Name":"Conflux",
+          "Status":"Active"
+       },
+       {
+          "Code":"pbook",
+          "Name":"Miscellaneous Book Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pw09",
+          "Name":"Wizards Play Network 2009",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdtp",
+          "Name":"Duels of the Planeswalkers 2009 Promos ",
+          "Status":"Active"
+       },
+       {
+          "Code":"g09",
+          "Name":"Judge Gift Cards 2009",
+          "Status":"Active"
+       },
+       {
+          "Code":"p09",
+          "Name":"Magic Player Rewards 2009",
+          "Status":"Active"
+       },
+       {
+          "Code":"f09",
+          "Name":"Friday Night Magic 2009",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdd2",
+          "Name":"Duel Decks: Jace vs. Chandra Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"dd2",
+          "Name":"Duel Decks: Jace vs. Chandra",
+          "Status":"Active"
+       },
+       {
+          "Code":"pala",
+          "Name":"Shards of Alara Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ala",
+          "Name":"Shards of Alara",
+          "Status":"Active"
+       },
+       {
+          "Code":"tala",
+          "Name":"Shards of Alara Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pwpn",
+          "Name":"Wizards Play Network 2008",
+          "Status":"Active"
+       },
+       {
+          "Code":"drb",
+          "Name":"From the Vault: Dragons",
+          "Status":"Active"
+       },
+       {
+          "Code":"peve",
+          "Name":"Eventide Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"teve",
+          "Name":"Eventide Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"eve",
+          "Name":"Eventide",
+          "Status":"Active"
+       },
+       {
+          "Code":"pshm",
+          "Name":"Shadowmoor Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tshm",
+          "Name":"Shadowmoor Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"shm",
+          "Name":"Shadowmoor",
+          "Status":"Active"
+       },
+       {
+          "Code":"p15a",
+          "Name":"15th Anniversary Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmor",
+          "Name":"Morningtide Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"mor",
+          "Name":"Morningtide",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmps08",
+          "Name":"Magic Premiere Shop 2008",
+          "Status":"Active"
+       },
+       {
+          "Code":"pg08",
+          "Name":"Gateway 2008",
+          "Status":"Active"
+       },
+       {
+          "Code":"f08",
+          "Name":"Friday Night Magic 2008",
+          "Status":"Active"
+       },
+       {
+          "Code":"g08",
+          "Name":"Judge Gift Cards 2008",
+          "Status":"Active"
+       },
+       {
+          "Code":"p08",
+          "Name":"Magic Player Rewards 2008",
+          "Status":"Active"
+       },
+       {
+          "Code":"dd1",
+          "Name":"Duel Decks: Elves vs. Goblins",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdd1",
+          "Name":"Duel Decks: Elves vs. Goblins Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"plrw",
+          "Name":"Lorwyn Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmic",
+          "Name":"MicroProse Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"past",
+          "Name":"Astral Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"5ed",
+          "Name":"Fifth Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"vis",
+          "Name":"Visions",
+          "Status":"Active"
+       },
+       {
+          "Code":"itp",
+          "Name":"Introductory Two-Player Set",
+          "Status":"Active"
+       },
+       {
+          "Code":"mgb",
+          "Name":"Multiverse Gift Box",
+          "Status":"Active"
+       },
+       {
+          "Code":"mir",
+          "Name":"Mirage",
+          "Status":"Active"
+       },
+       {
+          "Code":"pred",
+          "Name":"Redemption Program",
+          "Status":"Active"
+       },
+       {
+          "Code":"pcel",
+          "Name":"Celebration Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"tlrw",
+          "Name":"Lorwyn Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"me1",
+          "Name":"Masters Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"psum",
+          "Name":"Summer of Magic",
+          "Status":"Active"
+       },
+       {
+          "Code":"10e",
+          "Name":"Tenth Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"p10e",
+          "Name":"Tenth Edition Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"t10e",
+          "Name":"Tenth Edition Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pfut",
+          "Name":"Future Sight Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"fut",
+          "Name":"Future Sight",
+          "Status":"Active"
+       },
+       {
+          "Code":"pgpx",
+          "Name":"Grand Prix Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"v16",
+          "Name":"From the Vault: Lore",
+          "Status":"Active"
+       },
+       {
+          "Code":"pemn",
+          "Name":"Eldritch Moon Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"temn",
+          "Name":"Eldritch Moon Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"emn",
+          "Name":"Eldritch Moon",
+          "Status":"Active"
+       },
+       {
+          "Code":"tema",
+          "Name":"Eternal Masters Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ema",
+          "Name":"Eternal Masters",
+          "Status":"Active"
+       },
+       {
+          "Code":"psoi",
+          "Name":"Shadows over Innistrad Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tsoi",
+          "Name":"Shadows over Innistrad Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"soi",
+          "Name":"Shadows over Innistrad",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddq",
+          "Name":"Duel Decks: Blessed vs. Cursed",
+          "Status":"Active"
+       },
+       {
+          "Code":"ogw",
+          "Name":"Oath of the Gatewatch",
+          "Status":"Active"
+       },
+       {
+          "Code":"togw",
+          "Name":"Oath of the Gatewatch Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pogw",
+          "Name":"Oath of the Gatewatch Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"l16",
+          "Name":"League Tokens 2016",
+          "Status":"Active"
+       },
+       {
+          "Code":"j16",
+          "Name":"Judge Gift Cards 2016",
+          "Status":"Active"
+       },
+       {
+          "Code":"f16",
+          "Name":"Friday Night Magic 2016",
+          "Status":"Active"
+       },
+       {
+          "Code":"pz1",
+          "Name":"Legendary Cube Prize Pack",
+          "Status":"Active"
+       },
+       {
+          "Code":"c15",
+          "Name":"Commander 2015",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc15",
+          "Name":"Commander 2015 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"bfz",
+          "Name":"Battle for Zendikar",
+          "Status":"Active"
+       },
+       {
+          "Code":"tbfz",
+          "Name":"Battle for Zendikar Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pbfz",
+          "Name":"Battle for Zendikar Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pss1",
+          "Name":"BFZ Standard Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"exp",
+          "Name":"Zendikar Expeditions",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddp",
+          "Name":"Duel Decks: Zendikar vs. Eldrazi",
+          "Status":"Active"
+       },
+       {
+          "Code":"v15",
+          "Name":"From the Vault: Angels",
+          "Status":"Active"
+       },
+       {
+          "Code":"cp3",
+          "Name":"Magic Origins Clash Pack",
+          "Status":"Active"
+       },
+       {
+          "Code":"ori",
+          "Name":"Magic Origins",
+          "Status":"Active"
+       },
+       {
+          "Code":"tori",
+          "Name":"Magic Origins Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ps15",
+          "Name":"San Diego Comic-Con 2015",
+          "Status":"Active"
+       },
+       {
+          "Code":"mm2",
+          "Name":"Modern Masters 2015",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmm2",
+          "Name":"Modern Masters 2015 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tpr",
+          "Name":"Tempest Remastered",
+          "Status":"Active"
+       },
+       {
+          "Code":"ptkdf",
+          "Name":"Tarkir Dragonfury",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdtk",
+          "Name":"Dragons of Tarkir Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdtk",
+          "Name":"Dragons of Tarkir Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddo",
+          "Name":"Duel Decks: Elspeth vs. Kiora",
+          "Status":"Active"
+       },
+       {
+          "Code":"pfrf",
+          "Name":"Fate Reforged Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"cp2",
+          "Name":"Fate Reforged Clash Pack",
+          "Status":"Active"
+       },
+       {
+          "Code":"tfrf",
+          "Name":"Fate Reforged Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"frf",
+          "Name":"Fate Reforged",
+          "Status":"Active"
+       },
+       {
+          "Code":"ugin",
+          "Name":"Ugin's Fate",
+          "Status":"Active"
+       },
+       {
+          "Code":"l15",
+          "Name":"League Tokens 2015",
+          "Status":"Active"
+       },
+       {
+          "Code":"f15",
+          "Name":"Friday Night Magic 2015",
+          "Status":"Active"
+       },
+       {
+          "Code":"j15",
+          "Name":"Judge Gift Cards 2015",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdvd",
+          "Name":"Duel Decks Anthology: Divine vs. Demonic Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tgvl",
+          "Name":"Duel Decks Anthology: Garruk vs. Liliana Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"jvc",
+          "Name":"Duel Decks Anthology: Jace vs. Chandra",
+          "Status":"Active"
+       },
+       {
+          "Code":"gvl",
+          "Name":"Duel Decks Anthology: Garruk vs. Liliana",
+          "Status":"Active"
+       },
+       {
+          "Code":"tevg",
+          "Name":"Duel Decks Anthology: Elves vs. Goblins Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"dvd",
+          "Name":"Duel Decks Anthology: Divine vs. Demonic",
+          "Status":"Active"
+       },
+       {
+          "Code":"evg",
+          "Name":"Duel Decks Anthology: Elves vs. Goblins",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc14",
+          "Name":"Commander 2014 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"c14",
+          "Name":"Commander 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"pktk",
+          "Name":"Khans of Tarkir Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ktk",
+          "Name":"Khans of Tarkir",
+          "Status":"Active"
+       },
+       {
+          "Code":"tktk",
+          "Name":"Khans of Tarkir Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddn",
+          "Name":"Duel Decks: Speed vs. Cunning",
+          "Status":"Active"
+       },
+       {
+          "Code":"v14",
+          "Name":"From the Vault: Annihilation",
+          "Status":"Active"
+       },
+       {
+          "Code":"m15",
+          "Name":"Magic 2015",
+          "Status":"Active"
+       },
+       {
+          "Code":"cp1",
+          "Name":"Magic 2015 Clash Pack",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm15",
+          "Name":"Magic 2015 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ppc1",
+          "Name":"M15 Prerelease Challenge",
+          "Status":"Active"
+       },
+       {
+          "Code":"ps14",
+          "Name":"San Diego Comic-Con 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"vma",
+          "Name":"Vintage Masters",
+          "Status":"Active"
+       },
+       {
+          "Code":"pcns",
+          "Name":"Conspiracy Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tcns",
+          "Name":"Conspiracy Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"cns",
+          "Name":"Conspiracy",
+          "Status":"Active"
+       },
+       {
+          "Code":"md1",
+          "Name":"Modern Event Deck 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmd1",
+          "Name":"Modern Event Deck 2014 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdag",
+          "Name":"Defeat a God",
+          "Status":"Active"
+       },
+       {
+          "Code":"jou",
+          "Name":"Journey into Nyx",
+          "Status":"Active"
+       },
+       {
+          "Code":"tjou",
+          "Name":"Journey into Nyx Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pjou",
+          "Name":"Journey into Nyx Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddm",
+          "Name":"Duel Decks: Jace vs. Vraska Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddm",
+          "Name":"Duel Decks: Jace vs. Vraska",
+          "Status":"Active"
+       },
+       {
+          "Code":"tbth",
+          "Name":"Battle the Horde",
+          "Status":"Active"
+       },
+       {
+          "Code":"bng",
+          "Name":"Born of the Gods",
+          "Status":"Active"
+       },
+       {
+          "Code":"thp2",
+          "Name":"Born of the Gods Hero's Path",
+          "Status":"Active"
+       },
+       {
+          "Code":"tbng",
+          "Name":"Born of the Gods Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pplc",
+          "Name":"Planar Chaos Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"plc",
+          "Name":"Planar Chaos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pres",
+          "Name":"Resale Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pg07",
+          "Name":"Gateway 2007",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmps07",
+          "Name":"Magic Premiere Shop 2007",
+          "Status":"Active"
+       },
+       {
+          "Code":"p07",
+          "Name":"Magic Player Rewards 2007",
+          "Status":"Active"
+       },
+       {
+          "Code":"f07",
+          "Name":"Friday Night Magic 2007",
+          "Status":"Active"
+       },
+       {
+          "Code":"g07",
+          "Name":"Judge Gift Cards 2007",
+          "Status":"Active"
+       },
+       {
+          "Code":"hho",
+          "Name":"Happy Holidays",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdp15",
+          "Name":"Duels of the Planeswalkers 2015 Promos ",
+          "Status":"Active"
+       },
+       {
+          "Code":"pi14",
+          "Name":"IDW Comics 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"l14",
+          "Name":"League Tokens 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"f14",
+          "Name":"Friday Night Magic 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"j14",
+          "Name":"Judge Gift Cards 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc13",
+          "Name":"Commander 2013 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"c13",
+          "Name":"Commander 2013",
+          "Status":"Active"
+       },
+       {
+          "Code":"tfth",
+          "Name":"Face the Hydra",
+          "Status":"Active"
+       },
+       {
+          "Code":"ths",
+          "Name":"Theros",
+          "Status":"Active"
+       },
+       {
+          "Code":"tths",
+          "Name":"Theros Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pths",
+          "Name":"Theros Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddl",
+          "Name":"Duel Decks: Heroes vs. Monsters",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddl",
+          "Name":"Duel Decks: Heroes vs. Monsters Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"v13",
+          "Name":"From the Vault: Twenty",
+          "Status":"Active"
+       },
+       {
+          "Code":"m14",
+          "Name":"Magic 2014",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm14",
+          "Name":"Magic 2014 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm14",
+          "Name":"Magic 2014 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"psdc",
+          "Name":"San Diego Comic-Con 2013",
+          "Status":"Active"
+       },
+       {
+          "Code":"mma",
+          "Name":"Modern Masters",
+          "Status":"Active"
+       },
+       {
+          "Code":"dgm",
+          "Name":"Dragon's Maze",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdgm",
+          "Name":"Dragon's Maze Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdgm",
+          "Name":"Dragon's Maze Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pwcq",
+          "Name":"World Magic Cup Qualifiers",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddk",
+          "Name":"Duel Decks: Sorin vs. Tibalt Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddk",
+          "Name":"Duel Decks: Sorin vs. Tibalt",
+          "Status":"Active"
+       },
+       {
+          "Code":"gtc",
+          "Name":"Gatecrash",
+          "Status":"Active"
+       },
+       {
+          "Code":"tgtc",
+          "Name":"Gatecrash Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdp14",
+          "Name":"Duels of the Planeswalkers 2014 Promos ",
+          "Status":"Active"
+       },
+       {
+          "Code":"pi13",
+          "Name":"IDW Comics 2013",
+          "Status":"Active"
+       },
+       {
+          "Code":"l13",
+          "Name":"League Tokens 2013",
+          "Status":"Active"
+       },
+       {
+          "Code":"j13",
+          "Name":"Judge Gift Cards 2013",
+          "Status":"Active"
+       },
+       {
+          "Code":"f13",
+          "Name":"Friday Night Magic 2013",
+          "Status":"Active"
+       },
+       {
+          "Code":"ocm1",
+          "Name":"Commander's Arsenal Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"cm1",
+          "Name":"Commander's Arsenal",
+          "Status":"Active"
+       },
+       {
+          "Code":"rtr",
+          "Name":"Return to Ravnica",
+          "Status":"Active"
+       },
+       {
+          "Code":"prtr",
+          "Name":"Return to Ravnica Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ha1",
+          "Name":"Historic Anthology 1",
+          "Status":"Active"
+       },
+       {
+          "Code":"tgn2",
+          "Name":"Game Night 2019 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"gn2",
+          "Name":"Game Night 2019",
+          "Status":"Active"
+       },
+       {
+          "Code":"cmb1",
+          "Name":"Mystery Booster Playtest Cards 2019",
+          "Status":"Active"
+       },
+       {
+          "Code":"mb1",
+          "Name":"Mystery Booster",
+          "Status":"Active"
+       },
+       {
+          "Code":"ptg",
+          "Name":"Ponies: The Galloping",
+          "Status":"Active"
+       },
+       {
+          "Code":"peld",
+          "Name":"Throne of Eldraine Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"eld",
+          "Name":"Throne of Eldraine",
+          "Status":"Active"
+       },
+       {
+          "Code":"teld",
+          "Name":"Throne of Eldraine Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"c19",
+          "Name":"Commander 2019",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc19",
+          "Name":"Commander 2019 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"htr18",
+          "Name":"2018 Heroes of the Realm",
+          "Status":"Active"
+       },
+       {
+          "Code":"ps19",
+          "Name":"San Diego Comic-Con 2019",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm20",
+          "Name":"Core Set 2020 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ppp1",
+          "Name":"M20 Promo Packs",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm20",
+          "Name":"Core Set 2020 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"m20",
+          "Name":"Core Set 2020",
+          "Status":"Active"
+       },
+       {
+          "Code":"ss2",
+          "Name":"Signature Spellbook: Gideon",
+          "Status":"Active"
+       },
+       {
+          "Code":"mh1",
+          "Name":"Modern Horizons",
+          "Status":"Active"
+       },
+       {
+          "Code":"amh1",
+          "Name":"Modern Horizons Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmh1",
+          "Name":"Modern Horizons Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pwar",
+          "Name":"War of the Spark Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"twar",
+          "Name":"War of the Spark Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"war",
+          "Name":"War of the Spark",
+          "Status":"Active"
+       },
+       {
+          "Code":"j19",
+          "Name":"Judge Gift Cards 2019",
+          "Status":"Active"
+       },
+       {
+          "Code":"prw2",
+          "Name":"RNA Ravnica Weekend",
+          "Status":"Active"
+       },
+       {
+          "Code":"tgk2",
+          "Name":"RNA Guild Kit Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"prna",
+          "Name":"Ravnica Allegiance Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"rna",
+          "Name":"Ravnica Allegiance",
+          "Status":"Active"
+       },
+       {
+          "Code":"trna",
+          "Name":"Ravnica Allegiance Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pf19",
+          "Name":"MagicFest 2019",
+          "Status":"Active"
+       },
+       {
+          "Code":"opca",
+          "Name":"Planechase Anthology Planes",
+          "Status":"Active"
+       },
+       {
+          "Code":"puma",
+          "Name":"Ultimate Box Topper",
+          "Status":"Active"
+       },
+       {
+          "Code":"uma",
+          "Name":"Ultimate Masters",
+          "Status":"Active"
+       },
+       {
+          "Code":"tuma",
+          "Name":"Ultimate Masters Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"gnt",
+          "Name":"Game Night",
+          "Status":"Active"
+       },
+       {
+          "Code":"prwk",
+          "Name":"GRN Ravnica Weekend",
+          "Status":"Active"
+       },
+       {
+          "Code":"tgk1",
+          "Name":"GRN Guild Kit Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"gk1",
+          "Name":"GRN Guild Kit",
+          "Status":"Active"
+       },
+       {
+          "Code":"tgrn",
+          "Name":"Guilds of Ravnica Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pgrn",
+          "Name":"Guilds of Ravnica Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"grn",
+          "Name":"Guilds of Ravnica",
+          "Status":"Active"
+       },
+       {
+          "Code":"med",
+          "Name":"Mythic Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmed",
+          "Name":"Mythic Edition Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc18",
+          "Name":"Commander 2018 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddj",
+          "Name":"Duel Decks: Izzet vs. Golgari",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddj",
+          "Name":"Duel Decks: Izzet vs. Golgari Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"v12",
+          "Name":"From the Vault: Realms",
+          "Status":"Active"
+       },
+       {
+          "Code":"m13",
+          "Name":"Magic 2013",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm13",
+          "Name":"Magic 2013 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm13",
+          "Name":"Magic 2013 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"opc2",
+          "Name":"Planechase 2012 Planes",
+          "Status":"Active"
+       },
+       {
+          "Code":"pc2",
+          "Name":"Planechase 2012",
+          "Status":"Active"
+       },
+       {
+          "Code":"avr",
+          "Name":"Avacyn Restored",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc18",
+          "Name":"Commander 2018 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"htr17",
+          "Name":"2017 Heroes of the Realm",
+          "Status":"Active"
+       },
+       {
+          "Code":"ps18",
+          "Name":"San Diego Comic-Con 2018",
+          "Status":"Active"
+       },
+       {
+          "Code":"xana",
+          "Name":"Arena New Player Experience Extras",
+          "Status":"Active"
+       },
+       {
+          "Code":"ana",
+          "Name":"Arena New Player Experience",
+          "Status":"Active"
+       },
+       {
+          "Code":"pana",
+          "Name":"MTG Arena Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"oana",
+          "Name":"Arena New Player Experience Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm19",
+          "Name":"Core Set 2019 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"m19",
+          "Name":"Core Set 2019",
+          "Status":"Active"
+       },
+       {
+          "Code":"pss3",
+          "Name":"M19 Standard Showdown",
+          "Status":"Active"
+       },
+       {
+          "Code":"gs1",
+          "Name":"Global Series Jiang Yanggu & Mu Yanling",
+          "Status":"Active"
+       },
+       {
+          "Code":"ss1",
+          "Name":"Signature Spellbook: Jace",
+          "Status":"Active"
+       },
+       {
+          "Code":"pbbd",
+          "Name":"Battlebond Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tbbd",
+          "Name":"Battlebond Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tcm2",
+          "Name":"Commander Anthology Volume II Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"cm2",
+          "Name":"Commander Anthology Volume II",
+          "Status":"Active"
+       },
+       {
+          "Code":"bbd",
+          "Name":"Battlebond",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdom",
+          "Name":"Dominaria Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"dom",
+          "Name":"Dominaria",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddu",
+          "Name":"Duel Decks: Elves vs. Inventors",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddu",
+          "Name":"Duel Decks: Elves vs. Inventors Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"a25",
+          "Name":"Masters 25",
+          "Status":"Active"
+       },
+       {
+          "Code":"ta25",
+          "Name":"Masters 25 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"plny",
+          "Name":"Lunar New Year 2018 ",
+          "Status":"Active"
+       },
+       {
+          "Code":"pnat",
+          "Name":"Nationals Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"trix",
+          "Name":"Rivals of Ixalan Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"prix",
+          "Name":"Rivals of Ixalan Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"j18",
+          "Name":"Judge Gift Cards 2018",
+          "Status":"Active"
+       },
+       {
+          "Code":"f18",
+          "Name":"Friday Night Magic 2018",
+          "Status":"Active"
+       },
+       {
+          "Code":"pust",
+          "Name":"Unstable Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tust",
+          "Name":"Unstable Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ust",
+          "Name":"Unstable",
+          "Status":"Active"
+       },
+       {
+          "Code":"tima",
+          "Name":"Iconic Masters Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"v17",
+          "Name":"From the Vault: Transform",
+          "Status":"Active"
+       },
+       {
+          "Code":"e02",
+          "Name":"Explorers of Ixalan",
+          "Status":"Active"
+       },
+       {
+          "Code":"pxtc",
+          "Name":"XLN Treasure Chest",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddt",
+          "Name":"Duel Decks: Merfolk vs. Goblins",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddt",
+          "Name":"Duel Decks: Merfolk vs. Goblins Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"g17",
+          "Name":"2017 Gift Pack",
+          "Status":"Active"
+       },
+       {
+          "Code":"pxln",
+          "Name":"Ixalan Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"xln",
+          "Name":"Ixalan",
+          "Status":"Active"
+       },
+       {
+          "Code":"txln",
+          "Name":"Ixalan Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pss2",
+          "Name":"XLN Standard Showdown",
+          "Status":"Active"
+       },
+       {
+          "Code":"h17",
+          "Name":"HasCon 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"htr16",
+          "Name":"2016 Heroes of the Realm",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc17",
+          "Name":"Commander 2017 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc17",
+          "Name":"Commander 2017 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"c17",
+          "Name":"Commander 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"ps17",
+          "Name":"San Diego Comic-Con 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"phou",
+          "Name":"Hour of Devastation Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"hou",
+          "Name":"Hour of Devastation",
+          "Status":"Active"
+       },
+       {
+          "Code":"thou",
+          "Name":"Hour of Devastation Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"oe01",
+          "Name":"Archenemy: Nicol Bolas Schemes",
+          "Status":"Active"
+       },
+       {
+          "Code":"e01",
+          "Name":"Archenemy: Nicol Bolas",
+          "Status":"Active"
+       },
+       {
+          "Code":"cma",
+          "Name":"Commander Anthology",
+          "Status":"Active"
+       },
+       {
+          "Code":"pakh",
+          "Name":"Amonkhet Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"akh",
+          "Name":"Amonkhet",
+          "Status":"Active"
+       },
+       {
+          "Code":"takh",
+          "Name":"Amonkhet Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"mp2",
+          "Name":"Amonkhet Invocations",
+          "Status":"Active"
+       },
+       {
+          "Code":"w17",
+          "Name":"Welcome Deck 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"dds",
+          "Name":"Duel Decks: Mind vs. Might",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdds",
+          "Name":"Duel Decks: Mind vs. Might Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"mm3",
+          "Name":"Modern Masters 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"paer",
+          "Name":"Aether Revolt Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"taer",
+          "Name":"Aether Revolt Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"aer",
+          "Name":"Aether Revolt",
+          "Status":"Active"
+       },
+       {
+          "Code":"l17",
+          "Name":"League Tokens 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"j17",
+          "Name":"Judge Gift Cards 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"f17",
+          "Name":"Friday Night Magic 2017",
+          "Status":"Active"
+       },
+       {
+          "Code":"pca",
+          "Name":"Planechase Anthology",
+          "Status":"Active"
+       },
+       {
+          "Code":"tpca",
+          "Name":"Planechase Anthology Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pz2",
+          "Name":"Treasure Chest",
+          "Status":"Active"
+       },
+       {
+          "Code":"pclb",
+          "Name":"Battle for Baldur's Gate Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tclb",
+          "Name":"Battle for Baldur's Gate Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"clb",
+          "Name":"Commander Legends: Battle for Baldur's Gate",
+          "Status":"Active"
+       },
+       {
+          "Code":"aclb",
+          "Name":"Battle for Baldur's Gate Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"ysnc",
+          "Name":"Alchemy: New Capenna",
+          "Status":"Active"
+       },
+       {
+          "Code":"psnc",
+          "Name":"Streets of New Capenna Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tsnc",
+          "Name":"Streets of New Capenna Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ncc",
+          "Name":"New Capenna Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"c16",
+          "Name":"Commander 2016",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc16",
+          "Name":"Commander 2016 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"ps16",
+          "Name":"San Diego Comic-Con 2016",
+          "Status":"Active"
+       },
+       {
+          "Code":"pkld",
+          "Name":"Kaladesh Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"kld",
+          "Name":"Kaladesh",
+          "Status":"Active"
+       },
+       {
+          "Code":"tkld",
+          "Name":"Kaladesh Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"mps",
+          "Name":"Kaladesh Inventions",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddr",
+          "Name":"Duel Decks: Nissa vs. Ob Nixilis",
+          "Status":"Active"
+       },
+       {
+          "Code":"cn2",
+          "Name":"Conspiracy: Take the Crown",
+          "Status":"Active"
+       },
+       {
+          "Code":"asnc",
+          "Name":"New Capenna Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"phed",
+          "Name":"Heads I Win, Tails You Lose",
+          "Status":"Active"
+       },
+       {
+          "Code":"tncc",
+          "Name":"New Capenna Commander Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pncc",
+          "Name":"New Capenna Commander Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"gdy",
+          "Name":"Game Day Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"yneo",
+          "Name":"Alchemy: Kamigawa",
+          "Status":"Active"
+       },
+       {
+          "Code":"pw22",
+          "Name":"Wizards Play Network 2022",
+          "Status":"Active"
+       },
+       {
+          "Code":"slx",
+          "Name":"Universes Within",
+          "Status":"Active"
+       },
+       {
+          "Code":"pl22",
+          "Name":"Year of the Tiger 2022",
+          "Status":"Active"
+       },
+       {
+          "Code":"nec",
+          "Name":"Neon Dynasty Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"tneo",
+          "Name":"Kamigawa: Neon Dynasty Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"neo",
+          "Name":"Kamigawa: Neon Dynasty",
+          "Status":"Active"
+       },
+       {
+          "Code":"tnec",
+          "Name":"Neon Dynasty Commander Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"aneo",
+          "Name":"Neon Dynasty Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"cc2",
+          "Name":"Commander Collection: Black",
+          "Status":"Active"
+       },
+       {
+          "Code":"dbl",
+          "Name":"Innistrad: Double Feature",
+          "Status":"Active"
+       },
+       {
+          "Code":"p22",
+          "Name":"Judge Gift Cards 2022",
+          "Status":"Active"
+       },
+       {
+          "Code":"ymid",
+          "Name":"Alchemy: Innistrad",
+          "Status":"Active"
+       },
+       {
+          "Code":"ovoc",
+          "Name":"Crimson Vow Commander Display Commanders",
+          "Status":"Active"
+       },
+       {
+          "Code":"tvow",
+          "Name":"Innistrad: Crimson Vow Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tvoc",
+          "Name":"Crimson Vow Commander Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"mvow",
+          "Name":"Innistrad: Crimson Vow Minigames",
+          "Status":"Active"
+       },
+       {
+          "Code":"svow",
+          "Name":"Innistrad: Crimson Vow Substitute Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"avow",
+          "Name":"Crimson Vow Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"vow",
+          "Name":"Innistrad: Crimson Vow",
+          "Status":"Active"
+       },
+       {
+          "Code":"voc",
+          "Name":"Crimson Vow Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"bro",
+          "Name":"The Brothers' War",
+          "Status":"Active"
+       },
+       {
+          "Code":"unf",
+          "Name":"Unfinity",
+          "Status":"Active"
+       },
+       {
+          "Code":"tunf",
+          "Name":"Unfinity Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"dmu",
+          "Name":"Dominaria United",
+          "Status":"Active"
+       },
+       {
+          "Code":"dmc",
+          "Name":"Dominaria United Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"t40k",
+          "Name":"Warhammer 40,000 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"40k",
+          "Name":"Warhammer 40,000",
+          "Status":"Active"
+       },
+       {
+          "Code":"sch",
+          "Name":"Store Championships 2022",
+          "Status":"Active"
+       },
+       {
+          "Code":"2x2",
+          "Name":"Double Masters 2022",
+          "Status":"Active"
+       },
+       {
+          "Code":"smid",
+          "Name":"Innistrad: Midnight Hunt Substitute Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmid",
+          "Name":"Innistrad: Midnight Hunt Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"amid",
+          "Name":"Midnight Hunt Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"mic",
+          "Name":"Midnight Hunt Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmid",
+          "Name":"Innistrad: Midnight Hunt Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"omic",
+          "Name":"Midnight Hunt Commander Display Commanders",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmic",
+          "Name":"Midnight Hunt Commander Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"mid",
+          "Name":"Innistrad: Midnight Hunt",
+          "Status":"Active"
+       },
+       {
+          "Code":"cmb2",
+          "Name":"Mystery Booster Playtest Cards 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"htr20",
+          "Name":"2020 Heroes of the Realm",
+          "Status":"Active"
+       },
+       {
+          "Code":"pafr",
+          "Name":"Adventures in the Forgotten Realms Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"oafc",
+          "Name":"Forgotten Realms Commander Display Commanders",
+          "Status":"Active"
+       },
+       {
+          "Code":"aafr",
+          "Name":"Adventures in the Forgotten Realms Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"afc",
+          "Name":"Forgotten Realms Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"tafr",
+          "Name":"Adventures in the Forgotten Realms Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tafc",
+          "Name":"Forgotten Realms Commander Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"afr",
+          "Name":"Adventures in the Forgotten Realms",
+          "Status":"Active"
+       },
+       {
+          "Code":"plg21",
+          "Name":"Love Your LGS 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"pmh2",
+          "Name":"Modern Horizons 2 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"mmh2",
+          "Name":"Modern Horizons 2 Minigames",
+          "Status":"Active"
+       },
+       {
+          "Code":"pw21",
+          "Name":"Wizards Play Network 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"tmh2",
+          "Name":"Modern Horizons 2 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"amh2",
+          "Name":"Modern Horizons 2 Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"mh2",
+          "Name":"Modern Horizons 2",
+          "Status":"Active"
+       },
+       {
+          "Code":"h1r",
+          "Name":"Modern Horizons 1 Timeshifts",
+          "Status":"Active"
+       },
+       {
+          "Code":"pstx",
+          "Name":"Strixhaven: School of Mages Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tstx",
+          "Name":"Strixhaven: School of Mages Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tc21",
+          "Name":"Commander 2021 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"sstx",
+          "Name":"Strixhaven: School of Mages Substitute Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"mstx",
+          "Name":"Strixhaven: School of Mages Minigames",
+          "Status":"Active"
+       },
+       {
+          "Code":"sta",
+          "Name":"Strixhaven Mystical Archive",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc21",
+          "Name":"Commander 2021 Display Commanders",
+          "Status":"Active"
+       },
+       {
+          "Code":"astx",
+          "Name":"Strixhaven Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"stx",
+          "Name":"Strixhaven: School of Mages",
+          "Status":"Active"
+       },
+       {
+          "Code":"ttsr",
+          "Name":"Time Spiral Remastered Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tsr",
+          "Name":"Time Spiral Remastered",
+          "Status":"Active"
+       },
+       {
+          "Code":"ha4",
+          "Name":"Historic Anthology 4",
+          "Status":"Active"
+       },
+       {
+          "Code":"pkhm",
+          "Name":"Kaldheim Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"mkhm",
+          "Name":"Kaldheim Minigames",
+          "Status":"Active"
+       },
+       {
+          "Code":"skhm",
+          "Name":"Kaldheim Substitute Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"tkhc",
+          "Name":"Kaldheim Commander Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"tkhm",
+          "Name":"Kaldheim Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"khc",
+          "Name":"Kaldheim Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"akhm",
+          "Name":"Kaldheim Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"pl21",
+          "Name":"Year of the Ox 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"pf21",
+          "Name":"MagicFest 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"pj21",
+          "Name":"Judge Gift Cards 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"cc1",
+          "Name":"Commander Collection: Green",
+          "Status":"Active"
+       },
+       {
+          "Code":"tcmr",
+          "Name":"Commander Legends Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"cmr",
+          "Name":"Commander Legends",
+          "Status":"Active"
+       },
+       {
+          "Code":"klr",
+          "Name":"Kaladesh Remastered",
+          "Status":"Active"
+       },
+       {
+          "Code":"phel",
+          "Name":"Open the Helvault",
+          "Status":"Active"
+       },
+       {
+          "Code":"pavr",
+          "Name":"Avacyn Restored Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"ddi",
+          "Name":"Duel Decks: Venser vs. Koth",
+          "Status":"Active"
+       },
+       {
+          "Code":"tddi",
+          "Name":"Duel Decks: Venser vs. Koth Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"dka",
+          "Name":"Dark Ascension",
+          "Status":"Active"
+       },
+       {
+          "Code":"tdka",
+          "Name":"Dark Ascension Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"pdka",
+          "Name":"Dark Ascension Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"pidw",
+          "Name":"IDW Comics 2012",
+          "Status":"Active"
+       },
+       {
+          "Code":"pw12",
+          "Name":"Wizards Play Network 2012",
+          "Status":"Active"
+       },
+       {
+          "Code":"pznr",
+          "Name":"Zendikar Rising Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tznc",
+          "Name":"Zendikar Rising Commander Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"mznr",
+          "Name":"Zendikar Rising Minigames",
+          "Status":"Active"
+       },
+       {
+          "Code":"sznr",
+          "Name":"Zendikar Rising Substitute Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"zne",
+          "Name":"Zendikar Rising Expeditions",
+          "Status":"Active"
+       },
+       {
+          "Code":"znc",
+          "Name":"Zendikar Rising Commander",
+          "Status":"Active"
+       },
+       {
+          "Code":"znr",
+          "Name":"Zendikar Rising",
+          "Status":"Active"
+       },
+       {
+          "Code":"aznr",
+          "Name":"Zendikar Rising Art Series",
+          "Status":"Active"
+       },
+       {
+          "Code":"tznr",
+          "Name":"Zendikar Rising Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"akr",
+          "Name":"Amonkhet Remastered",
+          "Status":"Active"
+       },
+       {
+          "Code":"2xm",
+          "Name":"Double Masters",
+          "Status":"Active"
+       },
+       {
+          "Code":"t2xm",
+          "Name":"Double Masters Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"htr19",
+          "Name":"2019 Heroes of the Realm",
+          "Status":"Active"
+       },
+       {
+          "Code":"ajmp",
+          "Name":"Jumpstart Arena Exclusives",
+          "Status":"Active"
+       },
+       {
+          "Code":"jmp",
+          "Name":"Jumpstart",
+          "Status":"Active"
+       },
+       {
+          "Code":"pm21",
+          "Name":"Core Set 2021 Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tm21",
+          "Name":"Core Set 2021 Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"m21",
+          "Name":"Core Set 2021",
+          "Status":"Active"
+       },
+       {
+          "Code":"fjmp",
+          "Name":"Jumpstart Front Cards",
+          "Status":"Active"
+       },
+       {
+          "Code":"slu",
+          "Name":"Secret Lair: Ultimate Edition",
+          "Status":"Active"
+       },
+       {
+          "Code":"ha3",
+          "Name":"Historic Anthology 3",
+          "Status":"Active"
+       },
+       {
+          "Code":"plg20",
+          "Name":"Love Your LGS 2020",
+          "Status":"Active"
+       },
+       {
+          "Code":"piko",
+          "Name":"Ikoria: Lair of Behemoths Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tiko",
+          "Name":"Ikoria: Lair of Behemoths Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"iko",
+          "Name":"Ikoria: Lair of Behemoths",
+          "Status":"Active"
+       },
+       {
+          "Code":"oc20",
+          "Name":"Commander 2020 Oversized",
+          "Status":"Active"
+       },
+       {
+          "Code":"c20",
+          "Name":"Commander 2020",
+          "Status":"Active"
+       },
+       {
+          "Code":"ha2",
+          "Name":"Historic Anthology 2",
+          "Status":"Active"
+       },
+       {
+          "Code":"fmb1",
+          "Name":"Mystery Booster Retail Edition Foils",
+          "Status":"Active"
+       },
+       {
+          "Code":"tund",
+          "Name":"Unsanctioned Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"und",
+          "Name":"Unsanctioned",
+          "Status":"Active"
+       },
+       {
+          "Code":"pthb",
+          "Name":"Theros Beyond Death Promos",
+          "Status":"Active"
+       },
+       {
+          "Code":"tthb",
+          "Name":"Theros Beyond Death Tokens",
+          "Status":"Active"
+       },
+       {
+          "Code":"thb",
+          "Name":"Theros Beyond Death",
+          "Status":"Active"
+       },
+       {
+          "Code":"j20",
+          "Name":"Judge Gift Cards 2020",
+          "Status":"Active"
+       },
+       {
+          "Code":"pf20",
+          "Name":"MagicFest 2020",
+          "Status":"Active"
+       }
+    ]
+ }

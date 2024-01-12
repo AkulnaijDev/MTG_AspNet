@@ -1,0 +1,212 @@
+﻿<div class="container" id="loginForm">
+    <div class="row">
+         <div class="col-2"></div>
+        <div class="col-8">
+           <input class="inputLogin" id="myname" placeholder="Username"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 passwordContainer">
+            <input class="inputLogin" type="password" id="mypassword" placeholder="Password"/>
+            <div id="mypasswordchecker">👁️</div>
+        </div>
+    </div>
+
+    <div class="row heightfivepercent">
+        <div class="col-12">
+            <div id="loginSpinner" class="spinner" ></div>
+            <div id="loginError">ERROR. TRY AGAIN</div>     
+        </div>
+    </div>
+
+     <div class="row">
+        <div class="col-12">
+              <button id="loginbutton">LOGIN</button>
+        </div>
+    </div>
+</div>
+
+<div id="mainMenu">
+    <div id="mainMenuVoices">
+        <div class="mainMenuVoicesText" id="mainMenuNewGame"> New game </div>
+        <div class="mainMenuVoicesText" id="mainMenuMyDeck"> My deck </div>
+        <div class="mainMenuVoicesText" id="mainMenuRules"> Rules </div>
+        <div class="mainMenuVoicesText" id="mainMenuOptions"> Options </div>
+    </div>
+</div>
+
+<div id="optionsMenu">
+    <span id="optionsTitle">Options</span>
+
+    <div class="slidecontainer optionsVoices">
+        <div class="optionsText" id="optionsVolumeText">Volume:</div>
+        <input type="range" id="myRange" name="vol" min="0" max="100" defaultValue="100">
+    </div>
+
+    <div class="optionsVoices">
+        <div class="optionsText" id="optionsSongText">Music:</div>
+        <select name="background" id="musicChooseOptions">
+            <option value="default">Default</option>
+            <option value="A_Time_Forgotten">A Time Forgotten</option>
+            <option value="Now-We-Ride">Now We Ride</option>
+            <option value="Surreal-Forest">Surreal Forest</option>
+        </select>
+    </div>
+
+    <div class="optionsVoices">
+        <div class="optionsText" id="optionsBackgroundText">Background:</div>
+        <select name="background" id="backgroundChooseOptions">
+            <option value="chandra">Chandra</option>
+            <option value="jace">Jace</option>
+            <option value="nissa">Nissa</option>
+            <option value="ajani">Ajani</option>
+            <option value="liliana">Liliana</option>
+        </select>
+    </div>
+
+    <div class="optionsVoices">
+        <div class="optionsText" id="optionsStyleText">Style:</div>
+        <select name="theme" id="themeChooseOptions">
+            <option value="plain">Plain</option>
+            <option value="swamp">Swamp</option>
+            <option value="forest">Forest</option>
+            <option value="mountain">Mountain</option>
+            <option value="island">Island</option>
+        </select>
+    </div>
+
+
+    <div class="optionsVoices">
+        <div class="optionsText" id="optionsLanguageText">Language:</div>
+        <select name="theme" id="languageChooseOptions">
+            <option default value="english">English</option>
+            <option value="italian">Italiano</option>
+        </select>
+    </div>
+
+    <div class="optionsLowestVoices">
+        <hr>
+        <div id="closeOptionsMenu">Close</div>
+    </div>
+
+</div>
+
+<div id="rulesMenu">
+    <span id="rulesTitle">Rules</span>
+    <div id="rulesAbilitiesList"></div>
+    <div class="optionsLowestVoices optionsLowestVoicesForRules">
+        <div id="closeRulesMenu">Close</div>
+    </div>
+</div>
+
+<div id="gameModeMenu">
+    <span id="gameModeTitle">Game Modes</span>
+    <div id="gameModeList">
+        
+    </div>
+
+    <div class="optionsLowestVoices optionsLowestVoicesForRules">
+        <div id="closeGameRulesMenu">Close</div>
+    </div>
+</div>
+
+
+
+<div id="myDeckMenu">
+    <div id="myDeckMenuContainer">
+     <div><button id="myDeckMenuBackButton">Back to menu</button></div>
+
+        <div id="myDeck">
+            <div id="myDeckCardPreview" >
+                <div style="display: inline-flex;position: absolute; width: 10%;">
+                    <button id="myDeckCardPreviewImageButton">Hide Preview</button>
+                </div>
+                
+                <img id="myDeckCardPreviewImage" src="../resources/cardBack.jpg">
+            </div>
+            <div id="myDeckName"> </div>
+            <div id="myDeckCardCount"> </div>
+            <div id="myDeckAlert"> You can't add any more copy of this card!</div>
+            <div id="myDeckList"> </div>
+            <div id="myDeckSaveButtonContainer" >
+                <button id="myDeckSaveButton">SAVE THE DECK</button>
+            </div>
+        </div>
+
+        <div id="myDeckCardPicker">
+            <div id="myDeckSetPickerContainer">
+
+                 <div id="myDeckDecksSelector">
+                    <span id="myDeckDecksSelectorText">My decks</span>
+                    <select class="myDecksPickerSelector" id="myDecksPickerSelector">
+                    </select>
+                     <span id="myDecksPickerSelectorDelete" >🗑️</span>
+                     <span id="myDecksPickerSelectorAdd" >➕</span>
+                 </div>
+                
+                <div>
+                    <span id="myDeckGameModeText">Game Modes</span>
+                    <span id="myDeckGameModeButton">❔</span>
+                </div>
+
+                <span id="myDeckDecksSelectorText2">SETS</span>
+                <select id="myDeckSetPickerSelector"> </select>
+                <span id="myDeckZoomSelectorPlus" defaultscreen="5">➕</span>
+                <span id="myDeckZoomSelectorIcon">🔍</span>
+                <span id="myDeckZoomSelectorMinus" defaultscreen="5">➖</span>
+            </div>
+
+            <div id="myDeckCardPickerContainer">
+
+            </div>
+
+        </div>
+
+    </div>
+
+     <div id="myDeckCreateName">
+        <div id="myDeckCreateNameText">Insert the name for your deck</div>
+        <div>
+            <input id="myDeckCreateNameInput" type="text">
+        </div>
+        <button id="myDeckCreateNameSaveButton">Save</button>
+         <button id="myDeckCreateNameBackButton">Back</button>
+    </div>
+
+    <div id="myDeckDelete">
+        <div id="myDeckDeleteText">Are you sure you want to delete?</div>
+        <button id="myDeckDeleteConfirmButton">Delete</button>
+        <button id="myDeckDeleteBackButton">Back</button>
+    </div>
+
+    <div id="myDeckEdit">
+        <div id="myDeckEditText">Your changes have been saved</div>
+        <button id="myDeckEditBackButton">Back</button>
+
+    </div>
+    
+</div>
+
+<div class="container" id="gameInvitation">
+    <div class="row">
+        <div id="gameInvitationText1">You have been invited to a game</div>
+    </div>
+
+     <div class="row">
+       <div style="display: flex;">
+        <div id="gameInvitationInviter"></div>
+         <div id="gameInvitationMode"></div>
+       </div>
+
+    </div>
+
+
+     <div class="row">
+        <button id="acceptGameInvitation">Accept</button>
+        <button id="declineGameInvitation">Decline</button>
+    </div>
+   
+   
+</div>

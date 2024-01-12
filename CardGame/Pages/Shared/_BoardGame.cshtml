@@ -1,0 +1,251 @@
+﻿<div id="boardGameContainer">
+
+    <div class="container" id="inviteSection">
+        <div class="row friendRow">
+            <div class="col-6">
+                <div id="inviteFriendsText">Invite a friend</div>
+                <select name="" id="inviteFriends"></select>
+                <span id="addFriendToGame">➕</span>
+                
+            </div>
+            <div class="col-6">
+                 <div id="invitedFriendsText">Other players</div>
+                <div id="invitedFriendsArea">  </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div id="deckSelectionText">Select a deck</div>
+                <select name="" class="myDecksPickerSelector" id="selectDeckToPlay"></select>
+            </div>
+            <div class="col-6">
+                <div id="modeSelectionText">Select a game mode</div>
+                <select name="" id="modeSelection">
+                    <option value="commander">Commander</option>
+                    <option value="pauper">Pauper</option>
+                    <option value="standard">Standard</option>
+                    <option value="pioneer">Pioneer</option>
+                    <option value="extended">Extended</option>
+                    <option value="modern">Modern</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="gameModesRow row">
+          
+            <div class="col-6">
+                <div class="row">
+                    <div id="gameModesText"> Game modes</div>
+                </div>
+                <div class="row">
+                    <div class="col-6 gameValidities" id="commanderValidity">Commander</div>
+                    <div class="col-6 gameValidities" id="pauperValidity">Pauper</div>
+                </div>
+                <div class="row">
+                    <div class="col-6 gameValidities" id="standardValidity">Standard</div>
+                    <div class="col-6 gameValidities" id="pioneerValidity">Pioneer</div>
+                </div>
+                <div class="row">
+                    <div class="col-6 gameValidities" id="extendedValidity">Extended</div>
+                    <div class="col-6 gameValidities" id="modernValidity">Modern</div>
+                </div>
+                <div class="row">
+                    <div class="gameValidities" id="validValidity">Deck is valid</div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                    <div id="gameTeamText"> Teams </div>
+                </div>
+                <div class="teamRow row">
+                    <div class="col-3"> Team 1 </div>
+                    <div class="teamSelectContainer col-6">
+                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <span class="addPlayerToTeam">➕</span>
+                    </div>
+                    <div class="teammateContainer col-3">
+                        @* <div class="teammate">
+                            <div class="teammateName">You</div> *@
+                             @* <span id="removeFromTeam">➖</span> *@
+                        @* </div>  *@
+                    </div>
+                </div>
+                 <div class="teamRow row">
+                    <div class="col-3"> Team 2</div>
+                    <div class="teamSelectContainer col-6">
+                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <span class="addPlayerToTeam">➕</span>
+                    </div>
+                    <div class="teammateContainer col-3">
+                    </div>
+                </div>
+                 <div class="teamRow row">
+                    <div class="col-3"> Team 3 </div>
+                    <div class="teamSelectContainer col-6">
+                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <span class="addPlayerToTeam">➕</span>
+                    </div>
+                    <div class="teammateContainer col-3">
+                    </div>
+                </div>
+                 <div class="teamRow row">
+                    <div class="col-3"> Team 4 </div>
+                     <div class="teamSelectContainer col-6">
+                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <span class="addPlayerToTeam">➕</span>
+                    </div>
+                    <div class="teammateContainer col-3">
+                    </div>
+                </div>
+              
+            </div>
+
+        </div>
+        <div class="row">
+            <div id="inviteError">Can't invite, not enough players or deck not valid for the selected game mode</div>
+        </div>
+        <div class="startGameButtonContainerrow row">
+            <div id="startGameButtonContainer" class="col-12">
+                <button id="startTheGameButton">START THE GAME</button>
+                 <button id="backTheGameButton">BACK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="uninteractable" id="boardGame">
+        
+        <div id="boardPlayer1" class="playerBoard">
+            <div class="container playerBoardContainer">
+                <div class="row" style="height: 100%;">
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row deckZone"></div>
+                        <div class="row planeswalkerZone"></div>
+                        <div class="row commanderZone"></div>
+                    </div>
+
+                    <div class="col-8" style="height: 100%;">
+                        <div class="row handZone"></div>
+                        <div class="row landZone"></div>
+                        <div class="cardZone"></div>
+                    </div>
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row graveyardZone"></div>
+                        <div class="row exiledZone"></div>
+                        <div class="row playerNameZone"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="boardPlayer3" class="playerBoard">
+            <div class="container playerBoardContainer">
+                <div class="row" style="height: 100%;">
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row deckZone"></div>
+                        <div class="row planeswalkerZone"></div>
+                        <div class="row commanderZone"></div>
+                    </div>
+
+                    <div class="col-8" style="height: 100%;">
+                        <div class="row handZone"></div>
+                        <div class="row landZone"></div>
+                        <div class="cardZone"></div>
+                    </div>
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row graveyardZone"></div>
+                        <div class="row exiledZone"></div>
+                        <div class="row playerNameZone"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="boardPlayer2" class="playerBoard">
+            <div class="container playerBoardContainer">
+                <div class="row" style="height: 100%;">
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row playerNameZone"></div>
+                        <div class="row exiledZone"></div>
+                        <div class="row graveyardZone"></div>
+                    </div>
+                    <div class="col-8" style="height: 100%;">
+                        <div class="cardZone"></div>
+                        <div class="row landZone"></div>
+                        <div class="row handZone"></div>
+                    </div>
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row commanderZone"></div>
+                        <div class="row planeswalkerZone"></div>
+                        <div class="row deckZone"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="boardPlayer4" class="playerBoard">
+            <div class="container playerBoardContainer">
+                <div class="row" style="height: 100%;">
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row playerNameZone"></div>
+                        <div class="row exiledZone"></div>
+                        <div class="row graveyardZone"></div>
+                    </div>
+                    <div class="col-8" style="height: 100%;">
+                        <div class="cardZone"></div>
+                        <div class="row landZone"></div>
+                        <div class="row handZone"></div>
+                    </div>
+                    <div class="col-2" style="height: 100%;">
+                        <div class="row commanderZone"></div>
+                        <div class="row planeswalkerZone"></div>
+                        <div class="row deckZone"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="uninteractable" id="gameMenuZone">
+
+        <div class="menuIconsContainer row">
+            <div class="col-12">
+                 <button id="rulesGameButton">Check rules</button>
+                  <button id="gameModeGameButton">Check game modes</button>
+            </div>
+        </div>
+        
+        <div class="teamsContainer row">
+            <div class="teams team1">   
+                <div class="teamTitle">Team1</div>    
+            </div>
+             <div class="teams team2">
+                <div class="teamTitle">Team2</div>    
+             </div>
+              <div class="teams team3">
+                <div class="teamTitle">Team3</div>    
+              </div>
+               <div class="teams team4">
+                <div class="teamTitle">Team4</div>    
+               </div>
+        </div>
+
+        <div class="notificationFromOtherPlayersContainer row">
+            <div id="notificationFromOtherPlayers" class="col-12">
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="gameButtonsContainer col-12">
+                <button disabled id="beginTheGameButton">START THE GAME</button>
+                <button id="quitTheGameButton">QUIT THE GAME</button>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="zoomedHoveredCardContainer col-12">
+               <img id="zoomedHoveredCard" src="" alt="">
+            </div>
+        </div>
+    </div>
+</div>

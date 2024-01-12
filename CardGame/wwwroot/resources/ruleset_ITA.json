@@ -1,0 +1,168 @@
+{
+    "Rules": [
+        {
+            "Name": "Adattare",
+            "Description": "Un'azione con parola chiave che permette a un giocatore di mettere segnalini +1/+1 su una creatura se non ne ha ancora"
+        },
+        {
+            "Name": "Affliggere",
+            "Description": "Un'abilità innescata con parola chiave che fa perdere punti vita al giocatore in difesa per aver bloccato"
+        },
+        {
+            "Name": "Aldilà",
+            "Description": "Un'abilità innescata con parola chiave che crea una quantità di pedine Spirito bianche e nere con volare quando una creatura muore"
+        },
+        {
+            "Name": "Conseguenze",
+            "Description": "Un'abilità statica con parola chiave che permette a un giocatore di lanciare una metà di una Carta Spaccatutto solo dal proprio cimitero. Tutte le carte con Aftermath sono state rimosse dal gioco come parte dell'aggiornamento della open beta del 27 settembre 2018."
+        },
+        {
+            "Name": "Ammassare",
+            "Description": "Un'azione parola chiave che conferisce una pedina creatura Esercito di zombi o fa crescere un Esercito che già si possiede"
+        },
+        {
+            "Name": "Ascendere",
+            "Description": "Una magia/abilità parola chiave statica che fa sì che un giocatore ottenga la designazione della Benedizione della Città una volta che controlla dieci permanenti"
+        },
+        {
+            "Name": "Convocare",
+            "Description": "Un'abilità di parola chiave statica che consente di TAPpare creature anziché pagare mana per lanciare una magia"
+        },
+        {
+            "Name": "Manovrare",
+            "Description": "Un'abilità attivata con parola chiave che consente di TAPpare le creature per trasformare un Veicolo in una creatura artefatto"
+        },
+        {
+            "Name": "Ciclo",
+            "Description": "Un'abilità attivata con una parola chiave che consente di scartare una carta e sostituirla con una nuova"
+        },
+        {
+            "Name": "Tocco letale",
+            "Description": "Un'abilità statica di parola chiave Evergreen che rende particolarmente efficace il danno inflitto da un oggetto. Qualsiasi quantità di danno inflitto è sufficiente a uccidere la creatura ricevente"
+        },
+        {
+            "Name": "Difensore",
+            "Description": "Un'abilità statica di parola chiave Evergreen che proibisce a una creatura di attaccare"
+        },
+        {
+            "Name": "Doppio colpo",
+            "Description": "Un'abilità statica di parola chiave Evergreen che permette a una creatura di infliggere due volte il suo danno da combattimento"
+        },
+        {
+            "Name": "Imbalsamare",
+            "Description": "Un'abilità-parola chiave attivata che consente a un giocatore di esiliare una carta creatura dal proprio cimitero per creare una versione mummificata della pedina stessa"
+        },
+        {
+            "Name": "Incantare",
+            "Description": "Un'abilità statica di parola chiave Evergreen che definisce cosa può bersagliare una magia Aura e a cosa può essere attaccato un permanente Aura"
+        },
+        {
+            "Name": "Equipaggiare",
+            "Description": "Un'abilità di parola chiave sempreverde attivata che consente a un giocatore di attaccare un Equipaggiamento a una creatura che controlla"
+        },
+        {
+            "Name": "Eternalizzare",
+            "Description": "Un'abilità di parola chiave attivata che consente a un giocatore di esiliare una carta creatura dal proprio cimitero per creare una versione token eternizzata di quella carta"
+        },
+        {
+            "Name": "Esercitare",
+            "Description": "Un'azione con parola chiave che impedisce a un permanente di STAPpare durante la prossima fase di uptap del giocatore che l'ha esercitata"
+        },
+        {
+            "Name": "Esplorare",
+            "Description": "Un'azione con parola chiave che fa sì che un giocatore riveli la prima carta del suo grimorio e poi intraprenda azioni diverse a seconda che una carta terra venga rivelata in questo modo"
+        },
+        {
+            "Name": "Fabbricare",
+            "Description": "Un'abilità innescata con parola chiave che permette di scegliere se creare pedine Servo o mettere segnalini +1/+1 su una creatura quando entra nel campo di battaglia"
+        },
+        {
+            "Name": "Attacco improvviso",
+            "Description": "Un'abilità statica di parola chiave Evergreen che permette a una creatura di infliggere il suo danno da combattimento prima delle altre creature"
+        },
+        {
+            "Name": "Flash",
+            "Description": "Un'abilità statica di parola chiave Evergreen che consente a un giocatore di giocare una carta ogni volta che potrebbe lanciare un istantaneo"
+        },
+        {
+            "Name": "Volare",
+            "Description": "Un'abilità statica di parola chiave Evergreen che limita il modo in cui una creatura può essere bloccata"
+        },
+        {
+            "Name": "Rapidità",
+            "Description": "Un'abilità statica di parola chiave Evergreen che permette a una creatura di ignorare la regola della malattia da evocazione"
+        },
+        {
+            "Name": "Hexproof",
+            "Description": "Un'abilità statica di parola chiave Evergreen che impedisce a un permanente o a un giocatore di essere bersagliato da un avversario"
+        },
+        {
+            "Name": "Improvvisare",
+            "Description": "Un'abilità statica con parola chiave che consente di attingere agli artefatti anziché pagare mana per lanciare una magia"
+        },
+        {
+            "Name": "Indistruttibile",
+            "Description": "Un'abilità statica di parola chiave Evergreen che impedisce a un permanente di essere distrutto"
+        },
+        {
+            "Name": "Jump-Start",
+            "Description": "Un'abilità statica con parola chiave che permette di giocare Istanti e Streghe dal cimitero scartando un'altra carta, pagando mana ed esiliando la magia."
+        },
+        {
+            "Name": "Potenziamento",
+            "Description": "Un'abilità statica di parola chiave che rappresenta un costo aggiuntivo opzionale. Una magia è stata calciata se il suo controllore ha dichiarato l'intenzione di pagare uno o tutti i suoi costi di kicker"
+        },
+        {
+            "Name": "Legame vitale",
+            "Description": "Un'abilità statica di parola chiave Evergreen che fa guadagnare punti vita a un giocatore"
+        },
+        {
+            "Name": "Minaccia",
+            "Description": "Un'abilità statica/evasione di parola chiave Evergreen che rende le creature sbloccabili da una singola creatura"
+        },
+        {
+            "Name": "Mentore",
+            "Description": "Un'abilità innescata con parola chiave che permette a un giocatore di mettere un segnalino +1/+1 su un'altra creatura attaccante con meno forza quando attacca con una creatura con Mentore"
+        },
+        {
+            "Name": "Proliferare",
+            "Description": "Un'azione con parola chiave che permette di assegnare un segnalino aggiuntivo a un numero qualsiasi di giocatori e/o permanenti di ogni tipo che già possiedono"
+        },
+        {
+            "Name": "Prodezza",
+            "Description": "Un'abilità innescata di parola chiave Evergreen che fa sì che una creatura ottenga +1/+1 ogni volta che il suo controllore lancia una magia non creatura"
+        },
+        {
+            "Name": "Raggiungere",
+            "Description": "Un'abilità statica di parola chiave Evergreen che permette a una creatura di bloccare una creatura attaccante con volare"
+        },
+        {
+            "Name": "Sommossa",
+            "Description": "Un'abilità innescata con parola chiave che permette al giocatore di scegliere se una creatura entra nel campo di battaglia con haste o con un segnalino +1/+1"
+        },
+        {
+            "Name": "Spettacolo",
+            "Description": "Un'abilità statica con parola chiave che conferisce a una magia un costo di mana alternativo e/o un effetto alterato se un avversario ha perso punti vita in questo turno"
+        },
+        {
+            "Name": "Sorvegliare",
+            "Description": "Un'azione con parola chiave che significa guardare le prime carte del proprio grimorio, metterne un numero qualsiasi nel cimitero e le altre in cima al proprio grimorio"
+        },
+        {
+            "Name": "Travolgere",
+            "Description": "Un'abilità statica di parola chiave Evergreen che modifica il modo in cui una creatura assegna danno da combattimento"
+        },
+        {
+            "Name": "Trasformazione",
+            "Description": "Un'abilità di parola chiave innescata/attivata che permette di capovolgere le carte a doppia faccia"
+        },
+        {
+            "Name": "Vigilanza",
+            "Description": "Un'abilità statica di parola chiave Evergreen che permette a una creatura di attaccare senza toccare"
+        },
+        {
+            "Name": "Egida",
+            "Description": "Un'abilità innescata della parola chiave Evergreen. Ogniqualvolta un permanente con la protezione diventa bersaglio di una magia o di un'abilità controllata da un avversario, lo si neutralizza a meno che quel giocatore non paghi un costo aggiuntivo"
+        }
+    ]
+}

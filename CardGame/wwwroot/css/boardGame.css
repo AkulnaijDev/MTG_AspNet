@@ -1,0 +1,306 @@
+:root {
+  --background-color: #fafafa;
+  --primary-color: #7ed6df;
+  --border-color: #fff29c;
+  --light_Text_color: white;
+  --dark_Text_contour: black;
+  --option_Text_hover: #bb240a;
+  --option_Background_color: darkslategray;
+  --option_Background_color_lighter: rgb(64, 105, 105);
+  --option_Border_color: #212529;
+  --option_Border_color_darker: #15181b;
+  /* Swamp style */
+  /* Plains style */
+  /* Mountain style */
+  /* Forest style */
+  /* Island style */
+}
+
+#boardGameContainer {
+  z-index: 9999;
+  width: 100%;
+  display: none;
+  height: 100%;
+  position: absolute;
+  background-color: var(--option_Background_color);
+}
+
+#inviteSection{
+  position: absolute;
+  background: var(--option_Background_color);
+  border-radius: 10px;
+  border: 2px solid var(--option_Border_color);
+  width: 34%;
+  height: 54%;
+  top: 23%;
+  left: 33%;
+  padding: 2%;
+  z-index: 9999;
+}
+
+#boardGame {
+  width:80%;
+  height: 100%;
+}
+
+#gameMenuZone{
+  width: 20%;
+  height: 100%;
+  background: azure;
+  position: absolute;
+  top: 0;
+  right: 0%;
+  padding: 1%;
+  background: var(--option_Background_color);
+  border-left: 2px solid var(--option_Border_color);
+}
+
+.playerBoard {
+  width: 50%;
+  height: 50%;
+  float: left;
+}
+
+.playerBoardExtended {
+  height: 50%;
+  float: left;
+}
+
+#boardPlayer1 {
+  background: #DDD;
+}
+
+#boardPlayer2 {
+  background: #AAA;
+}
+
+#boardPlayer3 {
+  background: #777;
+}
+
+#boardPlayer4 {
+  background: #444;
+}
+
+
+.handZone {
+  background-color: aliceblue;
+  height: 33%;
+}
+
+.deckZone {
+  height: 33%;
+  background-color: brown;
+}
+
+.graveyardZone {
+  height: 33%;
+  background-color: yellow;
+}
+
+.exiledZone {
+  height: 33%;
+  background-color: green;
+}
+
+.landZone {
+  background-color: bisque;
+  height: 33%;
+}
+
+.tokenZone {
+
+}
+
+.cardZone {
+  background-color: blueviolet;
+  height: 34%;
+}
+
+.commanderZone {
+  height: 34%;
+  background-color: pink;
+}
+
+.planeswalkerZone{
+  height: 33%;background-color: aqua;
+}
+
+
+.playerNameZone{
+  height: 34%;background-color: cornflowerblue;
+}
+
+
+.gameValidities[disabled]{
+  color:red;
+}
+
+#startGameButtonContainer{
+  align-items: center;
+  display: inline-grid;
+}
+
+#selectDeckToPlay{
+  width: 90%;
+  position: relative;
+}
+
+#modeSelection{
+  width: 90%;
+}
+
+.startGameButtonContainerrow{
+  position:absolute; bottom:2%; width:89%
+}
+
+.friendRow{
+  height:30%;
+}
+
+.invitedFriendContainer{
+  columns: 2;
+}
+
+#invitedFriendsArea{
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border: 2px solid var(--option_Border_color);
+  height: 50%;
+  max-height: 50%;
+  padding-left: 6%;
+  overflow-y: auto;
+}
+
+#inviteFriends{
+  width:80%;
+}
+
+.gameModesRow{
+  margin-top:2%;
+}
+
+#gameModesText,#validValidity{
+  text-align: center;
+}
+
+.gameValidities,#gameTeamText{
+  text-align: center;
+}
+
+.teamSelectContainer, .teammate{
+  display:flex;
+}
+
+.teamSelectPlayer{
+  width:100%;
+  height:20px;
+}
+
+#inviteError{
+  display:none;
+  color:red;
+}
+
+.playerName{
+  text-align: right;
+}
+
+.playerHp{
+  text-align: left;
+}
+
+.playerName[disabled]{
+  color:red;
+}
+
+.player{
+  columns: 2;
+}
+
+.teamTitle{
+  text-align: center;
+}
+
+.teams{
+  margin-bottom:5%;
+  margin-top:5%;
+}
+
+.teamsContainer, .gameButtonsContainer,.notificationFromOtherPlayersContainer,.menuIconsContainer {
+  margin-bottom:5%;
+  margin-top:5%;
+}
+
+.gameButtonsContainer{
+  align-items: center;
+  display: inline-grid;
+}
+
+
+/* to override bootstrap style */
+.row{
+  --bs-gutter-x:0rem !important 
+}
+
+.fullWidth{
+  width:100%
+}
+
+.playerBoardContainer{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.cardZone {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  /* gap: 10px; */
+  position: relative;
+}
+
+.cardContainer {
+  margin:3px;
+  height: 95%;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s;
+  z-index: 9998;
+}
+
+.deckBackCardOnTheTable {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.cardOnTheTable {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardOnTheTable img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#zoomedHoveredCard{
+  width: 100%;
+}
+
+.playerNameBoardContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deckBackCardContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

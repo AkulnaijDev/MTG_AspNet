@@ -1,0 +1,294 @@
+﻿:root {
+    --background-color: #fafafa;
+    --primary-color: #7ed6df;
+    --border-color: #fff29c;
+    --light_Text_color: white;
+    --dark_Text_contour: black;
+    --option_Text_hover: #bb240a;
+    --option_Background_color: darkslategray;
+    --option_Background_color_lighter: rgb(64, 105, 105);
+    --option_Border_color: #212529;
+    --option_Border_color_darker:#15181b;
+    /* Swamp style */
+    /* Plains style */
+    /* Mountain style */
+    /* Forest style */
+    /* Island style */
+}
+
+.uninteractable {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    pointer-events: none;
+    filter: blur(5px);
+}
+
+.loginFormContainers{
+    margin-top: 6%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    
+}
+
+.inputLogin{
+    width:90%;
+    float:left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#loginForm .row{
+    margin-top:5%
+}
+
+.heightfivepercent{
+    height:15%;
+}
+
+.passwordContainer{
+    display:flex;
+}
+
+#loginError{
+    color:red;
+    display:none;
+}
+
+#loginbutton{
+    width:50%;
+}
+
+.spinner{
+    display:none;
+    width: 30px;
+    height: 30px;
+    position:relative;
+    left:45%;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+  }
+  @-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+  }
+
+#mainMenu {
+    background-image: url("../resources/Chandra.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9997;
+    display: flex;
+    align-items: center;
+}
+
+#mainMenuVoices {
+    left: 4%;
+    position: absolute;
+}
+
+.mainMenuVoicesText {
+    padding: 10px;
+    font-size: 35px;
+    font-weight: 500;
+    color: var(--light_Text_color);
+    text-shadow: -1px -1px 0 var(--dark_Text_contour), 1px -1px 0 var(--dark_Text_contour), -1px 1px 0 var(--dark_Text_contour), 1px 1px 0 var(--dark_Text_contour);
+}
+
+.mainMenuVoicesText:hover {
+    color: var(--option_Text_hover);
+    text-decoration: underline;
+}
+
+
+#iconOverlay {
+    position: absolute;
+    background-color: transparent;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    margin-right: 25px;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+#gameInvitation{
+    height:30%;
+    position: absolute;
+    top:35%;
+    width:30%;
+    left:35%;
+    z-index: 9999;
+    background-color: var(--option_Background_color);
+    border-radius: 10px;
+    border-style: solid;
+    padding: 20px;
+    display:none;
+}
+
+
+/* Options :start */
+#optionsMenu, #loginForm, #chatContainer {
+    position: absolute;
+    z-index: 9998;
+    display: none;
+    top: 35%;
+    left: 40%;
+    background-color: var(--option_Background_color);
+    height: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    border-style: solid;
+    align-items: center;
+    text-align: center;
+    width: 20%;
+}
+
+#chatContainer{
+    display:block;
+    top:32%;
+    left:80%;
+    width:14%;
+    height:40%;
+
+}
+
+#optionsTitle {
+    font-size: 20px;
+    color: var(--light_Text_color);
+    padding-bottom: 20px;
+}
+
+.optionsVoices {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    columns:2;
+}
+
+.optionsText {
+    color: var(--light_Text_color);
+    text-align: left;
+    width:100%;
+}
+
+.optionsLowestVoices {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    margin-bottom: 10px;
+    color: var(--light_Text_color);
+}
+
+.optionsLowestVoicesForRules {
+    width: 94%;
+}
+
+.optionsVoices select {
+    width:100%;
+}
+
+#myRange{
+    width:100%;
+}
+
+/* Options end */
+
+
+/* Rules :start */
+#rulesTitle,#gameModeTitle {
+    font-size: 30px;
+    color: var(--light_Text_color);
+    padding-bottom: 20px;
+}
+
+#rulesMenu, #gameModeMenu {
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    top: 6%;
+    left: 35%;
+    background-color: var(--option_Background_color);
+    height: 800px;
+    width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    border-style: solid;
+    align-items: center;
+    text-align: center;
+}
+
+#rulesAbilitiesList, #gameModeList {
+    text-align: left;
+    overflow-y: auto;
+    padding-top: 1%;
+    height: 86%;
+    padding-right: 3%;
+}
+
+.abilityHeader{
+    display:flex;
+}
+
+
+.abilityMinusIcon,.gameModeMinusIcon {
+    display: none;
+}
+
+.abilityName,.gameModeName {
+    font-size: 20px;
+    color: var(--light_Text_color);
+    margin-left: 10px;
+}
+
+.abilityDescription,.gameModeDescription {
+    display: none;
+    color: var(--light_Text_color);
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.translatedAbility {
+    display: none
+}
+
+/* Rules end */
+
+
+
+
+
+
+
+@-webkit-keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* LOGO SCREEN END */

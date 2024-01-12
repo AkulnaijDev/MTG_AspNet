@@ -1,0 +1,32 @@
+{
+    "Rules": [
+        {
+            "Name": "Commander",
+            "Description": "This format is for four players per game and deck sizes are 99 cards + 1 commander card. The game duration for this format should be about 20 minutes per player.The Commander format is all about picking your hero and building a deck around them. In this casual, multiplayer format, you choose a legendary creature to serve as your commander and build the rest of your deck around their color identity and unique abilities. Players are only allowed one of each card in their deck, with the exception of basic lands, but they can use cards from throughout Magic's history. COLOR IDENTITY A card's color identity can come from any part of that card, including its casting cost and any mana symbols in its text. Every card in your Commander deck must only use mana symbols that also appear on your commander. Colorless cards are allowed as well. COMMAND ZONE This is where your commander resides during the game when they are not in play. At the start of the game, each player puts their commander face up into the command zone. A commander can be cast from the command zone for its normal costs, plus an additional two mana for each previous time it's been cast from the command zone this game. If your commander would be put into your library, hand, graveyard or exile from anywhere, you may return it to your command zone instead. COMMANDER DAMAGE A player that's been dealt 21 or more combat damage by the same commander over the course of the game loses the game. The commander is tracked across zone changes for this purpose (for example, if one player takes control of another player's commander, any damage that commander already dealt is still counted). PLAY FREE-FOR-ALL MULTIPLAYER If you're playing a game of Commander with three or more people, you play against each other in a free-for-all multiplayer format.Each player starts with 40 life, places their commander face-up in their command zone, and draws a hand of seven cards. Players are seated randomly in a circle and turns progress one player at a time in clockwise order around the table.During gameplay, a player may choose to attack any other player, regardless of their position on the table, and can also choose to attack multiple different players during their attack phase. Permanents, spells, and abilities can also target any player around the table (as long as they don't explicitly say they must be used on 'you').No matter the outcome, Commander gives players the tools to express themselves through strategy, skill, and a whole lot of deck building fun."
+        },
+        {
+            "Name": "Pauper",
+            "Description": "Build decks using cards that are readily available! In this Magic format, all cards must have been released at common rarity in a Magic set or product. Common promo cards are only legal if the card meets that qualification. If a common version of a particular card was ever released in a Magic: The Gathering paper product or Magic: The Gathering Online, any version of that card is legal in this format. This includes land cards that were printed with both a common set symbol and the L rarity code. Minimum of 60 cards in the main deck (There is no maximum size for main decks) Up to 15 cards in your sideboard, if used. No more than four of any individual card in the main deck and sideboard combined (with the exception of basic lands)"
+        }
+        ,
+        {
+            "Name": "Standard",
+            "Description": "Standard games are one-on-one with a 60 card minimum for the main deck (up to 15 card sideboard). Winner is determined either by best of one, or best of three games. These games should last standard length for a game (about 20 minutes on average).Standard is a dynamic format where you build decks and play using cards in your collection from recently released Magic sets. Evolving gameplay and fresh strategies make it one of the most fun and popular ways to play Magic.How does set rotation work? Each year, new Magic sets are released and added to Standard. Once per year, when the fall set releases, the four oldest sets in Standard rotate out."
+        }
+        ,
+        {
+            "Name": "Pioneer",
+            "Description": "This nonrotating format features sets from Return to Ravnica, forward. It aims to be more powerful than Standard but less powerful than Modern or Legacy. Constructed decks can have up to four of any card in their combined deck and sideboard. Basic lands are not included in this restriction.- Minimum deck size of 60 cards - Up to 15 cards in your sideboard (if used)"
+        }
+        ,
+        {
+            "Name": "Extended",
+            "Description": "A fun, anything goes, format! Freeform is a constructed MTG format that allows all sets and cards to be used. And that does mean ALL. Decks can include any number of copies of a card. Freeform games last standard length (about 10 minutes)."
+        }
+        ,
+        {
+            "Name": "Modern",
+            "Description": "These are one-on-one games with 60 card minimums for the main deck (up to 15 card sideboard). Modern games should last average length for a game (about 20 minutes). With the exception of basic lands (Plains, Island, Swamp, Mountain, Forest, and Wastes), your combined deck and sideboard may not contain more than four of any individual card, counted by its English card title equivalent. This format includes powerful cards and strategies from the last two decades of Magic."
+        }
+    ]
+}
