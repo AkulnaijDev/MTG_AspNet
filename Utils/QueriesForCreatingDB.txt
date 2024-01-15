@@ -1,0 +1,284 @@
+﻿Create a SQL DB called MagicTheGathering
+
+
+USE [MagicTheGathering]
+GO
+
+/****** Object:  Table [dbo].[Cards]    Script Date: 15/01/2024 09:44:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Cards](
+	[Object] [nvarchar](max) NULL,
+	[Id] [nvarchar](max) NULL,
+	[Oracle_Id] [nvarchar](max) NULL,
+	[Multiverse_ids] [nvarchar](max) NULL,
+	[Mtgo_Id] [nvarchar](max) NULL,
+	[Mtgo_Foil_Id] [nvarchar](max) NULL,
+	[Tcgplayer_Id] [nvarchar](max) NULL,
+	[Cardmarket_Id] [nvarchar](max) NULL,
+	[Name] [nvarchar](max) NULL,
+	[Lang] [nvarchar](max) NULL,
+	[Released_at] [nvarchar](max) NULL,
+	[Uri] [nvarchar](max) NULL,
+	[Scryfall_Uri] [nvarchar](max) NULL,
+	[Layout] [nvarchar](max) NULL,
+	[Highres_Image] [nvarchar](max) NULL,
+	[Image_Status] [nvarchar](max) NULL,
+	[Image_Uris] [nvarchar](max) NULL,
+	[Mana_Cost] [nvarchar](max) NULL,
+	[Cmc] [nvarchar](max) NULL,
+	[Type_Line] [nvarchar](max) NULL,
+	[Oracle_Text] [nvarchar](max) NULL,
+	[Power] [nvarchar](max) NULL,
+	[Toughness] [nvarchar](max) NULL,
+	[Colors] [nvarchar](max) NULL,
+	[Color_Identity] [nvarchar](max) NULL,
+	[Keywords] [nvarchar](max) NULL,
+	[Legalities] [nvarchar](max) NULL,
+	[Games] [nvarchar](max) NULL,
+	[Reserved] [nvarchar](max) NULL,
+	[Foil] [nvarchar](max) NULL,
+	[Nonfoil] [nvarchar](max) NULL,
+	[Finishes] [nvarchar](max) NULL,
+	[Oversized] [nvarchar](max) NULL,
+	[Promo] [nvarchar](max) NULL,
+	[Reprint] [nvarchar](max) NULL,
+	[Variation] [nvarchar](max) NULL,
+	[Set_Id] [nvarchar](max) NULL,
+	[Set] [nvarchar](max) NULL,
+	[Set_Name] [nvarchar](max) NULL,
+	[Set_Type] [nvarchar](max) NULL,
+	[Set_Uri] [nvarchar](max) NULL,
+	[Set_Search_Uri] [nvarchar](max) NULL,
+	[Scryfall_Set_Uri] [nvarchar](max) NULL,
+	[Rulings_Uri] [nvarchar](max) NULL,
+	[Prints_Search_Uri] [nvarchar](max) NULL,
+	[Collector_Number] [nvarchar](max) NULL,
+	[Digital] [nvarchar](max) NULL,
+	[Rarity] [nvarchar](max) NULL,
+	[Flavor_Text] [nvarchar](max) NULL,
+	[Card_Back_Id] [nvarchar](max) NULL,
+	[Artist] [nvarchar](max) NULL,
+	[Artist_Ids] [nvarchar](max) NULL,
+	[Illustration_Id] [nvarchar](max) NULL,
+	[Border_Color] [nvarchar](max) NULL,
+	[Frame] [nvarchar](max) NULL,
+	[Full_Art] [nvarchar](max) NULL,
+	[Textless] [nvarchar](max) NULL,
+	[Booster] [nvarchar](max) NULL,
+	[Story_Spotlight] [nvarchar](max) NULL,
+	[Edhrec_Rank] [nvarchar](max) NULL,
+	[Penny_Rank] [nvarchar](max) NULL,
+	[Prices] [nvarchar](max) NULL,
+	[Related_Uris] [nvarchar](max) NULL,
+	[Small] [nvarchar](max) NULL,
+	[Normal] [nvarchar](max) NULL,
+	[Large] [nvarchar](max) NULL,
+	[Png] [nvarchar](max) NULL,
+	[Art_Crop] [nvarchar](max) NULL,
+	[Border_crop] [nvarchar](max) NULL,
+	[Standard] [nvarchar](max) NULL,
+	[Future] [nvarchar](max) NULL,
+	[Historic] [nvarchar](max) NULL,
+	[Gladiator] [nvarchar](max) NULL,
+	[Pioneer] [nvarchar](max) NULL,
+	[Explorer] [nvarchar](max) NULL,
+	[Modern] [nvarchar](max) NULL,
+	[Legacy] [nvarchar](max) NULL,
+	[Pauper] [nvarchar](max) NULL,
+	[Vintage] [nvarchar](max) NULL,
+	[Penny] [nvarchar](max) NULL,
+	[Commander] [nvarchar](max) NULL,
+	[Brawl] [nvarchar](max) NULL,
+	[Historicbrawl] [nvarchar](max) NULL,
+	[Alchemy] [nvarchar](max) NULL,
+	[Paupercommander] [nvarchar](max) NULL,
+	[Duel] [nvarchar](max) NULL,
+	[Oldschool] [nvarchar](max) NULL,
+	[Premodern] [nvarchar](max) NULL,
+	[Usd] [decimal](18, 2) NULL,
+	[Usd_Foil] [decimal](18, 2) NULL,
+	[Usd_Etched] [decimal](18, 2) NULL,
+	[Eur] [decimal](18, 2) NULL,
+	[Eur_Foil] [decimal](18, 2) NULL,
+	[Tix] [decimal](18, 2) NULL,
+	[Gatherer] [nvarchar](max) NULL,
+	[Tcgplayer_Infinite_Articles] [nvarchar](max) NULL,
+	[Tcgplayer_Infinite_Decks] [nvarchar](max) NULL,
+	[Edhrec] [nvarchar](max) NULL,
+	[ScrapedPNGImage] [bit] NULL,
+	[ScrapedLowQualityImage] [bit] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+USE [MagicTheGathering]
+GO
+
+/****** Object:  Table [dbo].[Decks]    Script Date: 15/01/2024 09:45:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Decks](
+	[Id] [nvarchar](max) NULL,
+	[Name] [nvarchar](max) NULL,
+	[UserId] [nvarchar](max) NULL,
+	[Card001] [nvarchar](max) NULL,
+	[Card002] [nvarchar](max) NULL,
+	[Card003] [nvarchar](max) NULL,
+	[Card004] [nvarchar](max) NULL,
+	[Card005] [nvarchar](max) NULL,
+	[Card006] [nvarchar](max) NULL,
+	[Card007] [nvarchar](max) NULL,
+	[Card008] [nvarchar](max) NULL,
+	[Card009] [nvarchar](max) NULL,
+	[Card010] [nvarchar](max) NULL,
+	[Card011] [nvarchar](max) NULL,
+	[Card012] [nvarchar](max) NULL,
+	[Card013] [nvarchar](max) NULL,
+	[Card014] [nvarchar](max) NULL,
+	[Card015] [nvarchar](max) NULL,
+	[Card016] [nvarchar](max) NULL,
+	[Card017] [nvarchar](max) NULL,
+	[Card018] [nvarchar](max) NULL,
+	[Card019] [nvarchar](max) NULL,
+	[Card020] [nvarchar](max) NULL,
+	[Card021] [nvarchar](max) NULL,
+	[Card022] [nvarchar](max) NULL,
+	[Card023] [nvarchar](max) NULL,
+	[Card024] [nvarchar](max) NULL,
+	[Card025] [nvarchar](max) NULL,
+	[Card026] [nvarchar](max) NULL,
+	[Card027] [nvarchar](max) NULL,
+	[Card028] [nvarchar](max) NULL,
+	[Card029] [nvarchar](max) NULL,
+	[Card030] [nvarchar](max) NULL,
+	[Card031] [nvarchar](max) NULL,
+	[Card032] [nvarchar](max) NULL,
+	[Card033] [nvarchar](max) NULL,
+	[Card034] [nvarchar](max) NULL,
+	[Card035] [nvarchar](max) NULL,
+	[Card036] [nvarchar](max) NULL,
+	[Card037] [nvarchar](max) NULL,
+	[Card038] [nvarchar](max) NULL,
+	[Card039] [nvarchar](max) NULL,
+	[Card040] [nvarchar](max) NULL,
+	[Card041] [nvarchar](max) NULL,
+	[Card042] [nvarchar](max) NULL,
+	[Card043] [nvarchar](max) NULL,
+	[Card044] [nvarchar](max) NULL,
+	[Card045] [nvarchar](max) NULL,
+	[Card046] [nvarchar](max) NULL,
+	[Card047] [nvarchar](max) NULL,
+	[Card048] [nvarchar](max) NULL,
+	[Card049] [nvarchar](max) NULL,
+	[Card050] [nvarchar](max) NULL,
+	[Card051] [nvarchar](max) NULL,
+	[Card052] [nvarchar](max) NULL,
+	[Card053] [nvarchar](max) NULL,
+	[Card054] [nvarchar](max) NULL,
+	[Card055] [nvarchar](max) NULL,
+	[Card056] [nvarchar](max) NULL,
+	[Card057] [nvarchar](max) NULL,
+	[Card058] [nvarchar](max) NULL,
+	[Card059] [nvarchar](max) NULL,
+	[Card060] [nvarchar](max) NULL,
+	[Card061] [nvarchar](max) NULL,
+	[Card062] [nvarchar](max) NULL,
+	[Card063] [nvarchar](max) NULL,
+	[Card064] [nvarchar](max) NULL,
+	[Card065] [nvarchar](max) NULL,
+	[Card066] [nvarchar](max) NULL,
+	[Card067] [nvarchar](max) NULL,
+	[Card068] [nvarchar](max) NULL,
+	[Card069] [nvarchar](max) NULL,
+	[Card070] [nvarchar](max) NULL,
+	[Card071] [nvarchar](max) NULL,
+	[Card072] [nvarchar](max) NULL,
+	[Card073] [nvarchar](max) NULL,
+	[Card074] [nvarchar](max) NULL,
+	[Card075] [nvarchar](max) NULL,
+	[Card076] [nvarchar](max) NULL,
+	[Card077] [nvarchar](max) NULL,
+	[Card078] [nvarchar](max) NULL,
+	[Card079] [nvarchar](max) NULL,
+	[Card080] [nvarchar](max) NULL,
+	[Card081] [nvarchar](max) NULL,
+	[Card082] [nvarchar](max) NULL,
+	[Card083] [nvarchar](max) NULL,
+	[Card084] [nvarchar](max) NULL,
+	[Card085] [nvarchar](max) NULL,
+	[Card086] [nvarchar](max) NULL,
+	[Card087] [nvarchar](max) NULL,
+	[Card088] [nvarchar](max) NULL,
+	[Card089] [nvarchar](max) NULL,
+	[Card090] [nvarchar](max) NULL,
+	[Card091] [nvarchar](max) NULL,
+	[Card092] [nvarchar](max) NULL,
+	[Card093] [nvarchar](max) NULL,
+	[Card094] [nvarchar](max) NULL,
+	[Card095] [nvarchar](max) NULL,
+	[Card096] [nvarchar](max) NULL,
+	[Card097] [nvarchar](max) NULL,
+	[Card098] [nvarchar](max) NULL,
+	[Card099] [nvarchar](max) NULL,
+	[Card100] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+USE [MagicTheGathering]
+GO
+
+/****** Object:  Table [dbo].[Sets]    Script Date: 15/01/2024 09:45:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Sets](
+	[Object] [nvarchar](max) NULL,
+	[Id] [nvarchar](max) NULL,
+	[Code] [nvarchar](max) NULL,
+	[Tcgplayer_id] [nvarchar](max) NULL,
+	[Name] [nvarchar](max) NULL,
+	[Uri] [nvarchar](max) NULL,
+	[Scryfall_uri] [nvarchar](max) NULL,
+	[Search_uri] [nvarchar](max) NULL,
+	[Released_at] [nvarchar](max) NULL,
+	[Set_type] [nvarchar](max) NULL,
+	[Card_count] [int] NULL,
+	[Digital] [bit] NULL,
+	[Nonfoil_only] [bit] NULL,
+	[Foil_only] [bit] NULL,
+	[Icon_svg_uri] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+USE [MagicTheGathering]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 15/01/2024 09:45:49 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Users](
+	[Username] [nvarchar](max) NULL,
+	[Password] [nvarchar](max) NULL,
+	[Token] [nvarchar](50) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+
