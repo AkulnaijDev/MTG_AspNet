@@ -95,7 +95,7 @@ connection.on("Notify_Login", function (userList) {
     if(user.ConnectionId != myConnectionId){
       chatSpan = "<div class='openToChatIcon'>&#128172;</div>";
     }
-    var div = $("<div class='onlineUser'><div class='randomIconEmoji'>" + avatar + "</div><div userid='" + user.ConnectionId + "' class='onlineUserName'> " + user.UserName + "</div>"+chatSpan+"</div>");
+    var div = $("<div class='onlineUser'><div class='myResponsiveTextMedium randomIconEmoji'>" + avatar + "</div><div userid='" + user.ConnectionId + "' class='myResponsiveTextMedium onlineUserName'> " + user.UserName + "</div>"+chatSpan+"</div>");
 
     $("#onlineUserContainer").append(div);
 

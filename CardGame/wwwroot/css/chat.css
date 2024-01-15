@@ -15,7 +15,35 @@
   /* Forest style */
   /* Island style */
 }
+/* Regole di base per la tua classe */
+.myResponsiveTextBig {
+  font-size: 16px; /* Dimensione di base del testo */
+}
+.myResponsiveTextMedium {
+  font-size: 25px;
+}
 
+/* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
+@media screen and (max-width: 768px) {
+  .myResponsiveTextBig {
+      font-size: 25px; /* Regola la dimensione del testo per schermi più piccoli */
+  }
+  .myResponsiveTextMedium {
+      font-size: 18px;
+  }
+}
+
+/* Media query per schermi più grandi (ad esempio, desktop) */
+@media screen and (min-width: 1200px) {
+  .myResponsiveTextBig {
+      font-size: 35px; /* Regola la dimensione del testo per schermi più grandi */
+  }
+
+  .myResponsiveTextMedium {
+      font-size: 25px;
+  }
+
+}
 #chatBox {
     height: 100%;
     border-radius: 8px;
@@ -63,7 +91,6 @@
     text-align: center;
     margin: 0px;
     color: var(--light_Text_color);
-    font-size: 22px;
     padding: 4%;
     margin-bottom: 5%;
   }

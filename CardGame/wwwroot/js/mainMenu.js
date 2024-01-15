@@ -262,9 +262,9 @@ function PopulateGameModeExplanation() {
                 "<div class='abilityHeader'>"+
                     "<div class='gameModePlusIcon'>➕</div>"+
                     "<div class='gameModeMinusIcon'>➖</div>"+
-                    "<div class='gameModeName'>"+rule.Name+"</div>"+
+                    "<div class='gameModeName myResponsiveTextSmall'>"+rule.Name+"</div>"+
                 "</div>"+
-                "<div class='gameModeDescription'>"+rule.Description+"</div>"+
+                "<div class='gameModeDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
             "</div>"
 
             $('#gameModeList').append(tmp);
@@ -278,9 +278,9 @@ function PopulateGameModeExplanation() {
                 "<div class='abilityHeader'>"+
                     "<div class='gameModePlusIcon'>➕</div>"+
                     "<div class='gameModeMinusIcon'>➖</div>"+
-                    "<div class='gameModeName'>"+rule.Name+"</div>"+
+                    "<div class='gameModeName myResponsiveTextSmall'>"+rule.Name+"</div>"+
                 "</div>"+
-                "<div class='gameModeDescription'>"+rule.Description+"</div>"+
+                "<div class='gameModeDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
             "</div>"
 
             $('#gameModeList').append(tmp);
@@ -297,9 +297,9 @@ function PopulateRuleset(){
                 "<div class='abilityHeader'>"+
                     "<div class='abilityPlusIcon'>➕</div>"+
                     "<div class='abilityMinusIcon'>➖</div>"+
-                    "<div class='abilityName'>"+rule.Name+"</div>"+
+                    "<div class='abilityName myResponsiveTextSmall'>"+rule.Name+"</div>"+
                 "</div>"+
-                "<div class='abilityDescription'>"+rule.Description+"</div>"+
+                "<div class='abilityDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
             "</div>"
 
             $('#rulesAbilitiesList').append(tmp);
@@ -313,9 +313,9 @@ function PopulateRuleset(){
             "<div class='abilityHeader'>"+
                 "<div class='abilityPlusIcon'>➕</div>"+
                 "<div class='abilityMinusIcon'>➖</div>"+
-                "<div class='abilityName'>"+rule.Name+"</div>"+
+                "<div class='abilityName myResponsiveTextSmall'>"+rule.Name+"</div>"+
             "</div>"+
-            "<div class='abilityDescription'>"+rule.Description+"</div>"+
+            "<div class='abilityDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
         "</div>"
 
             $('#rulesAbilitiesList').append(tmp);
