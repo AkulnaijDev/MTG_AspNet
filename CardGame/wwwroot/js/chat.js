@@ -23,13 +23,10 @@ connection.start().then(function () {
 
 $(document).on("mousedown", "#mypasswordchecker", function () {
   $("#mypassword").attr('type','text')
-  $("#mypasswordchecker").text('👁️‍🗨️')
-  
-  
 })
+
 $(document).on("mouseup", "#mypasswordchecker", function () {
   $("#mypassword").attr('type','password')
-  $("#mypasswordchecker").text('👁️')
 })
 
 

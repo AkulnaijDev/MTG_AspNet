@@ -25,23 +25,14 @@
     filter: blur(5px);
 }
 
-.loginFormContainers{
-    margin-top: 6%;
-    display: flex;
-  justify-content: center;
-  align-items: center;
-    
-}
-
 .inputLogin{
     width:90%;
     float:left;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
-#loginForm .row{
-    margin-top:5%
+#loginForm .form-group{
+    margin-bottom: 10px;
 }
 
 .heightfivepercent{
@@ -63,6 +54,8 @@
 
 .spinner{
     display:none;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 30px;
     height: 30px;
     position:relative;
@@ -139,7 +132,24 @@
 
 
 /* Options :start */
-#optionsMenu, #loginForm, #chatContainer {
+#loginForm{
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    background-color: var(--option_Background_color);
+    border-radius: 10px;
+    border-style: solid;
+    align-items: center;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+#optionsMenu, #chatContainer {
     position: absolute;
     z-index: 9998;
     display: none;
@@ -263,11 +273,6 @@
 }
 
 /* Rules end */
-
-
-
-
-
 
 
 @-webkit-keyframes fade-out {
