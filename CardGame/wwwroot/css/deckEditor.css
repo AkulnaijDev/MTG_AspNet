@@ -16,82 +16,261 @@
     /* Island style */
 }
 
+/* Regole di base per la tua classe */
+.myResponsiveTextBig {
+    font-size: 16px; /* Dimensione di base del testo */
+}
+.myResponsiveTextMedium {
+    font-size: 25px;
+}
+.myResponsiveTextSmall {
+    font-size: 18px;
+}
 
-#myDeckMenu {
-    position: absolute;
-    z-index: 9998;
-    display: none;
-    align-items: center;
-    top: 1%;
-    left: 1%;
-    background-color: var(--option_Background_color);
-    height: 98%;
-    width: 98%;
-    padding: 20px;
-    border-radius: 10px;
-    border-style: solid;
-    align-items: center;
-    text-align: center;
+/* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
+@media screen and (max-width: 768px) {
+    .myResponsiveTextBig {
+        font-size: 25px; /* Regola la dimensione del testo per schermi più piccoli */
+    }
+    .myResponsiveTextMedium {
+        font-size: 18px;
+    }
+    .myResponsiveTextSmall {
+        font-size: 14px;
+    }
+
+    #myDeckCardPreviewImage{
+        height: 140px;
+    }
+
+    .cardImagePreview {
+        max-width: 185px;
+        border-radius: 5px
+    }
+
+    #myDeckCardPickerContainer {
+        display: grid;
+        grid-template-columns: 100%;
+        overflow-y: auto;
+        height: 73%;
+    }
+    #myDeckCardPicker {
+        width: 58%;
+        float: right;
+        height: 100%;
+        padding: 1%;
+    }
+
+    #myDeckMenu {
+        position: absolute;
+        z-index: 9998;
+        display: none;
+        align-items: center;
+        top: 1%;
+        left: 1%;
+        background-color: var(--option_Background_color);
+        height: 98%;
+        width: 98%;
+        padding: 5px;
+        border-radius: 10px;
+        border-style: solid;
+        align-items: center;
+        text-align: center;
+    }
+
+    #myDeck {
+        border: 3px solid #212529;
+        border-radius: 16px;
+        padding: 1%;
+        height: 93%;
+        width: 42%;
+        float: left;
+    }
+
+    #myDeckAlert{
+        visibility: hidden;
+        color: var(--light_Text_color);
+        font-size: 20px;
+        height: 5%;
+    }
+
+    .cardRowActions {
+        width: 20%;
+    }
+
+    #myDeckZoomSelectorPlus, #myDeckZoomSelectorIcon, #myDeckZoomSelectorMinus{
+        display:none;
+    }
+
+    #myDeckList{
+        height: 54%;
+        padding-left: 0%;
+        overflow: auto;
+        border: 3px solid solid #212529;
+        border-radius: 16px;
+        font-size: 11px;
+    }
+
+    
+    #myDeckSetPickerContainer {
+        padding: 2px;
+        margin-bottom: 5px;
+    }
+
+    #myDeckDecksSelector,#myDeckDecksGameMode,#myDeckDecksSetsAndZoom{
+        font-size:13px;
+        display: inline-flex;
+        max-height: 20px;
+        width: 100%;
+    }
+
+    #myDecksPickerSelector{
+        width: 55%;
+    }
+
+    #myDeckDecksSelectorText2{
+        margin-right: 14%;
+    }
+
+    #myDeckSetPickerSelector {
+        width: 54%;
+    }
+
+    .cardImageTextActionContainer{
+        font-size: 12px;
+    }
+}
+
+/* Media query per schermi più grandi (ad esempio, desktop) */
+@media screen and (min-width: 1200px) {
+    .myResponsiveTextBig {
+        font-size: 35px; /* Regola la dimensione del testo per schermi più grandi */
+    }
+
+    .myResponsiveTextMedium {
+        font-size: 25px;
+    }
+
+    .myResponsiveTextSmall {
+        font-size: 18px;
+    }
+
+    #myDeckCardPreviewImage{
+        height: 250px;
+    }
+       
+    .cardImagePreview {
+        max-width: 250px;
+        border-radius: 15px;
+    }
+
+    #myDeckCardPickerContainer {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        overflow-y: auto;
+        height: 85%;
+    }
+
+    #myDeckCardPicker {
+        width: 75%;
+        float: right;
+        height: 100%;
+    }
+
+    #myDeckMenu {
+        position: absolute;
+        z-index: 9998;
+        display: none;
+        align-items: center;
+        top: 1%;
+        left: 1%;
+        background-color: var(--option_Background_color);
+        height: 98%;
+        width: 98%;
+        padding: 20px;
+        border-radius: 10px;
+        border-style: solid;
+        align-items: center;
+        text-align: center;
+    }
+
+    #myDeck {
+        border: 3px solid #212529;
+        border-radius: 16px;
+        padding: 1%;
+        margin: 1%;
+        height: 93%;
+        width: 23%;
+        float: left;
+    }
+
+    #myDeckAlert{
+        visibility: hidden;
+        color: var(--light_Text_color);
+        font-size:20px;
+    }
+
+    #myDeckList{
+        height: 54%;
+        padding-left: 5%;
+        overflow: auto;
+        border: 3px solid solid #212529;
+        border-radius: 16px;
+    }
+
+    #myDeckSetPickerContainer {
+        padding: 30px;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    #myDeckDecksSelector,#myDeckDecksGameMode{
+        width: 30%;
+        display: inline-flex;
+    }
+    
+    #myDecksPickerSelector{
+        width: 60%;
+    }
+    
+    #myDeckDecksSelectorText2{
+        margin-left: 15%;
+        margin-right: 1%;
+    }
+    
+    #myDeckSetPickerSelector {
+        width: 30%;
+        text-align: center;
+    }
 }
 
 
-#myDeckSetPickerContainer {
-    padding: 30px;
-    display: flex;
-    align-items: flex-end;
-}
 
-#myDeckSetPickerSelector {
-    width: 30%;
-    text-align: center;
-}
+
+
+
+
+
 
 #myDeckMenuContainer {
     height: 100%;
     width: 100%
 }
 
-#myDeckAlert{
-    visibility: hidden;
-    color: var(--light_Text_color);
-    font-size:20px;
-}
 
-#myDeck {
-    border: 3px solid #212529;
-    border-radius: 16px;
-    padding: 1%;
-    margin: 1%;
-    height: 93%;
-    width: 23%;
-    float: left;
-}
 
-#myDeckCardPicker {
-    width: 75%;
-    float: right;
-    height: 100%;
-}
+
+
+
+
 
 .myDeckSingleCardOption, .myDeckSingleCardOptionFromList {
     display: block;
 }
 
-#myDeckCardPickerContainer {
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    overflow-y: auto;
-    height: 85%;
-}
 
-.cardImagePreview {
-    max-width: 250px;
-    border-radius: 15px;
-}
 
-#myDeckCardPreviewImage{
-    height: 250px;
-}
+
 
 .cardImageContainer {
     margin-bottom: 30px;
@@ -112,13 +291,7 @@
     margin-bottom:10px;
 }
 
-#myDeckList{
-    height: 54%;
-    padding-left: 5%;
-    overflow: auto;
-    border: 3px solid solid #212529;
-    border-radius: 16px;
-}
+
 
 #myDeckSaveButtonContainer{
    position: relative; 
@@ -147,23 +320,13 @@
 	        animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
 
-#myDeckDecksSelector{
-    width: 30%;
-    display: inline-flex;
-}
+
 
 #myDeckDecksSelectorText{
     margin-right: 2%;
 }
 
-#myDeckDecksSelectorText2{
-    margin-left: 15%;
-    margin-right: 1%;
-}
 
-#myDecksPickerSelector{
-    width: 60%;
-}
 
 #myDecksPickerSelectorDelete[disabled]{
     pointer-events: none;

@@ -571,7 +571,7 @@ function setCardsImages(cardArray) {
         var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
             "legendary=" + element.legendary + ">" +
             "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src=" + element.source + " alt=" + name + ">" +
-            "</img><div>"+plus +
+            "</img><div class='cardImageTextActionContainer'>"+plus +
             element.name + minus + "</div></div>"
 
         $('#myDeckCardPickerContainer').append(div);
