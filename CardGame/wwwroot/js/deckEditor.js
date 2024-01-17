@@ -1,6 +1,7 @@
 var cards = [];
 var settini = [];
 var decks = [];
+var mySettings = {};
 
 connection.on("PopulateAllCardsLastSet", function (scrapedCards) {
     var cardsParsed = JSON.parse(scrapedCards);
@@ -43,6 +44,34 @@ connection.on("PopulateMyDecks", function (myDecks) {
         //$('#myDecksPickerSelector').append(option);
         $('.myDecksPickerSelector').append(option);
     });
+})
+
+connection.on("AdoptSettings", function (myUserSettings) {
+
+    var myUserSettingsParsed = JSON.parse(myUserSettings);
+    mySettings = myUserSettingsParsed;
+
+    // DEVI DECOMMENTARE A OPERA FINITA! RIMETTENDO SUONI
+    // if(!!mySettings.Volume){
+    //     $('#myRange').val(parseInt(mySettings.Volume)).trigger('change');
+    // }
+    //
+    // if(!!mySettings.Soundtrack){
+    //     $('#musicChooseOptions').val(mySettings.Soundtrack).trigger('change');
+    // }
+
+    if(!!mySettings.Background){        
+        $('#backgroundChooseOptions').val(mySettings.Background).trigger('change');
+    }
+
+    if(!!mySettings.Theme){
+        $('#themeChooseOptions').val(mySettings.Theme).trigger('change');
+    }
+
+    if(!!mySettings.Language){
+        $('#languageChooseOptions').val(mySettings.Language).trigger('change');
+    }
+    
 })
 
 connection.on("ConfirmDeckEdited", function () {

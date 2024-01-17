@@ -66,6 +66,10 @@ connection.on("ConfirmLogin", function (tokenSql) {
       return console.error(err.toString());
     });
 
+    connection.invoke("GetUserSetting", myUsername).catch(function (err) {
+      return console.error(err.toString());
+    });
+
   } else {
     $('#loginSpinner').hide();
     $('#loginError').show().delay(2000).fadeOut();

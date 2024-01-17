@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Utils.Models;
 
 namespace Utils
@@ -14,6 +15,50 @@ namespace Utils
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.Connection.Open();
                 command.ExecuteNonQuery();
+            }
+        }
+        public static string SaveMySettings(UserSettings userSettings)
+        {
+            var queryString = $@"
+                DECLARE @OperationResult VARCHAR(50);
+                IF NOT EXISTS (SELECT 1 FROM UserSettings WHERE Username = @Username)
+                    BEGIN
+                        INSERT INTO UserSettings (Username, Volume, BackgroundImage, Theme, Language, Soundtrack)
+                        VALUES (@Username, @Volume, @BackgroundImage, @Theme, @Language, @Soundtrack)
+                        SET @OperationResult = 'Insertion successful';
+                    END
+                ELSE
+                    BEGIN
+                        UPDATE UserSettings
+                        SET Volume = @Volume, BackgroundImage = @BackgroundImage, Theme = @Theme, Language = @Language, Soundtrack = @Soundtrack
+                        WHERE Username = @Username
+                        SET @OperationResult = 'Update successful';
+                    END
+
+                SELECT @OperationResult AS OperationResult;
+            ";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@Username", userSettings.Username);
+                command.Parameters.AddWithValue("@Volume", userSettings.Volume);
+                command.Parameters.AddWithValue("@BackgroundImage", userSettings.Background);
+                command.Parameters.AddWithValue("@Theme", userSettings.Theme);
+                command.Parameters.AddWithValue("@Language", userSettings.Language);
+                command.Parameters.AddWithValue("@Soundtrack", userSettings.Soundtrack);
+
+                command.Connection.Open();
+                var operationResult = command.ExecuteScalar();
+
+                if (operationResult != null)
+                {
+                    return operationResult.ToString();
+                }
+                else
+                {
+                    return "Error"; // o un valore appropriato in caso di errore
+                }
             }
         }
 
@@ -98,6 +143,37 @@ namespace Utils
                 var id = command.ExecuteScalar();
                 return id.ToString();
             }
+        }
+
+        public static UserSettings GetUserSettings(string username)
+        {
+            var queryString = $"SELECT * From UserSettings Where Username ='{username}'";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    var userSetting = new UserSettings { };
+
+                    while (reader.Read())
+                    {
+
+                        userSetting.Username = reader["Username"].ToString();
+                        userSetting.Volume = reader["Volume"].ToString();
+                        userSetting.Background = reader["BackgroundImage"].ToString();
+                        userSetting.Theme = reader["Theme"].ToString();
+                        userSetting.Language = reader["Language"].ToString();
+                        userSetting.Soundtrack = reader["Soundtrack"].ToString();
+                    }
+                    return userSetting;
+                }
+
+            }
+
         }
 
         public static string CheckLogin(string username, string password)

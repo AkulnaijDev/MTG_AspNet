@@ -107,6 +107,14 @@ namespace CardGame.Hubs
             await Clients.Caller.SendAsync("ConfirmLogin", token);
         }
 
+        public async Task GetUserSetting(string username)
+        {
+            var userSetting = SqlUtils.GetUserSettings(username);
+            var obj = JsonConvert.SerializeObject(userSetting);
+            Console.WriteLine(obj);
+            await Clients.Caller.SendAsync("AdoptSettings", obj);
+        }
+
         public async Task SaveDeck(string deck, string? deckId)
         {
             var deckItem = JsonConvert.DeserializeObject<DeckItem>(deck);
@@ -248,6 +256,30 @@ namespace CardGame.Hubs
         {
             await Clients.Client(invitingPlayerId).SendAsync("SendRefusalGameInvitation", invitedPlayerId);
         }
+
+        public async Task SaveMySettings(string playerId, string username, string chosenVolume, string desktop, string theme, string language, string music)
+        {
+            try
+            {
+                var mySettings = new UserSettings();
+                mySettings.Username = username;
+                mySettings.Language = language;
+                mySettings.Volume = chosenVolume;
+                mySettings.Background = desktop;
+                mySettings.Theme = theme;
+                mySettings.Soundtrack = music;
+
+                var result = SqlUtils.SaveMySettings(mySettings); 
+                await Clients.Client(playerId).SendAsync("ConfirmSavedSettings",result);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
 
         public async Task AcceptGameInvitation(string roomId, string acceptinPlayerId, string acceptinPlayerName, string deckId)
         {

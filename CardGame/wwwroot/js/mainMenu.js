@@ -35,9 +35,27 @@ $('body').on('click', '#mainMenuOptions', function () {
        $('#optionsMenu').show();
 });
 
+
 $('body').on('click', '#closeOptionsMenu', function () {
+    var desktop = $('#backgroundChooseOptions').val();
+    var theme = $('#themeChooseOptions').val();
+    var music = $('#musicChooseOptions').val();
+    var chosenVolume = $('#myRange').val()
+    var language = $('#languageChooseOptions').val();
+    var myId = myConnectionId;
+
+    connection.invoke("SaveMySettings",myId, myUsername,chosenVolume,desktop,theme,language,music ).catch(function (err) {
+        return console.error(err.toString());
+      });
+
     $('#optionsMenu').hide();
+
 });
+
+connection.on("ConfirmSavedSettings", function (result) {
+    console.log("Settings update:"+ result)  //add a spinner o
+})
+
 
 $('body').on('change', '#myRange', function () {
     var chosenVolume = $(this).val()/100;
@@ -71,7 +89,7 @@ $('body').on('change', '#themeChooseOptions', function () {
     var theme = $('#themeChooseOptions').val();
     if(theme =="plain"){
         
-    } else if(theme =="swamp"){
+    } else if(theme =="mountain"){
 
     } else if(theme =="forest"){
 
@@ -122,6 +140,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#optionsBackgroundText').text('Sfondo:');
         $('#optionsStyleText').text('Tema:');
         $('#optionsLanguageText').text('Lingua:');
+
         $('#closeOptionsMenu').text('Chiudi');
         
         $('#themeChooseOptions option[value="swamp"]').text('Palude');
