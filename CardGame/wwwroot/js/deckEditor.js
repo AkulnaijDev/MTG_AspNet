@@ -454,10 +454,30 @@ $('body').on('click', '.removeCardFromDeck', function () {
     CountCardsInDeck();
 });
 
+function checkResourceExistence(url, successCallback, errorCallback) {
+    var img = new Image();
+    img.onload = function() {
+        successCallback();
+    };
+    img.onerror = function() {
+        errorCallback();
+    };
+    img.src = url;
+}
+
 
 $('body').on('mouseenter', '.cardRow', function () {
     var sourcePath = $(this).attr('sourcePath');
-    $('#myDeckCardPreviewImage').attr('src', sourcePath);
+
+    checkResourceExistence(
+        sourcePath,
+        function() {
+            $('#myDeckCardPreviewImage').attr('src', sourcePath);
+        },
+        function() {
+            $('#myDeckCardPreviewImage').attr('src', "../resources/cardBack.jpg");
+        }
+    );
 });
 
 $('body').on('click', '.cardRowName', function () {
@@ -599,12 +619,54 @@ function setCardsImages(cardArray) {
 
     cardArray.forEach(element => {
         var name = (element.name).replaceAll(" ", "&quot;");
-        var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
-            "legendary=" + element.legendary + ">" +
-            "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src=" + element.source + " alt=" + name + ">" +
-            "</img><div class='cardImageTextActionContainer'>"+plus +
-            element.name + minus + "</div></div>"
 
-        $('#myDeckCardPickerContainer').append(div);
+        checkResourceExistence(
+            element.source,
+            function() {
+                var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
+                "legendary=" + element.legendary + ">" +
+                "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src=" + element.source + " alt=" + name + ">" +
+                "</img><div class='cardImageTextActionContainer'>"+plus + element.name + minus + "</div></div>"
+
+                $('#myDeckCardPickerContainer').append(div);
+            },
+            function() {
+                var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
+                "legendary=" + element.legendary + ">" +
+                "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src='../resources/cardBack.jpg' alt=" + name + ">" +
+                "</img><div class='cardImageTextActionContainer'>"+plus + element.name + minus + "</div></div>"
+
+                $('#myDeckCardPickerContainer').append(div);
+            }
+        );
+
+        
     });
 }
+
+
+function checkResourceExistence(url, successCallback, errorCallback) {
+    var img = new Image();
+    img.onload = function() {
+        successCallback();
+    };
+    img.onerror = function() {
+        errorCallback();
+    };
+    img.src = url;
+}
+
+
+$('body').on('mouseenter', '.cardRow', function () {
+    var sourcePath = $(this).attr('sourcePath');
+
+    checkResourceExistence(
+        sourcePath,
+        function() {
+            $('#myDeckCardPreviewImage').attr('src', sourcePath);
+        },
+        function() {
+            $('#myDeckCardPreviewImage').attr('src', "../resources/cardBack.jpg");
+        }
+    );
+});
