@@ -21,8 +21,11 @@ $('body').on('click', '.abilityMinusIcon', function () {
 });
 
 $('body').on('click', '#mainMenuRules', function () {
-    $('#rulesMenu').show();
+    if(!$("#optionsMenu").is(':visible') && !$("#myDeckMenu").is(':visible') && !$("#gameModeMenu").is(':visible')){
+        $('#rulesMenu').show();
+    }   
 });
+
 $('body').on('click', '#closeRulesMenu', function () {
     $('#rulesMenu').hide();
     $('.abilityMinusIcon').trigger('click');
@@ -32,7 +35,9 @@ $('body').on('click', '#closeRulesMenu', function () {
 
 // options START
 $('body').on('click', '#mainMenuOptions', function () {
-       $('#optionsMenu').show();
+    if(!$("#rulesMenu").is(':visible') && !$("#myDeckMenu").is(':visible') && !$("#gameModeMenu").is(':visible')){
+        $('#optionsMenu').show();
+    }
 });
 
 
@@ -87,17 +92,29 @@ $('body').on('change', '#backgroundChooseOptions', function () {
 
 $('body').on('change', '#themeChooseOptions', function () {
     var theme = $('#themeChooseOptions').val();
-    if(theme =="plain"){
-        
-    } else if(theme =="mountain"){
-
-    } else if(theme =="forest"){
-
-    } else if(theme =="island"){
-
+    if(theme =="default"){
+        document.documentElement.style.setProperty('--option_Background_color', 'darkslategray');
+        document.documentElement.style.setProperty('--option_Text_hover', '#bb240a');
+    } 
+    else if(theme =="plain"){
+        document.documentElement.style.setProperty('--option_Background_color', '#a8a880');
+        document.documentElement.style.setProperty('--option_Text_hover', '#969656');
+    } 
+    else if(theme =="mountain"){
+        document.documentElement.style.setProperty('--option_Background_color', '#720800');
+        document.documentElement.style.setProperty('--option_Text_hover', '#bb240a');
+    } 
+    else if(theme =="forest"){
+        document.documentElement.style.setProperty('--option_Background_color', '#066224');
+        document.documentElement.style.setProperty('--option_Text_hover', '#023412');
+    } 
+    else if(theme =="island"){
+        document.documentElement.style.setProperty('--option_Background_color', '#3a3ad0');
+        document.documentElement.style.setProperty('--option_Text_hover', '#1d1d72');
     } 
     else {
-
+        document.documentElement.style.setProperty('--option_Background_color', '#4a2f4a');
+        document.documentElement.style.setProperty('--option_Text_hover', '#5a025a');
     }
 });
 

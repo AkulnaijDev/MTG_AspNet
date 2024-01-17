@@ -1,24 +1,30 @@
 var iaminvited = false;
 
 $('body').on('click', '#mainMenuNewGame', function () {
-    $('#selectDeckToPlay').trigger('change')
+
+    if(!$("#optionsMenu").is(':visible') && !$("#rulesMenu").is(':visible') && !$("#myDeckMenu").is(':visible')){
+        $('#selectDeckToPlay').trigger('change')
 
 
-    $('#inviteFriends option[value='+myConnectionId+']').remove()
-    $('.gameValidities').removeAttr('disabled')
+        $('#inviteFriends option[value='+myConnectionId+']').remove()
+        $('.gameValidities').removeAttr('disabled')
 
-    if(!iaminvited){
-        var defaultPlayer= "<div class='teammate defaultTeammate'><div class='teammateName'>"+myUsername+"</div></div>"
-        $('.teammateContainer').eq(0).empty().append(defaultPlayer);
-    }
+        if(!iaminvited){
+            var defaultPlayer= "<div class='teammate defaultTeammate'><div class='teammateName'>"+myUsername+"</div></div>"
+            $('.teammateContainer').eq(0).empty().append(defaultPlayer);
+        }
 
-    $('#startTheGameButton').attr('disabled',true)
-    $('#backTheGameButton').attr('disabled',true)
-    
-    $('#boardGame').addClass('uninteractable');
-    $('#gameMenuZone').addClass('uninteractable');
-    $('#inviteSection').show();
-    $('#boardGameContainer').show();
+        $('#startTheGameButton').attr('disabled',true)
+        $('#backTheGameButton').attr('disabled',true)
+        
+        $('#boardGame').addClass('uninteractable');
+        $('#gameMenuZone').addClass('uninteractable');
+        $('#inviteSection').show();
+        $('#boardGameContainer').show();
+    }   
+
+
+   
 });
 
 $('body').on('click', '#quitTheGameButton', function () {

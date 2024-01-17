@@ -134,10 +134,12 @@ $(document).on('click', '.cardImagePreview', function () {
 
 
 $('body').on('click', '#mainMenuMyDeck', function () {
-    $('#chatContainer').hide();
-    $('#myDeckMenu').show();
-    $('#myDeckSetPickerSelector').trigger('change');
-    $('#myDecksPickerSelector').trigger('change');
+    if(!$("#optionsMenu").is(':visible') && !$("#rulesMenu").is(':visible') && !$("#gameModeMenu").is(':visible')){
+        $('#chatContainer').hide();
+        $('#myDeckMenu').show();
+        $('#myDeckSetPickerSelector').trigger('change');
+        $('#myDecksPickerSelector').trigger('change');
+    }     
 });
 
 $('body').on('click', '#myDeckMenuBackButton', function () {
