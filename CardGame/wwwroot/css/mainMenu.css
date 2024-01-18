@@ -77,6 +77,19 @@
         left: 5%;
         box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 1.3);
     }
+
+    #myDeckAdvancedSearch{
+        position: absolute;
+        z-index: 9999;
+        display: none;
+        background-color: var(--option_Background_color);
+        padding: 20px;
+        border-radius: 10px;
+        border-style: solid;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+    }
 }
 
 /* Media query per schermi più grandi (ad esempio, desktop) */
@@ -130,6 +143,34 @@
         top: 25%;
         left: 25%;
     }
+
+    #myDeckAdvancedSearch{
+        position: absolute;
+        z-index: 9999;
+        display: none;
+        background-color: var(--option_Background_color);
+        padding: 20px;
+        border-radius: 10px;
+        border-style: solid;
+        align-items: center;
+        text-align: center;
+        top: 25%;
+        width: 40%;
+        left: 30%;
+        height: 50%;
+    }
+}
+
+#myDeckAdvancedSearch .row {
+    margin-top:10px;
+}
+.advancedSearchLargeInput{
+    width: 100%;
+}
+
+.advancedSearchCheckboxGroupContainer, .advancedSearchCheckboxGroup{
+    display:inline-flex;
+    margin-right: 15px;
 }
 
 .uninteractable {

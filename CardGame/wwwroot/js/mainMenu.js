@@ -62,6 +62,11 @@ connection.on("ConfirmSavedSettings", function (result) {
 })
 
 
+
+$('body').on('click', '#myDeckDecksSearchButton', function () {
+    $('#myDeckAdvancedSearch').show()
+})
+
 $('body').on('change', '#myRange', function () {
     var chosenVolume = $(this).val()/100;
     document.getElementById('initialPageAudio').volume= chosenVolume;
@@ -210,7 +215,49 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#gameModeGameButton').text("Controlla modalità di gioco")
 
         // $('#commanderValidity').removeClass('commanderValidityEng').addClass('commanderValidityIta')
+        
+        $('#myDeckDecksSearchButton').text("Ricerca avanzata")
 
+        $('#advancedSearchFieldName').text("Nome carta")
+        $("#advancedSearchName").attr("placeholder", "Qualsiasi parola nel nome, es 'Fire'");
+        $('#advancedSearchFieldText').text("Testo")
+        $("#advancedSearchText").attr("placeholder", "Qualsiasi parola nel testo, es 'Draw a cards'");
+        $('#advancedSearchFieldTypeLine').text("Tipo")
+        $("#advancedSearchTypeLine").attr("placeholder", "Qualsiasi sottotipo, es 'Instant, 'Goblin'");
+        $('#advancedSearchTypeColorWhiteText').text("Bianco")
+        $('#advancedSearchTypeColorBlueText').text("Blu")
+        $('#advancedSearchTypeColorBlackText').text("Nero")
+        $('#advancedSearchTypeColorRedText').text("Rosso")
+        $('#advancedSearchTypeColorGreenText').text("Verde")
+        $('#advancedSearchTypeColorColorlessText').text("Incolore")
+        $("#advancedSearchStatsValueType option[value='exact']").text("Esattamente questi colori");
+        $("#advancedSearchStatsValueType option[value='including']").text("Include questi colori");
+        $("#advancedSearchStatsValueType option[value='atMost']").text("Al massimo questi colori");
+        $('#advancedSearchCmC').attr("placeholder", "Qualsiasi simbolo di mana, es '{W}{W}'");
+        $('#advancedSearchFieldCmC').text("Costo di mana convertito")
+        $('#advancedSearchStats').text("Statistiche")
+        $("#advancedSearchStatsValueType option[value='power']").text("Forza");
+        $("#advancedSearchStatsValueType option[value='toughness']").text("Costituzione");
+        $("#advancedSearchStatsValueType option[value='loyalty']").text("Fedeltà");
+        $("#advancedSearchStatsValueEqual option[value='1']").text("Uguale a");
+        $("#advancedSearchStatsValueEqual option[value='2']").text("Minore di");
+        $("#advancedSearchStatsValueEqual option[value='3']").text("Maggiore di");
+        $("#advancedSearchStatsValueEqual option[value='4']").text("Minore di o uguale a");
+        $("#advancedSearchStatsValueEqual option[value='5']").text("Maggiore di o uguale a");
+        $("#advancedSearchStatsValueEqual option[value='6']").text("Diverso da");
+        $("#advancedSearchStatsValueAmount").attr("placeholder", "Qualsiasi valore, es'2'");
+        $('#advancedSearchRarity').text("Rarità")
+        $('#advancedSearchRarityCommon').text("Comune")
+        $('#advancedSearchRarityUncommon').text("Non comune")
+        $('#advancedSearchRarityRare').text("Rara")
+        $('#advancedSearchRarityMythic').text("Mitica")
+        $("#advancedSearchFieldFlavorText").attr("placeholder", "Qualsiasi testo di flavor, es 'Jhoira'");
+        $('#myDeckAdvancedSearchSearchButton').text("Cerca")
+        $('#myDeckAdvancedSearchCloseButton').text("Chiudi")
+
+        
+       
+        
 
     } else {
         $('.translatedAbility').hide();
@@ -284,6 +331,45 @@ $('body').on('change', '#languageChooseOptions', function () {
 
 
         // $('#commanderValidity').removeClass('commanderValidityIta').addClass('commanderValidityEng')
+
+        $('#myDeckDecksSearchButton').text("Advanced Search")
+
+        $('#advancedSearchFieldName').text("Card Name")
+        $("#advancedSearchName").attr("placeholder", "Any words in the name, e.g 'Fire'");
+        $('#advancedSearchFieldText').text("Text")
+        $("#advancedSearchText").attr("placeholder", "Any text, e.g 'Draw a card'");
+        $('#advancedSearchFieldTypeLine').text("Type")
+        $("#advancedSearchTypeLine").attr("placeholder", "Any type, e.g 'Instant, 'Goblin'");
+        $('#advancedSearchTypeColorWhiteText').text("White")
+        $('#advancedSearchTypeColorBlueText').text("Blue")
+        $('#advancedSearchTypeColorBlackText').text("Black")
+        $('#advancedSearchTypeColorRedText').text("Red")
+        $('#advancedSearchTypeColorGreenText').text("Green")
+        $('#advancedSearchTypeColorColorlessText').text("Colorless")
+        $("#advancedSearchStatsValueType option[value='exact']").text("Exactly these colors");
+        $("#advancedSearchStatsValueType option[value='including']").text("Including these colors");
+        $("#advancedSearchStatsValueType option[value='atMost']").text("At most these colors");
+        $('#advancedSearchFieldCmC').text("Converted Mana Cost")
+        $('#advancedSearchCmC').attr("placeholder", "Any mana symbols, e.g '{W}{W}'");
+        $('#advancedSearchStats').text("Stats")
+        $("#advancedSearchStatsValueType option[value='power']").text("Power");
+        $("#advancedSearchStatsValueType option[value='toughness']").text("Toughness");
+        $("#advancedSearchStatsValueType option[value='loyalty']").text("Loyalty");
+        $("#advancedSearchStatsValueEqual option[value='1']").text("Equal to");
+        $("#advancedSearchStatsValueEqual option[value='2']").text("Less than");
+        $("#advancedSearchStatsValueEqual option[value='3']").text("Greater than");
+        $("#advancedSearchStatsValueEqual option[value='4']").text("Less than or equal to");
+        $("#advancedSearchStatsValueEqual option[value='5']").text("Greater than or equal to");
+        $("#advancedSearchStatsValueEqual option[value='6']").text("Not equal to");
+        $("#advancedSearchStatsValueAmount").attr("placeholder", "Any value, e.g '2'");
+        $('#advancedSearchRarity').text("Rarity")
+        $('#advancedSearchRarityCommon').text("Common")
+        $('#advancedSearchRarityUncommon').text("Uncommon")
+        $('#advancedSearchRarityRare').text("Rare")
+        $('#advancedSearchRarityMythic').text("Mythic")
+        $("#advancedSearchFieldFlavorText").attr("placeholder", "Any flavor text, e.g 'Jhoira'");     
+        $('#myDeckAdvancedSearchSearchButton').text("Search")
+        $('#myDeckAdvancedSearchCloseButton').text("Close")
 
     }
 });
