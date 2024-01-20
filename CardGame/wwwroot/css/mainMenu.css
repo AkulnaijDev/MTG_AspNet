@@ -89,6 +89,7 @@
         align-items: center;
         text-align: center;
         margin: auto;
+        height: fit-content;
     }
 }
 
@@ -154,11 +155,21 @@
         border-style: solid;
         align-items: center;
         text-align: center;
-        top: 25%;
+        top: 15%;
         width: 40%;
         left: 30%;
-        height: 50%;
+        height: fit-content;
     }
+
+    #myDeckAdvancedSearch select{
+        height:30px;
+     }
+
+     #myDeckAdvancedSearch button{
+        width:100px;
+     }
+
+
 }
 
 #myDeckAdvancedSearch .row {
@@ -200,7 +211,7 @@
     display:flex;
 }
 
-#loginError{
+#loginError, #advancedSearchError{
     color:red;
     display:none;
 }

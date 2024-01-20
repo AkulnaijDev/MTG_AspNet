@@ -161,8 +161,6 @@
                 </div>
 
                 <div id="myDeckDecksSetsAndZoom">
-                     <span id="myDeckDecksSelectorText2">SETS</span>
-                    <select id="myDeckSetPickerSelector"> </select>
                     <span id="myDeckZoomSelectorPlus" defaultscreen="5">➕</span>
                     <span id="myDeckZoomSelectorIcon">🔍</span>
                     <span id="myDeckZoomSelectorMinus" defaultscreen="5">➖</span>
@@ -209,28 +207,40 @@
 
         <div class="row">
             <div class="col-4">
+                <div class="advancedSearchText" id="advancedSearchFieldSets">Sets</div>
+            </div>
+            <div class="col-8">
+                @* <select id="myDeckSetPickerSelector" multiple> </select> *@
+                 <select id="myDeckSetPickerSelector" class="selectpicker" multiple data-actions-box="true" data-live-search="true">
+                 </select>
+                 <div id="myDeckSetPickerSelectorText">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</div>
+            </div>
+        </div>                  
+
+        <div class="row">
+            <div class="col-4">
                 <div class="advancedSearchText" id="advancedSearchFieldTypeLine">Colors</div>
             </div>
             <div class="col-8">
                 <div class="advancedSearchCheckboxGroupContainer">
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" id="advancedSearchTypeColorWhite">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorWhite">
                         <div class="advancedSearchText" id="advancedSearchTypeColorWhiteText">White</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" id="advancedSearchTypeColorBlue">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorBlue">
                         <div class="advancedSearchText" id="advancedSearchTypeColorBlueText">Blue</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" id="advancedSearchTypeColorBlack">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorBlack">
                         <div class="advancedSearchText" id="advancedSearchTypeColorBlackText">Black</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" id="advancedSearchTypeColorRed">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorRed">
                         <div class="advancedSearchText" id="advancedSearchTypeColorRedText">Red</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" id="advancedSearchTypeColorGreen">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorGreen">
                         <div class="advancedSearchText" id="advancedSearchTypeColorGreenText">Green</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
@@ -250,12 +260,42 @@
         </div>
 
         <div class="row">
-           METTI COMMANDER E CAMBIA DA CMC A VERO MANA COST
+          <div class="col-4">
+                <div class="advancedSearchText" id="advancedSearchFieldCommander">Commander</div>
+            </div>
+            <div class="col-8">
+                <div class="advancedSearchCheckboxGroupContainer">
+                    <div class="advancedSearchCheckboxGroup">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorWhite">
+                        <div class="advancedSearchText" id="advancedSearchTypeColorWhiteText">White</div>
+                    </div>
+                    <div class="advancedSearchCheckboxGroup">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorBlue">
+                        <div class="advancedSearchText" id="advancedSearchTypeColorBlueText">Blue</div>
+                    </div>
+                    <div class="advancedSearchCheckboxGroup">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorBlack">
+                        <div class="advancedSearchText" id="advancedSearchTypeColorBlackText">Black</div>
+                    </div>
+                    <div class="advancedSearchCheckboxGroup">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorRed">
+                        <div class="advancedSearchText" id="advancedSearchTypeColorRedText">Red</div>
+                    </div>
+                    <div class="advancedSearchCheckboxGroup">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorGreen">
+                        <div class="advancedSearchText" id="advancedSearchTypeColorGreenText">Green</div>
+                    </div>
+                    <div class="advancedSearchCheckboxGroup">
+                        <input type="checkbox" id="advancedSearchCommanderColorColorless">
+                        <div class="advancedSearchText" id="advancedSearchTypeColorColorlessText">Colorless</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">
             <div class="col-4">
-                <div class="advancedSearchText" id="advancedSearchFieldCmC" >Converted Mana Cost</div>
+                <div class="advancedSearchText" id="advancedSearchFieldCmC" >Mana Cost</div>
             </div>
             <div class="col-8">
                 <input class="advancedSearchLargeInput" type="text" id="advancedSearchCmC" placeholder="Any mana symbols, eg '{W}{W}'">
@@ -267,13 +307,14 @@
                 <div class="advancedSearchText" id="advancedSearchStats">Stats</div>
             </div>
             <div class="col-2">
-                <select name="valueStats" id="advancedSearchStatsValueType">
+                <select name="valueStats" id="advancedSearchStatsValueStats">
+                    <option value="cmc">Mana value</option>
                     <option value="power">Power</option>
                     <option value="toughness">Toughness</option>
                     <option value="loyalty">Loyalty</option>
                 </select>
                   </div>
-            <div class="col-3">
+            <div class="col-2">
                 <select name="valueEquals" id="advancedSearchStatsValueEqual">
                     <option value="1">Equal to</option>
                     <option value="2">Less than</option>
@@ -283,7 +324,7 @@
                     <option value="6">Not equal to</option>
                 </select>
                   </div>
-            <div class="col-3">
+            <div class="col-4">
                 <input class="advancedSearchLargeInput" type="text" id="advancedSearchStatsValueAmount" placeholder="Any value, e.g '2'">
             </div>
         </div>
@@ -316,23 +357,45 @@
 
         <div class="row">
             <div class="col-4">
+                <div class="advancedSearchText" id="advancedSearchOnePerIdText">Unique Id</div>
+            </div>
+            <div class="col-8">
+                <input type="checkbox" id="advancedSearchOnePerIdValue">
+                <span id="advancedSearchOnePerIdTextField">Remove multiple copies from multiple sets</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
                 <div class="advancedSearchText" id="advancedSearchFieldFlavorText">Flavor text</div>
             </div>
             <div class="col-8">
-                <input type="text" placeholder="Any flavor text, e.g 'Jhoira'" id="advancedSearchFlavorText">
+                <input type="text" class="advancedSearchLargeInput" placeholder="Any flavor text, e.g 'Jhoira'" id="advancedSearchFlavorText">
             </div>
         </div>
       
 
         <div class="row">
-            <div class="col-6">
+             <div class="col-12">
+                <div id="advancedSearchSpinner" class="spinner" ></div>
+                <div id="advancedSearchError">ERROR. TRY AGAIN</div>     
+            </div>
+        </div>
+ 
+        <div class="row">
+            <div class="col-4">
+
+            </div>
+            <div class="col-2">
                 <button id="myDeckAdvancedSearchSearchButton">Search</button>
             </div>
 
-            <div class="col-6">
+            <div class="col-2">
                 <button id="myDeckAdvancedSearchCloseButton">Close</button>
             </div>
+            <div class="col-4">
 
+            </div>
         </div>
     </div>
 

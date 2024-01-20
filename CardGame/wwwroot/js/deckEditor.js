@@ -16,6 +16,7 @@ connection.on("PopulateAllSets", function (scrapedSets) {
         var option = "<option set_active='active' value=" + element.Code + ">" + element.Name + "</option>";
         $('#myDeckSetPickerSelector').append(option);
     });
+    $('#myDeckSetPickerSelector').selectpicker();
 })
 
 connection.on("PopulateMyDecksResettingView", function (myDecks) {
@@ -96,14 +97,18 @@ connection.on("ConfirmDeckDeleted", function () {
       });
 })
 
-connection.on("ShowCardsFromSet", function (cards) {
-    showCardsImage(JSON.parse(cards))
-})
+// connection.on("ShowCardsFromSet", function (cards) {
+//     //showCardsImage(JSON.parse(cards))
+// })
 
-$(document).on('change', '#myDeckSetPickerSelector', function () {
-    $('#myDeckCardPickerContainer').empty();
-    showCards();
-})
+
+
+
+// $(document).on('change', '#myDeckSetPickerSelector', function () {
+//     // CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//     $('#myDeckCardPickerContainer').empty();
+//     showCards();
+// })
 
 $(document).on('click', '.cardImagePreview', function () {
     var source = $(this).attr('src');
@@ -545,15 +550,19 @@ function showCards() {
 }
 
 function showCardsImage(array) {
-    var selectedSetName = $('#myDeckSetPickerSelector option:selected').text();
-    var selectedSetCode = $('#myDeckSetPickerSelector').val();
+    // var selectedSetName = $('#myDeckSetPickerSelector option:selected').text();
+    // var selectedSetCode = $('#myDeckSetPickerSelector').val();
 
-    selectedSetName = selectedSetName.replaceAll(" ", "_");
-    selectedSetName = selectedSetName.replaceAll(":", "_");
+    // selectedSetName = selectedSetName.replaceAll(" ", "_");
+    // selectedSetName = selectedSetName.replaceAll(":", "_");
 
     let cardArray = [];
 
     array.forEach(element => {
+        let selectedSetCode = element.Set;
+        let selectedSetName = element.Set_Name;
+        selectedSetName = selectedSetName.replaceAll(" ", "_");
+        selectedSetName = selectedSetName.replaceAll(":", "_");
         let legendary = "false";
         let land = "false";
         let basicLand = "false";

@@ -61,9 +61,24 @@ connection.on("ConfirmSavedSettings", function (result) {
     console.log("Settings update:"+ result)  //add a spinner o
 })
 
+connection.on("SendSearchedCards", function (result) {
+    $('#myDeckCardPickerContainer').empty();
+    $('#myDeckAdvancedSearch input').val('');
+    $('#myDeckAdvancedSearch input').prop('checked', false);
+    $("#myDeckAdvancedSearch select").each(function() {
+        $(this).find("option:first").prop("selected", true);
+        $(this).find("option:not(:first)").prop("selected", false);
+    });
+    showCardsImage(JSON.parse(result))
+
+    $('#advancedSearchSpinner').hide();
+    $('#myDeckAdvancedSearch').hide();
+})
+
 
 
 $('body').on('click', '#myDeckDecksSearchButton', function () {
+    $('#myDeckSetPickerSelector').val('')
     $('#myDeckAdvancedSearch').show()
 })
 
@@ -138,6 +153,68 @@ $('body').on('change', '#musicChooseOptions', function () {
     audio.load();
     audio.play();
 });
+
+
+$('body').on('click', '#advancedSearchTypeColorColorless', function () {
+    $(".advancedSearchTypeColorUncheck1").prop("checked", false);
+});
+$('body').on('click', '.advancedSearchTypeColorUncheck1', function () {
+    $("#advancedSearchTypeColorColorless").prop("checked", false);
+});
+
+$('body').on('click', '#advancedSearchCommanderColorColorless', function () {
+    $(".advancedSearchCommanderColorUncheck1").prop("checked", false);
+});
+$('body').on('click', '.advancedSearchCommanderColorUncheck1', function () {
+    $("#advancedSearchCommanderColorColorless").prop("checked", false);
+});
+
+$('body').on('click', '#myDeckAdvancedSearchSearchButton', function () {
+
+    var searchObject = {
+        name : $('#advancedSearchName').val(),
+        text : $('#advancedSearchText').val(),
+        type : $('#advancedSearchTypeLine').val(),
+        sets : $('#myDeckSetPickerSelector').val(),
+        colorWhite : $('#advancedSearchTypeColorWhite').is(':checked'),
+        colorBlue : $('#advancedSearchTypeColorBlue').is(':checked'),
+        colorBlack : $('#advancedSearchTypeColorBlack').is(':checked'),
+        colorRed : $('#advancedSearchTypeColorRed').is(':checked'),
+        colorGreen : $('#advancedSearchTypeColorGreen').is(':checked'),
+        colorColorless : $('#advancedSearchTypeColorColorless').is(':checked'),
+        colorValue : $('#advancedSearchStatsValueType').val(),
+        commanderColorWhite : $('#advancedSearchCommanderColorWhite').is(':checked'),
+        commanderColorBlue : $('#advancedSearchCommanderColorBlue').is(':checked'),
+        commanderColorBlack : $('#advancedSearchCommanderColorBlack').is(':checked'),
+        commanderColorRed : $('#advancedSearchCommanderColorRed').is(':checked'),
+        commanderColorGreen : $('#advancedSearchCommanderColorGreen').is(':checked'),
+        commanderColorColorless : $('#advancedSearchCommanderColorColorless').is(':checked'),
+        manaCost : $('#advancedSearchCmC').val(),
+
+        valueType : $('#advancedSearchStatsValueStats').val(),
+        valueEqual : $('#advancedSearchStatsValueEqual').val(),
+        valueAmount : $('#advancedSearchStatsValueAmount').val(),
+
+        rarityCommon : $('#advancedSearchRarityCommonInput').is(':checked'),
+        rarityUncommon : $('#advancedSearchRarityUncommonInput').is(':checked'),
+        rarityRare : $('#advancedSearchRarityRareInput').is(':checked'),
+        rarityMythic : $('#advancedSearchRarityMythicInput').is(':checked'),
+
+        singleton : $('#advancedSearchOnePerIdValue').is(':checked'),
+        flavorText : $('#advancedSearchFlavorText').val()
+    }
+    
+    console.log(searchObject);
+    $('#advancedSearchSpinner').show();
+
+    connection.invoke("AdvancedSearchCards", JSON.stringify(searchObject)).catch(function (err) {
+        $('#advancedSearchSpinner').hide();
+        $('#advancedSearchError').show().delay(2000).fadeOut();
+        return console.error(err.toString());
+      });
+
+});
+
 
 
 $('body').on('change', '#languageChooseOptions', function () {
@@ -224,6 +301,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#advancedSearchText").attr("placeholder", "Qualsiasi parola nel testo, es 'Draw a cards'");
         $('#advancedSearchFieldTypeLine').text("Tipo")
         $("#advancedSearchTypeLine").attr("placeholder", "Qualsiasi sottotipo, es 'Instant, 'Goblin'");
+        $('#myDeckSetPickerSelectorText').text("Tieni premuto Ctrl (Windows) o Command (Mac) per selezionare più set.")
         $('#advancedSearchTypeColorWhiteText').text("Bianco")
         $('#advancedSearchTypeColorBlueText').text("Blu")
         $('#advancedSearchTypeColorBlackText').text("Nero")
@@ -234,11 +312,11 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#advancedSearchStatsValueType option[value='including']").text("Include questi colori");
         $("#advancedSearchStatsValueType option[value='atMost']").text("Al massimo questi colori");
         $('#advancedSearchCmC').attr("placeholder", "Qualsiasi simbolo di mana, es '{W}{W}'");
-        $('#advancedSearchFieldCmC').text("Costo di mana convertito")
+        $('#advancedSearchFieldCmC').text("Costo di mana")
         $('#advancedSearchStats').text("Statistiche")
-        $("#advancedSearchStatsValueType option[value='power']").text("Forza");
-        $("#advancedSearchStatsValueType option[value='toughness']").text("Costituzione");
-        $("#advancedSearchStatsValueType option[value='loyalty']").text("Fedeltà");
+        $("#advancedSearchStatsValueStats option[value='power']").text("Forza");
+        $("#advancedSearchStatsValueStats option[value='toughness']").text("Costituzione");
+        $("#advancedSearchStatsValueStats option[value='loyalty']").text("Fedeltà");
         $("#advancedSearchStatsValueEqual option[value='1']").text("Uguale a");
         $("#advancedSearchStatsValueEqual option[value='2']").text("Minore di");
         $("#advancedSearchStatsValueEqual option[value='3']").text("Maggiore di");
@@ -251,14 +329,11 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#advancedSearchRarityUncommon').text("Non comune")
         $('#advancedSearchRarityRare').text("Rara")
         $('#advancedSearchRarityMythic').text("Mitica")
+        $('#advancedSearchOnePerIdText').text("Id Unico")
+        $('#advancedSearchOnePerIdTextField').text("Rimuovi copie da multipli set")
         $("#advancedSearchFieldFlavorText").attr("placeholder", "Qualsiasi testo di flavor, es 'Jhoira'");
         $('#myDeckAdvancedSearchSearchButton').text("Cerca")
         $('#myDeckAdvancedSearchCloseButton').text("Chiudi")
-
-        
-       
-        
-
     } else {
         $('.translatedAbility').hide();
         $('.defaultAbility').show();
@@ -340,6 +415,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#advancedSearchText").attr("placeholder", "Any text, e.g 'Draw a card'");
         $('#advancedSearchFieldTypeLine').text("Type")
         $("#advancedSearchTypeLine").attr("placeholder", "Any type, e.g 'Instant, 'Goblin'");
+        $('#myDeckSetPickerSelectorText').text("Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.")
         $('#advancedSearchTypeColorWhiteText').text("White")
         $('#advancedSearchTypeColorBlueText').text("Blue")
         $('#advancedSearchTypeColorBlackText').text("Black")
@@ -349,7 +425,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#advancedSearchStatsValueType option[value='exact']").text("Exactly these colors");
         $("#advancedSearchStatsValueType option[value='including']").text("Including these colors");
         $("#advancedSearchStatsValueType option[value='atMost']").text("At most these colors");
-        $('#advancedSearchFieldCmC').text("Converted Mana Cost")
+        $('#advancedSearchFieldCmC').text("Mana Cost")
         $('#advancedSearchCmC').attr("placeholder", "Any mana symbols, e.g '{W}{W}'");
         $('#advancedSearchStats').text("Stats")
         $("#advancedSearchStatsValueType option[value='power']").text("Power");
@@ -367,6 +443,8 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#advancedSearchRarityUncommon').text("Uncommon")
         $('#advancedSearchRarityRare').text("Rare")
         $('#advancedSearchRarityMythic').text("Mythic")
+        $('#advancedSearchOnePerIdText').text("Unique Id")
+        $('#advancedSearchOnePerIdTextField').text("Remove multiple copies from multiple sets")
         $("#advancedSearchFieldFlavorText").attr("placeholder", "Any flavor text, e.g 'Jhoira'");     
         $('#myDeckAdvancedSearchSearchButton').text("Search")
         $('#myDeckAdvancedSearchCloseButton').text("Close")

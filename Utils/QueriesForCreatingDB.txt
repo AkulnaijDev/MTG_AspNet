@@ -282,3 +282,89 @@ GO
 
 
 
+-- Usa il tuo database
+USE MagicTheGathering;
+
+-- Verifica se la funzione esiste e, se sì, elimina la vecchia definizione
+IF OBJECT_ID('dbo.LevenshteinDistance', 'FN') IS NOT NULL
+    DROP FUNCTION dbo.LevenshteinDistance;
+GO
+
+-- Crea la nuova definizione della funzione
+CREATE FUNCTION dbo.LevenshteinDistance (@s1 NVARCHAR(MAX), @s2 NVARCHAR(MAX))
+RETURNS INT
+AS
+BEGIN
+    DECLARE @d TABLE (i INT, j INT, distance INT);
+
+    SET @s1 = LOWER(@s1);
+    SET @s2 = LOWER(@s2);
+
+    DECLARE @i INT = 0, @j INT = 0;
+
+    WHILE @i <= LEN(@s1)
+    BEGIN
+        INSERT INTO @d (i, j, distance) VALUES (@i, 0, @i);
+        SET @i += 1;
+    END
+
+    WHILE @j <= LEN(@s2)
+    BEGIN
+        INSERT INTO @d (i, j, distance) VALUES (0, @j, @j);
+        SET @j += 1;
+    END
+
+    SET @i = 1;
+
+    WHILE @i <= LEN(@s1)
+    BEGIN
+        SET @j = 1;
+
+        WHILE @j <= LEN(@s2)
+        BEGIN
+            DECLARE @cost INT;
+            IF SUBSTRING(@s1, @i, 1) = SUBSTRING(@s2, @j, 1)
+                SET @cost = 0;
+            ELSE
+                SET @cost = 1;
+
+            INSERT INTO @d (i, j, distance)
+            VALUES (@i, @j, 0);
+
+            UPDATE @d
+            SET distance = (
+                    SELECT MIN(d.distance + @cost)
+                    FROM @d d
+                    WHERE d.i = @i - 1 AND d.j = @j - 1
+                )
+            WHERE i = @i AND j = @j;
+
+            UPDATE @d
+            SET distance = (
+                    SELECT MIN(d.distance + 1)
+                    FROM @d d
+                    WHERE d.i = @i AND d.j = @j - 1
+                )
+            WHERE i = @i AND j = @j;
+
+            UPDATE @d
+            SET distance = (
+                    SELECT MIN(d.distance + 1)
+                    FROM @d d
+                    WHERE d.i = @i - 1 AND d.j = @j
+                )
+            WHERE i = @i AND j = @j;
+
+            SET @j += 1;
+        END
+
+        SET @i += 1;
+    END
+
+    RETURN (SELECT TOP 1 distance FROM @d WHERE i = LEN(@s1) AND j = LEN(@s2) ORDER BY distance);
+END;
+GO
+
+
+
+

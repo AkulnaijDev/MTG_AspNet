@@ -549,5 +549,27 @@ namespace Utils
                 return deck;
             }
         }
+
+        public static List<string> AdvancedSearchedCards(string queryString)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+                var cardIdList = new List<string>();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        cardIdList.Add(reader["Id"].ToString());
+                    }
+                }
+
+                connection.Close();
+                return cardIdList;
+            }
+        }
     }
 }

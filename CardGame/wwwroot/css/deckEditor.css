@@ -239,8 +239,9 @@
     }
     
     #myDeckSetPickerSelector {
-        width: 30%;
+        width: 100%;
         text-align: center;
+        height:75px !important;
     }
 }
 

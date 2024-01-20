@@ -1,6 +1,10 @@
 ﻿using CardGame.Models;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
+using System.IO.Pipelines;
+using System.Text.RegularExpressions;
 using Utils;
 
 namespace CardGame.Hubs
@@ -341,6 +345,393 @@ namespace CardGame.Hubs
 
             var gameObj = JsonConvert.SerializeObject(game);
             await Clients.Group(roomId).SendAsync("DisplayGameBoard", gameObj);
+        }
+
+
+        public async Task AdvancedSearchCards(string searchObject)
+        {
+            try
+            {
+                var advancedSearch = JsonConvert.DeserializeObject<SearchObject>(searchObject);
+                var query = await AdvancedSearchQueryCreator(advancedSearch);
+
+                Console.WriteLine(query);
+                var cards = SqlUtils.QueryRequestCards(query);
+
+                if (advancedSearch.Singleton)
+                {
+                    cards = cards
+                   .GroupBy(c => c.Oracle_Id)
+                   .Select(g => g.OrderByDescending(c => DateTime.ParseExact(c.Released_at, "yyyy-MM-dd", CultureInfo.InvariantCulture)).First())
+                   .ToList();
+                }
+                var obj = JsonConvert.SerializeObject(cards);
+
+                await Clients.Caller.SendAsync("SendSearchedCards", obj);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task<string> AdvancedSearchQueryCreator(SearchObject obj)
+        {
+            try
+            {
+                var index = 0;
+                var query1 = " WHERE ";
+
+                if (!string.IsNullOrEmpty(obj.Name))
+                {
+                    var namePieces = ExtractWords(obj.Name);
+                    query1 += "(";
+
+                    foreach (var piece in namePieces)
+                    {
+                        bool lastLoop = (index == namePieces.Length - 1);
+                        if (!lastLoop)
+                        {
+                            query1 += $" [Name] like '%{piece}%' AND ";
+                        }
+                        else
+                        {
+                            query1 += $" [Name] like '%{piece}%' ";
+                        }
+                        index++;
+                    }
+                    query1 += ") AND";
+                    index = 0;
+                }
+            
+
+                if (!string.IsNullOrEmpty(obj.Text))
+                {
+                    var textPieces = ExtractWords(obj.Text);
+                    query1 += "(";
+                    foreach (var piece in textPieces)
+                    {
+                        bool lastLoop = (index == textPieces.Length - 1);
+                        if (!lastLoop)
+                        {
+                            query1 += $" [Oracle_Text] like '%{piece}%' AND ";
+                        }
+                        else
+                        {
+                            query1 += $" [Oracle_Text] like '%{piece}%' ";
+                        }
+                        index++;
+                    }
+                    query1 += ") AND";
+                    index = 0;
+                }
+
+              
+                if (!string.IsNullOrEmpty(obj.Type))
+                {
+                    var typePieces = ExtractWords(obj.Type);
+                    //GESTIRE BENE IL TYPE
+                    query1 += "(";
+                    foreach (var piece in typePieces)
+                    {
+                        bool lastLoop = (index == typePieces.Length - 1);
+                        if (!lastLoop)
+                        {
+                            query1 += $" [Type_Line] like '%{piece}%' AND ";
+                        }
+                        else
+                        {
+                            query1 += $" [Type_Line] like '%{piece}%' ";
+                        }
+                        index++;
+                    }
+                    query1 += ") AND";
+                    index = 0;
+                }
+
+               
+                if (obj.Sets.Length > 0)
+                {
+                    var sets = obj.Sets;
+                    query1 += "(";
+                    foreach (var set in sets)
+                    {
+                        bool lastLoop = (index == sets.Length - 1);
+                        if (!lastLoop)
+                        {
+                            query1 += $" [Set] like '{set}' OR";
+                        }
+                        else
+                        {
+                            query1 += $" [Set] like '{set}'";
+                        }
+                        index++;
+                    }
+                    query1 += ") AND";
+                    index = 0;
+                }
+
+               
+                if (obj.ColorBlack || obj.ColorBlue || obj.ColorRed || obj.ColorWhite || obj.ColorGreen || obj.ColorColorless)
+                {
+                    var colorOption = obj.ColorValue;
+                    var selectedColors = new List<string> { };
+
+                    if (obj.ColorBlack)
+                    {
+                        selectedColors.Add("B");
+                    }
+                    if (obj.ColorGreen)
+                    {
+                        selectedColors.Add("G");
+                    }
+                    if (obj.ColorRed)
+                    {
+                        selectedColors.Add("R");
+                    }
+                    if (obj.ColorBlue)
+                    {
+                        selectedColors.Add("U");
+                    }
+                    if (obj.ColorWhite)
+                    {
+                        selectedColors.Add("W");
+                    }
+
+                    query1 += "(";
+                    if (obj.ColorValue == "exact")
+                    {
+                        var colorText = "";
+                        foreach (var color in selectedColors)
+                        {
+                            colorText += (color + ",");
+                        }
+
+                        if (!string.IsNullOrEmpty(colorText) && colorText.EndsWith(","))
+                        {
+                            query1 += $" [Colors] like '{colorText.TrimEnd(',')}'";
+                        }
+                        query1 += ") AND";
+                    }
+                    else if (obj.ColorValue == "including")
+                    {
+                        var colorText = "";
+                        foreach (var color in selectedColors)
+                        {
+                            colorText += (color + ",");
+                        }
+
+                        if (!string.IsNullOrEmpty(colorText) && colorText.EndsWith(","))
+                        {
+                            query1 += $" [Colors] like '%{colorText.TrimEnd(',')}%' ";
+                        }
+                        query1 += ") AND";
+                    }
+                    else if (obj.ColorValue == "atMost")
+                    {
+                        var colorTextAnd = "";
+                        var colorTextOr = "";
+
+                        foreach (var color in selectedColors)
+                        {
+                            colorTextAnd += (color + ",");
+                            colorTextOr += $" [Colors] like '{color}' OR";
+                        }
+
+                        if (!string.IsNullOrEmpty(colorTextAnd) && colorTextAnd.EndsWith(","))
+                        {
+                            query1 += $" [Colors] like '{colorTextAnd.TrimEnd(',')}' OR";
+                        }
+                        if (!string.IsNullOrEmpty(colorTextOr) && colorTextOr.EndsWith("OR"))
+                        {
+                            query1 += $" {colorTextOr.TrimEnd('R').TrimEnd('O')}";
+                        }
+
+                        query1 += ") AND";
+                    }
+
+                    if (obj.ColorColorless)
+                    {
+                        selectedColors.Clear();
+
+                        if (obj.ColorValue == "exact" || obj.ColorValue == "atMost")
+                        {
+                            query1 += $" [Colors] like '' ";
+                        }
+                        query1 += ") AND";
+                    }
+                }
+
+
+
+                if (obj.CommanderColorBlack|| obj.CommanderColorGreen || obj.CommanderColorRed || 
+                    obj.CommanderColorBlue || obj.CommanderColorWhite || obj.CommanderColorColorless)
+                {
+                    var selectedCommanderColors = new List<string> { };
+                    query1 += "(";
+
+                    if (obj.CommanderColorBlack)
+                    {
+                        selectedCommanderColors.Add("B");
+                    }
+                    if (obj.CommanderColorGreen)
+                    {
+                        selectedCommanderColors.Add("G");
+                    }
+                    if (obj.CommanderColorRed)
+                    {
+                        selectedCommanderColors.Add("R");
+                    }
+                    if (obj.CommanderColorBlue)
+                    {
+                        selectedCommanderColors.Add("U");
+                    }
+                    if (obj.CommanderColorWhite)
+                    {
+                        selectedCommanderColors.Add("W");
+                    }
+
+                    var allColors = "";
+                    foreach (var commanderColor in selectedCommanderColors)
+                    {
+                        query1 += $" [Color_Identity] like '{commanderColor}' OR ";
+                        allColors += (commanderColor + ",");
+                    }
+
+                    if (!string.IsNullOrEmpty(allColors) && allColors.EndsWith(","))
+                    {
+                        allColors = allColors.TrimEnd(',');
+                        query1 += $" [Color_Identity] like '{allColors}' ) AND";
+                    }
+
+                    if (obj.CommanderColorColorless)
+                    {
+                        query1 += $"[Color_Identity] like '' AND ";
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(obj.ManaCost))
+                {
+                    query1 += $"( [Mana_Cost] like '{obj.ManaCost}') AND";
+                }
+
+                if (!string.IsNullOrEmpty(obj.ValueAmount))
+                {
+                    var statsCheck = "";
+                    query1 += "(";
+                    var symbolValue = "";
+
+                    if (obj.ValueEqual == "1")
+                    {
+                        symbolValue = "=";
+                    }
+                    if (obj.ValueEqual == "2")
+                    {
+                        symbolValue = "<";
+                    }
+                    if (obj.ValueEqual == "3")
+                    {
+                        symbolValue = ">";
+                    }
+                    if (obj.ValueEqual == "4")
+                    {
+                        symbolValue = "<=";
+                    }
+                    if (obj.ValueEqual == "5")
+                    {
+                        symbolValue = ">=";
+                    }
+                    if (obj.ValueEqual == "6")
+                    {
+                        symbolValue = "!=";
+                    }
+
+                    statsCheck += $" TRY_CAST(LEFT([Cmc], LEN([Cmc]) - 2) AS INT){symbolValue}{obj.ValueAmount} ";
+                    query1 += $"{statsCheck}) AND";
+                }
+
+
+                if (obj.RarityCommon|| obj.RarityUncommon || obj.RarityRare || obj.RarityMythic)
+                {
+                    var rarityCheck = "";
+                    query1 += "(";
+                    if (obj.RarityCommon)
+                    {
+                        rarityCheck += "Rarity like 'common' OR ";
+                    }
+                    if (obj.RarityUncommon)
+                    {
+                        rarityCheck += "Rarity like 'uncommon' OR ";
+                    }
+                    if (obj.RarityRare)
+                    {
+                        rarityCheck += "Rarity like 'rare' OR ";
+                    }
+                    if (obj.RarityMythic)
+                    {
+                        rarityCheck += "Rarity like 'mythic' OR ";
+                    }
+
+                    if (rarityCheck.EndsWith(" OR "))
+                    {
+                        rarityCheck = rarityCheck.Substring(0, rarityCheck.Length - " OR ".Length);
+                    }
+
+                    query1 += $"{rarityCheck}) AND";
+                }
+              
+
+                if (!string.IsNullOrEmpty(obj.FlavorText))
+                {
+                    var flavorText = ExtractWords(obj.FlavorText);
+                    query1 += "(";
+                    foreach (var piece in flavorText)
+                    {
+                        bool lastLoop = (index == flavorText.Length - 1);
+                        if (!lastLoop)
+                        {
+                            query1 += $" [Flavor_Text] like '%{piece}%' AND ";
+                        }
+                        else
+                        {
+                            query1 += $" [Flavor_Text] like '%{piece}%'";
+                        }
+                        index++;
+                    }
+                    query1 += ")";
+                }
+                query1 += "(";
+                query1 += ")";
+                index = 0;
+                query1 = query1.Replace("  ", "");
+                query1 = query1.Replace("AND()","");
+                query1 = query1.Replace("()", "");
+                query1 += " ORDER BY [Name] ASC";
+                return query1;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "";
+            }
+        }
+
+        static string[] ExtractWords(string input)
+        {
+            // Rimuovi i caratteri speciali tranne spazi e lettere
+            string cleanedPhrase = Regex.Replace(input, @"[^a-zA-Z\s]", "");
+
+            // Spezza la frase in array di stringhe usando lettere maiuscole e spazi come delimitatori
+            string[] wordsArray = Regex.Split(cleanedPhrase, @"(?<!^)(?=[A-Z])|(?<=\s)");
+
+            // Filtra le stringhe vuote
+            wordsArray = wordsArray
+            .Where(word => !string.IsNullOrEmpty(word))
+            .Select(word => word.TrimEnd())  // Rimuovi spazi vuoti alla fine di ogni stringa
+            .ToArray();
+
+            return wordsArray;
         }
     }
 
