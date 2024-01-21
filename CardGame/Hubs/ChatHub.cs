@@ -1,4 +1,5 @@
-﻿using CardGame.Models;
+﻿using CardGame.GameLogic;
+using CardGame.Models;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -12,6 +13,7 @@ namespace CardGame.Hubs
     public class ChatHub : Hub
     {
         public static List<Room> _roomList = new();
+        public GameManager _gameManager = new();
 
         public async Task SendMessage(string user, string message)
         {
@@ -273,8 +275,8 @@ namespace CardGame.Hubs
                 mySettings.Theme = theme;
                 mySettings.Soundtrack = music;
 
-                var result = SqlUtils.SaveMySettings(mySettings); 
-                await Clients.Client(playerId).SendAsync("ConfirmSavedSettings",result);
+                var result = SqlUtils.SaveMySettings(mySettings);
+                await Clients.Client(playerId).SendAsync("ConfirmSavedSettings", result);
 
             }
             catch (Exception ex)
@@ -305,34 +307,37 @@ namespace CardGame.Hubs
 
         }
 
-        public async Task<List<GameCard>> CreatePlayingDeck(string deckId)
-        {
-            var deck = new List<GameCard>();
-
-            return deck;
-        }
-
+        
         public async Task StartTheActualGame(string startingGamePlayerId, string teams)
         {
             var room = _roomList.Where(x => x.Players.Any(y => y.PlayerId == startingGamePlayerId)).FirstOrDefault();
             var roomId = room.RoomId;
             var players = room.Players;
             var gameTeams = JsonConvert.DeserializeObject<SentTeams>(teams).Teams;
-            var listOfPlayers = new List<GamePlayer>();
+            var myPlayerStatus = new List<PlayerStatus>();
 
             foreach (var player in players)
             {
                 var playerDeck = SqlUtils.GetPlayableVersionOfTheDeck(player.DeckId);
 
-                var playerObj = new GamePlayer
+                var dealedCards = GameUtils.DrawCardsAndShuffle(playerDeck,7);
+
+                var playerStatus = new PlayerStatus
                 {
+                    Name = player.Name,
                     PlayerId = player.PlayerId,
-                    HP = room.GameMode.ToLower() == "commander" ? 40 : 20,
-                    Deck = playerDeck,
-                    Name = player.Name
+                    Hp = room.GameMode.ToLower() == "commander" ? 40 : 20,
+                    Deck = dealedCards[1],
+                    Hand = dealedCards[0],
+                    Exiled = new List<GameCard>(),
+                    Graveyard = new List<GameCard>(),
+                    LandZone = new List<GameCard>(),
+                    GameZone = new List<GameCard>(),
+                    CommanderZone = new List<GameCard>(),
+                    PlaneswalkerZone = new List<GameCard>(),
                 };
 
-                listOfPlayers.Add(playerObj);
+                myPlayerStatus.Add(playerStatus);
             }
 
             var game = new Game
@@ -340,11 +345,18 @@ namespace CardGame.Hubs
                 RoomId = roomId,
                 GameMode = room.GameMode,
                 Teams = gameTeams,
-                Players = listOfPlayers
             };
 
-            var gameObj = JsonConvert.SerializeObject(game);
-            await Clients.Group(roomId).SendAsync("DisplayGameBoard", gameObj);
+            var gameStatus = new GameStatus
+            {
+                Game = game,
+                PlayerStatuses = myPlayerStatus
+            };
+
+            _gameManager.matchesCurrentlyOn.Add(gameStatus);
+
+            var gameStatusObj = JsonConvert.SerializeObject(gameStatus);
+            await Clients.Group(roomId).SendAsync("DisplayGameBoard", gameStatusObj);
         }
 
 
@@ -451,7 +463,7 @@ namespace CardGame.Hubs
                     query1 += ") AND";
                     index = 0;
                 }
-            
+
 
                 if (!string.IsNullOrEmpty(obj.Text))
                 {
@@ -474,7 +486,7 @@ namespace CardGame.Hubs
                     index = 0;
                 }
 
-              
+
                 if (!string.IsNullOrEmpty(obj.Type))
                 {
                     var typePieces = ExtractWords(obj.Type);
@@ -497,7 +509,7 @@ namespace CardGame.Hubs
                     index = 0;
                 }
 
-               
+
                 if (obj.Sets.Length > 0)
                 {
                     var sets = obj.Sets;
@@ -519,7 +531,7 @@ namespace CardGame.Hubs
                     index = 0;
                 }
 
-               
+
                 if (obj.ColorBlack || obj.ColorBlue || obj.ColorRed || obj.ColorWhite || obj.ColorGreen || obj.ColorColorless)
                 {
                     var colorOption = obj.ColorValue;
@@ -612,7 +624,7 @@ namespace CardGame.Hubs
 
 
 
-                if (obj.CommanderColorBlack|| obj.CommanderColorGreen || obj.CommanderColorRed || 
+                if (obj.CommanderColorBlack || obj.CommanderColorGreen || obj.CommanderColorRed ||
                     obj.CommanderColorBlue || obj.CommanderColorWhite || obj.CommanderColorColorless)
                 {
                     var selectedCommanderColors = new List<string> { };
@@ -699,7 +711,7 @@ namespace CardGame.Hubs
                 }
 
 
-                if (obj.RarityCommon|| obj.RarityUncommon || obj.RarityRare || obj.RarityMythic)
+                if (obj.RarityCommon || obj.RarityUncommon || obj.RarityRare || obj.RarityMythic)
                 {
                     var rarityCheck = "";
                     query1 += "(";
@@ -727,7 +739,7 @@ namespace CardGame.Hubs
 
                     query1 += $"{rarityCheck}) AND";
                 }
-              
+
 
                 if (!string.IsNullOrEmpty(obj.FlavorText))
                 {
@@ -752,7 +764,7 @@ namespace CardGame.Hubs
                 query1 += ")";
                 index = 0;
                 query1 = query1.Replace("  ", "");
-                query1 = query1.Replace("AND()","");
+                query1 = query1.Replace("AND()", "");
                 query1 = query1.Replace("()", "");
                 query1 += " ORDER BY [Name] ASC";
                 return query1;
@@ -781,6 +793,10 @@ namespace CardGame.Hubs
 
             return wordsArray;
         }
-    }
 
+
+        //REGIONE _ GAME LOGIC
+
+
+    }
 }

@@ -198,8 +198,6 @@ $('body').on('click', '#beginTheGameButton', function () {
     connection.invoke("StartTheActualGame", myConnectionId, teams).catch(function (err) {
         return console.error(err.toString());
     });
-
-
 });
 
 
@@ -253,55 +251,84 @@ function GetTeams() {
     return JSON.stringify(obj);
 }   
 
-connection.on("DisplayGameBoard", function (game) {
 
-    var gameParsed = JSON.parse(game);
+connection.on("DisplayGameBoard", function (gameState) {
+    $('#beginTheGameButton').hide();
 
-    if(gameParsed.Players.length >= 3){
+    var gameStatus = JSON.parse(gameState);
+
+    console.log(gameStatus);
+    if(gameStatus.PlayerStatuses.length >= 3){
         DisplayBoardForMoreThanTwoPlayers();
     } else {
         DisplayBoardForTwoPlayers();
     }
 
-    gameParsed.Players[0].Deck.forEach(card => {
+    gameStatus.PlayerStatuses[0].Deck.forEach(card => {
         var cardSource = card.Source;
         var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
         $('.cardZone').eq(0).append(div);
     })
-    var divName = '<div class="playerNameBoardContainer">'+ gameParsed.Players[0].Name+'</div>';
+
+    gameStatus.PlayerStatuses[0].Hand.forEach(card => {
+        var cardSource = card.Source;
+        var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
+        $('.handZone').eq(0).append(div);
+    }) 
+
+    var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[0].Name+'</div>';
     $('.playerNameZone').eq(0).append(divName);
 
-    gameParsed.Players[1].Deck.forEach(card => {
+
+
+    gameStatus.PlayerStatuses[1].Deck.forEach(card => {
         var cardSource = card.Source;
         var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
         $('.cardZone').eq(2).append(div);  //così se si gioca in due stanno di fronte
     })
-    var divName = '<div class="playerNameBoardContainer">'+ gameParsed.Players[1].Name+'</div>';
+
+    gameStatus.PlayerStatuses[1].Hand.forEach(card => {
+        var cardSource = card.Source;
+        var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
+        $('.handZone').eq(2).append(div);
+    }) 
+
+    var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[1].Name+'</div>';
     $('.playerNameZone').eq(2).append(divName);
 
-   
 
-    if(gameParsed.Players.length >= 3){
-        gameParsed.Players[2].Deck.forEach(card => {
+    if(gameStatus.PlayerStatuses.length >= 3){
+        gameStatus.PlayerStatuses[2].Deck.forEach(card => {
             var cardSource = card.Source;
             var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
             $('.cardZone').eq(1).append(div);
         })
-        var divName = '<div class="playerNameBoardContainer">'+ gameParsed.Players[2].Name+'</div>';
+
+        gameStatus.PlayerStatuses[2].Hand.forEach(card => {
+            var cardSource = card.Source;
+            var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
+            $('.handZone').eq(1).append(div);
+        }) 
+        var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[2].Name+'</div>';
         $('.playerNameZone').eq(1).append(divName);
     }
    
-    if(gameParsed.Players.length == 4){
-        gameParsed.Players[3].Deck.forEach(card => {
+    if(gameStatus.PlayerStatuses.length == 4){
+        gameStatus.PlayerStatuses[3].Deck.forEach(card => {
             var cardSource = card.Source;
             var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
             $('.cardZone').eq(3).append(div);
         })
-        var divName = '<div class="playerNameBoardContainer">'+ gameParsed.Players[3].Name+'</div>';
+        gameStatus.PlayerStatuses[3].Hand.forEach(card => {
+            var cardSource = card.Source;
+            var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
+            $('.handZone').eq(3).append(div);
+        }) 
+        var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[3].Name+'</div>';
         $('.playerNameZone').eq(3).append(divName);
     }
    
-    //display cards for decks on back
+
     DisplayDecks();
 })
 
