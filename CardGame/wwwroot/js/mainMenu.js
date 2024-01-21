@@ -75,6 +75,13 @@ connection.on("SendSearchedCards", function (result) {
     $('#myDeckAdvancedSearch').hide();
 })
 
+connection.on("SendNormalSearchCards", function (result) {
+    $('#myDeckCardPickerContainer').empty();
+    $('#myDeckDecksNormalSearchValue').val('');
+    $('#normalSearchSpinner').hide();
+    showCardsImage(JSON.parse(result))
+})
+
 
 
 $('body').on('click', '#myDeckDecksSearchButton', function () {
@@ -167,6 +174,24 @@ $('body').on('click', '#advancedSearchCommanderColorColorless', function () {
 });
 $('body').on('click', '.advancedSearchCommanderColorUncheck1', function () {
     $("#advancedSearchCommanderColorColorless").prop("checked", false);
+});
+
+$('body').on('click', '#myDeckAdvancedSearchCloseButton', function () {
+    $('#myDeckAdvancedSearch').hide();
+    $('#myDeckAdvancedSearch input').val('');
+    $('#myDeckAdvancedSearch input').prop('checked', false);
+    $("#myDeckAdvancedSearch select").each(function() {
+        $(this).find("option:first").prop("selected", true);
+        $(this).find("option:not(:first)").prop("selected", false);
+    });
+});
+
+$('body').on('click', '#myDeckDecksNormalSearchButton', function () {
+    $('#normalSearchSpinner').show();
+    var name = $('#myDeckDecksNormalSearchValue').val();
+    connection.invoke("NormalSearchCards", name).catch(function (err) {
+        return console.error(err.toString());
+    });
 });
 
 $('body').on('click', '#myDeckAdvancedSearchSearchButton', function () {
@@ -290,9 +315,9 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#closeGameRulesMenu').text("Chiudi")
         
         $('#gameModeGameButton').text("Controlla modalità di gioco")
-
-        // $('#commanderValidity').removeClass('commanderValidityEng').addClass('commanderValidityIta')
-        
+       
+        $('#myDeckDecksNormalSearchValue').attr("placeholder", "Cerca per nome");
+        $('#myDeckDecksNormalSearchButton').text("Cerca")
         $('#myDeckDecksSearchButton').text("Ricerca avanzata")
 
         $('#advancedSearchFieldName').text("Nome carta")
@@ -405,8 +430,8 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#gameModeGameButton').text("Check game modes")
 
 
-        // $('#commanderValidity').removeClass('commanderValidityIta').addClass('commanderValidityEng')
-
+        $('#myDeckDecksNormalSearchValue').attr("placeholder", "Search by name");
+        $('#myDeckDecksNormalSearchButton').text("Search")
         $('#myDeckDecksSearchButton').text("Advanced Search")
 
         $('#advancedSearchFieldName').text("Card Name")

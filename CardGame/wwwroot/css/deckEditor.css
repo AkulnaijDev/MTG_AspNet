@@ -117,7 +117,7 @@
         margin-bottom: 5px;
     }
 
-    #myDeckDecksSelector,#myDeckDecksGameMode,#myDeckDecksSetsAndZoom{
+    #myDeckDecksSelector,#myDeckDecksGameMode,#myDeckDecksSetsAndZoom,#myDeckDecksSearch{
         font-size:13px;
         display: inline-flex;
         max-height: 20px;

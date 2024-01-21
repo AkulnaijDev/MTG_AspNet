@@ -375,6 +375,54 @@ namespace CardGame.Hubs
             }
         }
 
+        public async Task NormalSearchCards(string cardName)
+        {
+            try
+            {
+                var index = 0;
+                var query1 = " WHERE ";
+
+                if (!string.IsNullOrEmpty(cardName))
+                {
+                    var namePieces = ExtractWords(cardName);
+                    query1 += "(";
+
+                    foreach (var piece in namePieces)
+                    {
+                        bool lastLoop = (index == namePieces.Length - 1);
+                        if (!lastLoop)
+                        {
+                            query1 += $" [Name] like '%{piece}%' AND ";
+                        }
+                        else
+                        {
+                            query1 += $" [Name] like '%{piece}%' ";
+                        }
+                        index++;
+                    }
+                    query1 += ")";
+                    index = 0;
+                }
+
+                query1 += " ORDER BY [Name] ASC";
+
+                var cards = SqlUtils.QueryRequestCards(query1);
+
+                cards = cards
+                .GroupBy(c => c.Oracle_Id)
+                .Select(g => g.OrderByDescending(c => c.Name).First())
+                .ToList();
+
+                var obj = JsonConvert.SerializeObject(cards);
+
+                await Clients.Caller.SendAsync("SendNormalSearchCards", obj);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public async Task<string> AdvancedSearchQueryCreator(SearchObject obj)
         {
             try

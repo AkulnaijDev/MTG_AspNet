@@ -253,11 +253,6 @@ function GetTeams() {
     return JSON.stringify(obj);
 }   
 
-//remove tippy library
-// var commanderTippyEng = tippy('.commanderValidityEng', {content: '100cards'})
-// var commanderTippyIta = tippy('.commanderValidityIta', {content: '100carte'})
-
-
 connection.on("DisplayGameBoard", function (game) {
 
     var gameParsed = JSON.parse(game);
