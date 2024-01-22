@@ -1,4 +1,5 @@
 var iaminvited = false;
+var state = null;
 
 $('body').on('click', '#mainMenuNewGame', function () {
 
@@ -22,9 +23,6 @@ $('body').on('click', '#mainMenuNewGame', function () {
         $('#inviteSection').show();
         $('#boardGameContainer').show();
     }   
-
-
-   
 });
 
 $('body').on('click', '#quitTheGameButton', function () {
@@ -256,88 +254,20 @@ connection.on("DisplayGameBoard", function (gameState) {
     $('#beginTheGameButton').hide();
 
     var gameStatus = JSON.parse(gameState);
+    state = gameStatus;
 
-    console.log(gameStatus);
     if(gameStatus.PlayerStatuses.length >= 3){
         DisplayBoardForMoreThanTwoPlayers();
-    } else {
+    } 
+    else {
         DisplayBoardForTwoPlayers();
     }
 
-    gameStatus.PlayerStatuses[0].Deck.forEach(card => {
-        var cardSource = card.Source;
-        var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-        $('.cardZone').eq(0).append(div);
-    })
-
-    gameStatus.PlayerStatuses[0].Hand.forEach(card => {
-        var cardSource = card.Source;
-        var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-        $('.handZone').eq(0).append(div);
-    }) 
-
-    var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[0].Name+'</div>';
-    $('.playerNameZone').eq(0).append(divName);
-
-
-
-    gameStatus.PlayerStatuses[1].Deck.forEach(card => {
-        var cardSource = card.Source;
-        var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-        $('.cardZone').eq(2).append(div);  //così se si gioca in due stanno di fronte
-    })
-
-    gameStatus.PlayerStatuses[1].Hand.forEach(card => {
-        var cardSource = card.Source;
-        var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-        $('.handZone').eq(2).append(div);
-    }) 
-
-    var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[1].Name+'</div>';
-    $('.playerNameZone').eq(2).append(divName);
-
-
-    if(gameStatus.PlayerStatuses.length >= 3){
-        gameStatus.PlayerStatuses[2].Deck.forEach(card => {
-            var cardSource = card.Source;
-            var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-            $('.cardZone').eq(1).append(div);
-        })
-
-        gameStatus.PlayerStatuses[2].Hand.forEach(card => {
-            var cardSource = card.Source;
-            var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-            $('.handZone').eq(1).append(div);
-        }) 
-        var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[2].Name+'</div>';
-        $('.playerNameZone').eq(1).append(divName);
-    }
-   
-    if(gameStatus.PlayerStatuses.length == 4){
-        gameStatus.PlayerStatuses[3].Deck.forEach(card => {
-            var cardSource = card.Source;
-            var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-            $('.cardZone').eq(3).append(div);
-        })
-        gameStatus.PlayerStatuses[3].Hand.forEach(card => {
-            var cardSource = card.Source;
-            var div = '<div class="cardContainer"><img class="cardOnTheTable" src="'+cardSource+'"></div>';
-            $('.handZone').eq(3).append(div);
-        }) 
-        var divName = '<div class="playerNameBoardContainer">'+ gameStatus.PlayerStatuses[3].Name+'</div>';
-        $('.playerNameZone').eq(3).append(divName);
-    }
-   
-
+    DealInitialCards();
     DisplayDecks();
 })
 
-function DisplayDecks(){
-    var deckCard = "<div class='cardContainer deckBackCardContainer'>"+
-    "<img class='deckBackCardOnTheTable' src='../resources/cardBack.jpg'></div>";
 
-    $('.deckZone').append(deckCard);
-}
 
 function DisplayBoardForTwoPlayers (){
     $('.playerBoard').addClass('playerBoardExtended')

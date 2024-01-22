@@ -253,7 +253,7 @@
   max-width: 100%;
 }
 
-.cardZone {
+.cardZone, .handZone {
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
