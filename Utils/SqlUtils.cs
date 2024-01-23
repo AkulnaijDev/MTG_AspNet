@@ -537,6 +537,7 @@ namespace Utils
                     {
                         var card = new GameCard
                         {
+                            Guid = Guid.NewGuid().ToString(),
                             CardId = obj.Key,
                             Source = obj.Source,
                             Name = obj.Name
