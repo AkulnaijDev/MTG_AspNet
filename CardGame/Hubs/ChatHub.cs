@@ -1,4 +1,5 @@
 ﻿using CardGame.GameLogic;
+using CardGame.GameLogic.Models;
 using CardGame.Models;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
@@ -13,7 +14,8 @@ namespace CardGame.Hubs
     public class ChatHub : Hub
     {
         public static List<Room> _roomList = new();
-        public GameManager _gameManager = new();
+        //public GameManager _gameManager;
+        public static List<GameStatus> _matchesCurrentlyOn = new();
 
         public async Task SendMessage(string user, string message)
         {
@@ -307,6 +309,26 @@ namespace CardGame.Hubs
 
         }
 
+        //public async Task<bool> UpdateGameManager(GameStatus status)
+        //{
+        //    try
+        //    {
+        //        if (_gameManager is null)
+        //        {
+        //            var gamesOn = new List<GameStatus>();
+        //            _gameManager = new GameManager();
+        //            _gameManager.matchesCurrentlyOn = gamesOn;
+        //        }
+        //        _gameManager.matchesCurrentlyOn.Add(status);
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return false;
+        //    }
+        //}
+
         
         public async Task StartTheActualGame(string startingGamePlayerId, string teams)
         {
@@ -353,7 +375,8 @@ namespace CardGame.Hubs
                 PlayerStatuses = myPlayerStatus
             };
 
-            _gameManager.matchesCurrentlyOn.Add(gameStatus);
+            //var taskDone = await UpdateGameManager(gameStatus);
+            _matchesCurrentlyOn.Add(gameStatus);
 
             var gameStatusObj = JsonConvert.SerializeObject(gameStatus);
             await Clients.Group(roomId).SendAsync("DisplayGameBoard", gameStatusObj);
@@ -798,5 +821,122 @@ namespace CardGame.Hubs
         //REGIONE _ GAME LOGIC
 
 
+        //DA GESTIRE LATO FRONTEND E BACKEND IL DECK COME ZONA!!!!
+        public async Task UpdateState_CardPlayed(string action)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<ActionCardPlayed>(action);
+
+                //var storedGameStatus = _gameManager.matchesCurrentlyOn.First(x=> x.Game == gameAction.Game);
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
+                //_gameManager.matchesCurrentlyOn.Remove(storedGameStatus);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+                var card = new GameCard();
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+                    if (playerStatus.Name == gameAction.From.Player)
+                    {
+                        //togli carta
+                        if (gameAction.From.Zone == "cardZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First( x=> x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.GameZone.First(x => x.Guid == gameAction.CardGuid);
+                            card = cardToRemove;
+                            updatedPlayer.GameZone.Remove(cardToRemove);
+                        }
+                        if (gameAction.From.Zone == "handZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.Hand.First(x => x.Guid == gameAction.CardGuid);
+                            card = cardToRemove;
+                            updatedPlayer.Hand.Remove(cardToRemove);
+                        }
+                        if (gameAction.From.Zone == "landZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.LandZone.First(x => x.Guid == gameAction.CardGuid);
+                            card = cardToRemove;
+                            updatedPlayer.LandZone.Remove(cardToRemove);
+                        }
+
+                        if (gameAction.From.Zone == "exiledZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.Exiled.First(x => x.Guid == gameAction.CardGuid);
+                            card = cardToRemove;
+                            updatedPlayer.Exiled.Remove(cardToRemove);
+                        }
+                        if (gameAction.From.Zone == "graveyardZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.Graveyard.First(x => x.Guid == gameAction.CardGuid);
+                            card = cardToRemove;
+                            updatedPlayer.Graveyard.Remove(cardToRemove);
+                        }
+                        if (gameAction.From.Zone == "planeswalkerZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.PlaneswalkerZone.First(x => x.Guid == gameAction.CardGuid);
+                            card = cardToRemove;
+                            updatedPlayer.PlaneswalkerZone.Remove(cardToRemove);
+                        }
+
+                    }
+
+                    if (playerStatus.Name == gameAction.To.Player)
+                    {
+                        //aggiungi carta
+                        if (gameAction.To.Zone == "cardZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.GameZone.Add(card);
+                        }
+                        if (gameAction.To.Zone == "handZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.Hand.Add(card);
+                        }
+                        if (gameAction.To.Zone == "landZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.LandZone.Add(card);
+                        }
+                        if (gameAction.To.Zone == "exiledZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.Exiled.Add(card);
+                        }
+                        if (gameAction.To.Zone == "graveyardZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.Graveyard.Add(card);
+                        }
+                        if (gameAction.To.Zone == "planeswalkerZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.PlaneswalkerZone.Add(card);
+                        }
+                    }
+                }
+
+                //_gameManager.matchesCurrentlyOn.Add(newGameStatus);
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+
+                await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

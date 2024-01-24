@@ -5,11 +5,6 @@ namespace CardGame.GameLogic
     public class GameManager
     {
         public List<GameStatus> matchesCurrentlyOn { get; set; }
-
-        public GameManager()
-        {
-            matchesCurrentlyOn = new List<GameStatus>();
-        }
     }
 }
 

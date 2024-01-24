@@ -268,6 +268,11 @@ connection.on("DisplayGameBoard", function (gameState) {
 })
 
 
+connection.on("UpdateGameBoard", function (newGameState) {
+    console.log(newGameState);
+    UpdateBoard(newGameState)
+})
+
 
 function DisplayBoardForTwoPlayers (){
     $('.playerBoard').addClass('playerBoardExtended')
