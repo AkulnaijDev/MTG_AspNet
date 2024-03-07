@@ -214,6 +214,16 @@ $('body').on('mouseleave', '.cardOnTheTable', function () {
     clearTimeout(hoverTimeout);
 });
 
+
+$('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
+    var name = $(ev.target).parent().parent().parent().parent().find('.playerNameBoardContainer').text();
+    if(myUsername == name){
+        DrawCardFromMyDeck(myUsername);
+    }
+});
+
+
+
 function GetTeams() {
     
     var teams = [];
@@ -269,8 +279,8 @@ connection.on("DisplayGameBoard", function (gameState) {
 
 
 connection.on("UpdateGameBoard", function (newGameState) {
-    console.log(newGameState);
-    UpdateBoard(newGameState)
+    state = JSON.parse(newGameState);
+    UpdateBoard(newGameState);
 })
 
 

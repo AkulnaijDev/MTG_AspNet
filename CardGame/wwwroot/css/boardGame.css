@@ -82,6 +82,10 @@
   background: #444;
 }
 
+#rulesGameButton, #gameModeGameButton {
+  width:49%
+}
+
 
 .handZone {
   background-color: aliceblue;
@@ -129,6 +133,9 @@
 
 .playerNameZone{
   height: 34%;background-color: cornflowerblue;
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 
@@ -253,12 +260,16 @@
   max-width: 100%;
 }
 
-.cardZone, .handZone {
+.commanderZone, .planeswalkerZone,.exiledZone, .graveyardZone {
+  justify-content: center;
+  align-items: center;
+}
+
+.cardZone, .handZone, .landZone, .commanderZone, .planeswalkerZone,.exiledZone, .graveyardZone {
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
   display: flex;
-  /* gap: 10px; */
   position: relative;
 }
 
@@ -282,6 +293,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
 }
 
 .cardOnTheTable img {
@@ -291,6 +303,7 @@
 
 #zoomedHoveredCard{
   width: 100%;
+  border-radius: 18px;
 }
 
 .playerNameBoardContainer{

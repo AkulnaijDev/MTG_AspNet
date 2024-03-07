@@ -33,12 +33,40 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
 
     //GESTISCI QUI L'UPDATE DI STATO!!!!!!! avanti e indietro!!!
-
+    
     connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
         return console.error(err.toString());
     });
 }
 
+function DrawCardFromMyDeck(myUsername){
+  
+    var zoneFrom = "deckZone";
+    var playerFrom = myUsername;
+    var zoneTo = "handZone";
+    var playerTo = playerFrom;
+
+    var action = {
+        "Game":state.Game,
+        "CardGuid": "",
+        "From": {
+            "Player":playerFrom,
+            "Zone":zoneFrom
+        },
+        "To": {
+            "Player":playerTo,
+            "Zone":zoneTo
+        }
+    }
+
+    console.log("Porcodio");
+
+    console.log(state);
+
+    connection.invoke("UpdateState_CardDrawn", JSON.stringify(action)).catch(function (err) {
+        return console.error(err.toString());
+    });
+}
 
 function GetHp(playerName){
     var hp = 20;
@@ -56,13 +84,12 @@ function GetHp(playerName){
 }
 
 function UpdateBoard(newGameStatus){
-    console.log(newGameStatus);
+
     JSON.parse(newGameStatus).PlayerStatuses.forEach(element => {
         var parentBoard = $('.playerNameBoardContainer:contains('+element.Name+')').parent().parent().parent().parent();
        
-        //da sistemare non devono andare in cardZone
         parentBoard.find('.cardZone').empty();
-        element.Deck.forEach(card => {
+        element.GameZone.forEach(card => {
             var cardSource = card.Source;
             var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.cardZone').append(div);
@@ -104,6 +131,13 @@ function UpdateBoard(newGameStatus){
             var cardSource = card.Source;
             var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.planeswalkerZone').append(div);
+        })
+
+        parentBoard.find('.commanderZone').empty();
+        element.CommanderZone.forEach(card => {
+            var cardSource = card.Source;
+            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            parentBoard.find('.commanderZone').append(div);
         })
 
     });
@@ -230,11 +264,13 @@ function UpdateStateOldToRemove(){
 }
 
 function DealCardToPlayer(indexPlayer, indexZone) {
-    state.PlayerStatuses[indexPlayer].Deck.forEach(card => {
-        var cardSource = card.Source;
-        var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
-        $('.cardZone').eq(indexZone).append(div);
-    })
+
+    //non devono essere distribuite le carte del deck
+    // state.PlayerStatuses[indexPlayer].Deck.forEach(card => {
+    //     var cardSource = card.Source;
+    //     var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+    //     $('.cardZone').eq(indexZone).append(div);
+    // })
 
     state.PlayerStatuses[indexPlayer].Hand.forEach(card => {
         var cardSource = card.Source;

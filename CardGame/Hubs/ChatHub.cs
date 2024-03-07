@@ -14,7 +14,7 @@ namespace CardGame.Hubs
     public class ChatHub : Hub
     {
         public static List<Room> _roomList = new();
-        //public GameManager _gameManager;
+
         public static List<GameStatus> _matchesCurrentlyOn = new();
 
         public async Task SendMessage(string user, string message)
@@ -213,7 +213,6 @@ namespace CardGame.Hubs
             await Clients.Caller.SendAsync("GameModesForDeck", obj);
         }
 
-
         public async Task SendGameInvitation(string obj)
         {
             var gameInvitation = JsonConvert.DeserializeObject<GameInvitation>(obj);
@@ -308,27 +307,6 @@ namespace CardGame.Hubs
             }
 
         }
-
-        //public async Task<bool> UpdateGameManager(GameStatus status)
-        //{
-        //    try
-        //    {
-        //        if (_gameManager is null)
-        //        {
-        //            var gamesOn = new List<GameStatus>();
-        //            _gameManager = new GameManager();
-        //            _gameManager.matchesCurrentlyOn = gamesOn;
-        //        }
-        //        _gameManager.matchesCurrentlyOn.Add(status);
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        return false;
-        //    }
-        //}
-
         
         public async Task StartTheActualGame(string startingGamePlayerId, string teams)
         {
@@ -817,24 +795,31 @@ namespace CardGame.Hubs
             return wordsArray;
         }
 
-
         //REGIONE _ GAME LOGIC
 
-
-        //DA GESTIRE LATO FRONTEND E BACKEND IL DECK COME ZONA!!!!
         public async Task UpdateState_CardPlayed(string action)
         {
             try
             {
                 var gameAction = JsonConvert.DeserializeObject<ActionCardPlayed>(action);
 
-                //var storedGameStatus = _gameManager.matchesCurrentlyOn.First(x=> x.Game == gameAction.Game);
                 var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
-                //_gameManager.matchesCurrentlyOn.Remove(storedGameStatus);
+
                 _matchesCurrentlyOn.Remove(storedGameStatus);
 
                 var storedGame = storedGameStatus.Game;
                 var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                //order the list to achieve correct "card" variable data filling
+                storedPlayerStatuses.Sort((x, y) =>
+                {
+                    if (x.Name == gameAction.From.Player && y.Name != gameAction.From.Player)
+                        return -1;
+                    else if (x.Name != gameAction.From.Player && y.Name == gameAction.From.Player)
+                        return 1;
+                    else
+                        return x.Name.CompareTo(y.Name);
+                });
 
                 var newGameStatus = storedGameStatus;
                 var card = new GameCard();
@@ -865,7 +850,6 @@ namespace CardGame.Hubs
                             card = cardToRemove;
                             updatedPlayer.LandZone.Remove(cardToRemove);
                         }
-
                         if (gameAction.From.Zone == "exiledZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
@@ -887,7 +871,13 @@ namespace CardGame.Hubs
                             card = cardToRemove;
                             updatedPlayer.PlaneswalkerZone.Remove(cardToRemove);
                         }
-
+                        if (gameAction.From.Zone == "commanderZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.CommanderZone.First(x => x.Guid == gameAction.CardGuid);
+                            card = cardToRemove;
+                            updatedPlayer.CommanderZone.Remove(cardToRemove);
+                        }
                     }
 
                     if (playerStatus.Name == gameAction.To.Player)
@@ -923,10 +913,63 @@ namespace CardGame.Hubs
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.PlaneswalkerZone.Add(card);
                         }
+                        if (gameAction.To.Zone == "commanderZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.CommanderZone.Add(card);
+                        }
                     }
                 }
 
-                //_gameManager.matchesCurrentlyOn.Add(newGameStatus);
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+
+                await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task UpdateState_CardDrawn(string action)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<ActionCardPlayed>(action);
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+                var card = new GameCard();
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+                    if (playerStatus.Name == gameAction.From.Player)
+                    {
+                        if (gameAction.From.Zone == "deckZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            var cardToRemove = updatedPlayer.Deck.First();
+                            card = cardToRemove;
+                            updatedPlayer.Deck.Remove(cardToRemove);
+                        }
+                    }
+
+                    if (playerStatus.Name == gameAction.To.Player)
+                    {
+                        if (gameAction.To.Zone == "handZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            updatedPlayer.Hand.Add(card);
+                        }
+                    }
+                }
+
                 _matchesCurrentlyOn.Add(newGameStatus);
 
                 var roomId = newGameStatus.Game.RoomId;
