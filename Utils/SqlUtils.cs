@@ -499,6 +499,45 @@ namespace Utils
             }
         }
 
+        public static List<GameCard> GetAllTokens()
+        {
+            var deck = new List<GameCard>();
+            var queryString = $"SELECT [Name], Id, Oracle_Id, [Set],Set_Name FROM " +
+                $"(SELECT [Name], Id, Oracle_Id, [Set], Set_Name, ROW_NUMBER() OVER (PARTITION BY Name ORDER BY Released_at DESC) AS rn" +
+                $" FROM Cards WHERE Layout = 'Token') AS subquery WHERE rn = 1;";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                var jsonCards = new List<string>();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var setName = "Phyrexia__All_Will_Be_One";
+                        setName = reader["Set_Name"].ToString().Replace(" ","_").Replace(":","_");
+
+                        var card = new GameCard
+                        {
+                            Guid = Guid.NewGuid().ToString(),
+                            CardId = reader["Oracle_Id"].ToString(),
+                            Source = $"../resources/cards_images/{reader["Set"]}_{setName}/{reader["Set"]}_{reader["Id"]}.jpg",
+                            Name = reader["Name"].ToString()
+                        };
+
+                        deck.Add(card);
+                    }
+                }
+                connection.Close();
+
+                return deck;
+            }
+        }
+
         public static List<GameCard> GetPlayableVersionOfTheDeck(string deckId)
         {
             var deck = new List<GameCard>();

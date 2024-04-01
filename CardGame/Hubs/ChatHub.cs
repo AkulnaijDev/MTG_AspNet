@@ -4,10 +4,12 @@ using CardGame.Models;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Globalization;
 using System.IO.Pipelines;
 using System.Text.RegularExpressions;
 using Utils;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CardGame.Hubs
 {
@@ -360,6 +362,21 @@ namespace CardGame.Hubs
             await Clients.Group(roomId).SendAsync("DisplayGameBoard", gameStatusObj);
         }
 
+        public async Task GetListOfAllTheTokens(string game)
+        {
+            try
+            {
+                var allTokens = SqlUtils.GetAllTokens();
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+                var roomId = gameAction.RoomId;
+
+                await Clients.Group(roomId).SendAsync("ShowTokens", JsonConvert.SerializeObject(allTokens));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
         public async Task AdvancedSearchCards(string searchObject)
         {
@@ -796,6 +813,46 @@ namespace CardGame.Hubs
         }
 
         //REGIONE _ GAME LOGIC
+        public async Task PlaySelectedToken(string player, string selectedToken, string howManyToken, string game)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
+
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+                var newGameStatus = storedGameStatus;
+
+                var card = JsonConvert.DeserializeObject<GameCard>(selectedToken);
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+                    if (playerStatus.Name == player)
+                    {
+                        var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                        for (var i=0; i < Convert.ToInt32(howManyToken); i++)
+                        {
+                            card.Guid = Guid.NewGuid().ToString();
+                            updatedPlayer.GameZone.Add(card);
+                        }
+                    }
+                }
+
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+
+                await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch 
+            {
+
+            }
+        }
 
         public async Task UpdateState_CardPlayed(string action)
         {
@@ -1070,6 +1127,42 @@ namespace CardGame.Hubs
                         {
                             updatedPlayer.Hp -= 1;
                         }
+                    }
+                }
+
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+                await Clients.Group(roomId).SendAsync("DispatchPlayerHP", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task ShufflePlayerDeck(string playerUsername, string game)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+                    if (playerStatus.Name == playerUsername)
+                    {
+                        var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+
+                        updatedPlayer.Deck = GameUtils.Shuffle(updatedPlayer.Deck);
+
                     }
                 }
 

@@ -260,9 +260,45 @@ $('.deckZone').on('contextmenu', function(event) {
     var playerInspecting = myUsername
     var playerInspected = $(this).parent().parent().find('.playerNameBoardContainer').text();
     $('#contextMenu').show();
+
+    //popola select tokens
+    if($('#contextMenuTokenSelector').children().length === 0){
+        connection.invoke("GetListOfAllTheTokens", JSON.stringify(state.Game)).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+
     $('#contextMenu').attr('inspected', playerInspected)
     $('#contextMenu').attr('inspecting', playerInspecting)
 });
+
+connection.on("ShowTokens", function (listOfTokens) {
+    var json = JSON.parse(listOfTokens);
+    if($('#contextMenuTokenSelector').children().length === 0){
+        $('#contextMenuTokenSelector').empty();
+
+        json.forEach(function(element) {
+            var option = $('<option>', { value: JSON.stringify(element), text: element.Name });
+            $('#contextMenuTokenSelector').append(option);
+          });
+    }
+})
+
+$('body').on('click', '#contextMenuPlayToken', function () {
+   
+    var selectedToken = $('#contextMenuTokenSelector').val();
+    var howManyToken = $('#contextMenuTokenQuantity').val();
+
+    connection.invoke("PlaySelectedToken", myUsername, selectedToken, howManyToken, JSON.stringify(state.Game)).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+});
+
+// connection.on("DispatchPlayedTokens", function (playedTokens) {
+  
+// })
+
 
 //this is so bad
 function IsEnglishLanguageOn(){
@@ -272,6 +308,27 @@ function IsEnglishLanguageOn(){
         return false;
     }
 }
+
+
+
+$('body').on('click', '#contextMenuShuffleDeck', function () {
+    $('#contextMenu').hide();
+    var contextMenu = $(this).parent();
+
+    var targetPlayer = contextMenu.attr('inspected');
+    
+    connection.invoke("ShufflePlayerDeck", targetPlayer, JSON.stringify(state.Game)).catch(function (err) {
+        return console.error(err.toString());
+    });
+    
+    if(IsEnglishLanguageOn()){
+        LogInGame(playerInspecting + " shuffled " + playerInspected + " deck" );
+    } else {
+        LogInGame(playerInspecting + " sta mescolando il deck di " + playerInspected);
+    }
+});
+
+
 
 $('body').on('click', '#contextMenuViewDeck', function () {
     $('#contextMenu').hide();

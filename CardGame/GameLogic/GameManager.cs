@@ -10,7 +10,7 @@ namespace CardGame.GameLogic
 
 public static class GameUtils
 {
-    static List<T> Shuffle<T>(List<T> list)
+    public static List<T> Shuffle<T>(List<T> list)
     {
         Random rng = new Random();
         int n = list.Count;

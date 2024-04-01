@@ -363,6 +363,8 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextMenuShuffleDeck').text("Mescola mazzo")
         $('#contextMenuViewDeck').text("Guarda mazzo")
         $('#contextMenuViewHand').text("Guarda mano")
+        $('#contextMenuScryDeck').text("Guarda prime X carte")
+        $('#contextMenuPlayToken').text("Gioca token")
         $('#contextMenuViewGraveyard').text("Guarda cimitero")
         $('#contextMenuViewExiled').text("Guarda esilio")
         $('#closeContextMenu').text("Chiudi")
@@ -486,11 +488,14 @@ $('body').on('change', '#languageChooseOptions', function () {
 
         $('#contextMenuShuffleDeck').text("Shuffle deck")
         $('#contextMenuViewDeck').text("View deck")
-        $('#contextMenuViewHand').text("View hand")
+        $('#contextMenuShuffleDeck').text("View hand")
+        $('#contextMenuScryDeck').text("View first X cards")
+        $('#contextMenuPlayToken').text("Play token")
         $('#contextMenuViewGraveyard').text("View graveyard")
         $('#contextMenuViewExiled').text("View exiled")
         $('#closeContextMenu').text("Close")
         $('#closeInspectorButton').text("Close inspector")
+        
 
     }
 });
