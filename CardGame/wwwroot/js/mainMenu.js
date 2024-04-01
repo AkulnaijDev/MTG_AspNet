@@ -359,6 +359,15 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#advancedSearchFieldFlavorText").attr("placeholder", "Qualsiasi testo di flavor, es 'Jhoira'");
         $('#myDeckAdvancedSearchSearchButton').text("Cerca")
         $('#myDeckAdvancedSearchCloseButton').text("Chiudi")
+
+        $('#contextMenuShuffleDeck').text("Mescola mazzo")
+        $('#contextMenuViewDeck').text("Guarda mazzo")
+        $('#contextMenuViewHand').text("Guarda mano")
+        $('#contextMenuViewGraveyard').text("Guarda cimitero")
+        $('#contextMenuViewExiled').text("Guarda esilio")
+        $('#closeContextMenu').text("Chiudi")
+        $('#closeInspectorButton').text("Chiudi inspector")
+
     } else {
         $('.translatedAbility').hide();
         $('.defaultAbility').show();
@@ -473,6 +482,15 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#advancedSearchFieldFlavorText").attr("placeholder", "Any flavor text, e.g 'Jhoira'");     
         $('#myDeckAdvancedSearchSearchButton').text("Search")
         $('#myDeckAdvancedSearchCloseButton').text("Close")
+
+
+        $('#contextMenuShuffleDeck').text("Shuffle deck")
+        $('#contextMenuViewDeck').text("View deck")
+        $('#contextMenuViewHand').text("View hand")
+        $('#contextMenuViewGraveyard').text("View graveyard")
+        $('#contextMenuViewExiled').text("View exiled")
+        $('#closeContextMenu').text("Close")
+        $('#closeInspectorButton').text("Close inspector")
 
     }
 });

@@ -264,6 +264,15 @@ $('.deckZone').on('contextmenu', function(event) {
     $('#contextMenu').attr('inspecting', playerInspecting)
 });
 
+//this is so bad
+function IsEnglishLanguageOn(){
+    if($('#rulesGameButton').text() == "Check rules") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 $('body').on('click', '#contextMenuViewDeck', function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent();
@@ -273,7 +282,11 @@ $('body').on('click', '#contextMenuViewDeck', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "deck")
     $('#zoneInspector').show();
 
-    LogInGame(playerInspecting + " is checking " + playerInspected + " deck" );
+    if(IsEnglishLanguageOn()){
+        LogInGame(playerInspecting + " is checking " + playerInspected + " deck" );
+    } else {
+        LogInGame(playerInspecting + " sta guardando il deck di " + playerInspected);
+    }
 });
 
 $('body').on('click', '#contextMenuViewGraveyard', function () {
@@ -284,7 +297,12 @@ $('body').on('click', '#contextMenuViewGraveyard', function () {
 
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "graveyard")
     $('#zoneInspector').show();
-    LogInGame(playerInspecting + " is checking " + playerInspected + " graveyard" );
+
+    if(IsEnglishLanguageOn()){
+        LogInGame(playerInspecting + " is checking " + playerInspected + " graveyard" );
+    } else {
+        LogInGame(playerInspecting + " sta guardando il cimitero di " + playerInspected);
+    }
 });
 
 $('body').on('click', '#contextMenuViewExiled', function () {
@@ -295,7 +313,12 @@ $('body').on('click', '#contextMenuViewExiled', function () {
 
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "exiled")
     $('#zoneInspector').show();
-    LogInGame(playerInspecting + " is checking " + playerInspected + " exiled zone" );
+    
+    if(IsEnglishLanguageOn()){
+        LogInGame(playerInspecting + " is checking " + playerInspected + " exiled zone" );
+    } else {
+        LogInGame(playerInspecting + " sta guardando l'esilio di " + playerInspected);
+    }
 });
 
 $('body').on('click', '#contextMenuViewHand', function () {
@@ -306,7 +329,12 @@ $('body').on('click', '#contextMenuViewHand', function () {
 
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "hand")
     $('#zoneInspector').show();
-    LogInGame(playerInspecting + " is checking " + playerInspected + " hand" );
+    
+    if(IsEnglishLanguageOn()){
+        LogInGame(playerInspecting + " is checking " + playerInspected + " hand" );
+    } else {
+        LogInGame(playerInspecting + " sta guardando la mano di " + playerInspected);
+    }
 });
 
 
@@ -355,9 +383,6 @@ connection.on("DispatchPlayerHP", function (playerStatus) {
 
 
 function FillZoneInspectorWithCards(playerInspecting, playerInspected, inspectedZone){
-    $('#zoneInspector').append("<div>"+playerInspecting+
-    " is looking at the "+inspectedZone+ " zone of "+ playerInspected+"</div>")
-
     var game = state.Game;
     connection.invoke("ShowMeCertainZone", playerInspecting, playerInspected, inspectedZone, JSON.stringify(game)).catch(function (err) {
         return console.error(err.toString());
@@ -365,10 +390,6 @@ function FillZoneInspectorWithCards(playerInspecting, playerInspected, inspected
 }
 
 connection.on("ShowSneakedZone", function (sneakedZone) {
-    if(true){
-        console.log("non fare nulla se non sei il richiedente");
-    }
-
     $('#zoneInspectorCardContainer').empty();
     var json = JSON.parse(sneakedZone);
     json.forEach(el => {
