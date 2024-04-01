@@ -981,5 +981,108 @@ namespace CardGame.Hubs
                 Console.WriteLine(ex.Message);
             }
         }
+
+
+        public async Task ShowMeCertainZone(string playerInspecting, string playerInspected, string inspectedZone, string game)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var requestingPlayer = storedPlayerStatuses.Where(x => x.Name == playerInspecting).First().PlayerId;
+                var requestedStatus = storedPlayerStatuses.Where(x => x.Name == playerInspected).First();
+
+                var requestedZone = requestedStatus.Deck;
+                if (inspectedZone == "graveyard")
+                {
+                    requestedZone = requestedStatus.Graveyard;
+                }
+                if (inspectedZone == "exiled")
+                {
+                    requestedZone = requestedStatus.Exiled;
+                }
+                if (inspectedZone == "hand")
+                {
+                    requestedZone = requestedStatus.Hand;
+                }
+
+                //var result = "{'sneakedCards':'"+ JsonConvert.SerializeObject(requestedZone) + "'}";
+                var result = new List<GameCard>(requestedZone);
+
+                await Clients.Client(requestingPlayer).SendAsync("ShowSneakedZone", JsonConvert.SerializeObject(result));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task LogGameEvents(string text, string game)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var roomId = gameAction.RoomId;
+
+                await Clients.Group(roomId).SendAsync("DispatchLogGameEvent", JsonConvert.SerializeObject(text));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        public async Task ModifyPlayerHp(string playerUsername, string action, string game)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+                    if (playerStatus.Name == playerUsername)
+                    {
+                        var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                        
+                        if (action == "increase")
+                        {
+                            updatedPlayer.Hp += 1;
+                        } 
+                        else
+                        {
+                            updatedPlayer.Hp -= 1;
+                        }
+                    }
+                }
+
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+                await Clients.Group(roomId).SendAsync("DispatchPlayerHP", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

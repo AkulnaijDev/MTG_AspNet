@@ -1,11 +1,23 @@
 var iaminvited = false;
 var state = null;
 
+connection.on("DispatchLogGameEvent", function (log) {
+    var json = JSON.parse(log);
+    var loggedElement = "<div class='loggedEvent'>"+json+"</div>"
+    $('#notificationFromOtherPlayers').append(loggedElement);
+})
+
+function LogInGame(text){
+    connection.invoke("LogGameEvents", text,JSON.stringify(state.Game)).catch(function (err) {
+        return console.error(err.toString());
+      });
+}
+
 $('body').on('click', '#mainMenuNewGame', function () {
 
     if(!$("#optionsMenu").is(':visible') && !$("#rulesMenu").is(':visible') && !$("#myDeckMenu").is(':visible')){
         $('#selectDeckToPlay').trigger('change')
-
+        $('#notificationFromOtherPlayers').empty();
 
         $('#inviteFriends option[value='+myConnectionId+']').remove()
         $('.gameValidities').removeAttr('disabled')
@@ -224,12 +236,149 @@ $('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
 
 $('body').on('dblclick', '.cardContainer', function () {
     var el = $(this);
-      if (el.hasClass('tapped')) {
-      el.removeClass('tapped');
-    } else {
-      el.addClass('tapped');
+    var seeBack = el.attr('seeonlyback');
+    if(seeBack === "false"){
+        if(!el.hasClass('deckBackCardContainer') && seeBack != "true"){
+            if (el.hasClass('tapped')) {
+                el.removeClass('tapped');
+                LogInGame(myUsername + " tapped " + $(this).attr('name') );
+            } else {
+                el.addClass('tapped');
+                LogInGame(myUsername + " untapped " + $(this).attr('name') );
+            }
+        }
     }
-  });
+   
+
+
+});
+
+
+//menu context 
+$('.deckZone').on('contextmenu', function(event) {
+    event.preventDefault();  //blocks opening console etc
+    var playerInspecting = myUsername
+    var playerInspected = $(this).parent().parent().find('.playerNameBoardContainer').text();
+    $('#contextMenu').show();
+    $('#contextMenu').attr('inspected', playerInspected)
+    $('#contextMenu').attr('inspecting', playerInspecting)
+});
+
+$('body').on('click', '#contextMenuViewDeck', function () {
+    $('#contextMenu').hide();
+    var contextMenu = $(this).parent();
+    var playerInspecting = contextMenu.attr('inspecting');
+    var playerInspected = contextMenu.attr('inspected');
+    
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "deck")
+    $('#zoneInspector').show();
+
+    LogInGame(playerInspecting + " is checking " + playerInspected + " deck" );
+});
+
+$('body').on('click', '#contextMenuViewGraveyard', function () {
+    $('#contextMenu').hide();
+    var contextMenu = $(this).parent();
+    var playerInspecting = contextMenu.attr('inspecting');
+    var playerInspected = contextMenu.attr('inspected');
+
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "graveyard")
+    $('#zoneInspector').show();
+    LogInGame(playerInspecting + " is checking " + playerInspected + " graveyard" );
+});
+
+$('body').on('click', '#contextMenuViewExiled', function () {
+    $('#contextMenu').hide();
+    var contextMenu = $(this).parent();
+    var playerInspecting = contextMenu.attr('inspecting');
+    var playerInspected = contextMenu.attr('inspected');
+
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "exiled")
+    $('#zoneInspector').show();
+    LogInGame(playerInspecting + " is checking " + playerInspected + " exiled zone" );
+});
+
+$('body').on('click', '#contextMenuViewHand', function () {
+    $('#contextMenu').hide();
+    var contextMenu = $(this).parent();
+    var playerInspecting = contextMenu.attr('inspecting');
+    var playerInspected = contextMenu.attr('inspected');
+
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "hand")
+    $('#zoneInspector').show();
+    LogInGame(playerInspecting + " is checking " + playerInspected + " hand" );
+});
+
+
+$('body').on('click', '#closeContextMenu', function () {
+    $('#contextMenu').hide();
+});
+
+$('body').on('click', '#closeInspectorButton', function () {
+    $('#zoneInspector').hide();
+});
+
+$('body').on('click', '.decreaseHpButton', function () {
+    var targetPlayer = $(this).parent().find('.playerName').text();
+    LogInGame(myUsername + " is decreasing " + targetPlayer + " hp" );
+
+    connection.invoke("ModifyPlayerHp", targetPlayer, "decrease", JSON.stringify(state.Game)).catch(function (err) {
+        return console.error(err.toString());
+      });
+});
+
+$('body').on('click', '.increaseHpButton', function () {
+    var targetPlayer = $(this).parent().find('.playerName').text();
+    LogInGame(myUsername + " is increasing " + targetPlayer + " hp" );
+
+    connection.invoke("ModifyPlayerHp", targetPlayer, "increase", JSON.stringify(state.Game)).catch(function (err) {
+        return console.error(err.toString());
+      });
+});
+
+connection.on("DispatchPlayerHP", function (playerStatus) {
+    var json = JSON.parse(playerStatus);
+    var playerStatuses = json.PlayerStatuses;
+
+    playerStatuses.forEach(status => {
+        $('.player').each(function() {
+            var playerName = $(this).find('.playerName').text().trim();
+            
+            if (playerName === status.Name) {
+              $(this).find('.playerHp').text(status.Hp+" HP");
+            }
+          });
+    });
+
+    console.log(json);
+})
+
+
+function FillZoneInspectorWithCards(playerInspecting, playerInspected, inspectedZone){
+    $('#zoneInspector').append("<div>"+playerInspecting+
+    " is looking at the "+inspectedZone+ " zone of "+ playerInspected+"</div>")
+
+    var game = state.Game;
+    connection.invoke("ShowMeCertainZone", playerInspecting, playerInspected, inspectedZone, JSON.stringify(game)).catch(function (err) {
+        return console.error(err.toString());
+      });
+}
+
+connection.on("ShowSneakedZone", function (sneakedZone) {
+    if(true){
+        console.log("non fare nulla se non sei il richiedente");
+    }
+
+    $('#zoneInspectorCardContainer').empty();
+    var json = JSON.parse(sneakedZone);
+    json.forEach(el => {
+        var sneakedCard = "<div id='"+el.Guid+"' cardId='"+el.CardId+"' source='"+el.Source+"' name='"+el.Name+"' class='cardContainerSneaked'>"+
+        "<img class='cardOnTheTableSneaked' src='"+el.Source+"'>" +
+        "</div>";
+        $('#zoneInspectorCardContainer').append(sneakedCard);
+    });
+})
+
 
 
 function GetTeams() {
@@ -525,7 +674,12 @@ function DisplayTeamWaiting(teams){
             var teamName = "."+team.TeamName.toLowerCase();
 
             team.Teammates.forEach( teammate => {
-                var teammateDiv = "<div class='player'><div disabled='disabled' playerid='"+teammate.Id+"' class='playerName'>"+teammate.Name+"</div><div class='playerHp'>20 HP</div></div>";
+                var teammateDiv = "<div class='player'>"+
+                "<div disabled='disabled' playerid='"+teammate.Id+"' class='playerName'>"+teammate.Name+"</div>"+
+                "<button class='decreaseHpButton' playerid='"+teammate.Id+"'>-</button>"+
+                "<div class='playerHp'>20 HP</div>"+
+                "<button class='increaseHpButton' playerid='"+teammate.Id+"'>+</button>"+
+                "</div>";
                 
                 if($(document).find('.playerName[playerid="'+teammate.Id+'"]').length == 0){
                     $(teamName).append(teammateDiv);

@@ -25,6 +25,40 @@
   background-color: var(--option_Background_color);
 }
 
+#zoneInspector, #contextMenu{
+  position: absolute;
+  background: var(--option_Background_color);
+  border-radius: 10px;
+  border: 2px solid var(--option_Border_color);
+  width: 50%;
+  height: 60%;
+  top: 20%;
+  left: 25%;
+  padding: 2%;
+  z-index: 9999;
+  display:none;
+  overflow-y: auto;
+}
+
+#zoneInspectorCardContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distribuisce uniformemente lo spazio tra gli elementi */
+  gap: 10px; /* Aggiunge spazio tra gli elementi */
+  height: -5%;
+}
+.cardContainerSneaked{
+  flex-basis: calc(25% - 20px); /* Calcola la larghezza per 6 elementi per riga con spazio tra di loro */
+  max-width: calc(25% - 20px); /* Assicura che ogni immagine sia larga quanto l'elemento della griglia con spazio tra di loro */
+  height: 200px; /* Altezza automatica per mantenere l'aspetto proporzionale delle immagini */
+  width: 50px;
+  margin: 5px; /* Aggiungi spazio tra le immagini */
+}
+
+.cardOnTheTableSneaked{
+  height: 100%;
+}
+
 #inviteSection{
   position: absolute;
   background: var(--option_Background_color);
@@ -222,7 +256,7 @@
 }
 
 .player{
-  columns: 2;
+  columns: 4;
 }
 
 .teamTitle{
@@ -230,7 +264,7 @@
 }
 
 .teams{
-  margin-bottom:5%;
+  margin-bottom: 0%;
   margin-top:5%;
 }
 
@@ -308,8 +342,13 @@
 }
 
 #zoomedHoveredCard{
-  width: 100%;
+  width: 93%;
   border-radius: 18px;
+}
+
+.zoomedHoveredCardContainer{
+  display: flex;
+  justify-content: center;
 }
 
 .playerNameBoardContainer{
@@ -322,4 +361,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#notificationFromOtherPlayers{
+  overflow-y: auto;
+  height: 100%;
+}
+
+.notificationFromOtherPlayersContainer{
+  height: 10%;
 }

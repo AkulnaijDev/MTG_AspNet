@@ -11,7 +11,13 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     
     var zoneTo = ev.target.className;
+
     var playerTo = $(ev.target).parent().parent().parent().find('.playerNameBoardContainer').text();
+
+    if (zoneTo === 'cardOnTheTable') {
+        playerTo =$(ev.target).parent().parent().parent().parent().find('.playerNameBoardContainer').text();
+        zoneTo = $(ev.target).parent().parent()[0].className;;
+    }
 
     var cardMoved = $('#'+ data);
     var zoneFrom = cardMoved.parent()[0].className;
@@ -30,9 +36,17 @@ function drop(ev) {
         }
     }
 
-    ev.target.appendChild(document.getElementById(data));
+    
+    if (zoneTo === 'cardOnTheTable') {
+        var targetZone = $(ev.target).parent().parent();
+        cardMoved.appendTo(targetZone);
+    } else {
+        ev.target.appendChild(document.getElementById(data));
+    }
 
+    var cardName = cardMoved.attr('name');
     //GESTISCI QUI L'UPDATE DI STATO!!!!!!! avanti e indietro!!!
+    LogInGame(playerFrom + " moved "+ " "+cardName+" " +" from "+playerFrom+ " " + zoneFrom+ " zone to " +playerTo+ " " + zoneTo+ " zone" );
     
     connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
         return console.error(err.toString());
@@ -95,13 +109,15 @@ function UpdateBoard(newGameStatus){
             parentBoard.find('.cardZone').append(div);
         })
 
+        var attributeCantSeeCard= false;
         parentBoard.find('.handZone').empty();
         element.Hand.forEach(card => {
             var cardSource = card.Source;
             if (element.Name != myUsername) {
                 cardSource = "../resources/cardBack.jpg"
+                attributeCantSeeCard = true;
             }
-            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+' seeOnlyBack="'+attributeCantSeeCard+ '" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.handZone').append(div);
         })
 
@@ -274,10 +290,12 @@ function DealCardToPlayer(indexPlayer, indexZone) {
 
     state.PlayerStatuses[indexPlayer].Hand.forEach(card => {
         var cardSource = card.Source;
+        var attributeCantSeeCard= false;
         if (state.PlayerStatuses[indexPlayer].Name != myUsername) {
             cardSource = "../resources/cardBack.jpg"
+            attributeCantSeeCard = true;
         }
-        var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+        var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" seeOnlyBack="'+attributeCantSeeCard+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
         $('.handZone').eq(indexZone).append(div);
     })
 
