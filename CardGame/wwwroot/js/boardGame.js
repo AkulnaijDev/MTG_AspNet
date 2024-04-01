@@ -295,6 +295,25 @@ $('body').on('click', '#contextMenuPlayToken', function () {
 
 });
 
+
+$('body').on('click', '#contextMenuScryDeck', function () {
+    $('#contextMenu').hide();
+    var contextMenu = $(this).parent().parent();
+    var playerInspecting = contextMenu.attr('inspecting');
+    var playerInspected = contextMenu.attr('inspected');
+    var howManyCards = $('#contextMenuScryCards').val();
+
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, howManyCards,"deck")
+    $('#zoneInspector').show();
+
+    if(IsEnglishLanguageOn()){
+        LogInGame(playerInspecting + " is checking " + playerInspected + " deck" );
+    } else {
+        LogInGame(playerInspecting + " sta guardando il deck di " + playerInspected);
+    }
+});
+
+
 // connection.on("DispatchPlayedTokens", function (playedTokens) {
   
 // })
@@ -336,7 +355,7 @@ $('body').on('click', '#contextMenuViewDeck', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
     
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, "deck")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"deck")
     $('#zoneInspector').show();
 
     if(IsEnglishLanguageOn()){
@@ -352,7 +371,7 @@ $('body').on('click', '#contextMenuViewGraveyard', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, "graveyard")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"graveyard")
     $('#zoneInspector').show();
 
     if(IsEnglishLanguageOn()){
@@ -368,7 +387,7 @@ $('body').on('click', '#contextMenuViewExiled', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, "exiled")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"exiled")
     $('#zoneInspector').show();
     
     if(IsEnglishLanguageOn()){
@@ -384,7 +403,7 @@ $('body').on('click', '#contextMenuViewHand', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, "hand")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"hand")
     $('#zoneInspector').show();
     
     if(IsEnglishLanguageOn()){
@@ -439,9 +458,9 @@ connection.on("DispatchPlayerHP", function (playerStatus) {
 })
 
 
-function FillZoneInspectorWithCards(playerInspecting, playerInspected, inspectedZone){
+function FillZoneInspectorWithCards(playerInspecting, playerInspected, howManyCards, inspectedZone,){
     var game = state.Game;
-    connection.invoke("ShowMeCertainZone", playerInspecting, playerInspected, inspectedZone, JSON.stringify(game)).catch(function (err) {
+    connection.invoke("ShowMeCertainZone", playerInspecting, playerInspected, inspectedZone,howManyCards, JSON.stringify(game)).catch(function (err) {
         return console.error(err.toString());
       });
 }

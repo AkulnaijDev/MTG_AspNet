@@ -165,11 +165,16 @@
 .graveyardZone {
   height: 33%;
   background-color: yellow;
+  flex-direction: row;
+  justify-content: flex-start;
+
 }
 
 .exiledZone {
   height: 33%;
   background-color: green;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .landZone {

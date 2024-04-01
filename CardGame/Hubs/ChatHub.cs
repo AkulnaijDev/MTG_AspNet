@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Globalization;
 using System.IO.Pipelines;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Utils;
 using static System.Net.Mime.MediaTypeNames;
@@ -1040,7 +1041,7 @@ namespace CardGame.Hubs
         }
 
 
-        public async Task ShowMeCertainZone(string playerInspecting, string playerInspected, string inspectedZone, string game)
+        public async Task ShowMeCertainZone(string playerInspecting, string playerInspected, string inspectedZone, string howManyCards, string game)
         {
             try
             {
@@ -1067,8 +1068,12 @@ namespace CardGame.Hubs
                     requestedZone = requestedStatus.Hand;
                 }
 
-                //var result = "{'sneakedCards':'"+ JsonConvert.SerializeObject(requestedZone) + "'}";
                 var result = new List<GameCard>(requestedZone);
+
+                if (Convert.ToInt32(howManyCards)!=0)
+                {
+                    result = result.Take(Convert.ToInt32(howManyCards)).ToList();
+                }
 
                 await Clients.Client(requestingPlayer).SendAsync("ShowSneakedZone", JsonConvert.SerializeObject(result));
             }
