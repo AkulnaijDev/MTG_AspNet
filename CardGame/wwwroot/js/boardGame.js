@@ -222,6 +222,14 @@ $('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
     }
 });
 
+$('body').on('dblclick', '.cardContainer', function () {
+    var el = $(this);
+      if (el.hasClass('tapped')) {
+      el.removeClass('tapped');
+    } else {
+      el.addClass('tapped');
+    }
+  });
 
 
 function GetTeams() {

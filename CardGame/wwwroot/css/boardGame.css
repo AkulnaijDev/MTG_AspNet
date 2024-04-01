@@ -283,6 +283,12 @@
   z-index: 9998;
 }
 
+.tapped{
+  transform: rotate(90deg);
+  margin-right:20px;
+  margin-left:20px;
+}
+
 .deckBackCardOnTheTable {
   height: 100%;
   position: relative;
