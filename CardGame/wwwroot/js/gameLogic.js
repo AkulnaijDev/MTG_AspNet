@@ -101,15 +101,15 @@ function UpdateBoard(newGameStatus){
 
     JSON.parse(newGameStatus).PlayerStatuses.forEach(element => {
         var parentBoard = $('.playerNameBoardContainer:contains('+element.Name+')').parent().parent().parent().parent();
-       
+        var attributeCantSeeCard= false;
+
         parentBoard.find('.cardZone').empty();
         element.GameZone.forEach(card => {
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" seeOnlyBack="'+attributeCantSeeCard+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.cardZone').append(div);
         })
 
-        var attributeCantSeeCard= false;
         parentBoard.find('.handZone').empty();
         element.Hand.forEach(card => {
             var cardSource = card.Source;
@@ -117,14 +117,14 @@ function UpdateBoard(newGameStatus){
                 cardSource = "../resources/cardBack.jpg"
                 attributeCantSeeCard = true;
             }
-            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+' seeOnlyBack="'+attributeCantSeeCard+ '" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.handZone').append(div);
         })
 
         parentBoard.find('.landZone').empty();
         element.LandZone.forEach(card => {
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" seeOnlyBack="'+attributeCantSeeCard+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.landZone').append(div);
         })
 
@@ -145,14 +145,14 @@ function UpdateBoard(newGameStatus){
         parentBoard.find('.planeswalkerZone').empty();
         element.PlaneswalkerZone.forEach(card => {
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" seeOnlyBack="'+attributeCantSeeCard+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.planeswalkerZone').append(div);
         })
 
         parentBoard.find('.commanderZone').empty();
         element.CommanderZone.forEach(card => {
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" seeOnlyBack="'+attributeCantSeeCard+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.commanderZone').append(div);
         })
 
@@ -290,12 +290,13 @@ function DealCardToPlayer(indexPlayer, indexZone) {
 
     state.PlayerStatuses[indexPlayer].Hand.forEach(card => {
         var cardSource = card.Source;
-        var attributeCantSeeCard= false;
+        var untappable= true;
+        
         if (state.PlayerStatuses[indexPlayer].Name != myUsername) {
             cardSource = "../resources/cardBack.jpg"
-            attributeCantSeeCard = true;
         }
-        var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" seeOnlyBack="'+attributeCantSeeCard+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+
+        var div = '<div id="' + card.Guid + '" cardId="'+card.CardId+'" seeOnlyBack="'+untappable+'" source="'+card.Source+'" name="'+card.Name+'" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
         $('.handZone').eq(indexZone).append(div);
     })
 

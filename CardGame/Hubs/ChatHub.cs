@@ -1055,6 +1055,7 @@ namespace CardGame.Hubs
                 var requestedStatus = storedPlayerStatuses.Where(x => x.Name == playerInspected).First();
 
                 var requestedZone = requestedStatus.Deck;
+
                 if (inspectedZone == "graveyard")
                 {
                     requestedZone = requestedStatus.Graveyard;
@@ -1070,7 +1071,7 @@ namespace CardGame.Hubs
 
                 var result = new List<GameCard>(requestedZone);
 
-                if (Convert.ToInt32(howManyCards)!=0)
+                if (Convert.ToInt32(howManyCards)!=0)  //handle if request > how many are in the zone?
                 {
                     result = result.Take(Convert.ToInt32(howManyCards)).ToList();
                 }
@@ -1175,6 +1176,78 @@ namespace CardGame.Hubs
 
                 var roomId = newGameStatus.Game.RoomId;
                 await Clients.Group(roomId).SendAsync("DispatchPlayerHP", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task ExileCardsFromPlayerDeck(string playerUsername, string action, string howManyCards, string fromTop, string game)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+                    if (playerStatus.Name == playerUsername)
+                    {
+                        var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                       
+                        var howMany = Convert.ToInt32(howManyCards);
+                        if (fromTop=="top")
+                        {
+                            if (updatedPlayer.Deck.Count>=howMany)
+                            {
+                                var firstElements = updatedPlayer.Deck.Take(howMany).ToList();
+                                updatedPlayer.Deck.RemoveRange(0, howMany);
+
+                                if (action == "discard")
+                                {
+                                    updatedPlayer.Graveyard.AddRange(firstElements);
+                                } else
+                                {
+                                    updatedPlayer.Exiled.AddRange(firstElements);
+                                }
+                                
+                            }
+                           
+                        } 
+                        else
+                        {
+                            if (updatedPlayer.Deck.Count >= howMany)
+                            {
+                                int count = updatedPlayer.Deck.Count;
+                                var lastElements = updatedPlayer.Deck.Skip(count - howMany).ToList();
+                                updatedPlayer.Deck.RemoveRange(count - howMany, howMany);
+
+                                if (action == "discard")
+                                {
+                                    updatedPlayer.Graveyard.AddRange(lastElements);
+                                }
+                                else
+                                {
+                                    updatedPlayer.Exiled.AddRange(lastElements);
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+                await Clients.Group(roomId).SendAsync("DispatchExiledCards", JsonConvert.SerializeObject(newGameStatus));
             }
             catch (Exception ex)
             {

@@ -114,10 +114,35 @@
     <div class="" id="contextMenu">
         <button id="contextMenuShuffleDeck">Shuffle deck</button>
         <button id="contextMenuViewDeck">View deck</button>
+        <button id="contextMenuMulligan">Mulligan</button>
+
         <div id="contextMenuScryContainer">
             <input type="number" placeholder="X" id="contextMenuScryCards">
             <button id="contextMenuScryDeck">View first X cards </button>
         </div>
+
+         <div id="contextMenuExileContainer">
+            <input type="number" placeholder="X" id="contextMenuExileCards">
+             <select id="contextMenuExileDiscardActionSelector">
+                <option class="optionDiscard" value="discard">Discard cards</option>
+                <option class="optionExile" value="exile">Exile cards</option>
+            </select>
+            <select id="contextMenuExileDeckSelector">
+                <option class="optionFromTop" value="top">From top</option>
+                <option class="optionFromBottom" value="bottom">From bottom</option>
+            </select>
+            <button id="contextMenuExileDeck"> Confirm </button>
+        </div>
+
+        @* <div id="contextMenuDiscardContainer">
+            <input type="number" placeholder="X" id="contextMenuDiscardCards">
+            <button id="contextMenuDiscardDeck">Discard first X cards </button>
+             <select id="contextMenuDiscardDeckSelector">
+                <option class="optionFromTop" value="top">From top</option>
+                <option class="optionFromBottom" value="bottom">From bottom</option>
+            </select>
+        </div> *@
+
          <div id="contextMenuToken">
             <select id="contextMenuTokenSelector"></select>
             <input type="number" placeholder="X" id="contextMenuTokenQuantity">

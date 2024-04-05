@@ -2,6 +2,7 @@ var cards = [];
 var settini = [];
 var decks = [];
 var mySettings = {};
+var amIEditing = false;
 
 connection.on("PopulateAllCardsLastSet", function (scrapedCards) {
     var cardsParsed = JSON.parse(scrapedCards);
@@ -197,6 +198,16 @@ $('body').on('click', '#myDeckCreateNameSaveButton', function () {
         $('#myDeckCreateNameInput').val('');
         $('#myDeckCreateName').hide();
         $('#myDeckSaveButton').attr('editing','')
+        amIEditing = true;
+       
+       
+        $('#myDecksPickerSelectorDelete').removeClass('notVisible')
+        $('#myDeckSaveButton').removeAttr('disabled')
+        $('.cardRowActionPlus').css('visibility','visible')
+        $('.cardRowActionMinus').css('visibility','visible')
+        $('.addCardToDeck').removeClass('notVisible')
+        $('.removeCardFromDeck').removeClass('notVisible')
+
     } 
 });
 
@@ -621,7 +632,7 @@ function setCardsImages(cardArray) {
     var plus = "<span class='addCardToDeck'>➕</span>"
     var minus = "<span class='removeCardFromDeck'>➖</span>"
 
-    if(isPrecon == true){
+    if(isPrecon == true || amIEditing == false){
         plus = "<span class='notVisible addCardToDeck'>➕</span>"
         minus = "<span class='notVisible removeCardFromDeck'>➖</span>"
     }

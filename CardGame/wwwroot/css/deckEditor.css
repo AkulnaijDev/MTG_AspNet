@@ -41,6 +41,7 @@
 
     #myDeckCardPreviewImage{
         height: 140px;
+        border-radius:10px;
     }
 
     .cardImagePreview {
@@ -157,6 +158,7 @@
 
     #myDeckCardPreviewImage{
         height: 250px;
+        border-radius: 10px;
     }
        
     .cardImagePreview {

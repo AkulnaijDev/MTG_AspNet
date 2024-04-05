@@ -364,6 +364,13 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextMenuViewDeck').text("Guarda mazzo")
         $('#contextMenuViewHand').text("Guarda mano")
         $('#contextMenuScryDeck').text("Guarda prime X carte")
+        $('#contextMenuDiscardDeck').text("Scarta prime X carte")
+        $('#contextMenuExileDeck').text("Esilia prime X carte")
+        $('.optionFromTop').text("Dalla cima");
+        $('.optionFromBottom').text("Dal fondo");
+        $('.optionDiscard').text("Scarta carte");
+        $('.optionExile').text("Esilia carte");
+
         $('#contextMenuPlayToken').text("Gioca token")
         $('#contextMenuViewGraveyard').text("Guarda cimitero")
         $('#contextMenuViewExiled').text("Guarda esilio")
@@ -488,8 +495,15 @@ $('body').on('change', '#languageChooseOptions', function () {
 
         $('#contextMenuShuffleDeck').text("Shuffle deck")
         $('#contextMenuViewDeck').text("View deck")
-        $('#contextMenuShuffleDeck').text("View hand")
+        $('#contextMenuViewHand').text("View hand")
         $('#contextMenuScryDeck').text("View first X cards")
+        $('#contextMenuDiscardDeck').text("Discard first X cards")
+        $('#contextMenuExileDeck').text("Exile first X cards")
+        $('.optionFromTop').text("From Top");
+        $('.optionFromBottom').text("From Bottom");
+        $('.optionDiscard').text("Discard cards");
+        $('.optionExile').text("Exile cards");
+
         $('#contextMenuPlayToken').text("Play token")
         $('#contextMenuViewGraveyard').text("View graveyard")
         $('#contextMenuViewExiled').text("View exiled")

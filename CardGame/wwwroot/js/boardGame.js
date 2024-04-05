@@ -5,6 +5,12 @@ connection.on("DispatchLogGameEvent", function (log) {
     var json = JSON.parse(log);
     var loggedElement = "<div class='loggedEvent'>"+json+"</div>"
     $('#notificationFromOtherPlayers').append(loggedElement);
+
+    $('#notificationFromOtherPlayers').animate({
+        scrollTop: $(
+            'html, body').get(0).scrollHeight
+    }, 2000);
+
 })
 
 function LogInGame(text){
@@ -306,6 +312,7 @@ $('body').on('click', '#contextMenuScryDeck', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, howManyCards,"deck")
     $('#zoneInspector').show();
 
+    
     if(IsEnglishLanguageOn()){
         LogInGame(playerInspecting + " is checking " + playerInspected + " deck" );
     } else {
@@ -313,10 +320,45 @@ $('body').on('click', '#contextMenuScryDeck', function () {
     }
 });
 
+$('body').on('click', '#contextMenuExileDeck', function () {
+    $('#contextMenu').hide();
+    var contextMenu = $(this).parent().parent();
+    var targetPlayer = contextMenu.attr('inspecting');
+    var playerInspected = contextMenu.attr('inspected');
 
-// connection.on("DispatchPlayedTokens", function (playedTokens) {
-  
-// })
+    var howManyCards = $('#contextMenuExileCards').val();
+    var whichAction = $('#contextMenuExileDiscardActionSelector').val();
+    var fromTop = $('#contextMenuExileDeckSelector').val();
+
+    if(targetPlayer == playerInspected){
+        connection.invoke("ExileCardsFromPlayerDeck", targetPlayer,whichAction,howManyCards,fromTop, JSON.stringify(state.Game)).catch(function (err) {
+            return console.error(err.toString());
+        });
+    
+        if(IsEnglishLanguageOn()){
+            var actionText = " exiled ";
+            if(whichAction == "discard"){
+                actionText = " discarded "
+            }
+            LogInGame(targetPlayer + actionText + howManyCards + " cards from his/her deck");
+        } else {
+            var actionText = " ha esiliato ";
+            if(whichAction == "discard"){
+                actionText = " ha scartato "
+            }
+            LogInGame(targetPlayer + actionText +howManyCards+" carte dal suo deck");
+        }
+    } else {
+        if(IsEnglishLanguageOn()){
+            LogInGame(targetPlayer + " can't complete this action");
+        } else {
+            LogInGame(targetPlayer + " non può fare questa azione");
+        }
+    }
+    
+});
+
+
 
 
 //this is so bad
@@ -355,7 +397,7 @@ $('body').on('click', '#contextMenuViewDeck', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
     
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"deck")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "0","deck")
     $('#zoneInspector').show();
 
     if(IsEnglishLanguageOn()){
@@ -371,7 +413,7 @@ $('body').on('click', '#contextMenuViewGraveyard', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"graveyard")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "0","graveyard")
     $('#zoneInspector').show();
 
     if(IsEnglishLanguageOn()){
@@ -387,7 +429,7 @@ $('body').on('click', '#contextMenuViewExiled', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"exiled")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "0","exiled")
     $('#zoneInspector').show();
     
     if(IsEnglishLanguageOn()){
@@ -403,7 +445,7 @@ $('body').on('click', '#contextMenuViewHand', function () {
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, 0,"hand")
+    FillZoneInspectorWithCards(playerInspecting, playerInspected, "0","hand")
     $('#zoneInspector').show();
     
     if(IsEnglishLanguageOn()){
@@ -455,6 +497,11 @@ connection.on("DispatchPlayerHP", function (playerStatus) {
     });
 
     console.log(json);
+})
+
+connection.on("DispatchExiledCards", function (newGameState) {
+    state = JSON.parse(newGameState);
+    UpdateBoard(newGameState);
 })
 
 
