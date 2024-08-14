@@ -396,6 +396,9 @@ namespace CardGame.Hubs
                    .Select(g => g.OrderByDescending(c => DateTime.ParseExact(c.Released_at, "yyyy-MM-dd", CultureInfo.InvariantCulture)).First())
                    .ToList();
                 }
+
+                cards = cards.OrderBy(x=> x.Name).ToList();
+
                 var obj = JsonConvert.SerializeObject(cards);
 
                 await Clients.Caller.SendAsync("SendSearchedCards", obj);
