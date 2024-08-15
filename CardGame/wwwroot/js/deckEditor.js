@@ -597,12 +597,18 @@ function showCardsImage(array) {
 
         let filePath = "";
 
-        if (element.Name.includes("//")) {
+        if (element.Name.includes("//") && element.Layout != "split") {
             doubleFace = true;
             filePath = '../resources/cards_images/' + selectedSetCode + '_' + selectedSetName + '/' + selectedSetCode + '_front_' + element.Id + '.jpg';
         } else {
             doubleFace = false;
             filePath = '../resources/cards_images/' + selectedSetCode + '_' + selectedSetName + '/' + selectedSetCode + '_' + element.Id + '.jpg';
+        }
+
+        if(element.Layout=="split"){
+            console.log("yikes! " + element.Name + " is split!");
+            console.log("yikes! " + filePath + " is split!");
+            doubleFace = false;
         }
 
         let cardObject = {
