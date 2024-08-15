@@ -576,6 +576,7 @@ connection.on("DisplayGameBoard", function (gameState) {
 
     DealInitialCards();
     DisplayDecks();
+    DisplayInitialHP(gameStatus.Game.GameMode);
 })
 
 
@@ -583,6 +584,12 @@ connection.on("UpdateGameBoard", function (newGameState) {
     state = JSON.parse(newGameState);
     UpdateBoard(newGameState);
 })
+
+function DisplayInitialHP(mode){
+   if(mode=="commander"){
+    $('.playerHp').text('40 HP')
+   }
+}
 
 
 function DisplayBoardForTwoPlayers (){
