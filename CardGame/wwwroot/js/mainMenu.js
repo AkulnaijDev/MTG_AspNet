@@ -1,12 +1,9 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     PopulateRuleset();
     PopulateGameModeExplanation();
 });
-
-
-
 
 //rules START
 $('body').on('click', '.abilityPlusIcon', function () {
@@ -21,9 +18,9 @@ $('body').on('click', '.abilityMinusIcon', function () {
 });
 
 $('body').on('click', '#mainMenuRules', function () {
-    if(!$("#optionsMenu").is(':visible') && !$("#myDeckMenu").is(':visible') && !$("#gameModeMenu").is(':visible')){
+    if (!$("#optionsMenu").is(':visible') && !$("#myDeckMenu").is(':visible') && !$("#gameModeMenu").is(':visible')) {
         $('#rulesMenu').show();
-    }   
+    }
 });
 
 $('body').on('click', '#closeRulesMenu', function () {
@@ -35,11 +32,10 @@ $('body').on('click', '#closeRulesMenu', function () {
 
 // options START
 $('body').on('click', '#mainMenuOptions', function () {
-    if(!$("#rulesMenu").is(':visible') && !$("#myDeckMenu").is(':visible') && !$("#gameModeMenu").is(':visible')){
+    if (!$("#rulesMenu").is(':visible') && !$("#myDeckMenu").is(':visible') && !$("#gameModeMenu").is(':visible')) {
         $('#optionsMenu').show();
     }
 });
-
 
 $('body').on('click', '#closeOptionsMenu', function () {
     var desktop = $('#backgroundChooseOptions').val();
@@ -49,23 +45,23 @@ $('body').on('click', '#closeOptionsMenu', function () {
     var language = $('#languageChooseOptions').val();
     var myId = myConnectionId;
 
-    connection.invoke("SaveMySettings",myId, myUsername,chosenVolume,desktop,theme,language,music ).catch(function (err) {
+    connection.invoke("SaveMySettings", myId, myUsername, chosenVolume, desktop, theme, language, music).catch(function (err) {
         return console.error(err.toString());
-      });
+    });
 
     $('#optionsMenu').hide();
 
 });
 
 connection.on("ConfirmSavedSettings", function (result) {
-    console.log("Settings update:"+ result)  //add a spinner o
+    console.log("Settings update:" + result)
 })
 
 connection.on("SendSearchedCards", function (result) {
     $('#myDeckCardPickerContainer').empty();
     $('#myDeckAdvancedSearch input').val('');
     $('#myDeckAdvancedSearch input').prop('checked', false);
-    $("#myDeckAdvancedSearch select").each(function() {
+    $("#myDeckAdvancedSearch select").each(function () {
         $(this).find("option:first").prop("selected", true);
         $(this).find("option:not(:first)").prop("selected", false);
     });
@@ -90,9 +86,9 @@ $('body').on('click', '#myDeckDecksSearchButton', function () {
 })
 
 $('body').on('change', '#myRange', function () {
-    var chosenVolume = $(this).val()/100;
-    document.getElementById('initialPageAudio').volume= chosenVolume;
-    if(chosenVolume==0){
+    var chosenVolume = $(this).val() / 100;
+    document.getElementById('initialPageAudio').volume = chosenVolume;
+    if (chosenVolume == 0) {
         $('#stopMusic').hide()
         $('#playMusic').show()
     } else {
@@ -103,42 +99,42 @@ $('body').on('change', '#myRange', function () {
 
 $('body').on('change', '#backgroundChooseOptions', function () {
     var desktop = $('#backgroundChooseOptions').val();
-    if(desktop =="jace"){
-        $('#mainMenu').css('background-image','url(../resources/Jace.jpg)')
-    } else if(desktop =="nissa"){
-        $('#mainMenu').css('background-image','url(../resources/Nissa.jpg)')
-    } else if(desktop =="ajani"){
-        $('#mainMenu').css('background-image','url(../resources/Ajani.jpg)')
-    } else if(desktop =="liliana"){
-        $('#mainMenu').css('background-image','url(../resources/Liliana.jpg)')
-    } 
+    if (desktop == "jace") {
+        $('#mainMenu').css('background-image', 'url(../resources/Jace.jpg)')
+    } else if (desktop == "nissa") {
+        $('#mainMenu').css('background-image', 'url(../resources/Nissa.jpg)')
+    } else if (desktop == "ajani") {
+        $('#mainMenu').css('background-image', 'url(../resources/Ajani.jpg)')
+    } else if (desktop == "liliana") {
+        $('#mainMenu').css('background-image', 'url(../resources/Liliana.jpg)')
+    }
     else {
-        $('#mainMenu').css('background-image','url(../resources/Chandra.jpg)')
+        $('#mainMenu').css('background-image', 'url(../resources/Chandra.jpg)')
     }
 });
 
 $('body').on('change', '#themeChooseOptions', function () {
     var theme = $('#themeChooseOptions').val();
-    if(theme =="default"){
+    if (theme == "default") {
         document.documentElement.style.setProperty('--option_Background_color', 'darkslategray');
         document.documentElement.style.setProperty('--option_Text_hover', '#bb240a');
-    } 
-    else if(theme =="plain"){
+    }
+    else if (theme == "plain") {
         document.documentElement.style.setProperty('--option_Background_color', '#a8a880');
         document.documentElement.style.setProperty('--option_Text_hover', '#969656');
-    } 
-    else if(theme =="mountain"){
+    }
+    else if (theme == "mountain") {
         document.documentElement.style.setProperty('--option_Background_color', '#720800');
         document.documentElement.style.setProperty('--option_Text_hover', '#bb240a');
-    } 
-    else if(theme =="forest"){
+    }
+    else if (theme == "forest") {
         document.documentElement.style.setProperty('--option_Background_color', '#066224');
         document.documentElement.style.setProperty('--option_Text_hover', '#023412');
-    } 
-    else if(theme =="island"){
+    }
+    else if (theme == "island") {
         document.documentElement.style.setProperty('--option_Background_color', '#3a3ad0');
         document.documentElement.style.setProperty('--option_Text_hover', '#1d1d72');
-    } 
+    }
     else {
         document.documentElement.style.setProperty('--option_Background_color', '#4a2f4a');
         document.documentElement.style.setProperty('--option_Text_hover', '#5a025a');
@@ -148,11 +144,11 @@ $('body').on('change', '#themeChooseOptions', function () {
 $('body').on('change', '#musicChooseOptions', function () {
     var music = $('#musicChooseOptions').val();
     var audio = document.getElementById('initialPageAudio')
-    if(music =="A_Time_Forgotten"){
+    if (music == "A_Time_Forgotten") {
         audio.src = '../resources/A-Time-Forgotten.mp3'
-    } else if(music =="Now-We-Ride"){
+    } else if (music == "Now-We-Ride") {
         audio.src = '../resources/Now-We-Ride.mp3'
-    } else if(music =="Surreal-Forest"){
+    } else if (music == "Surreal-Forest") {
         audio.src = '../resources/Surreal-Forest.mp3'
     } else {
         audio.src = '../resources/InitialMusic.mp3'
@@ -180,7 +176,7 @@ $('body').on('click', '#myDeckAdvancedSearchCloseButton', function () {
     $('#myDeckAdvancedSearch').hide();
     $('#myDeckAdvancedSearch input').val('');
     $('#myDeckAdvancedSearch input').prop('checked', false);
-    $("#myDeckAdvancedSearch select").each(function() {
+    $("#myDeckAdvancedSearch select").each(function () {
         $(this).find("option:first").prop("selected", true);
         $(this).find("option:not(:first)").prop("selected", false);
     });
@@ -197,46 +193,45 @@ $('body').on('click', '#myDeckDecksNormalSearchButton', function () {
 $('body').on('click', '#myDeckAdvancedSearchSearchButton', function () {
 
     var searchObject = {
-        name : $('#advancedSearchName').val(),
-        text : $('#advancedSearchText').val(),
-        type : $('#advancedSearchTypeLine').val(),
-        sets : $('#myDeckSetPickerSelector').val(),
-        colorWhite : $('#advancedSearchTypeColorWhite').is(':checked'),
-        colorBlue : $('#advancedSearchTypeColorBlue').is(':checked'),
-        colorBlack : $('#advancedSearchTypeColorBlack').is(':checked'),
-        colorRed : $('#advancedSearchTypeColorRed').is(':checked'),
-        colorGreen : $('#advancedSearchTypeColorGreen').is(':checked'),
-        colorColorless : $('#advancedSearchTypeColorColorless').is(':checked'),
-        colorValue : $('#advancedSearchStatsValueType').val(),
-        commanderColorWhite : $('#advancedSearchCommanderColorWhite').is(':checked'),
-        commanderColorBlue : $('#advancedSearchCommanderColorBlue').is(':checked'),
-        commanderColorBlack : $('#advancedSearchCommanderColorBlack').is(':checked'),
-        commanderColorRed : $('#advancedSearchCommanderColorRed').is(':checked'),
-        commanderColorGreen : $('#advancedSearchCommanderColorGreen').is(':checked'),
-        commanderColorColorless : $('#advancedSearchCommanderColorColorless').is(':checked'),
-        manaCost : $('#advancedSearchCmC').val(),
+        name: $('#advancedSearchName').val(),
+        text: $('#advancedSearchText').val(),
+        type: $('#advancedSearchTypeLine').val(),
+        sets: $('#myDeckSetPickerSelector').val(),
+        colorWhite: $('#advancedSearchTypeColorWhite').is(':checked'),
+        colorBlue: $('#advancedSearchTypeColorBlue').is(':checked'),
+        colorBlack: $('#advancedSearchTypeColorBlack').is(':checked'),
+        colorRed: $('#advancedSearchTypeColorRed').is(':checked'),
+        colorGreen: $('#advancedSearchTypeColorGreen').is(':checked'),
+        colorColorless: $('#advancedSearchTypeColorColorless').is(':checked'),
+        colorValue: $('#advancedSearchStatsValueType').val(),
+        commanderColorWhite: $('#advancedSearchCommanderColorWhite').is(':checked'),
+        commanderColorBlue: $('#advancedSearchCommanderColorBlue').is(':checked'),
+        commanderColorBlack: $('#advancedSearchCommanderColorBlack').is(':checked'),
+        commanderColorRed: $('#advancedSearchCommanderColorRed').is(':checked'),
+        commanderColorGreen: $('#advancedSearchCommanderColorGreen').is(':checked'),
+        commanderColorColorless: $('#advancedSearchCommanderColorColorless').is(':checked'),
+        manaCost: $('#advancedSearchCmC').val(),
 
-        valueType : $('#advancedSearchStatsValueStats').val(),
-        valueEqual : $('#advancedSearchStatsValueEqual').val(),
-        valueAmount : $('#advancedSearchStatsValueAmount').val(),
+        valueType: $('#advancedSearchStatsValueStats').val(),
+        valueEqual: $('#advancedSearchStatsValueEqual').val(),
+        valueAmount: $('#advancedSearchStatsValueAmount').val(),
 
-        rarityCommon : $('#advancedSearchRarityCommonInput').is(':checked'),
-        rarityUncommon : $('#advancedSearchRarityUncommonInput').is(':checked'),
-        rarityRare : $('#advancedSearchRarityRareInput').is(':checked'),
-        rarityMythic : $('#advancedSearchRarityMythicInput').is(':checked'),
+        rarityCommon: $('#advancedSearchRarityCommonInput').is(':checked'),
+        rarityUncommon: $('#advancedSearchRarityUncommonInput').is(':checked'),
+        rarityRare: $('#advancedSearchRarityRareInput').is(':checked'),
+        rarityMythic: $('#advancedSearchRarityMythicInput').is(':checked'),
 
-        singleton : $('#advancedSearchOnePerIdValue').is(':checked'),
-        flavorText : $('#advancedSearchFlavorText').val()
+        singleton: $('#advancedSearchOnePerIdValue').is(':checked'),
+        flavorText: $('#advancedSearchFlavorText').val()
     }
-    
-    console.log(searchObject);
+
     $('#advancedSearchSpinner').show();
 
     connection.invoke("AdvancedSearchCards", JSON.stringify(searchObject)).catch(function (err) {
         $('#advancedSearchSpinner').hide();
         $('#advancedSearchError').show().delay(2000).fadeOut();
         return console.error(err.toString());
-      });
+    });
 
 });
 
@@ -244,7 +239,7 @@ $('body').on('click', '#myDeckAdvancedSearchSearchButton', function () {
 
 $('body').on('change', '#languageChooseOptions', function () {
     var language = $('#languageChooseOptions').val();
-    if(language =="italian"){
+    if (language == "italian") {
         $('.translatedAbility').show();
         $('.defaultAbility').hide();
 
@@ -257,7 +252,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#closeRulesMenu').text('Chiudi');
 
         $('.users_heading').text(" 🧙‍♀️ Utenti online 🧙 ");
-        
+
         $('#optionsTitle').text('Opzioni');
         $('#optionsVolumeText').text('Volume:');
         $('#optionsSongText').text('Musica:');
@@ -266,7 +261,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#optionsLanguageText').text('Lingua:');
 
         $('#closeOptionsMenu').text('Chiudi');
-        
+
         $('#themeChooseOptions option[value="swamp"]').text('Palude');
         $('#themeChooseOptions option[value="mountain"]').text('Montagna');
         $('#themeChooseOptions option[value="forest"]').text('Foresta');
@@ -277,8 +272,8 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#myDeckCardPreviewImageButton').text('Nascondi anteprima');
         $('#myDeckSaveButton').text('Salva mazzo');
         $('#myDeckDecksSelectorText').text('I miei mazzi');
-        $('.myChatTextSenderInput').attr('placeholder','Dì qualcosa!');
-        
+        $('.myChatTextSenderInput').attr('placeholder', 'Dì qualcosa!');
+
         $('#myDeckAlert').text("Non puoi aggiungere altre copie di questa carta");
         $('#myDeckCreateNameText').text("Inserisci il nome del mazzo che vuoi creare");
         $('#myDeckCreateNameSaveButton').text("Salva");
@@ -294,7 +289,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#startTheGameButton').text("Inizia partita")
         $('#quitTheGameButton').text("Abbandona partita")
         $('#rulesGameButton').text("Controlla regole")
-        
+
         $('#gameModesText').text("Modalità della partita")
 
         $('#inviteFriendsText').text("Invita un amico")
@@ -308,14 +303,14 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#acceptGameInvitation').text("Accetta")
         $('#declineGameInvitation').text("Rifiuta")
 
-        
+
         $('#beginTheGameButton').text("Inizia partita")
         $('#myDeckGameModeText').text("Modalità di gioco")
         $('#gameModeTitle').text("Modalità di gioco")
         $('#closeGameRulesMenu').text("Chiudi")
-        
+
         $('#gameModeGameButton').text("Controlla modalità di gioco")
-       
+
         $('#myDeckDecksNormalSearchValue').attr("placeholder", "Cerca per nome");
         $('#myDeckDecksNormalSearchButton').text("Cerca")
         $('#myDeckDecksSearchButton').text("Ricerca avanzata")
@@ -409,7 +404,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#myDeckCardPreviewImageButton').text('Hide preview');
         $('#myDeckSaveButton').text('Save the deck');
         $('#myDeckDecksSelectorText').text('My decks');
-        $('.myChatTextSenderInput').attr('placeholder','Say something!');
+        $('.myChatTextSenderInput').attr('placeholder', 'Say something!');
 
         $('#myDeckAlert').text("You can't add any more copy of this card!");
         $('#myDeckCreateNameText').text("Insert the name for your deck");
@@ -435,7 +430,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#backTheGameButton').text("Back")
         $('#inviteError').text("Can't invite, not enough players or deck not valid for the selected game mode")
 
-        
+
         $('#gameInvitationText1').text("You have been invited to a game")
         $('#acceptGameInvitation').text("Accept")
         $('#declineGameInvitation').text("Decline")
@@ -488,7 +483,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#advancedSearchRarityMythic').text("Mythic")
         $('#advancedSearchOnePerIdText').text("Unique Id")
         $('#advancedSearchOnePerIdTextField').text("Remove multiple copies from multiple sets")
-        $("#advancedSearchFieldFlavorText").attr("placeholder", "Any flavor text, e.g 'Jhoira'");     
+        $("#advancedSearchFieldFlavorText").attr("placeholder", "Any flavor text, e.g 'Jhoira'");
         $('#myDeckAdvancedSearchSearchButton').text("Search")
         $('#myDeckAdvancedSearchCloseButton').text("Close")
 
@@ -509,79 +504,79 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextMenuViewExiled').text("View exiled")
         $('#closeContextMenu').text("Close")
         $('#closeInspectorButton').text("Close inspector")
-        
+
 
     }
 });
 //options END
 
 function PopulateGameModeExplanation() {
-    
-    $.getJSON("./resources/gameruleset_ENG.json", function(data){
+
+    $.getJSON("./resources/gameruleset_ENG.json", function (data) {
         data.Rules.forEach(rule => {
-            
-            var tmp = "<div class='singleAbility defaultAbility'>"+
-                "<div class='abilityHeader'>"+
-                    "<div class='gameModePlusIcon'>➕</div>"+
-                    "<div class='gameModeMinusIcon'>➖</div>"+
-                    "<div class='gameModeName myResponsiveTextSmall'>"+rule.Name+"</div>"+
-                "</div>"+
-                "<div class='gameModeDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
-            "</div>"
+
+            var tmp = "<div class='singleAbility defaultAbility'>" +
+                "<div class='abilityHeader'>" +
+                "<div class='gameModePlusIcon'>➕</div>" +
+                "<div class='gameModeMinusIcon'>➖</div>" +
+                "<div class='gameModeName myResponsiveTextSmall'>" + rule.Name + "</div>" +
+                "</div>" +
+                "<div class='gameModeDescription myResponsiveTextSmall'>" + rule.Description + "</div>" +
+                "</div>"
 
             $('#gameModeList').append(tmp);
         });
     })
 
-    $.getJSON("./resources/gameruleset_ITA.json", function(data){
+    $.getJSON("./resources/gameruleset_ITA.json", function (data) {
         data.Rules.forEach(rule => {
-            
-            var tmp = "<div class='singleAbility translatedAbility'>"+
-                "<div class='abilityHeader'>"+
-                    "<div class='gameModePlusIcon'>➕</div>"+
-                    "<div class='gameModeMinusIcon'>➖</div>"+
-                    "<div class='gameModeName myResponsiveTextSmall'>"+rule.Name+"</div>"+
-                "</div>"+
-                "<div class='gameModeDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
-            "</div>"
+
+            var tmp = "<div class='singleAbility translatedAbility'>" +
+                "<div class='abilityHeader'>" +
+                "<div class='gameModePlusIcon'>➕</div>" +
+                "<div class='gameModeMinusIcon'>➖</div>" +
+                "<div class='gameModeName myResponsiveTextSmall'>" + rule.Name + "</div>" +
+                "</div>" +
+                "<div class='gameModeDescription myResponsiveTextSmall'>" + rule.Description + "</div>" +
+                "</div>"
 
             $('#gameModeList').append(tmp);
         });
     })
 }
 
-function PopulateRuleset(){
+function PopulateRuleset() {
 
-    $.getJSON("./resources/ruleset_ENG.json", function(data){
+    $.getJSON("./resources/ruleset_ENG.json", function (data) {
         data.Rules.forEach(rule => {
-            
-            var tmp = "<div class='singleAbility defaultAbility'>"+
-                "<div class='abilityHeader'>"+
-                    "<div class='abilityPlusIcon'>➕</div>"+
-                    "<div class='abilityMinusIcon'>➖</div>"+
-                    "<div class='abilityName myResponsiveTextSmall'>"+rule.Name+"</div>"+
-                "</div>"+
-                "<div class='abilityDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
-            "</div>"
+
+            var tmp = "<div class='singleAbility defaultAbility'>" +
+                "<div class='abilityHeader'>" +
+                "<div class='abilityPlusIcon'>➕</div>" +
+                "<div class='abilityMinusIcon'>➖</div>" +
+                "<div class='abilityName myResponsiveTextSmall'>" + rule.Name + "</div>" +
+                "</div>" +
+                "<div class='abilityDescription myResponsiveTextSmall'>" + rule.Description + "</div>" +
+                "</div>"
 
             $('#rulesAbilitiesList').append(tmp);
         });
     })
 
-    $.getJSON("./resources/ruleset_ITA.json", function(data){
+    $.getJSON("./resources/ruleset_ITA.json", function (data) {
         data.Rules.forEach(rule => {
 
-            var tmp = "<div class='singleAbility translatedAbility'>"+
-            "<div class='abilityHeader'>"+
-                "<div class='abilityPlusIcon'>➕</div>"+
-                "<div class='abilityMinusIcon'>➖</div>"+
-                "<div class='abilityName myResponsiveTextSmall'>"+rule.Name+"</div>"+
-            "</div>"+
-            "<div class='abilityDescription myResponsiveTextSmall'>"+rule.Description+"</div>"+
-        "</div>"
+            var tmp = "<div class='singleAbility translatedAbility'>" +
+                "<div class='abilityHeader'>" +
+                "<div class='abilityPlusIcon'>➕</div>" +
+                "<div class='abilityMinusIcon'>➖</div>" +
+                "<div class='abilityName myResponsiveTextSmall'>" + rule.Name + "</div>" +
+                "</div>" +
+                "<div class='abilityDescription myResponsiveTextSmall'>" + rule.Description + "</div>" +
+                "</div>"
 
             $('#rulesAbilitiesList').append(tmp);
         });
     })
-    
+
 }

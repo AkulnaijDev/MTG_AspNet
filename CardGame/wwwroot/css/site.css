@@ -1,52 +1,41 @@
 :root {
-    --background-color: #fafafa;
-    --primary-color: #7ed6df;
-    --border-color: #fff29c;
-    --light_Text_color: white;
-    --dark_Text_contour: black;
-    --option_Text_hover: #bb240a;
-    --option_Background_color: darkslategray;
-    --option_Background_color_lighter: rgb(64, 105, 105);
-    --option_Border_color: #212529;
-    --option_Border_color_darker:#15181b;
-    /* Swamp style */
-    /* Plains style */
-    /* Mountain style */
-    /* Forest style */
-    /* Island style */
+  --background-color: #fafafa;
+  --primary-color: #7ed6df;
+  --border-color: #fff29c;
+  --light_Text_color: white;
+  --dark_Text_contour: black;
+  --option_Text_hover: #bb240a;
+  --option_Background_color: darkslategray;
+  --option_Background_color_lighter: rgb(64, 105, 105);
+  --option_Border_color: #212529;
+  --option_Border_color_darker: #15181b;
 }
 
-
 body {
-    font-family: "Evil Empire";
-    cursor: pointer;
-    margin: 0px;
-    overflow-y: hidden;
-    overflow-x: hidden;
+  font-family: "Evil Empire";
+  cursor: pointer;
+  margin: 0px;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .container {
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
-
-/* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: var(--option_Background_color_lighter); 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: var(--option_Border_color); 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--option_Border_color_darker); 
-  }
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--option_Background_color_lighter);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--option_Border_color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--option_Border_color_darker);
+}

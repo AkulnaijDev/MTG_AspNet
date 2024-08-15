@@ -8,14 +8,8 @@
     --option_Background_color: darkslategray;
     --option_Background_color_lighter: rgb(64, 105, 105);
     --option_Border_color: #212529;
-    --option_Border_color_darker:#15181b;
-    /* Swamp style */
-    /* Plains style */
-    /* Mountain style */
-    /* Forest style */
-    /* Island style */
+    --option_Border_color_darker: #15181b;
 }
-
 
 #initialScreen {
     background-color: var(--dark_Text_contour);
@@ -87,4 +81,3 @@
     width: 0px;
     height: 0px;
 }
-

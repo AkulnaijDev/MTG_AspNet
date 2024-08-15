@@ -21,14 +21,12 @@ connection.on("PopulateAllSets", function (scrapedSets) {
 })
 
 connection.on("PopulateMyDecksResettingView", function (myDecks) {
-   // $('#myDecksPickerSelector').empty();
     $('.myDecksPickerSelector').empty()
     var myDecksParsed = JSON.parse(myDecks);
     decks = myDecksParsed;
 
     myDecksParsed.forEach(element => {
-        var option = "<option playerid='"+element.UserId+"' value="+element.Id+">"+element.Name+"</option>";
-        //$('#myDecksPickerSelector').append(option);
+        var option = "<option playerid='" + element.UserId + "' value=" + element.Id + ">" + element.Name + "</option>";
         $('.myDecksPickerSelector').append(option);
     });
 
@@ -36,14 +34,12 @@ connection.on("PopulateMyDecksResettingView", function (myDecks) {
 })
 
 connection.on("PopulateMyDecks", function (myDecks) {
-    //$('#myDecksPickerSelector').empty();
     $('.myDecksPickerSelector').empty()
     var myDecksParsed = JSON.parse(myDecks);
     decks = myDecksParsed;
 
     myDecksParsed.forEach(element => {
-        var option = "<option playerid='"+element.UserId+"' value="+element.Id+">"+element.Name+"</option>";
-        //$('#myDecksPickerSelector').append(option);
+        var option = "<option playerid='" + element.UserId + "' value=" + element.Id + ">" + element.Name + "</option>";
         $('.myDecksPickerSelector').append(option);
     });
 })
@@ -62,54 +58,40 @@ connection.on("AdoptSettings", function (myUserSettings) {
     //     $('#musicChooseOptions').val(mySettings.Soundtrack).trigger('change');
     // }
 
-    if(!!mySettings.Background){        
+    if (!!mySettings.Background) {
         $('#backgroundChooseOptions').val(mySettings.Background).trigger('change');
     }
 
-    if(!!mySettings.Theme){
+    if (!!mySettings.Theme) {
         $('#themeChooseOptions').val(mySettings.Theme).trigger('change');
     }
 
-    if(!!mySettings.Language){
+    if (!!mySettings.Language) {
         $('#languageChooseOptions').val(mySettings.Language).trigger('change');
     }
-    
+
 })
 
 connection.on("ConfirmDeckEdited", function () {
     connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
         return console.error(err.toString());
-      });
+    });
 })
 
 connection.on("ConfirmDeckSaved", function (insertedId) {
-    //$('#myDecksPickerSelector').empty()
-    $('#myDeckSaveButton').attr('editing',insertedId)
+    $('#myDeckSaveButton').attr('editing', insertedId)
     $('.myDecksPickerSelector').empty()
     connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
         return console.error(err.toString());
-      });
+    });
 })
 
 connection.on("ConfirmDeckDeleted", function () {
-   $('#myDeckDelete').hide();
+    $('#myDeckDelete').hide();
     connection.invoke("ReadAllDecksResetView", myUsername).catch(function (err) {
         return console.error(err.toString());
-      });
+    });
 })
-
-// connection.on("ShowCardsFromSet", function (cards) {
-//     //showCardsImage(JSON.parse(cards))
-// })
-
-
-
-
-// $(document).on('change', '#myDeckSetPickerSelector', function () {
-//     // CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//     $('#myDeckCardPickerContainer').empty();
-//     showCards();
-// })
 
 $(document).on('click', '.cardImagePreview', function () {
     var source = $(this).attr('src');
@@ -134,18 +116,17 @@ $(document).on('click', '.cardImagePreview', function () {
         }
 
         $(this).attr('src', newSource);
-
     }
 })
 
 
 $('body').on('click', '#mainMenuMyDeck', function () {
-    if(!$("#optionsMenu").is(':visible') && !$("#rulesMenu").is(':visible') && !$("#gameModeMenu").is(':visible')){
+    if (!$("#optionsMenu").is(':visible') && !$("#rulesMenu").is(':visible') && !$("#gameModeMenu").is(':visible')) {
         $('#chatContainer').hide();
         $('#myDeckMenu').show();
         $('#myDeckSetPickerSelector').trigger('change');
         $('#myDecksPickerSelector').trigger('change');
-    }     
+    }
 });
 
 $('body').on('click', '#myDeckMenuBackButton', function () {
@@ -156,59 +137,57 @@ $('body').on('click', '#myDeckMenuBackButton', function () {
 
 $('body').on('click', '#myDecksPickerSelectorAdd', function () {
     $('#myDeckName').removeAttr('deckId');
-    $('#myDeckCreateName').show();   
+    $('#myDeckCreateName').show();
 });
 
 $('body').on('click', '#myDecksPickerSelectorDelete', function () {
-     $('#myDeckDelete').show();   
+    $('#myDeckDelete').show();
 });
 
 $('body').on('click', '#myDeckDeleteBackButton', function () {
-    $('#myDeckDelete').hide(); 
+    $('#myDeckDelete').hide();
 });
 
 $('body').on('click', '#myDeckEditBackButton', function () {
-    $('#myDeckEdit').hide(); 
+    $('#myDeckEdit').hide();
 });
 
 $('body').on('click', '#myDeckDeleteConfirmButton', function () {
 
-    if($('#myDeckSaveButton').attr('editing')==""){
-        //i'm still editing
+    if ($('#myDeckSaveButton').attr('editing') == "") {
         $('#myDeckDelete').hide();
         $('#myDecksPickerSelector').trigger('change')
 
     } else {
-        //i'm looking at a saved deck
         var optionSelected = $('#myDecksPickerSelector').find("option:selected");
-        var valueSelected  = optionSelected.val();
-        connection.invoke("DeleteDeck",valueSelected, myUsername).catch(function (err) {
+        var valueSelected = optionSelected.val();
+        connection.invoke("DeleteDeck", valueSelected, myUsername).catch(function (err) {
             return console.error(err.toString());
         });
     }
-   
+
 });
 
 $('body').on('click', '#myDeckCreateNameSaveButton', function () {
     $('#myDeckList').empty();
-    var value =  $('#myDeckCreateNameInput').val();
+    var value = $('#myDeckCreateNameInput').val();
 
-    if(value != ""){
+    if (value != "") {
         $('#myDeckName').text(value);
         $('#myDeckCreateNameInput').val('');
         $('#myDeckCreateName').hide();
-        $('#myDeckSaveButton').attr('editing','')
+        $('#myDeckSaveButton').attr('editing', '')
         amIEditing = true;
-       
-       
+
+
         $('#myDecksPickerSelectorDelete').removeClass('notVisible')
         $('#myDeckSaveButton').removeAttr('disabled')
-        $('.cardRowActionPlus').css('visibility','visible')
-        $('.cardRowActionMinus').css('visibility','visible')
+        $('.cardRowActionPlus').css('visibility', 'visible')
+        $('.cardRowActionMinus').css('visibility', 'visible')
         $('.addCardToDeck').removeClass('notVisible')
         $('.removeCardFromDeck').removeClass('notVisible')
 
-    } 
+    }
 });
 
 $('body').on('click', '#myDeckCreateNameBackButton', function () {
@@ -240,60 +219,57 @@ $('body').on('click', '#closeGameRulesMenu', function () {
     $('.gameModeIcon').trigger('click');
 
 });
-
 //gameModes END
 
 
-
-
 $('body').on('change', '#myDecksPickerSelector', function () {
-   
+
     $('#myDeckList').empty();
-    
+
     var optionSelected = $(this).find("option:selected");
     var isPrecon = $(optionSelected).attr('playerId') == "";
 
-    var valueSelected  = optionSelected.val();
+    var valueSelected = optionSelected.val();
     var selectedDeck = decks.filter(x => x.Id == valueSelected);
 
-    $('#myDeckSaveButton').attr('editing',valueSelected);
+    $('#myDeckSaveButton').attr('editing', valueSelected);
 
     $('#myDeckName').text(optionSelected.text());
     $('#myDeckName').attr('deckId', valueSelected);
 
     selectedDeck[0].Cards.forEach(x => {
-        if(x.length >0){
+        if (x.length > 0) {
             var element = JSON.parse(x);
-    
-            if(element.Name != undefined){
+
+            if (element.Name != undefined) {
                 var tmpCard = "<div class='cardRow' sourcepath='" +
-                element.Source+ "'"+
-                "key='"+ element.Key +"'"+
-                "><div cardlimit='"+element.Cardlimit+"'"+
-                " class='cardRowActions'><span class='cardRowActionPlus'>➕</span><span class='cardRowActionMinus'>➖</span></div><div class='cardRowCount'>"+
-                element.CardCount+
-                "</div><div key='"+element.Key+"'"+
-                "class='cardRowName'>" + element.Name+
-                "</div></div>";
-        
+                    element.Source + "'" +
+                    "key='" + element.Key + "'" +
+                    "><div cardlimit='" + element.Cardlimit + "'" +
+                    " class='cardRowActions'><span class='cardRowActionPlus'>➕</span><span class='cardRowActionMinus'>➖</span></div><div class='cardRowCount'>" +
+                    element.CardCount +
+                    "</div><div key='" + element.Key + "'" +
+                    "class='cardRowName'>" + element.Name +
+                    "</div></div>";
+
                 $('#myDeckList').append(tmpCard);
             }
         }
     });
     CountCardsInDeck();
 
-    if(isPrecon){
+    if (isPrecon) {
         $('#myDecksPickerSelectorDelete').addClass('notVisible')
-        $('#myDeckSaveButton').attr('disabled',true)
-        $('.cardRowActionPlus').css('visibility','hidden')
-        $('.cardRowActionMinus').css('visibility','hidden')
+        $('#myDeckSaveButton').attr('disabled', true)
+        $('.cardRowActionPlus').css('visibility', 'hidden')
+        $('.cardRowActionMinus').css('visibility', 'hidden')
         $('.addCardToDeck').addClass('notVisible')
         $('.removeCardFromDeck').addClass('notVisible')
     } else {
         $('#myDecksPickerSelectorDelete').removeClass('notVisible')
         $('#myDeckSaveButton').removeAttr('disabled')
-        $('.cardRowActionPlus').css('visibility','visible')
-        $('.cardRowActionMinus').css('visibility','visible')
+        $('.cardRowActionPlus').css('visibility', 'visible')
+        $('.cardRowActionMinus').css('visibility', 'visible')
         $('.addCardToDeck').removeClass('notVisible')
         $('.removeCardFromDeck').removeClass('notVisible')
     }
@@ -472,10 +448,10 @@ $('body').on('click', '.removeCardFromDeck', function () {
 
 function checkResourceExistence(url, successCallback, errorCallback) {
     var img = new Image();
-    img.onload = function() {
+    img.onload = function () {
         successCallback();
     };
-    img.onerror = function() {
+    img.onerror = function () {
         errorCallback();
     };
     img.src = url;
@@ -487,10 +463,10 @@ $('body').on('mouseenter', '.cardRow', function () {
 
     checkResourceExistence(
         sourcePath,
-        function() {
+        function () {
             $('#myDeckCardPreviewImage').attr('src', sourcePath);
         },
-        function() {
+        function () {
             $('#myDeckCardPreviewImage').attr('src', "../resources/cardBack.jpg");
         }
     );
@@ -526,17 +502,17 @@ $('body').on('click', '#myDeckSaveButton', function () {
         cardList.push(obj);
     });
 
-    var deck = {"Name": $('#myDeckName').text(), "UserId": myUsername, "Cards": cardList};
+    var deck = { "Name": $('#myDeckName').text(), "UserId": myUsername, "Cards": cardList };
 
     var editingDeckId = ""
 
-    if($(this).attr('editing')!=''){
+    if ($(this).attr('editing') != '') {
         editingDeckId = $(this).attr('editing')//editing a deck
     } else {
         //saving a new deck
     }
 
-    connection.invoke("SaveDeck",JSON.stringify(deck),editingDeckId).catch(function (err) {
+    connection.invoke("SaveDeck", JSON.stringify(deck), editingDeckId).catch(function (err) {
         return console.error(err.toString());
     });
 
@@ -544,9 +520,9 @@ $('body').on('click', '#myDeckSaveButton', function () {
 
 });
 
-function CountCardsInDeck(){
+function CountCardsInDeck() {
     var count = 0;
-    $('.cardRowCount').each(function(){
+    $('.cardRowCount').each(function () {
         count += parseInt($(this).text())
     });
     $('#myDeckCardCount').text(count);
@@ -555,18 +531,12 @@ function CountCardsInDeck(){
 function showCards() {
     var selectedSetName = $('#myDeckSetPickerSelector option:selected').text();
 
-    connection.invoke("ReadAllCardsThisSet",selectedSetName).catch(function (err) {
+    connection.invoke("ReadAllCardsThisSet", selectedSetName).catch(function (err) {
         return console.error(err.toString());
-      });
+    });
 }
 
 function showCardsImage(array) {
-    // var selectedSetName = $('#myDeckSetPickerSelector option:selected').text();
-    // var selectedSetCode = $('#myDeckSetPickerSelector').val();
-
-    // selectedSetName = selectedSetName.replaceAll(" ", "_");
-    // selectedSetName = selectedSetName.replaceAll(":", "_");
-
     let cardArray = [];
 
     array.forEach(element => {
@@ -605,9 +575,7 @@ function showCardsImage(array) {
             filePath = '../resources/cards_images/' + selectedSetCode + '_' + selectedSetName + '/' + selectedSetCode + '_' + element.Id + '.jpg';
         }
 
-        if(element.Layout=="split"){
-            console.log("yikes! " + element.Name + " is split!");
-            console.log("yikes! " + filePath + " is split!");
+        if (element.Layout == "split") {
             doubleFace = false;
         }
 
@@ -631,14 +599,14 @@ function showCardsImage(array) {
 
 function setCardsImages(cardArray) {
 
-    
+
     var optionSelected = $('#myDecksPickerSelector').find("option:selected");
     var isPrecon = $(optionSelected).attr('playerId') == "";
 
     var plus = "<span class='addCardToDeck'>➕</span>"
     var minus = "<span class='removeCardFromDeck'>➖</span>"
 
-    if(isPrecon == true || amIEditing == false){
+    if (isPrecon == true || amIEditing == false) {
         plus = "<span class='notVisible addCardToDeck'>➕</span>"
         minus = "<span class='notVisible removeCardFromDeck'>➖</span>"
     }
@@ -648,35 +616,34 @@ function setCardsImages(cardArray) {
 
         checkResourceExistence(
             element.source,
-            function() {
+            function () {
                 var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
-                "legendary=" + element.legendary + ">" +
-                "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src=" + element.source + " alt=" + name + ">" +
-                "</img><div class='cardImageTextActionContainer'>"+plus + element.name + minus + "</div></div>"
+                    "legendary=" + element.legendary + ">" +
+                    "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src=" + element.source + " alt=" + name + ">" +
+                    "</img><div class='cardImageTextActionContainer'>" + plus + element.name + minus + "</div></div>"
 
                 $('#myDeckCardPickerContainer').append(div);
             },
-            function() {
+            function () {
                 var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
-                "legendary=" + element.legendary + ">" +
-                "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src='../resources/cardBack.jpg' alt=" + name + ">" +
-                "</img><div class='cardImageTextActionContainer'>"+plus + element.name + minus + "</div></div>"
+                    "legendary=" + element.legendary + ">" +
+                    "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src='../resources/cardBack.jpg' alt=" + name + ">" +
+                    "</img><div class='cardImageTextActionContainer'>" + plus + element.name + minus + "</div></div>"
 
                 $('#myDeckCardPickerContainer').append(div);
             }
         );
 
-        
+
     });
 }
 
-
 function checkResourceExistence(url, successCallback, errorCallback) {
     var img = new Image();
-    img.onload = function() {
+    img.onload = function () {
         successCallback();
     };
-    img.onerror = function() {
+    img.onerror = function () {
         errorCallback();
     };
     img.src = url;
@@ -688,10 +655,10 @@ $('body').on('mouseenter', '.cardRow', function () {
 
     checkResourceExistence(
         sourcePath,
-        function() {
+        function () {
             $('#myDeckCardPreviewImage').attr('src', sourcePath);
         },
-        function() {
+        function () {
             $('#myDeckCardPreviewImage').attr('src', "../resources/cardBack.jpg");
         }
     );

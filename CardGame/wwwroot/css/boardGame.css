@@ -9,11 +9,6 @@
   --option_Background_color_lighter: rgb(64, 105, 105);
   --option_Border_color: #212529;
   --option_Border_color_darker: #15181b;
-  /* Swamp style */
-  /* Plains style */
-  /* Mountain style */
-  /* Forest style */
-  /* Island style */
 }
 
 #boardGameContainer {
@@ -25,7 +20,7 @@
   background-color: var(--option_Background_color);
 }
 
-#contextMenu{
+#contextMenu {
   position: absolute;
   background: var(--option_Background_color);
   border-radius: 10px;
@@ -43,20 +38,20 @@
   flex-direction: column;
 }
 
-#contextMenu>button{
+#contextMenu>button {
   width: 50%;
 }
 
-#contextMenuToken{
+#contextMenuToken {
   display: flex;
-    height: 30px;
+  height: 30px;
 }
 
-#contextMenuTokenQuantity{
+#contextMenuTokenQuantity {
   width: 50px;
 }
 
-#zoneInspector{
+#zoneInspector {
   position: absolute;
   background: var(--option_Background_color);
   border-radius: 10px;
@@ -67,30 +62,31 @@
   left: 25%;
   padding: 2%;
   z-index: 9999;
-  display:none;
+  display: none;
   overflow-y: auto;
 }
 
-#zoneInspectorCardContainer{
+#zoneInspectorCardContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Distribuisce uniformemente lo spazio tra gli elementi */
-  gap: 10px; /* Aggiunge spazio tra gli elementi */
+  justify-content: space-around;
+  gap: 10px;
   height: -5%;
 }
-.cardContainerSneaked{
-  flex-basis: calc(25% - 20px); /* Calcola la larghezza per 6 elementi per riga con spazio tra di loro */
-  max-width: calc(25% - 20px); /* Assicura che ogni immagine sia larga quanto l'elemento della griglia con spazio tra di loro */
-  height: 200px; /* Altezza automatica per mantenere l'aspetto proporzionale delle immagini */
+
+.cardContainerSneaked {
+  flex-basis: calc(25% - 20px);
+  max-width: calc(25% - 20px);
+  height: 200px;
   width: 50px;
-  margin: 5px; /* Aggiungi spazio tra le immagini */
+  margin: 5px;
 }
 
-.cardOnTheTableSneaked{
+.cardOnTheTableSneaked {
   height: 100%;
 }
 
-#inviteSection{
+#inviteSection {
   position: absolute;
   background: var(--option_Background_color);
   border-radius: 10px;
@@ -104,11 +100,11 @@
 }
 
 #boardGame {
-  width:80%;
+  width: 80%;
   height: 100%;
 }
 
-#gameMenuZone{
+#gameMenuZone {
   width: 20%;
   height: 100%;
   background: azure;
@@ -147,8 +143,9 @@
   background: #444;
 }
 
-#rulesGameButton, #gameModeGameButton {
-  width:49%
+#rulesGameButton,
+#gameModeGameButton {
+  width: 49%
 }
 
 
@@ -182,9 +179,7 @@
   height: 33%;
 }
 
-.tokenZone {
-
-}
+.tokenZone {}
 
 .cardZone {
   background-color: blueviolet;
@@ -196,50 +191,54 @@
   background-color: pink;
 }
 
-.planeswalkerZone{
-  height: 33%;background-color: aqua;
+.planeswalkerZone {
+  height: 33%;
+  background-color: aqua;
 }
 
 
-.playerNameZone{
-  height: 34%;background-color: cornflowerblue;
-  display:flex;
+.playerNameZone {
+  height: 34%;
+  background-color: cornflowerblue;
+  display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
 
-.gameValidities[disabled]{
-  color:red;
+.gameValidities[disabled] {
+  color: red;
 }
 
-#startGameButtonContainer{
+#startGameButtonContainer {
   align-items: center;
   display: inline-grid;
 }
 
-#selectDeckToPlay{
+#selectDeckToPlay {
   width: 90%;
   position: relative;
 }
 
-#modeSelection{
+#modeSelection {
   width: 90%;
 }
 
-.startGameButtonContainerrow{
-  position:absolute; bottom:2%; width:89%
+.startGameButtonContainerrow {
+  position: absolute;
+  bottom: 2%;
+  width: 89%
 }
 
-.friendRow{
-  height:30%;
+.friendRow {
+  height: 30%;
 }
 
-.invitedFriendContainer{
+.invitedFriendContainer {
   columns: 2;
 }
 
-#invitedFriendsArea{
+#invitedFriendsArea {
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
   border: 2px solid var(--option_Border_color);
@@ -249,93 +248,108 @@
   overflow-y: auto;
 }
 
-#inviteFriends{
-  width:80%;
+#inviteFriends {
+  width: 80%;
 }
 
-.gameModesRow{
-  margin-top:2%;
+.gameModesRow {
+  margin-top: 2%;
 }
 
-#gameModesText,#validValidity{
+#gameModesText,
+#validValidity {
   text-align: center;
 }
 
-.gameValidities,#gameTeamText{
+.gameValidities,
+#gameTeamText {
   text-align: center;
 }
 
-.teamSelectContainer, .teammate{
-  display:flex;
+.teamSelectContainer,
+.teammate {
+  display: flex;
 }
 
-.teamSelectPlayer{
-  width:100%;
-  height:20px;
+.teamSelectPlayer {
+  width: 100%;
+  height: 20px;
 }
 
-#inviteError{
-  display:none;
-  color:red;
+#inviteError {
+  display: none;
+  color: red;
 }
 
-.playerName{
+.playerName {
   text-align: right;
 }
 
-.playerHp{
+.playerHp {
   text-align: left;
 }
 
-.playerName[disabled]{
-  color:red;
+.playerName[disabled] {
+  color: red;
 }
 
-.player{
+.player {
   columns: 4;
 }
 
-.teamTitle{
+.teamTitle {
   text-align: center;
 }
 
-.teams{
+.teams {
   margin-bottom: 0%;
-  margin-top:5%;
+  margin-top: 5%;
 }
 
-.teamsContainer, .gameButtonsContainer,.notificationFromOtherPlayersContainer,.menuIconsContainer {
-  margin-bottom:5%;
-  margin-top:5%;
+.teamsContainer,
+.gameButtonsContainer,
+.notificationFromOtherPlayersContainer,
+.menuIconsContainer {
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
-.gameButtonsContainer{
+.gameButtonsContainer {
   align-items: center;
   display: inline-grid;
 }
 
 
 /* to override bootstrap style */
-.row{
-  --bs-gutter-x:0rem !important 
+.row {
+  --bs-gutter-x: 0rem !important
 }
 
-.fullWidth{
-  width:100%
+.fullWidth {
+  width: 100%
 }
 
-.playerBoardContainer{
+.playerBoardContainer {
   width: 100%;
   height: 100%;
   max-width: 100%;
 }
 
-.commanderZone, .planeswalkerZone,.exiledZone, .graveyardZone {
+.commanderZone,
+.planeswalkerZone,
+.exiledZone,
+.graveyardZone {
   justify-content: center;
   align-items: center;
 }
 
-.cardZone, .handZone, .landZone, .commanderZone, .planeswalkerZone,.exiledZone, .graveyardZone {
+.cardZone,
+.handZone,
+.landZone,
+.commanderZone,
+.planeswalkerZone,
+.exiledZone,
+.graveyardZone {
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -344,7 +358,7 @@
 }
 
 .cardContainer {
-  margin:3px;
+  margin: 3px;
   height: 95%;
   flex-shrink: 0;
   overflow: hidden;
@@ -353,10 +367,10 @@
   z-index: 9998;
 }
 
-.tapped{
+.tapped {
   transform: rotate(90deg);
-  margin-right:20px;
-  margin-left:20px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .deckBackCardOnTheTable {
@@ -364,6 +378,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .cardOnTheTable {
   width: 100%;
   height: 100%;
@@ -377,33 +392,33 @@
   max-height: 100%;
 }
 
-#zoomedHoveredCard{
+#zoomedHoveredCard {
   width: 93%;
   border-radius: 18px;
 }
 
-.zoomedHoveredCardContainer{
+.zoomedHoveredCardContainer {
   display: flex;
   justify-content: center;
 }
 
-.playerNameBoardContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.deckBackCardContainer{
+.playerNameBoardContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#notificationFromOtherPlayers{
+.deckBackCardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#notificationFromOtherPlayers {
   overflow-y: auto;
   height: 100%;
 }
 
-.notificationFromOtherPlayersContainer{
+.notificationFromOtherPlayersContainer {
   height: 10%;
 }

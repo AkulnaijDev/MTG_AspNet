@@ -22,22 +22,22 @@ connection.start().then(function () {
 
 
 $(document).on("mousedown", "#mypasswordchecker", function () {
-  $("#mypassword").attr('type','text')
+  $("#mypassword").attr('type', 'text')
 })
 
 $(document).on("mouseup", "#mypasswordchecker", function () {
-  $("#mypassword").attr('type','password')
+  $("#mypassword").attr('type', 'password')
 })
 
 
 $(document).on("click", "#loginbutton", function () {
 
   $('#loginSpinner').show();
-  $(this).attr('disabled','true') //to avoid multiple calls
+  $(this).attr('disabled', 'true') //to avoid multiple calls
   var username = $("#myname").val();
   var password = $("#mypassword").val();
-  
-  connection.invoke("VerifyLogin", username,password).catch(function (err) {
+
+  connection.invoke("VerifyLogin", username, password).catch(function (err) {
     return console.error(err.toString());
   });
 
@@ -61,7 +61,7 @@ connection.on("ConfirmLogin", function (tokenSql) {
     connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
       return console.error(err.toString());
     });
-    
+
     connection.invoke("Login", myUsername).catch(function (err) {
       return console.error(err.toString());
     });
@@ -74,7 +74,7 @@ connection.on("ConfirmLogin", function (tokenSql) {
     $('#loginSpinner').hide();
     $('#loginError').show().delay(2000).fadeOut();
     $('#loginbutton').removeAttr('disabled')
-    
+
   }
 })
 
@@ -88,7 +88,7 @@ connection.on("Notify_Login", function (userList) {
   $('#loginSpinner').hide();
   $("#loginForm").hide();
   $('#loadingScreen').hide();
-  
+
   $("#onlineUserContainer").empty();
   var users = JSON.parse(userList);
 
@@ -96,20 +96,20 @@ connection.on("Notify_Login", function (userList) {
     var chatSpan = "";
     var avatar = RandomAvatar();
 
-    if(user.ConnectionId != myConnectionId){
+    if (user.ConnectionId != myConnectionId) {
       chatSpan = "<div class='openToChatIcon'>&#128172;</div>";
     }
-    var div = $("<div class='onlineUser'><div class='myResponsiveTextMedium randomIconEmoji'>" + avatar + "</div><div userid='" + user.ConnectionId + "' class='myResponsiveTextMedium onlineUserName'> " + user.UserName + "</div>"+chatSpan+"</div>");
+    var div = $("<div class='onlineUser'><div class='myResponsiveTextMedium randomIconEmoji'>" + avatar + "</div><div userid='" + user.ConnectionId + "' class='myResponsiveTextMedium onlineUserName'> " + user.UserName + "</div>" + chatSpan + "</div>");
 
     $("#onlineUserContainer").append(div);
 
-    var option = "<option value='"+user.ConnectionId+"'>"+user.UserName+"</option>"
+    var option = "<option value='" + user.ConnectionId + "'>" + user.UserName + "</option>"
 
-    if(user.ConnectionId != myConnectionId){
+    if (user.ConnectionId != myConnectionId) {
       $("#inviteFriends").append(option)
     }
-    
-    
+
+
   });
 })
 
@@ -118,8 +118,8 @@ connection.on("NotifyMe_Disconnected", function (userObj) {
   $('p:contains("' + user.ConnectionId + '")').remove();
   var p = $("<p></p>").text(`${user.UserName} has disconnected`);
 
-  $("#onlineUserContainer").find('[userid="'+user.ConnectionId+'"]').parent().remove();
-  $("#inviteFriends").find('[value="'+user.ConnectionId+'"]').remove();
+  $("#onlineUserContainer").find('[userid="' + user.ConnectionId + '"]').parent().remove();
+  $("#inviteFriends").find('[value="' + user.ConnectionId + '"]').remove();
 
 
   $("#chatBox").append(p);
@@ -149,9 +149,9 @@ $('body').on('click', '.closePersonalChat', function () {
 
 $('body').on('click', '.minimizePersonalChat', function () {
   var chatContainer = $(this).parent().parent();
-  $(chatContainer).attr('minimized',"true");
+  $(chatContainer).attr('minimized', "true");
   $(chatContainer).addClass('personalChatMinimized');
-  
+
   $(chatContainer).find('.myChatTextContainer').hide();
   $(chatContainer).find('.myChatTextSenderContainer').hide();
 
@@ -161,7 +161,7 @@ $('body').on('click', '.minimizePersonalChat', function () {
 
 $('body').on('click', '.maximizePersonalChat', function () {
   var chatContainer = $(this).parent().parent();
-  $(chatContainer).attr('minimized',"false");
+  $(chatContainer).attr('minimized', "false");
   $(chatContainer).removeClass('personalChatMinimized');
 
   $(chatContainer).find('.myChatTextContainer').show();
@@ -172,14 +172,14 @@ $('body').on('click', '.maximizePersonalChat', function () {
 });
 
 
-$('body').on('keyup', '.myChatTextSenderInput', function(e) {
+$('body').on('keyup', '.myChatTextSenderInput', function (e) {
   var message = $(this).val();
   var roomGuid = $(this).parent().parent().attr('guid')
   var textBox = $(this).parent().parent().find('.myChatTextContainer')
 
-  if(e.key == "Enter" &&  $(this).val().replaceAll(" ","") != ""){
-    
-    connection.invoke("SendChatMessage", myConnectionId, roomGuid, message ).catch(function (err) {
+  if (e.key == "Enter" && $(this).val().replaceAll(" ", "") != "") {
+
+    connection.invoke("SendChatMessage", myConnectionId, roomGuid, message).catch(function (err) {
       return console.error(err.toString());
     });
 
@@ -196,29 +196,29 @@ $('body').on('keyup', '.myChatTextSenderInput', function(e) {
 connection.on("ReceiveChatMessage", function (event) {
   var message = JSON.parse(event);
   var classSender = "senderIsMe";
-  var chatContainer = $('body').find('.personalChat[guid='+message.RoomGuid+']')
+  var chatContainer = $('body').find('.personalChat[guid=' + message.RoomGuid + ']')
   var textBox = $(chatContainer).find('.myChatTextContainer')
 
-  if(message.SenderId != myConnectionId){
+  if (message.SenderId != myConnectionId) {
     classSender = "senderIsOther"
   }
 
-  var messageText = "<div class='myChatSingleMessage "+classSender+"'>"+ message.Message+"</div><br>"
+  var messageText = "<div class='myChatSingleMessage " + classSender + "'>" + message.Message + "</div><br>"
   $(textBox).append(messageText);
 
-  if(!$(chatContainer).is(":visible")){
+  if (!$(chatContainer).is(":visible")) {
     $(chatContainer).show();
     $(chatContainer).removeClass('personalChatMinimized');
     $(chatContainer).find('.myChatTextContainer').show();
     $(chatContainer).find('.myChatTextSenderContainer').show();
   }
 
-  if($(chatContainer).attr('minimized')=="true"){
+  if ($(chatContainer).attr('minimized') == "true") {
     //blink
     $(chatContainer).addClass('blinkChat');
-    
-    setTimeout(function() {
-        $(chatContainer).removeClass('blinkChat')
+
+    setTimeout(function () {
+      $(chatContainer).removeClass('blinkChat')
     }, 2000);
   }
 
@@ -235,7 +235,7 @@ connection.on("PutInRoom", function (event) {
 
   var roomGuid = user.RoomGuid;
 
-  ChatBoxCreator(addingUserId, addingUsername, addedUserId, addedUsername, roomGuid) 
+  ChatBoxCreator(addingUserId, addingUsername, addedUserId, addedUsername, roomGuid)
 });
 
 
@@ -246,8 +246,8 @@ function RandomAvatar() {
 
 
 function ChatBoxCreator(addingUserId, addingUsername, addedUserId, addedUsername, roomGuid) {
-  
-  if(addedUserId == myConnectionId){
+
+  if (addedUserId == myConnectionId) {
     addedUserId = addingUserId;
     addedUsername = addingUsername;
   }
@@ -262,9 +262,9 @@ function ChatBoxCreator(addingUserId, addingUsername, addedUserId, addedUsername
       "</div>" +
       "<div class='myChatTextContainer'>" +
       "</div>" +
-      "<div class='myChatTextSenderContainer'>"+
+      "<div class='myChatTextSenderContainer'>" +
       "<input placeholder='Say something!' class='myChatTextSenderInput'></input>"
-      "</div>"+
+    "</div>" +
       "</div>";
 
     $('body').append(personalChat);
@@ -283,8 +283,6 @@ function GuidGenerator() {
 
 
 // Make the DIV element draggable:
-
-
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {

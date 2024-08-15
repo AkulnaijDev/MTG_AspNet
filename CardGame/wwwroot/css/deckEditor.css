@@ -8,21 +8,17 @@
     --option_Background_color: darkslategray;
     --option_Background_color_lighter: rgb(64, 105, 105);
     --option_Border_color: #212529;
-    --option_Border_color_darker:#15181b;
-    /* Swamp style */
-    /* Plains style */
-    /* Mountain style */
-    /* Forest style */
-    /* Island style */
+    --option_Border_color_darker: #15181b;
 }
 
-/* Regole di base per la tua classe */
 .myResponsiveTextBig {
-    font-size: 16px; /* Dimensione di base del testo */
+    font-size: 16px;
 }
+
 .myResponsiveTextMedium {
     font-size: 25px;
 }
+
 .myResponsiveTextSmall {
     font-size: 18px;
 }
@@ -30,18 +26,20 @@
 /* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
 @media screen and (max-width: 768px) {
     .myResponsiveTextBig {
-        font-size: 25px; /* Regola la dimensione del testo per schermi più piccoli */
+        font-size: 25px;
     }
+
     .myResponsiveTextMedium {
         font-size: 18px;
     }
+
     .myResponsiveTextSmall {
         font-size: 14px;
     }
 
-    #myDeckCardPreviewImage{
+    #myDeckCardPreviewImage {
         height: 140px;
-        border-radius:10px;
+        border-radius: 10px;
     }
 
     .cardImagePreview {
@@ -55,6 +53,7 @@
         overflow-y: auto;
         height: 73%;
     }
+
     #myDeckCardPicker {
         width: 58%;
         float: right;
@@ -88,7 +87,7 @@
         float: left;
     }
 
-    #myDeckAlert{
+    #myDeckAlert {
         visibility: hidden;
         color: var(--light_Text_color);
         font-size: 20px;
@@ -99,11 +98,13 @@
         width: 20%;
     }
 
-    #myDeckZoomSelectorPlus, #myDeckZoomSelectorIcon, #myDeckZoomSelectorMinus{
-        display:none;
+    #myDeckZoomSelectorPlus,
+    #myDeckZoomSelectorIcon,
+    #myDeckZoomSelectorMinus {
+        display: none;
     }
 
-    #myDeckList{
+    #myDeckList {
         height: 54%;
         padding-left: 0%;
         overflow: auto;
@@ -112,24 +113,27 @@
         font-size: 11px;
     }
 
-    
+
     #myDeckSetPickerContainer {
         padding: 2px;
         margin-bottom: 5px;
     }
 
-    #myDeckDecksSelector,#myDeckDecksGameMode,#myDeckDecksSetsAndZoom,#myDeckDecksSearch{
-        font-size:13px;
+    #myDeckDecksSelector,
+    #myDeckDecksGameMode,
+    #myDeckDecksSetsAndZoom,
+    #myDeckDecksSearch {
+        font-size: 13px;
         display: inline-flex;
         max-height: 20px;
         width: 100%;
     }
 
-    #myDecksPickerSelector{
+    #myDecksPickerSelector {
         width: 55%;
     }
 
-    #myDeckDecksSelectorText2{
+    #myDeckDecksSelectorText2 {
         margin-right: 14%;
     }
 
@@ -137,7 +141,7 @@
         width: 54%;
     }
 
-    .cardImageTextActionContainer{
+    .cardImageTextActionContainer {
         font-size: 12px;
     }
 }
@@ -145,7 +149,7 @@
 /* Media query per schermi più grandi (ad esempio, desktop) */
 @media screen and (min-width: 768px) {
     .myResponsiveTextBig {
-        font-size: 35px; /* Regola la dimensione del testo per schermi più grandi */
+        font-size: 35px;
     }
 
     .myResponsiveTextMedium {
@@ -156,11 +160,11 @@
         font-size: 18px;
     }
 
-    #myDeckCardPreviewImage{
+    #myDeckCardPreviewImage {
         height: 250px;
         border-radius: 10px;
     }
-       
+
     .cardImagePreview {
         max-width: 250px;
         border-radius: 15px;
@@ -206,13 +210,13 @@
         float: left;
     }
 
-    #myDeckAlert{
+    #myDeckAlert {
         visibility: hidden;
         color: var(--light_Text_color);
-        font-size:20px;
+        font-size: 20px;
     }
 
-    #myDeckList{
+    #myDeckList {
         height: 54%;
         padding-left: 5%;
         overflow: auto;
@@ -226,54 +230,37 @@
         align-items: flex-end;
     }
 
-    #myDeckDecksSelector,#myDeckDecksGameMode{
+    #myDeckDecksSelector,
+    #myDeckDecksGameMode {
         width: 30%;
         display: inline-flex;
     }
-    
-    #myDecksPickerSelector{
+
+    #myDecksPickerSelector {
         width: 60%;
     }
-    
-    #myDeckDecksSelectorText2{
+
+    #myDeckDecksSelectorText2 {
         margin-left: 15%;
         margin-right: 1%;
     }
-    
+
     #myDeckSetPickerSelector {
         width: 100%;
         text-align: center;
-        height:75px !important;
+        height: 75px !important;
     }
 }
-
-
-
-
-
-
-
-
 
 #myDeckMenuContainer {
     height: 100%;
     width: 100%
 }
 
-
-
-
-
-
-
-
-.myDeckSingleCardOption, .myDeckSingleCardOptionFromList {
+.myDeckSingleCardOption,
+.myDeckSingleCardOptionFromList {
     display: block;
 }
-
-
-
-
 
 .cardImageContainer {
     margin-bottom: 30px;
@@ -284,64 +271,60 @@
     margin-right: 10px;
 }
 
-.cardRow{
-    display:flex;
+.cardRow {
+    display: flex;
 }
 
-#myDeckCardPreview{
-    height:fit-content;
+#myDeckCardPreview {
+    height: fit-content;
     width: 100%;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
-
-
-#myDeckSaveButtonContainer{
-   position: relative; 
-   width: 100%; 
-   margin-top: 5px;
+#myDeckSaveButtonContainer {
+    position: relative;
+    width: 100%;
+    margin-top: 5px;
 }
 
-#myDeckCardPreviewImageButton{
-    display:none;
+#myDeckCardPreviewImageButton {
+    display: none;
     position: absolute;
 
     width: 100%;
 }
 
-.cardRowCount{
-    width:10%;
+.cardRowCount {
+    width: 10%;
 }
 
 .flip-vertical-left {
-	-webkit-animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-	        animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    -webkit-animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
 
 .flip-vertical-right {
-	-webkit-animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-	        animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    -webkit-animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
 
-
-
-#myDeckDecksSelectorText{
+#myDeckDecksSelectorText {
     margin-right: 2%;
 }
 
-
-
-#myDecksPickerSelectorDelete[disabled]{
+#myDecksPickerSelectorDelete[disabled] {
     pointer-events: none;
-    cursor: not-allowed; 
+    cursor: not-allowed;
 }
 
-.notVisible{
+.notVisible {
     visibility: hidden !important;
 }
 
-#myDeckCreateName, #myDeckDelete, #myDeckEdit{
-    display:none;
+#myDeckCreateName,
+#myDeckDelete,
+#myDeckEdit {
+    display: none;
     z-index: 9999;
     position: absolute;
     top: 40%;
@@ -350,66 +333,75 @@
     height: 20%;
     padding: 2%;
     background-color: var(--option_Background_color);
-border-radius: 10px;
-border-style: solid;
+    border-radius: 10px;
+    border-style: solid;
 }
 
- @-webkit-keyframes flip-vertical-left {
+@-webkit-keyframes flip-vertical-left {
     0% {
-      -webkit-transform: rotateY(0);
-              transform: rotateY(0);
-    }
-    1% {
-      -webkit-transform: rotateY(-180deg);
-              transform: rotateY(-180deg);
-    }
-    100% {
         -webkit-transform: rotateY(0);
-                transform: rotateY(0);
-      }
-  }
-  @keyframes flip-vertical-left {
-    0% {
-      -webkit-transform: rotateY(0);
-              transform: rotateY(0);
+        transform: rotateY(0);
     }
+
     1% {
         -webkit-transform: rotateY(-180deg);
-                transform: rotateY(-180deg);
-      }
-      100% {
-          -webkit-transform: rotateY(0);
-                  transform: rotateY(0);
-        }
-  }
-  
+        transform: rotateY(-180deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+}
+
+@keyframes flip-vertical-left {
+    0% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+
+    1% {
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+}
+
 
 @-webkit-keyframes flip-vertical-right {
     0% {
-      -webkit-transform: rotateY(0);
-              transform: rotateY(0);
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
     }
+
     1% {
         -webkit-transform: rotateY(180deg);
-                transform: rotateY(180deg);
-      }
-      100% {
-          -webkit-transform: rotateY(0);
-                  transform: rotateY(0);
-        }
-  }
-  @keyframes flip-vertical-right {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+}
+
+@keyframes flip-vertical-right {
     0% {
-      -webkit-transform: rotateY(0);
-              transform: rotateY(0);
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
     }
+
     1% {
         -webkit-transform: rotateY(180deg);
-                transform: rotateY(180deg);
-      }
-      100% {
-          -webkit-transform: rotateY(0);
-                  transform: rotateY(0);
-        }
-  }
-  
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+}
