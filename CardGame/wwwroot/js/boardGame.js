@@ -7,8 +7,7 @@ connection.on("DispatchLogGameEvent", function (log) {
     $('#notificationFromOtherPlayers').append(loggedElement);
 
     $('#notificationFromOtherPlayers').animate({
-        scrollTop: $(
-            'html, body').get(0).scrollHeight
+        scrollTop: $('#notificationFromOtherPlayers').get(0).scrollHeight
     }, 2000);
 
 })
@@ -234,6 +233,7 @@ $('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
     var name = $(ev.target).parent().parent().parent().parent().find('.playerNameBoardContainer').text();
     if (myUsername == name) {
         DrawCardFromMyDeck(myUsername);
+        LogInGame(myUsername + " is drawing a card from " + name + " deck");
     }
 });
 
@@ -387,6 +387,11 @@ $('body').on('click', '#contextMenuViewDeck', function () {
     var playerInspected = contextMenu.attr('inspected');
 
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "deck")
+
+    $('#zoneInspector').animate({
+        scrollTop: $('#zoneInspector').get(0).scrollHeight
+    }, 2000);
+
     $('#zoneInspector').show();
 
     if (IsEnglishLanguageOn()) {
