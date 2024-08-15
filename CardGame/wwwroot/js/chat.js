@@ -92,6 +92,8 @@ connection.on("Notify_Login", function (userList) {
   $("#onlineUserContainer").empty();
   var users = JSON.parse(userList);
 
+  $("#inviteFriends").empty();
+
   users.forEach(function (user) {
     var chatSpan = "";
     var avatar = RandomAvatar();

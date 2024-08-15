@@ -17,7 +17,6 @@ namespace CardGame.Hubs
     public class ChatHub : Hub
     {
         public static List<Room> _roomList = new();
-
         public static List<GameStatus> _matchesCurrentlyOn = new();
 
         public async Task SendMessage(string user, string message)
@@ -39,6 +38,11 @@ namespace CardGame.Hubs
             var disconnectedUserIndex = UserHandler.Users.FindIndex(x => x.ConnectionId == Context.ConnectionId);
             var userDisconnected = UserHandler.Users[disconnectedUserIndex];
             var user = JsonConvert.SerializeObject(userDisconnected);
+
+            var userToRemove = UserHandler.Users.Where(x => x.ConnectionId == Context.ConnectionId).First();
+            UserHandler.Users.Remove(userToRemove);
+            UserHandler.ConnectedIds.Remove(Context.ConnectionId);
+
             Clients.All.SendAsync("NotifyMe_Disconnected", user);
             Context.Abort();
             return base.OnDisconnectedAsync(exception);
