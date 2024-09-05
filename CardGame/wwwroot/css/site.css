@@ -9,6 +9,12 @@
   --option_Background_color_lighter: rgb(64, 105, 105);
   --option_Border_color: #212529;
   --option_Border_color_darker: #15181b;
+  --watermarkSize:24px;
+  --watermarkCommander:"Commander";
+  --watermarkPlaneswalker:"Planeswalker";
+  --watermarkExile:"Exile";
+  --watermarkGraveyard:"Graveyard";
+  --watermarkLands:"Lands";
 }
 
 body {

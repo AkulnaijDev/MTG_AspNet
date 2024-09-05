@@ -9,6 +9,12 @@
   --option_Background_color_lighter: rgb(64, 105, 105);
   --option_Border_color: #212529;
   --option_Border_color_darker: #15181b;
+  --watermarkSize:24px;
+  --watermarkCommander:"Commander";
+  --watermarkPlaneswalker:"Planeswalker";
+  --watermarkExile:"Exile";
+  --watermarkGraveyard:"Graveyard";
+  --watermarkLands:"Lands";
 }
 
 #boardGameContainer {
@@ -132,7 +138,7 @@
   float: left;
 }
 
-#boardPlayer1 {
+/* #boardPlayer1 {
   background: #DDD;
 }
 
@@ -146,7 +152,7 @@
 
 #boardPlayer4 {
   background: #444;
-}
+} */
 
 #rulesGameButton,
 #gameModeGameButton {
@@ -155,18 +161,18 @@
 
 
 .handZone {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   height: 33%;
 }
 
 .deckZone {
   height: 33%;
-  background-color: brown;
+  /* background-color: brown; */
 }
 
 .graveyardZone {
   height: 33%;
-  background-color: yellow;
+  /* background-color: yellow; */
   flex-direction: row;
   justify-content: flex-start;
 
@@ -174,37 +180,37 @@
 
 .exiledZone {
   height: 33%;
-  background-color: green;
+  /* background-color: green; */
   flex-direction: row;
   justify-content: flex-start;
 }
 
 .landZone {
-  background-color: bisque;
+  /* background-color: bisque; */
   height: 33%;
 }
 
 .tokenZone {}
 
 .cardZone {
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   height: 34%;
 }
 
 .commanderZone {
   height: 34%;
-  background-color: pink;
+  /* background-color: pink; */
 }
 
 .planeswalkerZone {
   height: 33%;
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 
 
 .playerNameZone {
   height: 34%;
-  background-color: cornflowerblue;
+  /* background-color: cornflowerblue; */
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -363,8 +369,8 @@
 }
 
 .cardContainer {
-  margin: 3px;
-  height: 95%;
+  padding: 3px;
+  height: 100%;
   flex-shrink: 0;
   overflow: hidden;
   position: relative;
@@ -426,4 +432,118 @@
 
 .notificationFromOtherPlayersContainer {
   height: 10%;
+}
+
+
+.planeswalkerZone{
+  border-top:1px solid var(--option_Border_color);
+  border-bottom:1px solid var(--option_Border_color);
+}
+
+.landZone{
+  border:1px solid var(--option_Border_color);
+  border-left:1px solid var(--option_Border_color);
+  border-right:1px solid var(--option_Border_color); 
+}
+
+.exiledZone{
+  border-top:1px solid var(--option_Border_color);
+  border-bottom:1px solid var(--option_Border_color); 
+}
+
+#boardPlayer1 .commanderZone, #boardPlayer3 .commanderZone{
+  border-bottom:1px solid var(--option_Border_color); 
+}
+#boardPlayer2 .commanderZone, #boardPlayer4 .commanderZone{
+  border-top:1px solid var(--option_Border_color); 
+}
+
+#boardPlayer1 .playerNameZone, #boardPlayer3 .playerNameZone{
+  border-bottom:1px solid var(--option_Border_color); 
+}
+#boardPlayer2 .playerNameZone, #boardPlayer4 .playerNameZone{
+  border-top:1px solid var(--option_Border_color); 
+}
+
+.handZone{
+  border-left:1px solid var(--option_Border_color);
+  border-right:1px solid var(--option_Border_color); 
+
+}
+
+
+.commanderZone::after {
+  content: var(--watermarkCommander); /* Testo del watermark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra il testo */
+  color: rgba(0, 0, 0, 0.1); /* Colore semitrasparente per effetto watermark */
+  font-size: var(--watermarkSize); /* Dimensione del testo */
+  font-weight: bold;
+  pointer-events: none; /* Il testo non interferisce con l'interazione del mouse */
+  z-index: 1; /* Assicurati che sia sopra il contenuto */
+}
+
+.planeswalkerZone::after {
+  content: var(--watermarkPlaneswalker); /* Testo del watermark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra il testo */
+  color: rgba(0, 0, 0, 0.1); /* Colore semitrasparente per effetto watermark */
+  font-size: var(--watermarkSize); /* Dimensione del testo */
+  font-weight: bold;
+  pointer-events: none; /* Il testo non interferisce con l'interazione del mouse */
+  z-index: 1; /* Assicurati che sia sopra il contenuto */
+}
+
+.exiledZone::after {
+  content: var(--watermarkExile);; /* Testo del watermark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra il testo */
+  color: rgba(0, 0, 0, 0.1); /* Colore semitrasparente per effetto watermark */
+  font-size: var(--watermarkSize); /* Dimensione del testo */
+  font-weight: bold;
+  pointer-events: none; /* Il testo non interferisce con l'interazione del mouse */
+  z-index: 1; /* Assicurati che sia sopra il contenuto */
+}
+
+.graveyardZone::after {
+  content: var(--watermarkGraveyard); /* Testo del watermark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra il testo */
+  color: rgba(0, 0, 0, 0.1); /* Colore semitrasparente per effetto watermark */
+  font-size: var(--watermarkSize); /* Dimensione del testo */
+  font-weight: bold;
+  pointer-events: none; /* Il testo non interferisce con l'interazione del mouse */
+  z-index: 1; /* Assicurati che sia sopra il contenuto */
+}
+
+.landZone::after {
+  content: var(--watermarkLands); /* Testo del watermark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra il testo */
+  color: rgba(0, 0, 0, 0.1); /* Colore semitrasparente per effetto watermark */
+  font-size: var(--watermarkSize); /* Dimensione del testo */
+  font-weight: bold;
+  pointer-events: none; /* Il testo non interferisce con l'interazione del mouse */
+  z-index: 1; /* Assicurati che sia sopra il contenuto */
+}
+
+#boardPlayer1 .cardZone, #boardPlayer3 .cardZone{
+  border-left:1px solid var(--option_Border_color);
+  border-right:1px solid var(--option_Border_color); 
+  border-bottom:1px solid var(--option_Border_color); 
+}
+#boardPlayer2 .cardZone, #boardPlayer4 .cardZone{
+  border-left:1px solid var(--option_Border_color);
+  border-right:1px solid var(--option_Border_color); 
+  border-top:1px solid var(--option_Border_color); 
 }
