@@ -161,6 +161,33 @@ namespace CardGame.Hubs
             await Clients.Caller.SendAsync("ConfirmDeckDeleted");
         }
 
+        public async Task AbandonGame(string username)
+        {
+            var room = _roomList.Where(x => x.Players.Any(y => y.Name == username)).FirstOrDefault();
+            var roomId = room?.RoomId;
+
+            var currentMatch = _matchesCurrentlyOn.Where(x => x.PlayerStatuses.Any(y => y.Name == username)).First();
+
+            var teamOfLeavingPlayer = currentMatch.Game.Teams.Where(x=> x.Teammates.Any(y=> y.Name==username));
+            var teammates = teamOfLeavingPlayer?.Select(x=> x.Teammates).First();
+            var otherPlayers = teammates?.Where(x => x.Name != username);
+
+
+            await _matchesCurrentlyOn.Where(x => x.Game.RoomId == roomId).First().RemovePlayer(username);
+            await _roomList.Where(x => x.RoomId == roomId).First().RemovePlayer(username);
+
+            if (otherPlayers?.Count()>0)
+            {
+                await Clients.Group(roomId).SendAsync("SomeoneLeft", username);
+            } 
+            else 
+            {
+                await Clients.Group(roomId).SendAsync("YouWon", username);
+                _matchesCurrentlyOn.Remove(_matchesCurrentlyOn.Where(x=>x.Game.RoomId==roomId).First());
+                _roomList.Remove(room);
+            }
+        }
+
         public async Task VerifyGameModes(string deckId, string username)
         {
             var deck = SqlUtils.QueryRequestDeck(deckId, username);

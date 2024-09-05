@@ -95,4 +95,9 @@ public class GameStatus
     public Game Game;
     public List<PlayerStatus> PlayerStatuses;
 
+    public Task RemovePlayer(string username)
+    {
+        PlayerStatuses.Remove(PlayerStatuses.Where(x => x.Name == username).First());
+        return Task.CompletedTask;
+    }
 }

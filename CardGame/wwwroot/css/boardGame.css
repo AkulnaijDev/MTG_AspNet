@@ -74,6 +74,11 @@
   height: -5%;
 }
 
+#zoneInspectorButtonContainer{
+  display: inline-flex;
+  align-items: center;
+}
+
 .cardContainerSneaked {
   flex-basis: calc(25% - 20px);
   max-width: calc(25% - 20px);

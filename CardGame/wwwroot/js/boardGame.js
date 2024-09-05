@@ -45,7 +45,11 @@ $('body').on('click', '#mainMenuNewGame', function () {
 $('body').on('click', '#quitTheGameButton', function () {
     $('.teammateContainer').empty();
     ResetInviteScreen();
+    connection.invoke("AbandonGame", myUsername).catch(function (err) {
+        return console.error(err.toString());
+    });
     $('#boardGameContainer').hide();
+    $('#quitTheGameButton').attr('disabled',true)
 });
 
 $('body').on('change', '#selectDeckToPlay', function () {
@@ -552,13 +556,38 @@ function GetTeams() {
     return JSON.stringify(obj);
 }
 
+connection.on("SomeoneLeft",function (leavingPlayer){
+    console.log("dio cane è uscito "+ leavingPlayer);
+});
+connection.on("YouWon", function (leavingPlayer){
+    console.log("no more in game "+ leavingPlayer);
+    $('.teammateContainer').empty();
+    ResetInviteScreen();
+    $('#boardGameContainer').hide();
+});
+
+
+function ResetBoard(){
+    $('.deckZone').empty();
+    $('.planeswalkerZone').empty();
+    $('.commanderZone').empty();
+
+    $('.handZone').empty();
+    $('.landZone').empty();
+    $('.cardZone').empty();
+
+    $('.graveyardZone').empty();
+    $('.exiledZone').empty();
+    $('.playerNameZone').empty();
+}
 
 connection.on("DisplayGameBoard", function (gameState) {
-    $('#beginTheGameButton').hide();
 
     var gameStatus = JSON.parse(gameState);
     state = gameStatus;
 
+    ResetBoard();
+    
     if (gameStatus.PlayerStatuses.length >= 3) {
         DisplayBoardForMoreThanTwoPlayers();
     }
@@ -569,6 +598,9 @@ connection.on("DisplayGameBoard", function (gameState) {
     DealInitialCards();
     DisplayDecks();
     DisplayInitialHP(gameStatus.Game.GameMode);
+
+    $('#beginTheGameButton').attr('disabled',true)
+    $('#quitTheGameButton').removeAttr('disabled')
 })
 
 
