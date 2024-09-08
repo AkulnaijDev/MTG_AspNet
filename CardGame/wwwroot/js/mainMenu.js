@@ -309,7 +309,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#gameModeTitle').text("Modalità di gioco")
         $('#closeGameRulesMenu').text("Chiudi")
 
-        $('#gameModeGameButton').text("Controlla modalità di gioco")
+        $('#gameModeGameButton').text("Modalità di gioco")
 
         $('#myDeckDecksNormalSearchValue').attr("placeholder", "Cerca per nome");
         $('#myDeckDecksNormalSearchButton').text("Cerca")
@@ -359,8 +359,6 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextMenuViewDeck').text("Guarda mazzo")
         $('#contextMenuViewHand').text("Guarda mano")
         $('#contextMenuScryDeck').text("Guarda prime X carte")
-        $('#contextMenuDiscardDeck').text("Scarta prime X carte")
-        $('#contextMenuExileDeck').text("Esilia prime X carte")
         $('.optionFromTop').text("Dalla cima");
         $('.optionFromBottom').text("Dal fondo");
         $('.optionDiscard').text("Scarta carte");
@@ -492,8 +490,6 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextMenuViewDeck').text("View deck")
         $('#contextMenuViewHand').text("View hand")
         $('#contextMenuScryDeck').text("View first X cards")
-        $('#contextMenuDiscardDeck').text("Discard first X cards")
-        $('#contextMenuExileDeck').text("Exile first X cards")
         $('.optionFromTop').text("From Top");
         $('.optionFromBottom').text("From Bottom");
         $('.optionDiscard').text("Discard cards");

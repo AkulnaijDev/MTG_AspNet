@@ -53,8 +53,11 @@
   height: 30px;
 }
 
+#contextMenuTokenSelector{
+  width:100%
+}
 #contextMenuTokenQuantity {
-  width: 50px;
+  width: 30px;
 }
 
 #zoneInspector {
@@ -546,4 +549,35 @@
   border-left:1px solid var(--option_Border_color);
   border-right:1px solid var(--option_Border_color); 
   border-top:1px solid var(--option_Border_color); 
+}
+
+#contextMenuExileCards{
+  width:10%;
+}
+#contextMenuExileDeck{
+  width:15%;
+}
+
+#contextMenuScryCards{
+  width:10%
+}
+
+#contextMenuScryDeck{
+  width:50%;
+}
+
+.contextMenuActionContainers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:3px;
+  margin-bottom:3px;
+}
+
+#contextMenuScryContainer, #contextMenuExileContainer, #contextMenuToken{
+  width:80%;
+}
+
+#contextMenu button{
+  width:80%
 }

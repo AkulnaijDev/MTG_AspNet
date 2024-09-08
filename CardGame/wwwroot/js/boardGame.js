@@ -302,7 +302,7 @@ $('body').on('click', '#contextMenuPlayToken', function () {
 
 $('body').on('click', '#contextMenuScryDeck', function () {
     $('#contextMenu').hide();
-    var contextMenu = $(this).parent().parent();
+    var contextMenu = $(this).parent().parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
     var howManyCards = $('#contextMenuScryCards').val();
@@ -320,7 +320,7 @@ $('body').on('click', '#contextMenuScryDeck', function () {
 
 $('body').on('click', '#contextMenuExileDeck', function () {
     $('#contextMenu').hide();
-    var contextMenu = $(this).parent().parent();
+    var contextMenu = $(this).parent().parent().parent();
     var targetPlayer = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
@@ -367,7 +367,7 @@ function IsEnglishLanguageOn() {
 
 $('body').on('click', '#contextMenuShuffleDeck', function () {
     $('#contextMenu').hide();
-    var contextMenu = $(this).parent();
+    var contextMenu = $(this).parent().parent();
 
     var targetPlayer = contextMenu.attr('inspected');
 
@@ -386,7 +386,7 @@ $('body').on('click', '#contextMenuShuffleDeck', function () {
 
 $('body').on('click', '#contextMenuViewDeck', function () {
     $('#contextMenu').hide();
-    var contextMenu = $(this).parent();
+    var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
@@ -407,7 +407,7 @@ $('body').on('click', '#contextMenuViewDeck', function () {
 
 $('body').on('click', '#contextMenuViewGraveyard', function () {
     $('#contextMenu').hide();
-    var contextMenu = $(this).parent();
+    var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
@@ -423,7 +423,7 @@ $('body').on('click', '#contextMenuViewGraveyard', function () {
 
 $('body').on('click', '#contextMenuViewExiled', function () {
     $('#contextMenu').hide();
-    var contextMenu = $(this).parent();
+    var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
@@ -439,7 +439,7 @@ $('body').on('click', '#contextMenuViewExiled', function () {
 
 $('body').on('click', '#contextMenuViewHand', function () {
     $('#contextMenu').hide();
-    var contextMenu = $(this).parent();
+    var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 

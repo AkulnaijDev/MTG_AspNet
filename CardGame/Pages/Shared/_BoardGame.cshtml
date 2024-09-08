@@ -6,11 +6,11 @@
                 <div id="inviteFriendsText">Invite a friend</div>
                 <select name="" id="inviteFriends"></select>
                 <span id="addFriendToGame">➕</span>
-                
+
             </div>
             <div class="col-6">
-                 <div id="invitedFriendsText">Other players</div>
-                <div id="invitedFriendsArea">  </div>
+                <div id="invitedFriendsText">Other players</div>
+                <div id="invitedFriendsArea"> </div>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
         </div>
 
         <div class="gameModesRow row">
-          
+
             <div class="col-6">
                 <div class="row">
                     <div id="gameModesText"> Game modes</div>
@@ -68,7 +68,7 @@
                     <div class="teammateContainer col-3">
                     </div>
                 </div>
-                 <div class="teamRow row">
+                <div class="teamRow row">
                     <div class="col-3"> Team 2</div>
                     <div class="teamSelectContainer col-6">
                         <select class="teamSelectPlayer" name="" id=""></select>
@@ -77,7 +77,7 @@
                     <div class="teammateContainer col-3">
                     </div>
                 </div>
-                 <div class="teamRow row">
+                <div class="teamRow row">
                     <div class="col-3"> Team 3 </div>
                     <div class="teamSelectContainer col-6">
                         <select class="teamSelectPlayer" name="" id=""></select>
@@ -86,16 +86,16 @@
                     <div class="teammateContainer col-3">
                     </div>
                 </div>
-                 <div class="teamRow row">
+                <div class="teamRow row">
                     <div class="col-3"> Team 4 </div>
-                     <div class="teamSelectContainer col-6">
+                    <div class="teamSelectContainer col-6">
                         <select class="teamSelectPlayer" name="" id=""></select>
                         <span class="addPlayerToTeam">➕</span>
                     </div>
                     <div class="teammateContainer col-3">
                     </div>
                 </div>
-              
+
             </div>
 
         </div>
@@ -105,65 +105,82 @@
         <div class="startGameButtonContainerrow row">
             <div id="startGameButtonContainer" class="col-12">
                 <button id="startTheGameButton">START THE GAME</button>
-                 <button id="backTheGameButton">BACK</button>
+                <button id="backTheGameButton">BACK</button>
             </div>
         </div>
     </div>
 
 
     <div class="" id="contextMenu">
-        <button id="contextMenuShuffleDeck">Shuffle deck</button>
-        <button id="contextMenuViewDeck">View deck</button>
-        <button id="contextMenuMulligan">Mulligan</button>
 
-        <div id="contextMenuScryContainer">
-            <input type="number" placeholder="X" id="contextMenuScryCards">
-            <button id="contextMenuScryDeck">View first X cards </button>
+        <div class="contextMenuActionContainers">
+            <button id="contextMenuShuffleDeck">Shuffle deck</button>
         </div>
 
-         <div id="contextMenuExileContainer">
-            <input type="number" placeholder="X" id="contextMenuExileCards">
-             <select id="contextMenuExileDiscardActionSelector">
-                <option class="optionDiscard" value="discard">Discard cards</option>
-                <option class="optionExile" value="exile">Exile cards</option>
-            </select>
-            <select id="contextMenuExileDeckSelector">
-                <option class="optionFromTop" value="top">From top</option>
-                <option class="optionFromBottom" value="bottom">From bottom</option>
-            </select>
-            <button id="contextMenuExileDeck"> Confirm </button>
+        <div class="contextMenuActionContainers">
+            <button id="contextMenuViewDeck">View deck</button>
         </div>
 
-        @* <div id="contextMenuDiscardContainer">
-            <input type="number" placeholder="X" id="contextMenuDiscardCards">
-            <button id="contextMenuDiscardDeck">Discard first X cards </button>
-             <select id="contextMenuDiscardDeckSelector">
-                <option class="optionFromTop" value="top">From top</option>
-                <option class="optionFromBottom" value="bottom">From bottom</option>
-            </select>
-        </div> *@
-
-         <div id="contextMenuToken">
-            <select id="contextMenuTokenSelector"></select>
-            <input type="number" placeholder="X" id="contextMenuTokenQuantity">
-            <button id="contextMenuPlayToken">Play token </button>
+        <div class="contextMenuActionContainers">
+            <button id="contextMenuMulligan">Mulligan</button>
         </div>
-         
 
-        <button id="contextMenuViewHand">View hand</button>
-        <button id="contextMenuViewGraveyard">View graveyard</button>
-        <button id="contextMenuViewExiled">View exiled</button>
-        <button id="closeContextMenu">Close</button>
+        <div class="contextMenuActionContainers">
+            <div id="contextMenuScryContainer">
+                <input type="number" placeholder="X" id="contextMenuScryCards">
+                <button id="contextMenuScryDeck">View first X cards </button>
+            </div>
+        </div>
+
+        <div class="contextMenuActionContainers">
+            <div id="contextMenuExileContainer">
+                <input type="number" placeholder="X" id="contextMenuExileCards">
+                <select id="contextMenuExileDiscardActionSelector">
+                    <option class="optionDiscard" value="discard">Discard cards</option>
+                    <option class="optionExile" value="exile">Exile cards</option>
+                </select>
+                <select id="contextMenuExileDeckSelector">
+                    <option class="optionFromTop" value="top">From top</option>
+                    <option class="optionFromBottom" value="bottom">From bottom</option>
+                </select>
+                <button id="contextMenuExileDeck"> OK </button>
+            </div>
+        </div>
+
+        <div class="contextMenuActionContainers">
+            <div id="contextMenuToken">
+                <select id="contextMenuTokenSelector"></select>
+                <input type="number" placeholder="X" id="contextMenuTokenQuantity">
+                <button id="contextMenuPlayToken">Play token </button>
+            </div>
+        </div>
+
+        <div class="contextMenuActionContainers"> 
+            <button id="contextMenuViewHand">View hand</button>
+        </div>
+
+        <div class="contextMenuActionContainers">
+            <button id="contextMenuViewGraveyard">View graveyard</button>
+        </div>
+
+        <div class="contextMenuActionContainers">
+             <button id="contextMenuViewExiled">View exiled</button></div>
+      
+
+        <div class="contextMenuActionContainers">
+            <button id="closeContextMenu">Close</button>
+        </div>
+
     </div>
 
     <div class="zoneInspector2" id="zoneInspector">
-        <div  id="zoneInspectorButtonContainer"><button id="closeInspectorButton">Close inspector</button></div>
+        <div id="zoneInspectorButtonContainer"><button id="closeInspectorButton">Close inspector</button></div>
         <div id="zoneInspectorCardContainer"></div>
     </div>
 
 
     <div class="uninteractable" id="boardGame">
-        
+
         <div id="boardPlayer1" class="playerBoard">
             <div class="container playerBoardContainer">
                 <div class="row" style="height: 100%;">
@@ -175,7 +192,7 @@
 
                     <div class="col-8" style="height: 100%;">
                         <div class="handZone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div class="landZone" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                        <div class="landZone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                         <div class="cardZone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                     </div>
                     <div class="col-2" style="height: 100%;">
@@ -257,29 +274,29 @@
 
         <div class="menuIconsContainer row">
             <div class="col-12">
-                 <button id="rulesGameButton">Check rules</button>
-                  <button id="gameModeGameButton">Check game modes</button>
+                <button id="rulesGameButton">Check rules</button>
+                <button id="gameModeGameButton">Check game modes</button>
             </div>
         </div>
-        
+
         <div class="teamsContainer row">
-            <div class="teams team1">   
-                <div class="teamTitle">Team1</div>    
+            <div class="teams team1">
+                <div class="teamTitle">Team1</div>
             </div>
-             <div class="teams team2">
-                <div class="teamTitle">Team2</div>    
-             </div>
-              <div class="teams team3">
-                <div class="teamTitle">Team3</div>    
-              </div>
-               <div class="teams team4">
-                <div class="teamTitle">Team4</div>    
-               </div>
+            <div class="teams team2">
+                <div class="teamTitle">Team2</div>
+            </div>
+            <div class="teams team3">
+                <div class="teamTitle">Team3</div>
+            </div>
+            <div class="teams team4">
+                <div class="teamTitle">Team4</div>
+            </div>
         </div>
 
         <div class="notificationFromOtherPlayersContainer row">
             <div id="notificationFromOtherPlayers" class="col-12">
-                
+
             </div>
         </div>
 
@@ -290,9 +307,9 @@
             </div>
         </div>
 
-         <div class="row">
+        <div class="row">
             <div class="zoomedHoveredCardContainer col-12">
-               <img id="zoomedHoveredCard" src="" alt="">
+                <img id="zoomedHoveredCard" src="" alt="">
             </div>
         </div>
     </div>
