@@ -53,6 +53,8 @@ function drop(ev) {
     });
 }
 
+
+
 function DrawCardFromMyDeck(myUsername) {
 
     var zoneFrom = "deckZone";

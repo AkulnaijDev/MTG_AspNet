@@ -173,6 +173,52 @@
 
     </div>
 
+    <div id="cardInGameContextMenu">
+         <div class="contextMenuActionContainers">
+            <select id="contextCardGameMenuToDeckSelector">
+                <option class="optionFromTop" value="top">On top</option>
+                <option class="optionFromBottom" value="bottom">On bottom</option>
+            </select>
+            <button id="contextCardGameMenuToDeckButton"> Put card on my deck </button>
+        </div>
+         <div class="contextMenuActionContainers">
+            <select id="contextCardGameMenuCountersSelector">
+                <option class="optionFromTop" value="0_1">+0/+1</option>
+                <option class="optionFromTop" value="1_0">+1/+0</option>
+                <option class="optionFromTop" value="1_1">+1/+1</option>
+                <option class="optionFromTop" value="0_-1">+0/-1</option>
+                <option class="optionFromTop" value="-1_0">-1/+0</option>
+                <option class="optionFromTop" value="-1_-1">-1/-1</option>
+            </select>
+            <button id="contextCardGameMenuCountersButton"> Put counter on card </button>
+        </div>
+        <div class="contextMenuActionContainers">
+             <button id="contextCardGameMenuRotateButton"> Rotate </button>
+        </div>
+
+        <button id="closeCardInGameContextMenu">Close</button>
+    </div>
+
+     <div id="cardSneakedContextMenu">
+       <div class="contextMenuActionContainers">
+            <select id="contextCardSneakedToZoneSelector">
+                <option class="optionFromTop" value="handZone">Hand</option>
+                <option class="optionFromBottom" value="graveyardZone">Graveyard zone</option>
+                <option class="optionFromBottom" value="landZone">Land zone</option>
+                <option class="optionFromBottom" value="cardZone">Game zone</option>
+                <option class="optionFromBottom" value="planeswalkerZone">Planeswalker zone</option>
+                <option class="optionFromBottom" value="exiledZone">Exiled zone</option>
+                <option class="optionFromBottom" value="commanderZone">Commander zone</option>
+            </select>
+            <select id="contextCardSneakedToZoneOwnerSelector">
+                <option class="optionFromTop" value="mine">My zone</option>
+                <option class="optionFromBottom" value="owner">Deck owner</option>
+            </select>
+            <button id="contextCardSneakedToZoneButton"> Send card to </button>
+        </div>
+        <button id="closeCardSneakedContextMenu">Close</button>
+    </div>
+
     <div class="zoneInspector2" id="zoneInspector">
         <div id="zoneInspectorButtonContainer"><button id="closeInspectorButton">Close inspector</button></div>
         <div id="zoneInspectorCardContainer"></div>

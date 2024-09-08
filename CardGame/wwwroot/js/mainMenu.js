@@ -368,8 +368,28 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextMenuViewGraveyard').text("Guarda cimitero")
         $('#contextMenuViewExiled').text("Guarda esilio")
         $('#closeContextMenu').text("Chiudi")
+        $('#closeCardInGameContextMenu').text("Chiudi")
+        $('#closeCardSneakedContextMenu').text("Chiudi")
         $('#closeInspectorButton').text("Chiudi inspector")
 
+        $("#contextCardGameMenuToDeckSelector option[value='top']").text("In cima");
+        $("#contextCardGameMenuToDeckSelector option[value='bottom']").text("Sul fondo");
+        $('#contextCardGameMenuToDeckButton').text("Metti carta nel mio deck")
+        
+        $('#contextCardGameMenuCountersButton').text("Metti segnalino")
+        $('#contextCardGameMenuRotateButton').text("Ruota")
+
+        $("#contextCardSneakedToZoneSelector option[value='handZone']").text("Mano");
+        $("#contextCardSneakedToZoneSelector option[value='graveyardZone']").text("Cimitero");
+        $("#contextCardSneakedToZoneSelector option[value='landZone']").text("Zona terre");
+        $("#contextCardSneakedToZoneSelector option[value='cardZone']").text("In gioco");
+        $("#contextCardSneakedToZoneSelector option[value='planeswalkerZone']").text("Zona planeswalker");
+        $("#contextCardSneakedToZoneSelector option[value='exiledZone']").text("Esilio");
+        $("#contextCardSneakedToZoneSelector option[value='commanderZone']").text("Zona commander");
+        $('#contextCardSneakedToZoneButton').text("Manda carta")
+
+        $("#contextCardSneakedToZoneOwnerSelector option[value='mine']").text("Mia");
+        $("#contextCardSneakedToZoneOwnerSelector option[value='onwer']").text("Proprietario");
     } else {
         $('.translatedAbility').hide();
         $('.defaultAbility').show();
@@ -499,9 +519,31 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextMenuViewGraveyard').text("View graveyard")
         $('#contextMenuViewExiled').text("View exiled")
         $('#closeContextMenu').text("Close")
+        $('#closeCardInGameContextMenu').text("Close")
+        $('#closeCardSneakedContextMenu').text("Close")
         $('#closeInspectorButton').text("Close inspector")
 
+       
+        
+        $("#contextCardGameMenuToDeckSelector option[value='top']").text("On top");
+        $("#contextCardGameMenuToDeckSelector option[value='bottom']").text("On bottom");
+        $('#contextCardGameMenuToDeckButton').text("Put card on my deck")
+        
+        $('#contextCardGameMenuCountersButton').text("Put counter on card")
+        $('#contextCardGameMenuRotateButton').text("Rotate")
 
+        $("#contextCardSneakedToZoneSelector option[value='handZone']").text("Hand");
+        $("#contextCardSneakedToZoneSelector option[value='graveyardZone']").text("Graveyard zone");
+        $("#contextCardSneakedToZoneSelector option[value='landZone']").text("Land zone");
+        $("#contextCardSneakedToZoneSelector option[value='cardZone']").text("Game zone");
+        $("#contextCardSneakedToZoneSelector option[value='planeswalkerZone']").text("Planeswalker zone");
+        $("#contextCardSneakedToZoneSelector option[value='exiledZone']").text("Exile");
+        $("#contextCardSneakedToZoneSelector option[value='commanderZone']").text("Commander zone");
+        $('#contextCardSneakedToZoneButton').text("Send card to")
+
+        
+        $("#contextCardSneakedToZoneOwnerSelector option[value='mine']").text("Mine");
+        $("#contextCardSneakedToZoneOwnerSelector option[value='onwer']").text("Deck owner");
     }
 });
 //options END

@@ -26,7 +26,7 @@
   background-color: var(--option_Background_color);
 }
 
-#contextMenu {
+#cardInGameContextMenu,#cardSneakedContextMenu {
   position: absolute;
   background: var(--option_Background_color);
   border-radius: 10px;
@@ -37,6 +37,24 @@
   left: 38%;
   padding: 2%;
   z-index: 9999;
+  display: none;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#contextMenu {
+  position: absolute;
+  background: var(--option_Background_color);
+  border-radius: 10px;
+  border: 2px solid var(--option_Border_color);
+  width: 24%;
+  height: 50%;
+  top: 25%;
+  left: 38%;
+  padding: 2%;
+  z-index: 9997;
   display: none;
   overflow-y: auto;
   justify-content: center;
@@ -70,7 +88,7 @@
   top: 20%;
   left: 25%;
   padding: 2%;
-  z-index: 9999;
+  z-index: 9998;
   display: none;
   overflow-y: auto;
 }
@@ -378,7 +396,7 @@
   overflow: hidden;
   position: relative;
   transition: transform 0.3s;
-  z-index: 9998;
+  z-index: 9996;
 }
 
 .tapped {

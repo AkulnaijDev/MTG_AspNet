@@ -153,7 +153,7 @@ $('body').on('click', '#startTheGameButton', function () {
             });
 
             $('#inviteSection').hide();
-            $('#boardGame').removeClass('uninteractable');
+            // $('#boardGame').removeClass('uninteractable');
             $('#gameMenuZone').removeClass('uninteractable');
 
             ClearFieldsInInvitationView();
@@ -167,7 +167,7 @@ $('body').on('click', '#startTheGameButton', function () {
         if (CheckDeckValidityForGameMode()) {
             SendGameInvitations();
             $('#inviteSection').hide();
-            $('#boardGame').removeClass('uninteractable');
+            // $('#boardGame').removeClass('uninteractable');
             $('#gameMenuZone').removeClass('uninteractable');
 
             ClearFieldsInInvitationView();
@@ -248,14 +248,170 @@ $('body').on('dblclick', '.cardContainer', function () {
         if (!el.hasClass('deckBackCardContainer') && seeBack != "true") {
             if (el.hasClass('tapped')) {
                 el.removeClass('tapped');
-                LogInGame(myUsername + " tapped " + $(this).attr('name'));
+                LogInGame(myUsername + " untapped " + $(this).attr('name'));
             } else {
                 el.addClass('tapped');
-                LogInGame(myUsername + " untapped " + $(this).attr('name'));
+                LogInGame(myUsername + " tapped " + $(this).attr('name'));
             }
         }
     }
 });
+
+//sneaked card menu
+$('body').on('contextmenu', '.cardContainerSneaked', function () {
+    event.preventDefault();  //blocks opening console etc
+    // var playerInspecting = myUsername
+    // var playerInspected = $(this).parent().parent().find('.playerNameBoardContainer').text();
+    $('#cardSneakedContextMenu').show();
+
+    var cardId = $(event.target).parent().attr("id");
+    $('#cardSneakedContextMenu').attr('sneakedCardId', cardId);
+});
+
+$('body').on('click', '#closeCardSneakedContextMenu', function () {
+    $('#cardSneakedContextMenu').hide();
+});
+
+$('body').on('click', '#contextCardSneakedToZoneButton', function () {
+    PlayFromContext();
+    $('#cardSneakedContextMenu').hide();
+    $('#zoneInspector').hide();
+    
+});
+
+function PlayFromContext(){
+    var zoneTo = $('#contextCardSneakedToZoneSelector').val();
+    var cardId = $('#cardSneakedContextMenu').attr('sneakedCardId');
+
+    var playerFrom = $('#contextMenu').attr('inspected');
+
+    var playerToValue = $('#contextCardSneakedToZoneOwnerSelector').val();
+    var playerTo = myUsername;
+
+    if(playerToValue != "mine"){
+        playerTo = $('#contextMenu').attr('owner');
+    }
+
+    console.log("click in"+cardId+ " to " + zoneTo);
+
+    var action = {
+        "Game": state.Game,
+        "CardGuid": cardId,
+        "From": {
+            "Player": playerFrom,
+            "Zone": "deckZone"
+        },
+        "To": {
+            "Player": playerTo,
+            "Zone": zoneTo
+        }
+    }
+
+    connection.invoke("UpdateState_CardPlayedFromDeck", JSON.stringify(action)).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+   
+    if (IsEnglishLanguageOn()) {
+        LogInGame(myUsername+" played a card from "+myUsername + " deck");
+    } else {
+        LogInGame(myUsername+" ha giocato una carta dal deck di "+myUsername);
+    }
+}
+
+
+
+
+//card in game context menu
+$('body').on('contextmenu', '.cardContainer', function () {
+    if ($(event.target).closest('.deckZone').length === 0) {
+        // Se non è un discendente di .deckZone, procedi con l'handler
+        event.preventDefault();  // Blocca l'apertura del menu contestuale
+        var playerInspecting = myUsername;
+        var playerInspected = $(this).parent().parent().find('.playerNameBoardContainer').text();
+        $('#cardInGameContextMenu').show();
+
+        var cardId = $(event.target).parent().attr("id");
+        $('#cardInGameContextMenu').attr('sneakedCardId', cardId);
+    }
+});
+
+$('body').on('click', '#closeCardInGameContextMenu', function () {
+    $('#cardInGameContextMenu').hide();
+});
+
+
+$('body').on('click', '#contextCardGameMenuToDeckButton', function () {
+    CardBackToMyDeck();
+    $('#cardInGameContextMenu').hide();
+    $('#zoneInspector').hide();
+});
+
+function CardBackToMyDeck(){
+    var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
+    var x = $('body').find('div[id="'+cardId+'"]').first().parent();
+    var y1 = $('body').find('div[id="'+cardId+'"]').first().parent().parent();
+    var y2 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent();
+    var y3 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent();
+    var y4 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent().parent();
+    var y5 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent().parent().children('.playerNameBoardContainer');
+
+    var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
+
+    //var playerFrom = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent().children('.playerNameBoardContainer').text();
+   
+    var playerFrom = $('body').find('div[id="'+cardId+'"]').first()
+    .closest('.playerBoardContainer')  // Supponendo che .playerContainer sia un parent comune contenente sia il div che il .playerNameBoardContainer
+    .find('.playerNameBoardContainer')
+    .text();
+
+    var topOrBottom = $('#contextCardGameMenuToDeckSelector').val();
+
+    var action = {
+        "Game": state.Game,
+        "CardGuid": cardId,
+        "From": {
+            "Player": playerFrom,
+            "Zone": fromZone
+        },
+        "To": {
+            "Player": myUsername,
+            "Zone": "deckZone"
+        },
+        "TopBottom": topOrBottom
+    }
+
+    connection.invoke("UpdateState_CardToDeckFromGame", JSON.stringify(action)).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+   
+    if (IsEnglishLanguageOn()) {
+        LogInGame(myUsername+" put a card back to "+myUsername + " deck");
+    } else {
+        LogInGame(myUsername+" ha messo una carta nel deck di "+myUsername);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //menu context 
@@ -404,6 +560,26 @@ $('body').on('click', '#contextMenuViewDeck', function () {
         LogInGame(playerInspecting + " sta guardando il deck di " + playerInspected);
     }
 });
+
+
+
+$('body').on('click', '#contextMenuMulligan', function () {
+    var obj = {
+        "Username": myUsername,
+        "Game": state.Game
+    }
+    $('#contextMenu').hide();
+    connection.invoke("UpdateState_Mulligan", JSON.stringify(obj)).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    if (IsEnglishLanguageOn()) {
+        LogInGame(myUsername + " is mulligan");
+    } else {
+        LogInGame(myUsername + " sta mulligando");
+    }
+});
+
 
 $('body').on('click', '#contextMenuViewGraveyard', function () {
     $('#contextMenu').hide();
@@ -586,6 +762,8 @@ connection.on("DisplayGameBoard", function (gameState) {
     var gameStatus = JSON.parse(gameState);
     state = gameStatus;
 
+    $('#boardGame').removeClass('uninteractable');
+    
     ResetBoard();
     
     if (gameStatus.PlayerStatuses.length >= 3) {

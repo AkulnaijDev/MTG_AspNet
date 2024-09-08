@@ -187,10 +187,10 @@ $('body').on('keyup', '.myChatTextSenderInput', function (e) {
 
     $(this).val('');
 
-    textBox.animate({
-      scrollTop: $(
-        'html, body').get(0).scrollHeight
-    }, 2000);
+   // Scroll al massimo dell'altezza del contenitore
+   textBox.animate({
+    scrollTop: textBox.get(0).scrollHeight
+    }, 500); // Diminuito il tempo di animazione per migliorare l'effetto visivo
   }
 })
 
@@ -223,6 +223,11 @@ connection.on("ReceiveChatMessage", function (event) {
       $(chatContainer).removeClass('blinkChat')
     }, 2000);
   }
+
+    // Scroll al massimo dell'altezza del contenitore
+    textBox.animate({
+      scrollTop: textBox.get(0).scrollHeight
+      }, 500); // Diminuito il tempo di animazione per migliorare l'effetto visivo
 
 })
 
