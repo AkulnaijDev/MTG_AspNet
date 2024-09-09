@@ -34,7 +34,7 @@ namespace CardGame.Hubs
         }
 
         //Override to notify when someone disconnects
-        public override Task OnDisconnectedAsync(Exception exception)
+        public override async Task OnDisconnectedAsync(Exception exception)
         {
             var disconnectedUserIndex = UserHandler.Users.FindIndex(x => x.ConnectionId == Context.ConnectionId);
             var userDisconnected = UserHandler.Users[disconnectedUserIndex];
@@ -44,9 +44,36 @@ namespace CardGame.Hubs
             UserHandler.Users.Remove(userToRemove);
             UserHandler.ConnectedIds.Remove(Context.ConnectionId);
 
+
+            var username = userDisconnected.UserName;
+            var room = _roomList.Where(x => x.Players.Any(y => y.Name == username)).FirstOrDefault();
+            var roomId = room?.RoomId;
+
+            var currentMatch = _matchesCurrentlyOn.Where(x => x.PlayerStatuses.Any(y => y.Name == username)).FirstOrDefault();
+
+            var teamOfLeavingPlayer = currentMatch.Game.Teams.Where(x => x.Teammates.Any(y => y.Name == username));
+            var teammates = teamOfLeavingPlayer?.Select(x => x.Teammates).FirstOrDefault();
+            var otherPlayers = teammates?.Where(x => x.Name != username);
+
+
+            await _matchesCurrentlyOn.Where(x => x.Game.RoomId == roomId).FirstOrDefault().RemovePlayer(username);
+            await _roomList.Where(x => x.RoomId == roomId).FirstOrDefault().RemovePlayer(username);
+
+            if (otherPlayers?.Count() > 0)
+            {
+                await Clients.Group(roomId).SendAsync("SomeoneLeft", username);
+            }
+            else
+            {
+                await Clients.Group(roomId).SendAsync("YouWon", username);
+                _matchesCurrentlyOn.Remove(_matchesCurrentlyOn.Where(x => x.Game.RoomId == roomId).FirstOrDefault());
+                _roomList.Remove(room);
+            }
+
+
             Clients.All.SendAsync("NotifyMe_Disconnected", user);
             Context.Abort();
-            return base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception);
         }
 
         //Login with name
@@ -167,15 +194,15 @@ namespace CardGame.Hubs
             var room = _roomList.Where(x => x.Players.Any(y => y.Name == username)).FirstOrDefault();
             var roomId = room?.RoomId;
 
-            var currentMatch = _matchesCurrentlyOn.Where(x => x.PlayerStatuses.Any(y => y.Name == username)).First();
+            var currentMatch = _matchesCurrentlyOn.Where(x => x.PlayerStatuses.Any(y => y.Name == username)).FirstOrDefault();
 
             var teamOfLeavingPlayer = currentMatch.Game.Teams.Where(x=> x.Teammates.Any(y=> y.Name==username));
-            var teammates = teamOfLeavingPlayer?.Select(x=> x.Teammates).First();
+            var teammates = teamOfLeavingPlayer?.Select(x=> x.Teammates).FirstOrDefault();
             var otherPlayers = teammates?.Where(x => x.Name != username);
 
 
-            await _matchesCurrentlyOn.Where(x => x.Game.RoomId == roomId).First().RemovePlayer(username);
-            await _roomList.Where(x => x.RoomId == roomId).First().RemovePlayer(username);
+            await _matchesCurrentlyOn.Where(x => x.Game.RoomId == roomId).FirstOrDefault().RemovePlayer(username);
+            await _roomList.Where(x => x.RoomId == roomId).FirstOrDefault().RemovePlayer(username);
 
             if (otherPlayers?.Count()>0)
             {
@@ -184,7 +211,7 @@ namespace CardGame.Hubs
             else 
             {
                 await Clients.Group(roomId).SendAsync("YouWon", username);
-                _matchesCurrentlyOn.Remove(_matchesCurrentlyOn.Where(x=>x.Game.RoomId==roomId).First());
+                _matchesCurrentlyOn.Remove(_matchesCurrentlyOn.Where(x=>x.Game.RoomId==roomId).FirstOrDefault());
                 _roomList.Remove(room);
             }
         }
