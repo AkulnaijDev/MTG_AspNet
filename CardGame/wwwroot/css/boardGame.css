@@ -399,7 +399,7 @@
   z-index: 9996;
 }
 
-.tapped {
+.cardContainer[tapped] {
   transform: rotate(90deg);
   margin-right: 20px;
   margin-left: 20px;
@@ -573,7 +573,7 @@
   width:10%;
 }
 #contextMenuExileDeck{
-  width:15%;
+  width: 15% !important;;
 }
 
 #contextMenuScryCards{

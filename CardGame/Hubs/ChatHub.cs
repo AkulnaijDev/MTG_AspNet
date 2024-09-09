@@ -61,6 +61,7 @@ namespace CardGame.Hubs
         //Open the chat for the target user
         public async Task PutMeAndFriendInRoom(string myUserId, string myUsername, string targetUserId, string targetUserUsername, string roomGuid)
         {
+            
             await Groups.AddToGroupAsync(myUserId, roomGuid);
             await Groups.AddToGroupAsync(targetUserId, roomGuid);
             var addedInRoom = new AddedInRoom(myUserId, myUsername, targetUserId, targetUserUsername, roomGuid);
@@ -984,6 +985,10 @@ namespace CardGame.Hubs
                         if (gameAction.To.Zone == "handZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            {
+                                card.Statuses.Remove(GameCardConstants.TappedStatus);
+                            }
                             updatedPlayer.Hand.Add(card);
                         }
                         if (gameAction.To.Zone == "landZone")
@@ -994,21 +999,37 @@ namespace CardGame.Hubs
                         if (gameAction.To.Zone == "exiledZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            {
+                                card.Statuses.Remove(GameCardConstants.TappedStatus);
+                            }
                             updatedPlayer.Exiled.Add(card);
                         }
                         if (gameAction.To.Zone == "graveyardZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            {
+                                card.Statuses.Remove(GameCardConstants.TappedStatus);
+                            }
                             updatedPlayer.Graveyard.Add(card);
                         }
                         if (gameAction.To.Zone == "planeswalkerZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            {
+                                card.Statuses.Remove(GameCardConstants.TappedStatus);
+                            }
                             updatedPlayer.PlaneswalkerZone.Add(card);
                         }
                         if (gameAction.To.Zone == "commanderZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            {
+                                card.Statuses.Remove(GameCardConstants.TappedStatus);
+                            }
                             updatedPlayer.CommanderZone.Add(card);
                         }
                     }
@@ -1281,7 +1302,12 @@ namespace CardGame.Hubs
                         if (gameAction.To.Zone == "deckZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
-                            
+
+                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            {
+                                card.Statuses.Remove(GameCardConstants.TappedStatus);
+                            }
+
                             if (gameAction.TopBottom=="top")
                             {
                                 updatedPlayer.Deck.Insert(0, card);
@@ -1290,6 +1316,75 @@ namespace CardGame.Hubs
                                 updatedPlayer.Deck.Add(card);
                             }
                         }
+                    }
+                }
+
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+
+                await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task TapCard(string action)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<ActionCardPlayedTapUntap>(action);
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+
+                    if (playerStatus.Name == gameAction.Player)
+                    {
+                        if (gameAction.Zone == "cardZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            if (gameAction.TapUntap == "Untap")
+                            {
+                                var card = updatedPlayer.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+
+                                if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                                {
+                                    card.Statuses.Remove(GameCardConstants.TappedStatus);
+                                }
+                            }
+                            if (gameAction.TapUntap == "Tap")
+                            {
+                                updatedPlayer.GameZone.Where(x => x.Guid == gameAction.CardGuid).First().Statuses.Add(GameCardConstants.TappedStatus);
+                            }
+                        }
+                        if (gameAction.Zone == "landZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+                            if (gameAction.TapUntap == "Untap")
+                            {
+                                var card = updatedPlayer.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+
+                                if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                                {
+                                    card.Statuses.Remove(GameCardConstants.TappedStatus);
+                                }
+                            }
+                            if (gameAction.TapUntap == "Tap")
+                            {
+                                updatedPlayer.LandZone.Where(x => x.Guid == gameAction.CardGuid).First().Statuses.Add(GameCardConstants.TappedStatus);
+                            }
+                        }
+                       
+                       
                     }
                 }
 

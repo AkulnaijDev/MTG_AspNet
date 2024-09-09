@@ -244,14 +244,50 @@ $('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
 $('body').on('dblclick', '.cardContainer', function () {
     var el = $(this);
     var seeBack = el.attr('seeonlyback');
+
+    var cardId =  $(this).attr('id');
+    var player = $('body').find('div[id="'+cardId+'"]').first()
+    .closest('.playerBoardContainer')  // Supponendo che .playerContainer sia un parent comune contenente sia il div che il .playerNameBoardContainer
+    .find('.playerNameBoardContainer')
+    .text();
+    
+    var zoneTo = $(this).parent().attr('class');
+
     if (seeBack === "false") {
         if (!el.hasClass('deckBackCardContainer') && seeBack != "true") {
-            if (el.hasClass('tapped')) {
-                el.removeClass('tapped');
+            if (el.attr('tapped') !== undefined) {
+                //el.removeClass('tapped');
+
                 LogInGame(myUsername + " untapped " + $(this).attr('name'));
+
+                var action = {
+                    "Game": state.Game,
+                    "CardGuid": cardId,
+                    "TapUntap": "Untap",
+                    "Player": player,
+                    "Zone": zoneTo
+                }
+
+                connection.invoke("TapCard", JSON.stringify(action)).catch(function (err) {
+                    return console.error(err.toString());
+                });
+
             } else {
-                el.addClass('tapped');
+                //el.addClass('tapped');
+
                 LogInGame(myUsername + " tapped " + $(this).attr('name'));
+
+                var action = {
+                    "Game": state.Game,
+                    "CardGuid": cardId,
+                    "TapUntap": "Tap",
+                    "Player": player,
+                    "Zone": zoneTo
+                }
+
+                connection.invoke("TapCard", JSON.stringify(action)).catch(function (err) {
+                    return console.error(err.toString());
+                });
             }
         }
     }
@@ -349,16 +385,8 @@ $('body').on('click', '#contextCardGameMenuToDeckButton', function () {
 
 function CardBackToMyDeck(){
     var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
-    var x = $('body').find('div[id="'+cardId+'"]').first().parent();
-    var y1 = $('body').find('div[id="'+cardId+'"]').first().parent().parent();
-    var y2 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent();
-    var y3 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent();
-    var y4 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent().parent();
-    var y5 = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent().parent().children('.playerNameBoardContainer');
 
     var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
-
-    //var playerFrom = $('body').find('div[id="'+cardId+'"]').first().parent().parent().parent().parent().children('.playerNameBoardContainer').text();
    
     var playerFrom = $('body').find('div[id="'+cardId+'"]').first()
     .closest('.playerBoardContainer')  // Supponendo che .playerContainer sia un parent comune contenente sia il div che il .playerNameBoardContainer

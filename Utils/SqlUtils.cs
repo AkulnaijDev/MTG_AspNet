@@ -579,7 +579,9 @@ namespace Utils
                             Guid = Guid.NewGuid().ToString(),
                             CardId = obj.Key,
                             Source = obj.Source,
-                            Name = obj.Name
+                            Name = obj.Name,
+                            Statuses = new List<string>(),
+                            Counters = new List<string>(),
                         };
 
                         deck.Add(card);

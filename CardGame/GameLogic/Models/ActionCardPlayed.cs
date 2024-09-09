@@ -24,7 +24,16 @@ namespace CardGame.GameLogic.Models
         public string TopBottom { get; set; }
     }
 
-    
+    public class ActionCardPlayedTapUntap
+    {
+        public Game Game { get; set; }
+        public string CardGuid { get; set; }
+        public string Player { get; set; }
+        public string Zone { get; set; }
+        public string TapUntap { get; set; }
+    }
+
+
     public class MulliganAction
     {
         public Game Game { get; set; }

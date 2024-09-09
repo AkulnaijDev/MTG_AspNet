@@ -88,54 +88,68 @@ function UpdateBoard(newGameStatus) {
 
         parentBoard.find('.cardZone').empty();
         element.GameZone.forEach(card => {
+            var cardStatus = card.Statuses || []; // Se card.Statuses è undefined, sarà un array vuoto
+            var statusAttributes = cardStatus.map(status => status).join(" ");
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.cardZone').append(div);
         })
 
         parentBoard.find('.handZone').empty();
         element.Hand.forEach(card => {
+            var cardStatus = card.Statuses || [];
+            var statusAttributes = cardStatus.map(status => status).join(" ");
             var cardSource = card.Source;
             if (element.Name != myUsername) {
                 cardSource = "../resources/cardBack.jpg"
                 attributeCantSeeCard = true;
             }
-            var div = '<div id="' + card.Guid + '" cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.handZone').append(div);
         })
 
         parentBoard.find('.landZone').empty();
         element.LandZone.forEach(card => {
+            var cardStatus = card.Statuses || [];
+            var statusAttributes = cardStatus.map(status => status).join(" ");
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.landZone').append(div);
         })
 
         parentBoard.find('.exiledZone').empty();
         element.Exiled.forEach(card => {
+            var cardStatus = card.Statuses || [];
+            var statusAttributes = cardStatus.map(status => status).join(" ");
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.exiledZone').append(div);
         })
 
         parentBoard.find('.graveyardZone').empty();
         element.Graveyard.forEach(card => {
+            var cardStatus = card.Statuses || [];
+            var statusAttributes = cardStatus.map(status => status).join(" ");
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.graveyardZone').append(div);
         })
 
         parentBoard.find('.planeswalkerZone').empty();
         element.PlaneswalkerZone.forEach(card => {
+            var cardStatus = card.Statuses || [];
+            var statusAttributes = cardStatus.map(status => status).join(" ");
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.planeswalkerZone').append(div);
         })
 
         parentBoard.find('.commanderZone').empty();
         element.CommanderZone.forEach(card => {
+            var cardStatus = card.Statuses || [];
+            var statusAttributes = cardStatus.map(status => status).join(" ");
             var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
             parentBoard.find('.commanderZone').append(div);
         })
 
