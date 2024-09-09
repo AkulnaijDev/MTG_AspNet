@@ -10,47 +10,49 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
 
-    var zoneTo = ev.target.className;
+    if(data!=null){
+        var zoneTo = ev.target.className;
 
-    var playerTo = $(ev.target).parent().parent().parent().find('.playerNameBoardContainer').text();
-
-    if (zoneTo === 'cardOnTheTable') {
-        playerTo = $(ev.target).parent().parent().parent().parent().find('.playerNameBoardContainer').text();
-        zoneTo = $(ev.target).parent().parent()[0].className;;
-    }
-
-    var cardMoved = $('#' + data);
-    var zoneFrom = cardMoved.parent()[0].className;
-    var playerFrom = cardMoved.parent().parent().parent().find('.playerNameBoardContainer').text();
-
-    var action = {
-        "Game": state.Game,
-        "CardGuid": data,
-        "From": {
-            "Player": playerFrom,
-            "Zone": zoneFrom
-        },
-        "To": {
-            "Player": playerTo,
-            "Zone": zoneTo
+        var playerTo = $(ev.target).parent().parent().parent().find('.playerNameBoardContainer').text();
+    
+        if (zoneTo === 'cardOnTheTable') {
+            playerTo = $(ev.target).parent().parent().parent().parent().find('.playerNameBoardContainer').text();
+            zoneTo = $(ev.target).parent().parent()[0].className;;
         }
+    
+        var cardMoved = $('#' + data);
+        var zoneFrom = cardMoved.parent()[0].className;
+        var playerFrom = cardMoved.parent().parent().parent().find('.playerNameBoardContainer').text();
+    
+        var action = {
+            "Game": state.Game,
+            "CardGuid": data,
+            "From": {
+                "Player": playerFrom,
+                "Zone": zoneFrom
+            },
+            "To": {
+                "Player": playerTo,
+                "Zone": zoneTo
+            }
+        }
+    
+    
+        if (zoneTo === 'cardOnTheTable') {
+            var targetZone = $(ev.target).parent().parent();
+            cardMoved.appendTo(targetZone);
+        } else {
+            ev.target.appendChild(document.getElementById(data));
+        }
+    
+        var cardName = cardMoved.attr('name');
+        //GESTISCI QUI L'UPDATE DI STATO!!!!!!! avanti e indietro!!!
+        LogInGame(playerFrom + " moved " + " " + cardName + " " + " from " + playerFrom + " " + zoneFrom + " zone to " + playerTo + " " + zoneTo + " zone");
+    
+        connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
+            return console.error(err.toString());
+        });
     }
-
-
-    if (zoneTo === 'cardOnTheTable') {
-        var targetZone = $(ev.target).parent().parent();
-        cardMoved.appendTo(targetZone);
-    } else {
-        ev.target.appendChild(document.getElementById(data));
-    }
-
-    var cardName = cardMoved.attr('name');
-    //GESTISCI QUI L'UPDATE DI STATO!!!!!!! avanti e indietro!!!
-    LogInGame(playerFrom + " moved " + " " + cardName + " " + " from " + playerFrom + " " + zoneFrom + " zone to " + playerTo + " " + zoneTo + " zone");
-
-    connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
-        return console.error(err.toString());
-    });
 }
 
 

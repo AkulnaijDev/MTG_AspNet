@@ -61,7 +61,6 @@ namespace CardGame.Hubs
         //Open the chat for the target user
         public async Task PutMeAndFriendInRoom(string myUserId, string myUsername, string targetUserId, string targetUserUsername, string roomGuid)
         {
-            
             await Groups.AddToGroupAsync(myUserId, roomGuid);
             await Groups.AddToGroupAsync(targetUserId, roomGuid);
             var addedInRoom = new AddedInRoom(myUserId, myUsername, targetUserId, targetUserUsername, roomGuid);
@@ -897,6 +896,10 @@ namespace CardGame.Hubs
             {
                 var gameAction = JsonConvert.DeserializeObject<ActionCardPlayed>(action);
 
+                if (gameAction == null || gameAction.CardGuid == null)
+                {
+                    await Task.CompletedTask;
+                }
                 var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
 
                 _matchesCurrentlyOn.Remove(storedGameStatus);
