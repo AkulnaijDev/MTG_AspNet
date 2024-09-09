@@ -136,12 +136,24 @@ connection.on("NotifyMe_Disconnected", function (userObj) {
 $('body').on('click', '.openToChatIcon', function () {
   var targetUserId = $(this).parent().find('.onlineUserName').attr("userid");
   var targetUsername = $(this).parent().find('.onlineUserName').text();
-
   var roomGuid = GuidGenerator();
 
-  connection.invoke("PutMeAndFriendInRoom", myConnectionId, myUsername, targetUserId, targetUsername, roomGuid).catch(function (err) {
-    return console.error(err.toString());
-  });
+ // Verifica se esiste già un elemento con la classe 'personalChat' e lo stesso 'targetUserId'
+  var duplicateExists = $('body .personalChat').filter(function() {
+    return $(this).attr('targetUserId') === targetUserId;
+  }).length > 0;
+
+  if (!duplicateExists) {
+    // Non esistono duplicati, quindi puoi invocare la funzione
+    connection.invoke("PutMeAndFriendInRoom", myConnectionId, myUsername, targetUserId, targetUsername, roomGuid).catch(function (err) {
+        return console.error(err.toString());
+    });
+  } else {
+    $('body .personalChat').filter(function() {
+      return $(this).attr('targetUserId') === targetUserId;
+    }).show();
+    console.log("Esiste già una chat aperta con questo utente.");
+  }
 });
 
 $('body').on('click', '.closePersonalChat', function () {
