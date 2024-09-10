@@ -456,7 +456,7 @@ namespace CardGame.Hubs
                    .ToList();
                 }
 
-                cards = cards.OrderBy(x=> x.Name).ToList();
+                cards = cards.OrderBy(x => x.Name.Trim(), StringComparer.OrdinalIgnoreCase).ToList();
 
                 var obj = JsonConvert.SerializeObject(cards);
 
@@ -861,7 +861,7 @@ namespace CardGame.Hubs
         static string[] ExtractWords(string input)
         {
             // Rimuovi i caratteri speciali tranne spazi e lettere
-            string cleanedPhrase = Regex.Replace(input, @"[^a-zA-Z\s]", "");
+            string cleanedPhrase = Regex.Replace(input, @"[^a-zA-Z\s/]+", "");
 
             // Spezza la frase in array di stringhe usando lettere maiuscole e spazi come delimitatori
             string[] wordsArray = Regex.Split(cleanedPhrase, @"(?<!^)(?=[A-Z])|(?<=\s)");

@@ -761,7 +761,7 @@ function GetTeams() {
 }
 
 connection.on("SomeoneLeft",function (leavingPlayer){
-    console.log("dio cane è uscito "+ leavingPlayer);
+    console.log("è uscito "+ leavingPlayer);
 });
 connection.on("YouWon", function (leavingPlayer){
     console.log("no more in game "+ leavingPlayer);
