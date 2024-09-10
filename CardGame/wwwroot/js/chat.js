@@ -50,6 +50,21 @@ connection.on("ConfirmLogin", function (tokenSql) {
   if (tokenSql != "") {
     myUsername = $('#myname').val();
 
+    connection.invoke("Login", myUsername).catch(function (err) {
+      return console.error(err.toString());
+    });
+
+  } else {
+    $('#loginSpinner').hide();
+    $('#loginError').show().delay(2000).fadeOut();
+    $('#loginbutton').removeAttr('disabled')
+  }
+})
+
+connection.on("ApprovedLogin", function () {
+  
+    myUsername = $('#myname').val();
+
     connection.invoke("ReadAllSets").catch(function (err) {
       return console.error(err.toString());
     });
@@ -61,25 +76,19 @@ connection.on("ConfirmLogin", function (tokenSql) {
     connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
       return console.error(err.toString());
     });
-
-    connection.invoke("Login", myUsername).catch(function (err) {
-      return console.error(err.toString());
-    });
-
     connection.invoke("GetUserSetting", myUsername).catch(function (err) {
       return console.error(err.toString());
     });
-
-  } else {
-    $('#loginSpinner').hide();
-    $('#loginError').show().delay(2000).fadeOut();
-    $('#loginbutton').removeAttr('disabled')
-
-  }
 })
 
 connection.on("SetMyConnectionId", function (userId) {
   myConnectionId = userId;
+})
+
+connection.on("TellAlreadyLoggedIn", function () {
+  $('#loginErrorAlreadyLoggedin').show().delay(2000).fadeOut();
+  $('#loginSpinner').hide();
+  $('#loginbutton').delay(2000).removeAttr('disabled')
 })
 
 connection.on("Notify_Login", function (userList) {

@@ -217,6 +217,7 @@
 }
 
 #loginError,
+#loginErrorAlreadyLoggedin,
 #advancedSearchError {
     color: red;
     display: none;

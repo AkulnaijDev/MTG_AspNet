@@ -80,10 +80,24 @@ namespace CardGame.Hubs
         public async Task Login(string username)
         {
             var user = new User(Context.ConnectionId, username);
-            UserHandler.Users.Add(user);
-            var obj = JsonConvert.SerializeObject(UserHandler.Users);
-            await Clients.All.SendAsync("Notify_Login", obj);
+
+            if (UserHandler.Users.Any(x=> x.UserName == username))
+            {
+                await Clients.Caller.SendAsync("TellAlreadyLoggedIn");
+            } 
+            else
+            {
+                UserHandler.Users.Add(user);
+                var obj = JsonConvert.SerializeObject(UserHandler.Users);
+
+                await Clients.Caller.SendAsync("ApprovedLogin");
+                await Clients.All.SendAsync("Notify_Login", obj);
+            }
+
+           
         }
+
+       
 
         //Open the chat for the target user
         public async Task PutMeAndFriendInRoom(string myUserId, string myUsername, string targetUserId, string targetUserUsername, string roomGuid)
