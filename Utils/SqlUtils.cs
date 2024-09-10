@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Text;
 using Utils.Models;
 
 namespace Utils
@@ -8,6 +9,7 @@ namespace Utils
     public class SqlUtils
     {
         public static string _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog = MagicTheGathering; Integrated Security = True";
+
         public static void NonQueryRequest(string queryString)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -17,6 +19,7 @@ namespace Utils
                 command.ExecuteNonQuery();
             }
         }
+
         public static string SaveMySettings(UserSettings userSettings)
         {
             var queryString = $@"
@@ -64,41 +67,50 @@ namespace Utils
 
         public static void DeleteDeck(string deckId, string username)
         {
-            var queryString = $"DELETE Decks WHERE UserId ='{username}' AND Id ='{deckId}'";
+            var queryString = "DELETE FROM Decks WHERE UserId = @username AND Id = @deckId";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
-                command.Connection.Open();
-                command.ExecuteScalar();
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@deckId", deckId);
+
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public static void EditDeck(DeckItem deck, string deckId)
         {
-            var text = "";
-            for (var i = 1; i <= deck.Cards.Count; i++)
-            {
-                if (deck.Cards[i - 1] is not null)
-                {
-                    var text1 = $",[Card{i.ToString().PadLeft(3, '0')}] = ";
-                    var deckString = ("'" + JsonConvert.SerializeObject(deck.Cards[(i - 1)]).Replace("'", "''") + "'");
-                    text += (text1 + deckString);
-                }
-            }
-
-            var queryString = $"UPDATE Decks SET " +
-                $"Id='{deckId}' {text}" +
-                $" WHERE Id='{deckId}'";
-
+            var queryString = new StringBuilder("UPDATE Decks SET Id = @deckId");
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
-                command.Connection.Open();
-                command.ExecuteScalar();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.Parameters.AddWithValue("@deckId", deckId);
+
+                for (var i = 0; i < deck.Cards.Count; i++)
+                {
+                    if (deck.Cards[i] != null)
+                    {
+                        var paramName = $"@Card{i.ToString().PadLeft(3, '0')}";
+                        var text1 = $", [Card{i.ToString().PadLeft(3, '0')}] = {paramName}";
+                        var deckString = JsonConvert.SerializeObject(deck.Cards[i]).Replace("'", "''");
+
+                        queryString.Append(text1);
+                        command.Parameters.AddWithValue(paramName, deckString);
+                    }
+                }
+
+                queryString.Append(" WHERE Id = @deckId");
+                command.CommandText = queryString.ToString();
+
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
+
 
         public static string SaveDeck(DeckItem deck)
         {
@@ -147,13 +159,14 @@ namespace Utils
 
         public static UserSettings GetUserSettings(string username)
         {
-            var queryString = $"SELECT * From UserSettings Where Username ='{username}'";
+            var queryString = $"SELECT * From UserSettings Where Username = @username";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@username", username);
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -178,13 +191,16 @@ namespace Utils
 
         public static string CheckLogin(string username, string password)
         {
-            var queryString = $"SELECT * From Users Where Username ='{username}' and Password ='{password}'";
+            var queryString = $"SELECT * From Users Where Username =@username and Password =@password";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+
                 var results = 0;
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -253,13 +269,17 @@ namespace Utils
 
         public static List<Deck> QueryRequestDecks(string username)
         {
-            var queryString = $"SELECT * From Decks WHERE UserId='' or UserId = '{username}'";
+            var queryString = $"SELECT * From Decks WHERE UserId='' or UserId = @username";
+
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@username", username);
+
                 var results = new List<Deck>();
+
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -291,6 +311,8 @@ namespace Utils
         public static List<Card> QueryRequestCards(string filter)
         {
             var queryString = "SELECT * From Cards " + filter;
+
+            Console.WriteLine(queryString);
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -414,12 +436,16 @@ namespace Utils
 
         public static Deck QueryRequestDeck(string deckId, string username)
         {
-            var queryString = $"SELECT * From Decks WHERE (UserId = '{username}' or UserId ='') AND Id='{deckId}'";
+            var queryString = $"SELECT * From Decks WHERE (UserId = @username or UserId ='') AND Id=@deckId ";
+
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@deckId", deckId);
+
                 var deck = new Deck();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -450,13 +476,15 @@ namespace Utils
 
         public static CardCheck ReadSetAndRarityAndColorIdentity(string cardId)
         {
-            var queryString = $"select [Set],Rarity,Color_Identity,Released_at from Cards where Id = '{cardId}'";
+            var queryString = $"select [Set],Rarity,Color_Identity,Released_at from Cards where Id = @cardId";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@cardId", cardId);
+
                 var cardCheck = new CardCheck();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -541,12 +569,13 @@ namespace Utils
         public static List<GameCard> GetPlayableVersionOfTheDeck(string deckId)
         {
             var deck = new List<GameCard>();
-            var queryString = $"SELECT * From Decks WHERE Id='{deckId}'";
+            var queryString = $"SELECT * From Decks WHERE Id=@deckId";
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@deckId", deckId);
 
                 var jsonCards = new List<string>();
 
@@ -594,6 +623,8 @@ namespace Utils
 
         public static List<string> AdvancedSearchedCards(string queryString)
         {
+            Console.WriteLine(queryString);
+
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
