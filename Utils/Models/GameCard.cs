@@ -1,7 +1,8 @@
 ﻿public static class GameCardConstants
 {
     public static string TappedStatus = "Tapped";
-    public static string FlippedStatus = "Tapped";
+    public static string MorphedStatus = "Morphed";
+    public static string TransformedStatus = "Transformed";
 }
 
 public class GameCard

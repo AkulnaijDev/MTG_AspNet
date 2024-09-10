@@ -175,28 +175,42 @@
 
     <div id="cardInGameContextMenu">
          <div class="contextMenuActionContainers">
-            <select id="contextCardGameMenuToDeckSelector">
-                <option class="optionFromTop" value="top">On top</option>
-                <option class="optionFromBottom" value="bottom">On bottom</option>
-            </select>
-            <button id="contextCardGameMenuToDeckButton"> Put card on my deck </button>
+            <div class="contextSelectMenuContainers">
+                <select id="contextCardGameMenuToDeckSelector">
+                    <option class="optionFromTop" value="top">On top</option>
+                    <option class="optionFromBottom" value="bottom">On bottom</option>
+                </select>
+                <button id="contextCardGameMenuToDeckButton"> Put card on my deck </button>
+            </div>
         </div>
+
          <div class="contextMenuActionContainers">
-            <select id="contextCardGameMenuCountersSelector">
-                <option class="optionFromTop" value="0_1">+0/+1</option>
-                <option class="optionFromTop" value="1_0">+1/+0</option>
-                <option class="optionFromTop" value="1_1">+1/+1</option>
-                <option class="optionFromTop" value="0_-1">+0/-1</option>
-                <option class="optionFromTop" value="-1_0">-1/+0</option>
-                <option class="optionFromTop" value="-1_-1">-1/-1</option>
-            </select>
-            <button id="contextCardGameMenuCountersButton"> Put counter on card </button>
+            <div class="contextSelectMenuContainers">
+                <select id="contextCardGameMenuCountersSelector">
+                    <option class="optionFromTop" value="0_1">+0/+1</option>
+                    <option class="optionFromTop" value="1_0">+1/+0</option>
+                    <option class="optionFromTop" value="1_1">+1/+1</option>
+                    <option class="optionFromTop" value="0_-1">+0/-1</option>
+                    <option class="optionFromTop" value="-1_0">-1/+0</option>
+                    <option class="optionFromTop" value="-1_-1">-1/-1</option>
+                </select>
+                <button id="contextCardGameMenuCountersButton"> Put counter on card </button>
+            </div>
         </div>
+
         <div class="contextMenuActionContainers">
              <button id="contextCardGameMenuRotateButton"> Rotate </button>
         </div>
 
-        <button id="closeCardInGameContextMenu">Close</button>
+        <div class="contextMenuActionContainers">
+             <button id="contextCardGameMenuPlayMorphedButton"> Play Morphed </button>
+        </div>
+        
+        <div class="contextMenuActionContainers">
+           <button id="closeCardInGameContextMenu">Close</button>
+        </div>
+
+        
     </div>
 
      <div id="cardSneakedContextMenu">

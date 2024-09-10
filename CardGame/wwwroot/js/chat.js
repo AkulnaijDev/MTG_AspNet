@@ -11,8 +11,6 @@ $("#sendButton").disabled = true;
 
 connection.start().then(function () {
   $("#loginForm").show();
-  $("#mainMenu").addClass("uninteractable");
-  $("#chatContainer").addClass("uninteractable");
   $("#sendButton").disabled = false;
 });
 
@@ -92,8 +90,7 @@ connection.on("TellAlreadyLoggedIn", function () {
 })
 
 connection.on("Notify_Login", function (userList) {
-  $("#mainMenu").removeClass("uninteractable");
-  $("#chatContainer").removeClass("uninteractable");
+
   $('#loginSpinner').hide();
   $("#loginForm").hide();
   $('#loadingScreen').hide();
@@ -119,9 +116,10 @@ connection.on("Notify_Login", function (userList) {
     if (user.ConnectionId != myConnectionId) {
       $("#inviteFriends").append(option)
     }
-
-
   });
+
+  $("#mainMenu").removeClass("uninteractable");
+  $("#chatContainer").removeClass("uninteractable");
 })
 
 connection.on("NotifyMe_Disconnected", function (userObj) {

@@ -378,6 +378,8 @@ $('body').on('change', '#languageChooseOptions', function () {
         
         $('#contextCardGameMenuCountersButton').text("Metti segnalino")
         $('#contextCardGameMenuRotateButton').text("Ruota")
+        $('#contextCardGameMenuPlayMorphedButton').text("Gioca morphata")
+       
 
         $("#contextCardSneakedToZoneSelector option[value='handZone']").text("Mano");
         $("#contextCardSneakedToZoneSelector option[value='graveyardZone']").text("Cimitero");
@@ -531,6 +533,8 @@ $('body').on('change', '#languageChooseOptions', function () {
         
         $('#contextCardGameMenuCountersButton').text("Put counter on card")
         $('#contextCardGameMenuRotateButton').text("Rotate")
+        $('#contextCardGameMenuPlayMorphedButton').text("Play Morphed")
+
 
         $("#contextCardSneakedToZoneSelector option[value='handZone']").text("Hand");
         $("#contextCardSneakedToZoneSelector option[value='graveyardZone']").text("Graveyard zone");

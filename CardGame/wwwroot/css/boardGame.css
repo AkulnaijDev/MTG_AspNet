@@ -116,6 +116,7 @@
 
 .cardOnTheTableSneaked {
   height: 100%;
+  border-radius: 8px;
 }
 
 #inviteSection {
@@ -409,6 +410,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+  border-radius:8px;
 }
 
 .cardOnTheTable {
@@ -573,11 +575,24 @@
   width:10%;
 }
 #contextMenuExileDeck{
-  width: 15% !important;;
+  width: 15% !important;
 }
 
-#contextMenuScryCards{
-  width:10%
+#contextMenuScryCards
+{
+  width:10% !important;
+}
+
+#contextCardGameMenuCountersButton,
+#contextCardGameMenuToDeckButton
+{
+  width:60% !important;
+}
+
+#contextCardGameMenuToDeckSelector,
+#contextCardGameMenuCountersSelector
+{
+  width:35% !important;
 }
 
 #contextMenuScryDeck{
@@ -592,10 +607,18 @@
   margin-bottom:3px;
 }
 
-#contextMenuScryContainer, #contextMenuExileContainer, #contextMenuToken{
+#contextMenuScryContainer, #contextMenuExileContainer, #contextMenuToken, .contextSelectMenuContainers{
   width:80%;
 }
 
-#contextMenu button{
+#contextMenu button,
+#cardInGameContextMenu button{
   width:80%
+}
+
+#closeCardInGameContextMenu,
+#closeContextMenu{
+  bottom: 5%;
+    position: absolute;
+    width:40% !important;
 }

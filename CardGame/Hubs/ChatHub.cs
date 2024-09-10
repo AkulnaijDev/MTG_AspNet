@@ -1272,6 +1272,144 @@ namespace CardGame.Hubs
             }
         }
 
+        public async Task UpdateState_CardChangeStatusFromGame(string action)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<ActionCardChangedStatus>(action);
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+
+                    if (playerStatus.Name == gameAction.Player)
+                    {
+                        if (gameAction.Zone == "handZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+
+                            if (gameAction.Action == GameCardConstants.MorphedStatus)
+                            {
+                                var card = updatedPlayer.Hand.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+
+                                if (card != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
+                                {
+                                    card.Statuses.Remove(GameCardConstants.MorphedStatus);
+                                }
+                                else
+                                {
+                                    card.Statuses.Add(GameCardConstants.MorphedStatus);
+                                }
+                               
+                                updatedPlayer.Hand.Remove(card);
+                                updatedPlayer.GameZone.Add(card);
+                            }
+                        }
+                        if (gameAction.Zone == "cardZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+
+                            if (gameAction.Action == GameCardConstants.TransformedStatus)
+                            {
+                                var card = updatedPlayer.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+
+                                if (card != null && (card.Source.Contains("_front_") || card.Source.Contains("_back_")) && card.Statuses.Contains(GameCardConstants.TransformedStatus))
+                                {
+                                    card.Statuses.Remove(GameCardConstants.TransformedStatus);
+
+                                    if (card.Source.Contains("_back_"))
+                                    {
+                                        card.Source = card.Source.Replace("_back_", "_front_");
+                                    }
+                                } 
+                                else
+                                {
+                                    card.Statuses.Add(GameCardConstants.TransformedStatus);
+                                    if (card.Source.Contains("_front_"))
+                                    {
+                                        card.Source = card.Source.Replace("_front_", "_back_");
+                                    }
+                                }
+                            }
+
+                            if (gameAction.Action == GameCardConstants.MorphedStatus)
+                            {
+                                var card = updatedPlayer.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+
+                                if (card != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
+                                {
+                                    card.Statuses.Remove(GameCardConstants.MorphedStatus);
+                                }
+                                else
+                                {
+                                    card.Statuses.Add(GameCardConstants.MorphedStatus);
+                                }
+                            }
+                        }
+                        if (gameAction.Zone == "landZone")
+                        {
+                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
+
+                            if (gameAction.Action == GameCardConstants.TransformedStatus)
+                            {
+                                var card = updatedPlayer.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+
+                                if (card != null && (card.Source.Contains("_front_") || card.Source.Contains("_back_")) && card.Statuses.Contains(GameCardConstants.TransformedStatus))
+                                {
+                                    card.Statuses.Remove(GameCardConstants.TransformedStatus);
+
+                                    if (card.Source.Contains("_back_"))
+                                    {
+                                        card.Source =  card.Source.Replace("_back_", "_front_");
+                                    }
+                                }
+                                else
+                                {
+                                    card.Statuses.Add(GameCardConstants.TransformedStatus);
+                                    if (card.Source.Contains("_front_"))
+                                    {
+                                        card.Source = card.Source.Replace("_front_", "_back_");
+                                    }
+                                }
+                            }
+
+                            if (gameAction.Action == GameCardConstants.MorphedStatus)
+                            {
+                                var card = updatedPlayer.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+
+                                if (card != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
+                                {
+                                    card.Statuses.Remove(GameCardConstants.MorphedStatus);
+                                }
+                                else
+                                {
+                                    card.Statuses.Add(GameCardConstants.MorphedStatus);
+                                }
+                            }
+                        }
+
+
+                    }
+                }
+
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+
+                await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public async Task UpdateState_CardToDeckFromGame(string action)
         {
             try

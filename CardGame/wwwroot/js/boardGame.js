@@ -241,6 +241,8 @@ $('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
     }
 });
 
+
+
 $('body').on('dblclick', '.cardContainer', function () {
     var el = $(this);
     var seeBack = el.attr('seeonlyback');
@@ -301,7 +303,9 @@ $('body').on('contextmenu', '.cardContainerSneaked', function () {
     $('#cardSneakedContextMenu').show();
 
     var cardId = $(event.target).parent().attr("id");
+    var cardName = $(event.target).parent().attr("name");
     $('#cardSneakedContextMenu').attr('sneakedCardId', cardId);
+    $('#cardSneakedContextMenu').attr('sneakedCardName', cardName);
 });
 
 $('body').on('click', '#closeCardSneakedContextMenu', function () {
@@ -368,13 +372,69 @@ $('body').on('contextmenu', '.cardContainer', function () {
         $('#cardInGameContextMenu').show();
 
         var cardId = $(event.target).parent().attr("id");
+        var cardName = $(event.target).parent().attr("name");
+        
         $('#cardInGameContextMenu').attr('sneakedCardId', cardId);
+        $('#cardInGameContextMenu').attr('sneakedCardName', cardName);
     }
 });
 
 $('body').on('click', '#closeCardInGameContextMenu', function () {
     $('#cardInGameContextMenu').hide();
 });
+
+$('body').on('click', '#contextCardGameMenuPlayMorphedButton', function () {
+    ApplyActionToCard("Morphed");
+    $('#cardInGameContextMenu').hide();
+    $('#zoneInspector').hide();
+});
+
+
+$('body').on('click', '#contextCardGameMenuRotateButton', function () {
+    ApplyActionToCard("Transformed");
+    $('#cardInGameContextMenu').hide();
+    $('#zoneInspector').hide();
+});
+
+function ApplyActionToCard(actionType){
+    var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
+    var cardName = $('#cardInGameContextMenu').attr('sneakedCardName');
+
+    var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
+   
+    var playerFrom = $('body').find('div[id="'+cardId+'"]').first()
+    .closest('.playerBoardContainer')  // Supponendo che .playerContainer sia un parent comune contenente sia il div che il .playerNameBoardContainer
+    .find('.playerNameBoardContainer')
+    .text();
+
+    var action = {
+        "Game": state.Game,
+        "CardGuid": cardId,
+        "Player": playerFrom,
+        "Zone": fromZone,
+        "Action": actionType
+    }
+    
+    connection.invoke("UpdateState_CardChangeStatusFromGame", JSON.stringify(action)).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    if(actionType == "Transformed"){
+        if (IsEnglishLanguageOn()) {
+            LogInGame(myUsername+" transformed " + cardName);
+        } else {
+            LogInGame(myUsername+" ha trasformato " + cardName);
+        }
+    }
+   
+    if(actionType == "Morphed"){
+        if (IsEnglishLanguageOn()) {
+            LogInGame(myUsername+" played a morphed card");
+        } else {
+            LogInGame(myUsername+" ha giocato una carta morphata");
+        }
+    }
+}
 
 
 $('body').on('click', '#contextCardGameMenuToDeckButton', function () {

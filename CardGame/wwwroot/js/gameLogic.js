@@ -92,8 +92,11 @@ function UpdateBoard(newGameStatus) {
         element.GameZone.forEach(card => {
             var cardStatus = card.Statuses || []; // Se card.Statuses è undefined, sarà un array vuoto
             var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var cardSourceImg = card.Source;
+            if(cardStatus.includes("Morphed")){
+                cardSourceImg = "../resources/cardBack.jpg"
+            }
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
             parentBoard.find('.cardZone').append(div);
         })
 
@@ -114,8 +117,11 @@ function UpdateBoard(newGameStatus) {
         element.LandZone.forEach(card => {
             var cardStatus = card.Statuses || [];
             var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+            var cardSourceImg = card.Source;
+            if(cardStatus.includes("Morphed")){
+                cardSourceImg = "../resources/cardBack.jpg"
+            }
+            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
             parentBoard.find('.landZone').append(div);
         })
 
