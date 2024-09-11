@@ -628,7 +628,7 @@ namespace Utils
                             Source = obj.Source,
                             Name = obj.Name,
                             Statuses = new List<string>(),
-                            Counters = new List<string>(),
+                            Counters = new List<Counter>(),
                         };
 
                         deck.Add(card);

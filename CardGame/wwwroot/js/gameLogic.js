@@ -4,6 +4,8 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.currentTarget.attributes[0].nodeValue);
+
+  
 }
 
 function drop(ev) {
@@ -11,6 +13,9 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
 
     if(data!=null){
+        $('#contextMenu').hide();
+        $('#cardInGameContextMenu').hide();
+        
         var zoneTo = ev.target.className;
 
         var playerTo = $(ev.target).parent().parent().parent().find('.playerNameBoardContainer').text();
@@ -97,7 +102,16 @@ function UpdateBoard(newGameStatus) {
             if(cardStatus.includes("Morphed")){
                 cardSourceImg = "../resources/cardBack.jpg"
             }
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
+
+            var counters = "counters='";
+            card.Counters.forEach(function(item) {
+                counters += (item.Quantity + ' _of_ ' + item.Type + ";");
+            });
+            counters += "'";
+
+            console.log(counters);
+
+            var div = '<div id="' + card.Guid + '" ' + counters + " " + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
             parentBoard.find('.cardZone').append(div);
         })
 
@@ -122,7 +136,12 @@ function UpdateBoard(newGameStatus) {
             if(cardStatus.includes("Morphed")){
                 cardSourceImg = "../resources/cardBack.jpg"
             }
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
+            var counters = "counters='";
+            card.Counters.forEach(function(item) {
+                counters += (item.Quantity + ' _of_ ' + item.Type + ";");
+            });
+            counters += "'";
+            var div = '<div id="' + card.Guid + '" ' + counters + " " + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
             parentBoard.find('.landZone').append(div);
         })
 

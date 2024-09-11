@@ -184,6 +184,7 @@ $('body').on('click', '#startTheGameButton', function () {
             $('#gameMenuZone').removeClass('uninteractable');
 
             ClearFieldsInInvitationView();
+            $('#quitTheGameButton').removeAttr('disabled')
         }
         else {
             $('#inviteError').show().delay(2000).fadeOut();
@@ -380,6 +381,7 @@ function PlayFromContext(){
 
 //card in game context menu
 $('body').on('contextmenu', '.cardContainer', function () {
+   
     if ($(event.target).closest('.deckZone').length === 0) {
         // Se non è un discendente di .deckZone, procedi con l'handler
         event.preventDefault();  // Blocca l'apertura del menu contestuale
@@ -389,9 +391,34 @@ $('body').on('contextmenu', '.cardContainer', function () {
 
         var cardId = $(event.target).parent().attr("id");
         var cardName = $(event.target).parent().attr("name");
+        var cardCounters = $(event.target).parent().attr("counters");
         
         $('#cardInGameContextMenu').attr('sneakedCardId', cardId);
         $('#cardInGameContextMenu').attr('sneakedCardName', cardName);
+
+        $('#contextListOfAllCounters').empty();
+        
+        if(cardCounters!=""){
+            var entries = cardCounters.split(';').filter(Boolean); // Usa filter(Boolean) per rimuovere stringhe vuote
+
+            // Itera attraverso ogni parte dell'array
+            entries.forEach(function(entry) {
+                // Rimuovi eventuali spazi extra e dividi la stringa in base a '_of_'
+                var parts = entry.trim().split('_of_');
+                if (parts.length === 2) {
+                    var quantity = parts[0].trim();
+                    var type = parts[1].trim();
+                    
+                    // Crea un nuovo div con la quantità e la tipologia
+                    var newDiv = '<div class="quantityCounterContainer">Quantity: ' + quantity + ', Type: ' + type + '</div>';
+                    
+                    // Aggiungi il nuovo div a #textone
+                   
+                    $('#contextListOfAllCounters').append(newDiv);
+                }
+            });
+        }
+        
     }
 });
 
@@ -412,6 +439,12 @@ $('body').on('click', '#contextCardGameMenuRotateButton', function () {
     $('#zoneInspector').hide();
 });
 
+$('body').on('click', '#contextCardGameMenuCountersButton', function () {
+    ApplyActionToCard("CounterOnCard");
+    $('#cardInGameContextMenu').hide();
+    $('#zoneInspector').hide();
+});
+
 function ApplyActionToCard(actionType){
     var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
     var cardName = $('#cardInGameContextMenu').attr('sneakedCardName');
@@ -423,12 +456,21 @@ function ApplyActionToCard(actionType){
     .find('.playerNameBoardContainer')
     .text();
 
+    var counterType = $('#contextCardGameMenuCountersSelector').val();
+    var counterQuantity = $('#contextCardGameMenuCountersQuantitySelector').val();
+
+    var counters = {
+        "Quantity": counterQuantity,
+        "Type": counterType
+    } 
+
     var action = {
         "Game": state.Game,
         "CardGuid": cardId,
         "Player": playerFrom,
         "Zone": fromZone,
-        "Action": actionType
+        "Action": actionType,
+        "Counters": [counters]
     }
     
     connection.invoke("UpdateState_CardChangeStatusFromGame", JSON.stringify(action)).catch(function (err) {
@@ -436,23 +478,55 @@ function ApplyActionToCard(actionType){
     });
 
     if(actionType == "Transformed"){
-        // if (IsEnglishLanguageOn()) {
-        //     LogInGame(myUsername+" transformed " + cardName);
-        // } else {
-        //     LogInGame(myUsername+" ha trasformato " + cardName);
-        // }
         LogInGameNew("transformedCard", [myUsername, cardName]);
     }
    
     if(actionType == "Morphed"){
-        // if (IsEnglishLanguageOn()) {
-        //     LogInGame(myUsername+" played a morphed card");
-        // } else {
-        //     LogInGame(myUsername+" ha giocato una carta morphata");
-        // }
         LogInGameNew("morphedCard", [myUsername]);
     }
+
+    if(actionType =="CounterOnCard" && (fromZone =="gameZone" || fromZone =="landZone")){
+        LogInGameNew("counterOnCard", [myUsername,counterType,cardName,counterQuantity ]);
+    }
 }
+
+
+
+
+// function AddCountersOnCard(){
+//     var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
+//     var cardName = $('#cardInGameContextMenu').attr('sneakedCardName');
+//     var counterType ="";
+//     var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
+   
+//     var playerFrom = $('body').find('div[id="'+cardId+'"]').first()
+//     .closest('.playerBoardContainer')  // Supponendo che .playerContainer sia un parent comune contenente sia il div che il .playerNameBoardContainer
+//     .find('.playerNameBoardContainer')
+//     .text();
+
+//     var topOrBottom = $('#contextCardGameMenuToDeckSelector').val();
+
+//     var action = {
+//         "Game": state.Game,
+//         "CardGuid": cardId,
+//         "From": {
+//             "Player": playerFrom,
+//             "Zone": fromZone
+//         },
+//         "To": {
+//             "Player": myUsername,
+//             "Zone": "deckZone"
+//         },
+//         "TopBottom": topOrBottom
+//     }
+
+//     connection.invoke("UpdateState_CardToDeckFromGame", JSON.stringify(action)).catch(function (err) {
+//         return console.error(err.toString());
+//     });
+
+//     LogInGameNew("counterOnCard", [myUsername,counterType,cardName ]);
+// }
+
 
 
 $('body').on('click', '#contextCardGameMenuToDeckButton', function () {

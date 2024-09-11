@@ -1038,7 +1038,9 @@ namespace CardGame.Hubs
                             {
                                 updatedPlayer.Hand.Add(card);
                             }
-                           
+
+                            card.Counters.Clear();
+
                         }
                         if (gameAction.To.Zone == "landZone")
                         {
@@ -1057,6 +1059,7 @@ namespace CardGame.Hubs
                             {
                                 updatedPlayer.Exiled.Add(card);
                             }
+                            card.Counters.Clear();
                         }
                         if (gameAction.To.Zone == "graveyardZone")
                         {
@@ -1070,7 +1073,8 @@ namespace CardGame.Hubs
                             {
                                 updatedPlayer.Graveyard.Add(card);
                             }
-                            
+                            card.Counters.Clear();
+
                         }
                         if (gameAction.To.Zone == "planeswalkerZone")
                         {
@@ -1365,6 +1369,23 @@ namespace CardGame.Hubs
                                     card.Statuses.Add(GameCardConstants.MorphedStatus);
                                 }
                             }
+
+                            if (gameAction.Action == GameCardConstants.AddedCounterStatus)
+                            {
+                                var card = updatedPlayer.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+                                var counterToAdd = gameAction.Counters.FirstOrDefault();
+
+                                if (card != null && card.Counters != null && card.Counters.Any(x => x.Type == counterToAdd.Type))
+                                {
+                                    var actualQuantity = card.Counters.Where(x => x.Type == counterToAdd.Type).FirstOrDefault().Quantity;
+
+                                    card.Counters.Where(x=>x.Type == counterToAdd.Type).FirstOrDefault().Quantity = (actualQuantity+1);
+                                }
+                                else if(card != null && card.Counters != null && !card.Counters.Any(x => x.Type == counterToAdd.Type))
+                                {
+                                    card.Counters.Add(counterToAdd);
+                                }
+                            }
                         }
                         if (gameAction.Zone == "landZone")
                         {
@@ -1406,6 +1427,24 @@ namespace CardGame.Hubs
                                     card.Statuses.Add(GameCardConstants.MorphedStatus);
                                 }
                             }
+
+                            if (gameAction.Action == GameCardConstants.AddedCounterStatus)
+                            {
+                                var card = updatedPlayer.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
+                                var counterToAdd = gameAction.Counters.FirstOrDefault();
+
+                                if (card != null && card.Counters != null && card.Counters.Any(x => x.Type == counterToAdd.Type))
+                                {
+                                    var actualQuantity = card.Counters.Where(x => x.Type == counterToAdd.Type).FirstOrDefault().Quantity;
+
+                                    card.Counters.Where(x => x.Type == counterToAdd.Type).FirstOrDefault().Quantity = (actualQuantity + 1);
+                                }
+                                else if (card != null && card.Counters != null && !card.Counters.Any(x => x.Type == counterToAdd.Type))
+                                {
+                                    card.Counters.Add(counterToAdd);
+                                }
+                            }
+
                         }
 
 
@@ -1687,6 +1726,23 @@ namespace CardGame.Hubs
             }
         }
 
+        public string GetCounterTextTranslated(string counterType)
+        {
+            switch (counterType.ToLower())
+            {
+                case "trample":
+                    return "Travolgere";
+                case "doublestrike":
+                    return "DoppioAttacco";
+                case "FirstStrike":
+                    return "AttaccoImprovviso";
+                case "deathTouch":
+                    return "ToccoLetale";
+                default:
+                    return counterType;
+            }
+        }
+
         public (string, string) GetTextTranslated(string action, List<string> words)
         {
             switch (action)
@@ -1729,6 +1785,8 @@ namespace CardGame.Hubs
                     return ($"{words[0]} is increasing {words[1]} hp", $"{words[0]} sta aumentando gli hp di {words[1]}");
                 case "cardMoving":
                     return ($"{words[0]} moved {words[1]} from {words[2]} {words[3]} to {words[4]} {words[5]}", $"{words[0]} sta muovendo {words[1]} da {words[3]} di {words[2]} a {words[5]} di {words[4]}");
+                case "counterOnCard":
+                    return ($"{words[0]} put {words[3]} {words[1]} counters on {words[2]}", $"{words[0]} ha messo {words[3]} segnalini {GetCounterTextTranslated(words[1])} su {words[2]}");
                 default:
                     return ("","");
             }

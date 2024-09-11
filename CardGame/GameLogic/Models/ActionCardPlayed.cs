@@ -31,7 +31,13 @@ namespace CardGame.GameLogic.Models
         public string Player { get; set; }
         public string Zone { get; set; }
         public string Action { get; set; }
+        public List<Counter> Counters { get; set; }
     }
+    //public class Counter
+    //{
+    //    public int Quantity { get; set; }
+    //    public string Type { get; set; }
+    //}
 
     public class ActionCardPlayedTapUntap
     {

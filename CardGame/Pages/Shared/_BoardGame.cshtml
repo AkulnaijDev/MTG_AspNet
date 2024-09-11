@@ -187,14 +187,24 @@
          <div class="contextMenuActionContainers">
             <div class="contextSelectMenuContainers">
                 <select id="contextCardGameMenuCountersSelector">
-                    <option class="optionFromTop" value="0_1">+0/+1</option>
-                    <option class="optionFromTop" value="1_0">+1/+0</option>
-                    <option class="optionFromTop" value="1_1">+1/+1</option>
-                    <option class="optionFromTop" value="0_-1">+0/-1</option>
-                    <option class="optionFromTop" value="-1_0">-1/+0</option>
-                    <option class="optionFromTop" value="-1_-1">-1/-1</option>
+                    <option class="optionCounters" value="+0&#47;+1">+0/+1</option>
+                    <option class="optionCounters" value="+1&#47;+0">+1/+0</option>
+                    <option class="optionCounters" value="+1&#47;+1">+1/+1</option>
+                    <option class="optionCounters" value="+0&#47;-1">+0/-1</option>
+                    <option class="optionCounters" value="-1&#47;+0">-1/+0</option>
+                    <option class="optionCounters" value="-1&#47;-1">-1/-1</option>
+                    <option class="optionCounters" value="Trample">Trample</option>
+                    <option class="optionCounters" value="DoubleStrike">DoubleStrike</option>
+                    <option class="optionCounters" value="FirstStrike">FirstStrike</option>
+                    <option class="optionCounters" value="DeathTouch">DeathTouch</option>
                 </select>
+                <input id="contextCardGameMenuCountersQuantitySelector" type="number" value="1" min="1">
                 <button id="contextCardGameMenuCountersButton"> Put counter on card </button>
+            </div>
+        </div>
+
+         <div class="contextMenuActionContainers">
+            <div id="contextListOfAllCounters">                
             </div>
         </div>
 

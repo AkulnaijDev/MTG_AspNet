@@ -392,6 +392,11 @@ $('body').on('change', '#languageChooseOptions', function () {
 
         $("#contextCardSneakedToZoneOwnerSelector option[value='mine']").text("Mia");
         $("#contextCardSneakedToZoneOwnerSelector option[value='onwer']").text("Proprietario");
+
+        $("#contextCardGameMenuCountersSelector option[value='Trample']").text("Travolgere");
+        $("#contextCardGameMenuCountersSelector option[value='DoubleStrike']").text("DoppioAttacco");
+        $("#contextCardGameMenuCountersSelector option[value='FirstStrike']").text("AttaccoImprovviso");
+        $("#contextCardGameMenuCountersSelector option[value='DeathTouch']").text("Toccoletale");
     } else {
         $('.translatedAbility').hide();
         $('.defaultAbility').show();
@@ -548,6 +553,12 @@ $('body').on('change', '#languageChooseOptions', function () {
         
         $("#contextCardSneakedToZoneOwnerSelector option[value='mine']").text("Mine");
         $("#contextCardSneakedToZoneOwnerSelector option[value='onwer']").text("Deck owner");
+
+
+        $("#contextCardGameMenuCountersSelector option[value='Trample']").text("Trample");
+        $("#contextCardGameMenuCountersSelector option[value='DoubleStrike']").text("DoubleStrike");
+        $("#contextCardGameMenuCountersSelector option[value='FirstStrike']").text("FirstStrike");
+        $("#contextCardGameMenuCountersSelector option[value='DeathTouch']").text("DeathTouch");
     }
 });
 //options END

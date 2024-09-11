@@ -427,7 +427,7 @@
 }
 
 #zoomedHoveredCard {
-  width: 93%;
+  width: 90%;
   border-radius: 18px;
 }
 
@@ -621,4 +621,21 @@
   bottom: 5%;
     position: absolute;
     width:40% !important;
+}
+
+#contextListOfAllCounters{
+  max-height: 100px;
+  overflow-y: auto;
+  width: 80%;
+  border: 2px solid var(--option_Border_color);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#contextCardGameMenuCountersQuantitySelector{
+  width:10%
+}
+
+#contextCardGameMenuCountersButton{
+  width:52% !important;
 }

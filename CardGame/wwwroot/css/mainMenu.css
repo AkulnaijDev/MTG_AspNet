@@ -45,10 +45,10 @@
     }
 
     #chatContainer {
-        top: 35%;
+        top: 30%;
         left: 54%;
         width: 44%;
-        height: 29%;
+        height: 40%;
     }
 
     #optionsMenu {
@@ -113,9 +113,9 @@
     }
 
     #chatContainer {
-        top: 32%;
-        left: 80%;
-        width: 14%;
+        top: 30%;
+        right: 80px;
+        width: 300px;
         height: 40%;
     }
 
