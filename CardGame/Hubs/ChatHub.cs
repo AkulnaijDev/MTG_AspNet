@@ -1664,6 +1664,75 @@ namespace CardGame.Hubs
             }
         }
 
+        public async Task LogGameEventsNew(string action, string words, string game)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<Game>(game);
+                var gameWords = JsonConvert.DeserializeObject<List<string>>(words);
+
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var roomId = gameAction.RoomId;
+
+                var text = GetTextTranslated(action, gameWords);
+
+                await Clients.Group(roomId).SendAsync("DispatchLogGameEvent", JsonConvert.SerializeObject(text));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public (string, string) GetTextTranslated(string action, List<string> words)
+        {
+            switch (action)
+            {
+                case "drawingCard":
+                    return ($"{words[0]} is drawing a card from {words[1]} deck", $"{words[0]} sta pescando una carta dal deck di {words[1]}");
+                case "untappingCard":
+                    return ($"{words[0]} untapped {words[1]}", $"{words[0]} ha stappato {words[1]}");
+                case "tappingCard":
+                    return ($"{words[0]} tapped {words[1]}", $"{words[0]} ha tappato {words[1]}");
+                case "cardFromDeck":
+                    return ($"{words[0]} played a card from {words[1]} deck", $"{words[0]} ha giocato una carta dal deck di {words[1]}");
+                case "transformedCard":
+                    return ($"{words[0]} transformed {words[1]}", $"{words[0]} ha trasformato {words[1]}");
+                case "morphedCard":
+                    return ($"{words[0]} played a morphed card", $"{words[0]} ha giocato una carta morphata");
+                case "cardIntoDeck":
+                    return ($"{words[0]} put a card back to {words[0]} deck", $"{words[0]} ha messo una carta nel deck di {words[0]}");
+                case "playerInspecting":
+                    return ($"{words[0]} is checking {words[1]} deck", $"{words[0]} sta guardando il deck di {words[1]}");
+                case "playerAction":
+                    return ($"{words[0]} {words[1]} {words[2]} cards from his/her deck", $"{words[0]} {words[1]} {words[2]} carte dal suo deck");
+                case "playerCantDoAction":
+                    return ($"{words[0]} can't complete this action", $"{words[0]} non può fare questa azione");
+                case "shuffleDeck":
+                    return ($"{words[0]} shuffled {words[1]} deck", $"{words[0]} sta mescolando il deck di {words[1]}");
+                case "checkingDeck":
+                    return ($"{words[0]} is checking {words[1]} deck", $"{words[0]} sta guardando il deck di {words[1]}");
+                case "mulligan":
+                    return ($"{words[0]} decided to mulligan", $"{words[0]} ha mulligato");
+                case "cemeteryLooking":
+                    return ($"{words[0]} is checking {words[1]} graveyard", $"{words[0]} sta guardando il cimitero di {words[1]}");
+                case "exiledLooking":
+                    return ($"{words[0]} is checking {words[1]} exiled zone", $"{words[0]} sta guardando l'esilio di {words[1]}");
+                case "handLooking":
+                    return ($"{words[0]} is checking {words[1]} hand", $"{words[0]} sta guardando la mano di {words[1]}");
+                case "hpDecreasing":
+                    return ($"{words[0]} is decreasing {words[1]} hp", $"{words[0]} sta calando gli hp di {words[1]}");
+                case "hpIncreasing":
+                    return ($"{words[0]} is increasing {words[1]} hp", $"{words[0]} sta aumentando gli hp di {words[1]}");
+                case "cardMoving":
+                    return ($"{words[0]} moved {words[1]} from {words[2]} {words[3]} to {words[4]} {words[5]}", $"{words[0]} sta muovendo {words[1]} da {words[3]} di {words[2]} a {words[5]} di {words[4]}");
+                default:
+                    return ("","");
+            }
+        }
 
         public async Task ModifyPlayerHp(string playerUsername, string action, string game)
         {

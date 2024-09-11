@@ -47,8 +47,9 @@ function drop(ev) {
     
         var cardName = cardMoved.attr('name');
         //GESTISCI QUI L'UPDATE DI STATO!!!!!!! avanti e indietro!!!
-        LogInGame(playerFrom + " moved " + " " + cardName + " " + " from " + playerFrom + " " + zoneFrom + " zone to " + playerTo + " " + zoneTo + " zone");
-    
+        //LogInGame(playerFrom + " moved " + " " + cardName + " " + " from " + playerFrom + " " + zoneFrom + " zone to " + playerTo + " " + zoneTo + " zone");
+        LogInGameNew("cardMoving", [myUsername, cardName, playerFrom, zoneFrom, playerTo, zoneTo]);
+
         connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
             return console.error(err.toString());
         });
