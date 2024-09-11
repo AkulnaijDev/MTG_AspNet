@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text;
@@ -530,9 +531,17 @@ namespace Utils
         public static List<GameCard> GetAllTokens()
         {
             var deck = new List<GameCard>();
-            var queryString = $"SELECT [Name], Id, Oracle_Id, [Set],Set_Name FROM " +
-                $"(SELECT [Name], Id, Oracle_Id, [Set], Set_Name, ROW_NUMBER() OVER (PARTITION BY Name ORDER BY Released_at DESC) AS rn" +
-                $" FROM Cards WHERE Layout = 'Token') AS subquery WHERE rn = 1;";
+            //var queryString = $"SELECT [Name], Id, Oracle_Id, [Set],Set_Name FROM " +
+            //    $"(SELECT [Name], Id, Oracle_Id, [Set], Set_Name, ROW_NUMBER() OVER (PARTITION BY Name ORDER BY Released_at DESC) AS rn" +
+            //    $" FROM Cards WHERE Layout = 'Token') AS subquery WHERE rn = 1;";
+
+            var queryString = "SELECT c.Name, c.Id, c.Oracle_Id, c.[Set], c.Set_Name, c.Power, c.Toughness, c.Released_at " +
+                "FROM Cards c " +
+                "INNER JOIN ( " +
+                "SELECT Name, Power, Toughness, MAX(Released_at) AS MaxReleaseDate " +
+                "FROM Cards WHERE Layout = 'Token' or Layout ='Emblem' GROUP BY Name, Power, Toughness) groupedCards " +
+                "ON c.Name = groupedCards.Name AND c.Power = groupedCards.Power AND c.Toughness = groupedCards.Toughness AND c.Released_at = groupedCards.MaxReleaseDate " +
+                "ORDER BY c.Name, c.Power, c.Toughness";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -549,18 +558,27 @@ namespace Utils
                         var setName = "Phyrexia__All_Will_Be_One";
                         setName = reader["Set_Name"].ToString().Replace(" ","_").Replace(":","_");
 
+                        var name = reader["Name"].ToString() + " " + reader["Power"] + "/" + reader["Toughness"]; 
+
+                        if (string.IsNullOrEmpty(reader["Power"].ToString()) && string.IsNullOrEmpty(reader["Toughness"].ToString()))
+                        {
+                            name = reader["Name"].ToString();
+                        }
+
                         var card = new GameCard
                         {
                             Guid = Guid.NewGuid().ToString(),
                             CardId = reader["Oracle_Id"].ToString(),
                             Source = $"../resources/cards_images/{reader["Set"]}_{setName}/{reader["Set"]}_{reader["Id"]}.jpg",
-                            Name = reader["Name"].ToString()
+                            Name = name
                         };
 
                         deck.Add(card);
                     }
                 }
                 connection.Close();
+
+                deck = deck.GroupBy(card => card.CardId).Select(group => group.First()).ToList();
 
                 return deck;
             }

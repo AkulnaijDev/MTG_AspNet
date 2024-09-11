@@ -71,7 +71,7 @@ namespace CardGame.Hubs
             }
 
 
-            Clients.All.SendAsync("NotifyMe_Disconnected", user);
+            await Clients.All.SendAsync("NotifyMe_Disconnected", user);
             Context.Abort();
             await base.OnDisconnectedAsync(exception);
         }
@@ -925,9 +925,9 @@ namespace CardGame.Hubs
 
                 await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
             }
-            catch 
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -1029,11 +1029,16 @@ namespace CardGame.Hubs
                         if (gameAction.To.Zone == "handZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
-                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                             {
                                 card.Statuses.Remove(GameCardConstants.TappedStatus);
                             }
-                            updatedPlayer.Hand.Add(card);
+
+                            if (!card.Source.ToLower().Contains("_token"))  //if token dies is removed from game
+                            {
+                                updatedPlayer.Hand.Add(card);
+                            }
+                           
                         }
                         if (gameAction.To.Zone == "landZone")
                         {
@@ -1043,25 +1048,34 @@ namespace CardGame.Hubs
                         if (gameAction.To.Zone == "exiledZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
-                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                             {
                                 card.Statuses.Remove(GameCardConstants.TappedStatus);
                             }
-                            updatedPlayer.Exiled.Add(card);
+                            
+                            if (!card.Source.ToLower().Contains("_token"))  //if token dies is removed from game
+                            {
+                                updatedPlayer.Exiled.Add(card);
+                            }
                         }
                         if (gameAction.To.Zone == "graveyardZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
-                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                             {
                                 card.Statuses.Remove(GameCardConstants.TappedStatus);
                             }
-                            updatedPlayer.Graveyard.Add(card);
+
+                            if (!card.Source.ToLower().Contains("_token"))  //if token dies is removed from game
+                            {
+                                updatedPlayer.Graveyard.Add(card);
+                            }
+                            
                         }
                         if (gameAction.To.Zone == "planeswalkerZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
-                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                             {
                                 card.Statuses.Remove(GameCardConstants.TappedStatus);
                             }
@@ -1070,7 +1084,7 @@ namespace CardGame.Hubs
                         if (gameAction.To.Zone == "commanderZone")
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
-                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                             {
                                 card.Statuses.Remove(GameCardConstants.TappedStatus);
                             }
@@ -1298,7 +1312,7 @@ namespace CardGame.Hubs
                             {
                                 var card = updatedPlayer.Hand.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                                if (card != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
+                                if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
                                 {
                                     card.Statuses.Remove(GameCardConstants.MorphedStatus);
                                 }
@@ -1319,7 +1333,7 @@ namespace CardGame.Hubs
                             {
                                 var card = updatedPlayer.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                                if (card != null && (card.Source.Contains("_front_") || card.Source.Contains("_back_")) && card.Statuses.Contains(GameCardConstants.TransformedStatus))
+                                if (card != null && (card.Source.Contains("_front_") || card.Source.Contains("_back_")) && card.Statuses != null  && card.Statuses.Contains(GameCardConstants.TransformedStatus))
                                 {
                                     card.Statuses.Remove(GameCardConstants.TransformedStatus);
 
@@ -1342,7 +1356,7 @@ namespace CardGame.Hubs
                             {
                                 var card = updatedPlayer.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                                if (card != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
+                                if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
                                 {
                                     card.Statuses.Remove(GameCardConstants.MorphedStatus);
                                 }
@@ -1360,7 +1374,7 @@ namespace CardGame.Hubs
                             {
                                 var card = updatedPlayer.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                                if (card != null && (card.Source.Contains("_front_") || card.Source.Contains("_back_")) && card.Statuses.Contains(GameCardConstants.TransformedStatus))
+                                if (card != null && (card.Source.Contains("_front_") || card.Source.Contains("_back_")) && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TransformedStatus))
                                 {
                                     card.Statuses.Remove(GameCardConstants.TransformedStatus);
 
@@ -1383,7 +1397,7 @@ namespace CardGame.Hubs
                             {
                                 var card = updatedPlayer.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                                if (card != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
+                                if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.MorphedStatus))
                                 {
                                     card.Statuses.Remove(GameCardConstants.MorphedStatus);
                                 }
@@ -1485,18 +1499,23 @@ namespace CardGame.Hubs
                         {
                             var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
 
-                            if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                            if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                             {
                                 card.Statuses.Remove(GameCardConstants.TappedStatus);
                             }
 
-                            if (gameAction.TopBottom=="top")
+                            if (!card.Source.ToLower().Contains("_token"))  //token can't go back in deck
                             {
-                                updatedPlayer.Deck.Insert(0, card);
-                            } else
-                            {
-                                updatedPlayer.Deck.Add(card);
+                                if (gameAction.TopBottom == "top")
+                                {
+                                    updatedPlayer.Deck.Insert(0, card);
+                                }
+                                else
+                                {
+                                    updatedPlayer.Deck.Add(card);
+                                }
                             }
+                            
                         }
                     }
                 }
@@ -1538,7 +1557,7 @@ namespace CardGame.Hubs
                             {
                                 var card = updatedPlayer.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                                if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                                if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                                 {
                                     card.Statuses.Remove(GameCardConstants.TappedStatus);
                                 }
@@ -1555,7 +1574,7 @@ namespace CardGame.Hubs
                             {
                                 var card = updatedPlayer.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                                if (card != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
+                                if (card != null && card.Statuses != null && card.Statuses.Contains(GameCardConstants.TappedStatus))
                                 {
                                     card.Statuses.Remove(GameCardConstants.TappedStatus);
                                 }
