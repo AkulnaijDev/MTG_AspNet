@@ -39,7 +39,123 @@
     margin-right: 15px;
 }
 
+#myDeckMenu {
+    max-height: 100vh; /* Altezza massima basata sull'altezza del viewport */
+    overflow: hidden; /* Nasconde eventuali elementi che eccedono */
+}
+#myDeckCardPicker {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+#myDeckCardPickerContainer {
+    flex-grow: 1;
+    overflow-y: auto; /* Aggiunge lo scroll verticale */
+    max-height: calc(100vh - 200px); /* Sottrai un valore fisso per evitare overflow */
+    padding-right: 15px; /* Spazio per la scrollbar */
+}
+#myDeck {
+    max-height: calc(100vh - 110px); /* Limita l'altezza massima rispetto al viewport */
+    
+    padding-right: 15px; /* Spazio per la scrollbar */
+    flex-grow: 1; /* Mantiene il layout responsivo */
+}
 
+#myDeckList {
+    max-height: 32vh;  /* Limita l'altezza massima rispetto al viewport */
+}
+
+#myDeckDecksSearchButton{
+    width:90%;
+    margin-left:10px;
+}
+
+#myDeckMenuBackButton{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+#myDeckDecksNormalSearchValue{
+    width:100%
+}
+@media screen and (min-width: 300px) and (max-width: 389px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 9vh;
+        border-radius: 4px;
+        margin-top: 100% !important;
+    }
+}
+
+@media screen and (min-width: 390px) and (max-width: 509px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 10vh;
+        border-radius: 6px;
+        margin-top: 80%;
+    }
+}
+@media screen and (min-width: 510px) and (max-width: 669px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 15vh;
+        border-radius: 8px;
+    }
+}
+
+@media screen and (min-width: 670px) and (max-width: 819px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 20vh;
+        border-radius: 8px;
+    }
+}
+
+
+
+@media screen and (min-width: 820px) and (max-width: 920px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 25vh;
+        border-radius: 8px;
+    }
+}
+
+@media screen and (min-width: 921px) and (max-width: 1261px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 15vh;
+        border-radius: 8px;
+        margin-top: 58%;
+    }
+}
+
+@media screen and (min-width: 1262px) and (max-width: 1531px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 20vh;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 1532px) {
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 25vh;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 630px) and (max-width: 919px)  {
+
+    #myDeckCardPreviewImage[zoomedPreview] {
+        height: 9vh;
+        border-radius: 4px;
+        margin-top: 100% !important;
+    }
+    #myDeckCardPreviewImage {
+        height: 250px;
+        border-radius: 10px
+    }
+}
 
 
 /* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
@@ -61,14 +177,11 @@
         font-size: 14px;
     }
 
-    #myDeckCardPreviewImage {
-        height: 140px;
-        border-radius: 10px;
-    }
 
     .cardImagePreview {
         max-width: 185px;
-        border-radius: 5px
+        border-radius: 5px;
+        width:100%;
     }
 
     #myDeckCardPickerContainer {
@@ -106,7 +219,7 @@
         border: 3px solid #212529;
         border-radius: 16px;
         padding: 1%;
-        height: 93%;
+        /* height: 93%; */
         width: 42%;
         float: left;
     }
@@ -114,24 +227,15 @@
     #myDeckAlert {
         visibility: hidden;
         color: var(--light_Text_color);
-        font-size: 12px;
-        height: 5%;
+        font-size: 10px;
     }
 
     .cardRowActions {
         width: 20%;
     }
 
-    #myDeckZoomSelectorPlus,
-    #myDeckZoomSelectorIcon,
-    #myDeckZoomSelectorMinus {
-        display: none;
-    }
-
     #myDeckList {
-        height: 54%;
         padding-left: 0%;
-        max-height: 250px; /* Limita l'altezza massima */
         overflow-y: auto;  /* Aggiunge scroll verticale quando il contenuto eccede */
         overflow-x: hidden; /* Evita scroll orizzontale non desiderato */
         border: 3px solid solid #212529;
@@ -152,11 +256,15 @@
         font-size: 13px;
         display: inline-flex;
         /* max-height: 20px; */
-        /* width: 100%; */
+        width: 100%;
     }
 
     #myDecksPickerSelector {
         width: 55%;
+    }
+
+    #myDecksPickerSelector,#myDeckDecksNormalSearchValue,#myDeckDecksNormalSearchButton,#myDeckDecksSearchButton, #myDeckSaveButton {
+        font-size:12px;
     }
 
     #myDeckDecksSelectorText2 {
@@ -177,6 +285,8 @@
     .myResponsiveTextBig {
         font-size: 35px;
     }
+
+
 /* 
     .myResponsiveTextMedium {
         font-size: 25px;
@@ -194,6 +304,8 @@
     .cardImagePreview {
         max-width: 250px;
         border-radius: 15px;
+        width:100%;
+
     }
 
     #myDeckCardPickerContainer {
@@ -231,7 +343,7 @@
         border-radius: 16px;
         padding: 1%;
         margin: 1%;
-        height: 93%;
+        /* height: 93%; */
         width: 23%;
         float: left;
     }
@@ -245,7 +357,6 @@
     #myDeckList {
         height: 54%;
         padding-left: 5%;
-        max-height: 250px; /* Limita l'altezza massima */
         overflow-y: auto;  /* Aggiunge scroll verticale quando il contenuto eccede */
         overflow-x: hidden; /* Evita scroll orizzontale non desiderato */
         border: 3px solid solid #212529;

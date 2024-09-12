@@ -477,6 +477,7 @@ $('body').on('click', '.cardRowName', function () {
     $('#myDeckSaveButtonContainer').hide();
     $('#myDeckCardPreviewImage').css('margin-top', '50%');
     $('#myDeckCardPreviewImage').css('transform', 'scale(2.0)');
+    $('#myDeckCardPreviewImage').attr("zoomedPreview",true);
     $('#myDeckCardPreviewImageButton').show();
 });
 
@@ -486,6 +487,7 @@ $('body').on('click', '#myDeckCardPreviewImageButton', function () {
     $('#myDeckSaveButtonContainer').show();
     $('#myDeckCardPreviewImage').css('margin-top', '0%');
     $('#myDeckCardPreviewImage').css('transform', 'scale(1)');
+    $('#myDeckCardPreviewImage').removeAttr("zoomedPreview");
 });
 
 $('body').on('click', '#myDeckSaveButton', function () {

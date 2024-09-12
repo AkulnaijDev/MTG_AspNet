@@ -140,14 +140,14 @@
 
     <div id="myDeckMenuContainer" class="container-fluid">
          <div class="row">
-            <button id="myDeckMenuBackButton" class="btn btn-primary">Back to menu</button>
+            <button id="myDeckMenuBackButton" >Back to menu</button>
         </div>
 
         <div class="row">
             <div id="myDeck" class="col-12 col-md-3">
                 <div id="myDeckCardPreview" class="mb-3">
                     <div style="display: inline-flex; position: relative; width: 100%;">
-                        <button id="myDeckCardPreviewImageButton" class="btn btn-secondary">Hide Preview</button>
+                        <button id="myDeckCardPreviewImageButton" >Hide Preview</button>
                     </div>
                     <img id="myDeckCardPreviewImage" class="img-fluid" src="../resources/cardBack.jpg">
                 </div>
@@ -159,7 +159,7 @@
                     <div id="myDeckAlert" class="mb-2">You can't add any more copy of this card!</div>
                     <div id="myDeckList" class="mb-2"></div>
                     <div id="myDeckSaveButtonContainer" class="mb-2">
-                        <button id="myDeckSaveButton" class="btn btn-success">SAVE THE DECK</button>
+                        <button id="myDeckSaveButton">SAVE THE DECK</button>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                     <!-- Selettore Mazzi -->
                     <div id="myDeckDecksSelector" class="d-flex align-items-center col-12 col-md-3 mb-3">
                         <span id="myDeckDecksSelectorText" class="mr-2">My decks</span>
-                        <select class="myDecksPickerSelector form-control mr-2" id="myDecksPickerSelector"></select>
+                        <select class="myDecksPickerSelector mr-2" id="myDecksPickerSelector"></select>
                         <span id="myDecksPickerSelectorDelete" class="ml-2">🗑️</span>
                         <span id="myDecksPickerSelectorAdd" class="ml-2">➕</span>
                     </div>
@@ -182,21 +182,21 @@
 
                     <!-- Ricerca normale -->
                     <div id="myDeckDecksSearch" class="d-flex align-items-center col-12 col-md-3 mb-3">
-                        <input placeholder="Search by name" class="form-control mr-2" id="myDeckDecksNormalSearchValue" />
-                        <button id="myDeckDecksNormalSearchButton" class="btn btn-primary mr-2">Search</button>
+                        <input placeholder="Search by name" class=" mr-2" id="myDeckDecksNormalSearchValue" />
+                        <button id="myDeckDecksNormalSearchButton" class="mr-2">Search</button>
                         <span id="normalSearchSpinner" class="spinner"></span>
                     </div>
 
                     <!-- Filtro avanzato -->
                     <div id="myDeckDecksSearchFilters" class="d-flex align-items-center col-12 col-md-2 mb-3">
-                        <button id="myDeckDecksSearchButton" class="btn btn-secondary">Advanced Search</button>
+                        <button id="myDeckDecksSearchButton">Advanced Search</button>
                     </div>
 
                     <!-- Zoom -->
                     <div id="myDeckDecksSetsAndZoom" class="d-flex align-items-center col-12 col-md-2 text-center mb-3">
-                        <span id="myDeckZoomSelectorPlus" class="mx-2">➕</span>
+                        <span defaultscreen="5" id="myDeckZoomSelectorPlus" class="mx-2">➕</span>
                         <span id="myDeckZoomSelectorIcon">🔍</span>
-                        <span id="myDeckZoomSelectorMinus" class="mx-2">➖</span>
+                        <span defaultscreen="5" id="myDeckZoomSelectorMinus" class="mx-2">➖</span>
                     </div>
                 </div>
 
