@@ -1,5 +1,5 @@
 ﻿
-<div id="loadingScreen">
+@* <div id="loadingScreen">
 
 	<div id="iconOverlay">
 		<div id="stopMusic">🔊</div>
@@ -14,5 +14,21 @@
 		</div>
 	</div>
 
-</div>
+</div> *@
 
+<div id="loadingScreen" class="d-flex flex-column justify-content-center vh-100">
+    <div id="iconOverlay">
+        <div id="stopMusic">🔊</div>
+        <div id="playMusic">🔈</div>
+    </div>
+
+    <div id="initialScreen" class="text-center">
+        <div id="logoAuthor" class="logoText mb-4">An Akulnaij production</div>
+        <div id="logoTitle" class="logoText">
+            <div class="mb-2">
+                <img src="./resources/InitialLogoMtgo.jpg" class="img-fluid" alt="Logo">
+            </div>
+            <div class="logoSubtext">Click to continue</div>
+        </div>
+    </div>
+</div>
