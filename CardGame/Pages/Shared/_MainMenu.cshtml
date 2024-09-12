@@ -31,16 +31,6 @@
     </div>
 </div>
 
-
-@* <div id="mainMenu" class="uninteractable">
-    <div id="mainMenuVoices">
-        <div class="mainMenuVoicesText myResponsiveTextBig" id="mainMenuNewGame"> New game </div>
-        <div class="mainMenuVoicesText myResponsiveTextBig" id="mainMenuMyDeck"> My deck </div>
-        <div class="mainMenuVoicesText myResponsiveTextBig" id="mainMenuRules"> Rules </div>
-        <div class="mainMenuVoicesText myResponsiveTextBig" id="mainMenuOptions"> Options </div>
-    </div>
-</div> *@
-
 <div id="mainMenu" class="uninteractable d-flex justify-content-start align-items-center vh-100">
     <div id="mainMenuVoices" class="flex-column">
         <div class="mainMenuVoicesText myResponsiveTextBig" id="mainMenuNewGame">New game</div>
@@ -49,25 +39,6 @@
         <div class="mainMenuVoicesText myResponsiveTextBig" id="mainMenuOptions">Options</div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div id="optionsMenu">
     <span id="optionsTitle">Options</span>
@@ -148,6 +119,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="myDeckMenu">
     <div id="myDeckMenuContainer">
      <div><button id="myDeckMenuBackButton">Back to menu</button></div>
@@ -211,52 +198,54 @@
 
     </div>
 
-     <div id="myDeckAdvancedSearch">
+     <div id="myDeckAdvancedSearch" class="container-fluid">
 
-        <div class="row">
-            <div class="col-4">
-                <div class="advancedSearchText" id="advancedSearchFieldName">Card Name</div>
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
+                <div class="advancedSearchText">Card Name</div>
             </div>
-            <div class="col-8">
-                <input class="advancedSearchLargeInput" type="text" id="advancedSearchName" placeholder="Any words in the name, e.g 'Fire'">
+            <div class="col-12 col-md-9">
+                <input class="form-control advancedSearchLargeInput" type="text" id="advancedSearchName"
+                    placeholder="Any words in the name, e.g 'Fire'">
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-4">
-                <div class="advancedSearchText" id="advancedSearchFieldText">Text</div>
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
+                <div class="advancedSearchText">Text</div>
             </div>
-            <div class="col-8">
-                <input class="advancedSearchLargeInput" type="text" id="advancedSearchText"  placeholder="Any text, e.g 'Draw a card'">
-            </div>
-        </div>
-
-         <div class="row">
-            <div class="col-4">
-                <div class="advancedSearchText" id="advancedSearchFieldTypeLine">Type Line</div>
-            </div>
-            <div class="col-8">
-                <input class="advancedSearchLargeInput" type="text" id="advancedSearchTypeLine">
+            <div class="col-12 col-md-9">
+                <input class="form-control advancedSearchLargeInput" type="text" id="advancedSearchText"
+                    placeholder="Any text, e.g 'Draw a card'">
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-4">
-                <div class="advancedSearchText" id="advancedSearchFieldSets">Sets</div>
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
+                <div class="advancedSearchText">Type Line</div>
             </div>
-            <div class="col-8">
-                @* <select id="myDeckSetPickerSelector" multiple> </select> *@
-                 <select id="myDeckSetPickerSelector" class="selectpicker" multiple data-actions-box="true" data-live-search="true">
-                 </select>
-                 <div id="myDeckSetPickerSelectorText">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</div>
+            <div class="col-12 col-md-9">
+                <input class="form-control advancedSearchLargeInput" type="text" id="advancedSearchTypeLine">
             </div>
-        </div>                  
+        </div>
 
-        <div class="row">
-            <div class="col-4">
-                <div class="advancedSearchText" id="advancedSearchFieldTypeLine">Colors</div>
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
+                <div class="advancedSearchText">Sets</div>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-9">
+                <select id="myDeckSetPickerSelector" class="selectpicker form-control" multiple data-actions-box="true"
+                    data-live-search="true"></select>
+                <div id="myDeckSetPickerSelectorText" class="text-muted small">Hold down the Ctrl (Windows) or Command
+                    (Mac) button to select multiple options.</div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
+                <div class="advancedSearchText">Colors</div>
+            </div>
+            <div class="col-12 col-md-9">
                 <div class="advancedSearchCheckboxGroupContainer">
                     <div class="advancedSearchCheckboxGroup">
                         <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorWhite">
@@ -294,11 +283,11 @@
             </div>
         </div>
 
-        <div class="row">
-          <div class="col-4">
+        <div class="row mb-3">
+          <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchFieldCommander">Commander</div>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-9">
                 <div class="advancedSearchCheckboxGroupContainer">
                     <div class="advancedSearchCheckboxGroup">
                         <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorWhite">
@@ -328,20 +317,20 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-4">
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchFieldCmC" >Mana Cost</div>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-9">
                 <input class="advancedSearchLargeInput" type="text" id="advancedSearchCmC" placeholder="Any mana symbols, eg '{W}{W}'">
             </div>
         </div>
 
-          <div class="row">
-            <div class="col-4">
+          <div class="row mb-3">
+            <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchStats">Stats</div>
             </div>
-            <div class="col-2">
+            <div class="col-12 col-md-3">
                 <select name="valueStats" id="advancedSearchStatsValueStats">
                     <option value="cmc">Mana value</option>
                     <option value="power">Power</option>
@@ -349,7 +338,7 @@
                     <option value="loyalty">Loyalty</option>
                 </select>
                   </div>
-            <div class="col-2">
+            <div class="col-12 col-md-4">
                 <select name="valueEquals" id="advancedSearchStatsValueEqual">
                     <option value="1">Equal to</option>
                     <option value="2">Less than</option>
@@ -359,16 +348,16 @@
                     <option value="6">Not equal to</option>
                 </select>
                   </div>
-            <div class="col-4">
+            <div class="col-12 col-md-2">
                 <input class="advancedSearchLargeInput" type="text" id="advancedSearchStatsValueAmount" placeholder="Any value, e.g '2'">
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-4">
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchRarity">Rarity</div>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-9">
                 <div class="advancedSearchCheckboxGroupContainer">
                     <div class="advancedSearchCheckboxGroup">
                         <input type="checkbox" id="advancedSearchRarityCommonInput">
@@ -390,48 +379,42 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-4">
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchOnePerIdText">Unique Id</div>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-9">
                 <input type="checkbox" id="advancedSearchOnePerIdValue">
                 <span id="advancedSearchOnePerIdTextField">Remove multiple copies from multiple sets</span>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-4">
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchFieldFlavorText">Flavor text</div>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-9">
                 <input type="text" class="advancedSearchLargeInput" placeholder="Any flavor text, e.g 'Jhoira'" id="advancedSearchFlavorText">
             </div>
         </div>
       
 
-        <div class="row">
-             <div class="col-12">
+        <div class="row mb-3">
+             <div class="col-12 col-md-12">
                 <div id="advancedSearchSpinner" class="spinner" ></div>
                 <div id="advancedSearchError">ERROR. TRY AGAIN</div>     
             </div>
         </div>
  
-        <div class="row">
-            <div class="col-4">
-
+        <div class="row mb-3">
+            <div class="col-12 col-md-6 text-end">
+                <button id="myDeckAdvancedSearchSearchButton" class="btn btn-primary w-100">Search</button>
             </div>
-            <div class="col-2">
-                <button id="myDeckAdvancedSearchSearchButton">Search</button>
-            </div>
-
-            <div class="col-2">
-                <button id="myDeckAdvancedSearchCloseButton">Close</button>
-            </div>
-            <div class="col-4">
-
+            <div class="col-12 col-md-6 text-start">
+                <button id="myDeckAdvancedSearchCloseButton" class="btn btn-secondary w-100">Close</button>
             </div>
         </div>
+
     </div>
 
      <div id="myDeckCreateName">
@@ -457,6 +440,8 @@
     
 </div>
 
+
+
 <div class="container" id="gameInvitation">
     <div class="row">
         <div id="gameInvitationText1">You have been invited to a game</div>
@@ -470,11 +455,8 @@
 
     </div>
 
-
      <div class="row">
         <button id="acceptGameInvitation">Accept</button>
         <button id="declineGameInvitation">Decline</button>
     </div>
-   
-   
 </div>

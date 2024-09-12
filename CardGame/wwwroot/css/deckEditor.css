@@ -17,20 +17,38 @@
     --watermarkLands:"Lands";
 }
 
-.myResponsiveTextBig {
-    font-size: 16px;
+
+.advancedSearchText {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-/* .myResponsiveTextMedium {
-    font-size: 25px;
-} */
-
-.myResponsiveTextSmall {
-    font-size: 18px;
+/* Stili per input grandi */
+.advancedSearchLargeInput {
+    width: 100%;
+    font-size: 1rem;
 }
+
+/* Layout per checkbox e gruppi */
+.advancedSearchCheckboxGroupContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.advancedSearchCheckboxGroup {
+    margin-right: 15px;
+}
+
+
+
 
 /* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
+    .advancedSearchText {
+        font-size: 1rem;
+    }
+
+
     .myResponsiveTextBig {
         font-size: 25px;
     }
@@ -144,7 +162,7 @@
     }
 
     #myDeckSetPickerSelector {
-        width: 54%;
+        width: 100%;
     }
 
     .cardImageTextActionContainer {
@@ -153,7 +171,7 @@
 }
 
 /* Media query per schermi più grandi (ad esempio, desktop) */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 921px) {
     .myResponsiveTextBig {
         font-size: 35px;
     }
