@@ -17,40 +17,67 @@
   --watermarkLands:"Lands";
 }
 
-.myResponsiveTextBig {
-  font-size: 16px;
+
+/* Media query per la responsiveness */
+@media screen and (max-width: 920px) {
+  #chatContainer {
+      width: 80%; /* Aumentiamo la larghezza per schermi più piccoli */
+      right: 10px; /* Riduciamo il margine destro */
+      height: 60%; /* Aumentiamo l'altezza per rendere più visibile la chat */
+      padding:10px !important;
+  }
+
+  .myResponsiveTextBig, .myResponsiveTextMedium {
+      font-size: 18px;
+  }
 }
 
-.myResponsiveTextMedium {
-  font-size: 25px;
-}
-
-/* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 921px) {
   .myResponsiveTextBig {
-    font-size: 25px;
+      font-size: 35px;
   }
 
   .myResponsiveTextMedium {
-    font-size: 18px;
+      font-size: 25px;
   }
 }
 
-/* Media query per schermi più grandi (ad esempio, desktop) */
-@media screen and (min-width: 1200px) {
-  .myResponsiveTextBig {
-    font-size: 35px;
-  }
-
-  .myResponsiveTextMedium {
-    font-size: 25px;
-  }
-
+#chatContainer {
+  display: flex;
+  position: absolute;
+  z-index: 2; /* Z-index superiore rispetto al mainMenu (che ha z-index: 1) */
+  background-color: var(--option_Background_color);
+  padding: 20px;
+  border-radius: 10px;
+  border-style: solid;
+  align-items: center;
+  text-align: center;
+  min-height: 300px;
+  width: 41%; /* Occupiamo il 30% della larghezza della finestra */
+  height: 50%; /* Altezza impostata al 50% della finestra */
+  top: 50%; /* Per centrarlo verticalmente */
+  right: 20px; /* Margine destro dalla finestra */
+  transform: translateY(-50%); /* Centratura verticale */
+  max-width: 300px;
 }
 
 #chatBox {
   height: 100%;
+  width: 100%;
   border-radius: 8px;
+}
+
+.users_heading {
+  text-align: center;
+  margin: 0px;
+  color: var(--light_Text_color);
+  padding: 4%;
+  margin-bottom: 5%;
+}
+
+#onlineUserContainer {
+  overflow: auto;
+  height: 80%;
 }
 
 .onlineUser {
@@ -60,25 +87,29 @@
   font-size: 20px;
 }
 
-#onlineUserContainer {
-  overflow: auto;
-  height: 80%;
+.onlineUserName {
+  /* Lasciato vuoto in attesa di possibili stili aggiuntivi */
 }
 
-.users-container {
-  background-color: var(--option_Background_color);
-  padding: 10px 5px 10px 5px;
-  float: right;
-  position: absolute;
-  right: 25px;
-  top: 30%;
-  width: 275px;
-  height: 275px;
-  overflow: auto;
-  border-color: var(--option_Border_color);
-  border-style: solid;
-  border-radius: 10px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .users {
   list-style-type: none;
@@ -89,14 +120,6 @@
   color: var(--light_Text_color);
   font-size: 20px;
   font-weight: 500;
-}
-
-.users_heading {
-  text-align: center;
-  margin: 0px;
-  color: var(--light_Text_color);
-  padding: 4%;
-  margin-bottom: 5%;
 }
 
 .personalChat {

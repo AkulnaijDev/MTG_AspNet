@@ -22,9 +22,9 @@
     font-size: 16px;
 }
 
-.myResponsiveTextMedium {
+/* .myResponsiveTextMedium {
     font-size: 25px;
-}
+} */
 
 .myResponsiveTextSmall {
     font-size: 18px;
@@ -36,20 +36,15 @@
         font-size: 25px;
     }
 
-    .myResponsiveTextMedium {
+    /* .myResponsiveTextMedium {
         font-size: 18px;
-    }
+    } */
 
     .myResponsiveTextSmall {
         font-size: 14px;
     }
 
-    #chatContainer {
-        top: 30%;
-        left: 54%;
-        width: 44%;
-        height: 40%;
-    }
+    
 
     #optionsMenu {
         top: 27%;
@@ -104,19 +99,12 @@
         font-size: 35px;
     }
 
-    .myResponsiveTextMedium {
+    /* .myResponsiveTextMedium {
         font-size: 25px;
-    }
+    } */
 
     .myResponsiveTextSmall {
         font-size: 18px;
-    }
-
-    #chatContainer {
-        top: 30%;
-        right: 80px;
-        width: 300px;
-        height: 40%;
     }
 
     #optionsMenu {
@@ -254,7 +242,7 @@
     }
 }
 
-#mainMenu {
+/* #mainMenu {
     background-image: url("../resources/Chandra.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -282,19 +270,66 @@
 .mainMenuVoicesText:hover {
     color: var(--option_Text_hover);
     text-decoration: underline;
+} */
+
+#mainMenu {
+    background-image: url("../resources/Chandra.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh; /* Usa 100vh per la piena altezza della viewport */
+    position: absolute; /* Usa relative per permettere il posizionamento relativo del contenuto */
+    z-index: 1;
+    display: flex;
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+    top:0;
 }
 
-/* 
-#iconOverlay {
-    position: absolute;
-    background-color: transparent;
-    z-index: 9999;
-    top: 0;
-    right: 0;
-    margin-right: 25px;
-    margin-top: 10px;
-    font-size: 30px;
-} */
+/* Main Menu Voices */
+#mainMenuVoices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Allinea a sinistra */
+}
+
+.mainMenuVoicesText {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 2rem; /* Aggiusta la dimensione del font */
+    color: var(--light_Text_color);
+    text-shadow: -1px -1px 0 var(--dark_Text_contour), 1px -1px 0 var(--dark_Text_contour), -1px 1px 0 var(--dark_Text_contour), 1px 1px 0 var(--dark_Text_contour);
+}
+
+.mainMenuVoicesText:hover {
+    color: var(--option_Text_hover);
+    text-decoration: underline;
+}
+
+/* Media query per la responsiveness */
+@media (max-width: 768px) {
+    .mainMenuVoicesText {
+        font-size: 1.5rem; /* Ridimensiona il testo per schermi medi */
+    }
+}
+
+@media (max-width: 576px) {
+    .mainMenuVoicesText {
+        font-size: 1.25rem; /* Ridimensiona il testo per schermi piccoli */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 #gameInvitation {
     height: 30%;
@@ -312,7 +347,7 @@
 
 #loginForm {
     position: absolute;
-    z-index: 9999;
+    z-index: 9998;
     display: none;
     background-color: var(--option_Background_color);
     border-radius: 10px;
@@ -329,7 +364,7 @@
 
 #optionsMenu {
     position: absolute;
-    z-index: 9998;
+    z-index: 4;
     display: none;
     background-color: var(--option_Background_color);
     padding: 20px;
@@ -337,20 +372,9 @@
     border-style: solid;
     align-items: center;
     text-align: center;
+    max-height: 300px;
 }
 
-#chatContainer {
-    display: block;
-    position: absolute;
-    z-index: 9997;
-    background-color: var(--option_Background_color);
-    padding: 20px;
-    border-radius: 10px;
-    border-style: solid;
-    align-items: center;
-    text-align: center;
-    min-height: 300px;
-}
 
 #optionsTitle {
     font-size: 20px;
@@ -403,7 +427,7 @@
 
 #rulesMenu {
     position: absolute;
-    z-index: 9999;
+    z-index: 3;
     display: none;
     background-color: var(--option_Background_color);
     padding: 20px;
