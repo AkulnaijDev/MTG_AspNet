@@ -31,7 +31,7 @@
 }
 
 /* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
     .myResponsiveTextBig {
         font-size: 25px;
     }
@@ -94,7 +94,7 @@
 }
 
 /* Media query per schermi più grandi (ad esempio, desktop) */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 921px) {
     .myResponsiveTextBig {
         font-size: 35px;
     }
@@ -108,10 +108,10 @@
     }
 
     #optionsMenu {
-        width: 20%;
-        height: 30%;
-        top: 35%;
-        left: 40%;
+        width: 26%;
+        height: 36%;
+        top: 32%;
+        left: 37%;
     }
 
     #rulesMenu {
@@ -373,6 +373,7 @@
     align-items: center;
     text-align: center;
     max-height: 300px;
+    max-width: 300px;
 }
 
 

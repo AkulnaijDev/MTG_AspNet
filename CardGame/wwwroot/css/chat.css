@@ -21,9 +21,9 @@
 /* Media query per la responsiveness */
 @media screen and (max-width: 920px) {
   #chatContainer {
-      width: 80%; /* Aumentiamo la larghezza per schermi più piccoli */
+      width: 50%; /* Aumentiamo la larghezza per schermi più piccoli */
       right: 10px; /* Riduciamo il margine destro */
-      height: 60%; /* Aumentiamo l'altezza per rendere più visibile la chat */
+      height: 30%; /* Aumentiamo l'altezza per rendere più visibile la chat */
       padding:10px !important;
   }
 
@@ -40,6 +40,13 @@
   .myResponsiveTextMedium {
       font-size: 25px;
   }
+
+  #chatContainer {
+    width: 41%; /* Occupiamo il 30% della larghezza della finestra */
+    right: 20px; /* Margine destro dalla finestra */
+    height: 50%; /* Altezza impostata al 50% della finestra */
+    padding: 20px;
+  }
 }
 
 #chatContainer {
@@ -47,16 +54,12 @@
   position: absolute;
   z-index: 2; /* Z-index superiore rispetto al mainMenu (che ha z-index: 1) */
   background-color: var(--option_Background_color);
-  padding: 20px;
   border-radius: 10px;
   border-style: solid;
   align-items: center;
   text-align: center;
   min-height: 300px;
-  width: 41%; /* Occupiamo il 30% della larghezza della finestra */
-  height: 50%; /* Altezza impostata al 50% della finestra */
   top: 50%; /* Per centrarlo verticalmente */
-  right: 20px; /* Margine destro dalla finestra */
   transform: translateY(-50%); /* Centratura verticale */
   max-width: 300px;
 }
@@ -87,60 +90,101 @@
   font-size: 20px;
 }
 
-.onlineUserName {
-  /* Lasciato vuoto in attesa di possibili stili aggiuntivi */
+
+
+@media screen and (max-width: 920px) {
+  .personalChat {
+    top: 35%;
+    left: 15%;
+    width: 70%;
+    height: 30%;
+  }
+
+  .personalChatMinimized {
+    top: 95% !important;
+    left: 0% !important;
+    width: 50% !important;
+    height: 5% !important;
+  }
+  .myChatUsername {
+    color: var(--light_Text_color);
+    width: 70%;
+    text-align: center;
+    font-size: 20px;
+  }
+  .minimizePersonalChat {
+    width: 15%;
+    cursor: pointer;
+    color: var(--light_Text_color);
+    text-align: center;
+  }
+  
+  .maximizePersonalChat {
+    width: 15%;
+    cursor: pointer;
+    display: none;
+    color: var(--light_Text_color);
+    text-align: center;
+  }
+  
+  .closePersonalChat {
+    width: 15%;
+    cursor: pointer;
+    color: var(--light_Text_color);
+    text-align: center;
+  }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.users {
-  list-style-type: none;
-  padding-inline-start: 10px;
-}
-
-.user {
-  color: var(--light_Text_color);
-  font-size: 20px;
-  font-weight: 500;
+@media screen and (min-width: 921px) {
+  .personalChat {
+    top: 35%;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+  }
+  .personalChatMinimized {
+    top: 95% !important;
+    left: 0% !important;
+    width: 25% !important;
+    height: 5% !important;
+  }
+  .myChatUsername {
+    color: var(--light_Text_color);
+    width: 90%;
+    text-align: center;
+    font-size: 20px;
+  }
+  .minimizePersonalChat {
+    width: 5%;
+    cursor: pointer;
+    color: var(--light_Text_color);
+    text-align: center;
+  }
+  
+  .maximizePersonalChat {
+    width: 5%;
+    cursor: pointer;
+    display: none;
+    color: var(--light_Text_color);
+    text-align: center;
+  }
+  
+  .closePersonalChat {
+    width: 5%;
+    cursor: pointer;
+    color: var(--light_Text_color);
+    text-align: center;
+  }
 }
 
 .personalChat {
   position: absolute;
-  top: 35%;
-  left: 35%;
-  width: 30%;
-  height: 30%;
   background-color: var(--option_Background_color);
   z-index: 9999;
   border: 3px solid var(--option_Border_color);
   border-radius: 10px;
   padding: 10px;
-
-}
-
-.personalChatMinimized {
-  top: 95% !important;
-  left: 0% !important;
-  width: 25% !important;
-  height: 5% !important;
 }
 
 .myChatHeader {
@@ -166,32 +210,6 @@
   width: 100%;
 }
 
-.myChatUsername {
-  color: var(--light_Text_color);
-  width: 90%;
-  text-align: center;
-  font-size: 20px;
-}
-
-.minimizePersonalChat {
-  width: 5%;
-  cursor: pointer;
-  color: var(--light_Text_color);
-}
-
-.maximizePersonalChat {
-  width: 5%;
-  cursor: pointer;
-  display: none;
-  color: var(--light_Text_color);
-}
-
-.closePersonalChat {
-  width: 5%;
-  cursor: pointer;
-  color: var(--light_Text_color);
-}
-
 .senderIsMe {
   float: right;
   width: 98%;
@@ -214,7 +232,6 @@
   padding-left: 10px;
   margin-bottom: 5px;
   margin-right: 5px;
-
 }
 
 .blinkChat {
