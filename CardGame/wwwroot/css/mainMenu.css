@@ -30,6 +30,10 @@
     font-size: 18px;
 }
 
+
+#myDeckCardCount{
+    width:100%;
+}
 /* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
 @media screen and (max-width: 920px) {
     .myResponsiveTextBig {

@@ -1,17 +1,18 @@
 ﻿<div class="container" id="loginForm">
     <h2 class="text-center mb-4">Login</h2>
     <div>
-       
+
         <div class="form-group">
             <div>Username:</div>
             <div class="d-flex justify-content-center align-items-center">
-                <input class="form-control" id="myname" placeholder="Enter your username" style="width: 70%;margin: auto;">
+                <input class="form-control" id="myname" placeholder="Enter your username"
+                    style="width: 70%;margin: auto;">
             </div>
         </div>
 
         <div class="form-group">
             <div>Password:</div>
-           <div class="d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
                 <div class="input-group" style="width: 70%;">
                     <input type="password" id="mypassword" placeholder="Enter your password" class="form-control">
                     <button class="btn btn-outline-secondary" type="button" id="mypasswordchecker">Show</button>
@@ -19,11 +20,11 @@
             </div>
         </div>
 
-         <div class="row heightfivepercent">
+        <div class="row heightfivepercent">
             <div class="col-12">
-                <div id="loginSpinner" class="spinner" ></div>
-                <div id="loginError">ERROR. TRY AGAIN</div>     
-                <div id="loginErrorAlreadyLoggedin">YOU ARE ALREADY LOGGED IN</div>     
+                <div id="loginSpinner" class="spinner"></div>
+                <div id="loginError">ERROR. TRY AGAIN</div>
+                <div id="loginErrorAlreadyLoggedin">YOU ARE ALREADY LOGGED IN</div>
             </div>
         </div>
 
@@ -109,7 +110,7 @@
 <div id="gameModeMenu">
     <span id="gameModeTitle">Game Modes</span>
     <div id="gameModeList">
-        
+
     </div>
 
     <div class="optionsLowestVoices optionsLowestVoicesForRules">
@@ -135,70 +136,77 @@
 
 
 
-<div id="myDeckMenu">
-    <div id="myDeckMenuContainer">
-     <div><button id="myDeckMenuBackButton">Back to menu</button></div>
+<div class="col-12 col-md-12" id="myDeckMenu">
 
-        <div id="myDeck">
-            <div id="myDeckCardPreview" >
-                <div style="display: inline-flex;position: absolute; width: 10%;">
-                    <button id="myDeckCardPreviewImageButton">Hide Preview</button>
-                </div>
-                
-                <img id="myDeckCardPreviewImage" src="../resources/cardBack.jpg">
-            </div>
-            <div id="myDeckName"> </div>
-            <div id="myDeckCardCount"> </div>
-            <div id="myDeckAlert"> You can't add any more copy of this card!</div>
-            <div id="myDeckList"> </div>
-            <div id="myDeckSaveButtonContainer" >
-                <button id="myDeckSaveButton">SAVE THE DECK</button>
-            </div>
+    <div id="myDeckMenuContainer" class="container-fluid">
+         <div class="row">
+            <button id="myDeckMenuBackButton" class="btn btn-primary">Back to menu</button>
         </div>
 
-        <div id="myDeckCardPicker">
-            <div id="myDeckSetPickerContainer">
-
-                 <div id="myDeckDecksSelector">
-                    <span id="myDeckDecksSelectorText">My decks</span>
-                    <select class="myDecksPickerSelector" id="myDecksPickerSelector">
-                    </select>
-                     <span id="myDecksPickerSelectorDelete" >🗑️</span>
-                     <span id="myDecksPickerSelectorAdd" >➕</span>
-                 </div>
-                
-                <div id="myDeckDecksGameMode">
-                    <span id="myDeckGameModeText">Game Modes</span>
-                    <span id="myDeckGameModeButton">❔</span>
+        <div class="row">
+            <div id="myDeck" class="col-12 col-md-3">
+                <div id="myDeckCardPreview" class="mb-3">
+                    <div style="display: inline-flex; position: relative; width: 100%;">
+                        <button id="myDeckCardPreviewImageButton" class="btn btn-secondary">Hide Preview</button>
+                    </div>
+                    <img id="myDeckCardPreviewImage" class="img-fluid" src="../resources/cardBack.jpg">
                 </div>
 
-                <div class="row" id="myDeckDecksSearch">
-                    <div class="col-6"><input placeholder="Search by name" id="myDeckDecksNormalSearchValue"</input></div>
-                     <div class="col-4"><button id="myDeckDecksNormalSearchButton">Search</button></div>
-                      <div class="col-2"><span id="normalSearchSpinner" class="spinner" ></span></div>
+                <!-- Info deck -->
+                <div id="myDeckDetails"  class="d-flex flex-column">
+                    <div id="myDeckName" class="mb-2"></div>
+                    <div id="myDeckCardCount" class="mb-2"></div>
+                    <div id="myDeckAlert" class="mb-2">You can't add any more copy of this card!</div>
+                    <div id="myDeckList" class="mb-2"></div>
+                    <div id="myDeckSaveButtonContainer" class="mb-2">
+                        <button id="myDeckSaveButton" class="btn btn-success">SAVE THE DECK</button>
+                    </div>
                 </div>
-
-                <div id="myDeckDecksSearchFilters">
-                    <button id="myDeckDecksSearchButton">Advanced Search</button>
-                </div>
-
-                <div id="myDeckDecksSetsAndZoom">
-                    <span id="myDeckZoomSelectorPlus" defaultscreen="5">➕</span>
-                    <span id="myDeckZoomSelectorIcon">🔍</span>
-                    <span id="myDeckZoomSelectorMinus" defaultscreen="5">➖</span>
-                </div>
-               
             </div>
+            
+            <div id="myDeckCardPicker" class="col-12 col-md-9">
+              <div id="myDeckSetPickerContainer" class="row d-flex align-items-center justify-content-between">
+                    <!-- Selettore Mazzi -->
+                    <div id="myDeckDecksSelector" class="d-flex align-items-center col-12 col-md-3 mb-3">
+                        <span id="myDeckDecksSelectorText" class="mr-2">My decks</span>
+                        <select class="myDecksPickerSelector form-control mr-2" id="myDecksPickerSelector"></select>
+                        <span id="myDecksPickerSelectorDelete" class="ml-2">🗑️</span>
+                        <span id="myDecksPickerSelectorAdd" class="ml-2">➕</span>
+                    </div>
 
-            <div id="myDeckCardPickerContainer">
+                    <!-- Modalità di gioco -->
+                    <div id="myDeckDecksGameMode" class="d-flex align-items-center col-12 col-md-2 mb-3">
+                        <span id="myDeckGameModeText" class="mr-2">Game Modes</span>
+                        <span id="myDeckGameModeButton">❔</span>
+                    </div>
 
+                    <!-- Ricerca normale -->
+                    <div id="myDeckDecksSearch" class="d-flex align-items-center col-12 col-md-3 mb-3">
+                        <input placeholder="Search by name" class="form-control mr-2" id="myDeckDecksNormalSearchValue" />
+                        <button id="myDeckDecksNormalSearchButton" class="btn btn-primary mr-2">Search</button>
+                        <span id="normalSearchSpinner" class="spinner"></span>
+                    </div>
+
+                    <!-- Filtro avanzato -->
+                    <div id="myDeckDecksSearchFilters" class="d-flex align-items-center col-12 col-md-2 mb-3">
+                        <button id="myDeckDecksSearchButton" class="btn btn-secondary">Advanced Search</button>
+                    </div>
+
+                    <!-- Zoom -->
+                    <div id="myDeckDecksSetsAndZoom" class="d-flex align-items-center col-12 col-md-2 text-center mb-3">
+                        <span id="myDeckZoomSelectorPlus" class="mx-2">➕</span>
+                        <span id="myDeckZoomSelectorIcon">🔍</span>
+                        <span id="myDeckZoomSelectorMinus" class="mx-2">➖</span>
+                    </div>
+                </div>
+
+                <!-- Contenitore delle carte -->
+                <div id="myDeckCardPickerContainer" class="row"></div>
             </div>
-
         </div>
-
     </div>
 
-     <div id="myDeckAdvancedSearch" class="container-fluid">
+    <div id="myDeckAdvancedSearch" class="container-fluid">
 
         <div class="row mb-3">
             <div class="col-12 col-md-3">
@@ -248,7 +256,8 @@
             <div class="col-12 col-md-9">
                 <div class="advancedSearchCheckboxGroupContainer">
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorWhite">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1"
+                            id="advancedSearchTypeColorWhite">
                         <div class="advancedSearchText" id="advancedSearchTypeColorWhiteText">White</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
@@ -256,7 +265,8 @@
                         <div class="advancedSearchText" id="advancedSearchTypeColorBlueText">Blue</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorBlack">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1"
+                            id="advancedSearchTypeColorBlack">
                         <div class="advancedSearchText" id="advancedSearchTypeColorBlackText">Black</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
@@ -264,7 +274,8 @@
                         <div class="advancedSearchText" id="advancedSearchTypeColorRedText">Red</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchTypeColorUncheck1" id="advancedSearchTypeColorGreen">
+                        <input type="checkbox" class="advancedSearchTypeColorUncheck1"
+                            id="advancedSearchTypeColorGreen">
                         <div class="advancedSearchText" id="advancedSearchTypeColorGreenText">Green</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
@@ -279,34 +290,39 @@
                         <option value="atMost">At most these colors</option>
                     </select>
                 </div>
-                
+
             </div>
         </div>
 
         <div class="row mb-3">
-          <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchFieldCommander">Commander</div>
             </div>
             <div class="col-12 col-md-9">
                 <div class="advancedSearchCheckboxGroupContainer">
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorWhite">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1"
+                            id="advancedSearchCommanderColorWhite">
                         <div class="advancedSearchText" id="advancedSearchTypeColorWhiteText">White</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorBlue">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1"
+                            id="advancedSearchCommanderColorBlue">
                         <div class="advancedSearchText" id="advancedSearchTypeColorBlueText">Blue</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorBlack">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1"
+                            id="advancedSearchCommanderColorBlack">
                         <div class="advancedSearchText" id="advancedSearchTypeColorBlackText">Black</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorRed">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1"
+                            id="advancedSearchCommanderColorRed">
                         <div class="advancedSearchText" id="advancedSearchTypeColorRedText">Red</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
-                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1" id="advancedSearchCommanderColorGreen">
+                        <input type="checkbox" class="advancedSearchCommanderColorUncheck1"
+                            id="advancedSearchCommanderColorGreen">
                         <div class="advancedSearchText" id="advancedSearchTypeColorGreenText">Green</div>
                     </div>
                     <div class="advancedSearchCheckboxGroup">
@@ -319,14 +335,15 @@
 
         <div class="row mb-3">
             <div class="col-12 col-md-3">
-                <div class="advancedSearchText" id="advancedSearchFieldCmC" >Mana Cost</div>
+                <div class="advancedSearchText" id="advancedSearchFieldCmC">Mana Cost</div>
             </div>
             <div class="col-12 col-md-9">
-                <input class="advancedSearchLargeInput" type="text" id="advancedSearchCmC" placeholder="Any mana symbols, eg '{W}{W}'">
+                <input class="advancedSearchLargeInput" type="text" id="advancedSearchCmC"
+                    placeholder="Any mana symbols, eg '{W}{W}'">
             </div>
         </div>
 
-          <div class="row mb-3">
+        <div class="row mb-3">
             <div class="col-12 col-md-3">
                 <div class="advancedSearchText" id="advancedSearchStats">Stats</div>
             </div>
@@ -337,7 +354,7 @@
                     <option value="toughness">Toughness</option>
                     <option value="loyalty">Loyalty</option>
                 </select>
-                  </div>
+            </div>
             <div class="col-12 col-md-4">
                 <select name="valueEquals" id="advancedSearchStatsValueEqual">
                     <option value="1">Equal to</option>
@@ -347,9 +364,10 @@
                     <option value="5">Greater than or equal to</option>
                     <option value="6">Not equal to</option>
                 </select>
-                  </div>
+            </div>
             <div class="col-12 col-md-2">
-                <input class="advancedSearchLargeInput" type="text" id="advancedSearchStatsValueAmount" placeholder="Any value, e.g '2'">
+                <input class="advancedSearchLargeInput" type="text" id="advancedSearchStatsValueAmount"
+                    placeholder="Any value, e.g '2'">
             </div>
         </div>
 
@@ -394,36 +412,37 @@
                 <div class="advancedSearchText" id="advancedSearchFieldFlavorText">Flavor text</div>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" class="advancedSearchLargeInput" placeholder="Any flavor text, e.g 'Jhoira'" id="advancedSearchFlavorText">
+                <input type="text" class="advancedSearchLargeInput" placeholder="Any flavor text, e.g 'Jhoira'"
+                    id="advancedSearchFlavorText">
             </div>
         </div>
-      
+
 
         <div class="row mb-3">
-             <div class="col-12 col-md-12">
-                <div id="advancedSearchSpinner" class="spinner" ></div>
-                <div id="advancedSearchError">ERROR. TRY AGAIN</div>     
+            <div class="col-12 col-md-12">
+                <div id="advancedSearchSpinner" class="spinner"></div>
+                <div id="advancedSearchError">ERROR. TRY AGAIN</div>
             </div>
         </div>
- 
+
         <div class="row mb-3">
             <div class="col-12 col-md-6 text-end">
-                <button id="myDeckAdvancedSearchSearchButton" class="btn btn-primary w-100">Search</button>
+                <button id="myDeckAdvancedSearchSearchButton" class="w-100">Search</button>
             </div>
             <div class="col-12 col-md-6 text-start">
-                <button id="myDeckAdvancedSearchCloseButton" class="btn btn-secondary w-100">Close</button>
+                <button id="myDeckAdvancedSearchCloseButton" class="w-100">Close</button>
             </div>
         </div>
 
     </div>
 
-     <div id="myDeckCreateName">
+    <div id="myDeckCreateName">
         <div id="myDeckCreateNameText">Insert the name for your deck</div>
         <div>
             <input id="myDeckCreateNameInput" type="text">
         </div>
         <button id="myDeckCreateNameSaveButton">Save</button>
-         <button id="myDeckCreateNameBackButton">Back</button>
+        <button id="myDeckCreateNameBackButton">Back</button>
     </div>
 
     <div id="myDeckDelete">
@@ -437,7 +456,7 @@
         <button id="myDeckEditBackButton">Back</button>
 
     </div>
-    
+
 </div>
 
 
@@ -447,15 +466,15 @@
         <div id="gameInvitationText1">You have been invited to a game</div>
     </div>
 
-     <div class="row">
-       <div style="display: flex;">
-        <div id="gameInvitationInviter"></div>
-         <div id="gameInvitationMode"></div>
-       </div>
+    <div class="row">
+        <div style="display: flex;">
+            <div id="gameInvitationInviter"></div>
+            <div id="gameInvitationMode"></div>
+        </div>
 
     </div>
 
-     <div class="row">
+    <div class="row">
         <button id="acceptGameInvitation">Accept</button>
         <button id="declineGameInvitation">Decline</button>
     </div>
