@@ -97,6 +97,21 @@
         overflow-y: auto;
         top:0;
     }
+    
+    #gameInvitation {
+        height: 30%;
+        position: absolute;
+        top: 35%;
+        width: 80%;
+        left: 10%;
+        z-index: 9999;
+        background-color: var(--option_Background_color);
+        border-radius: 10px;
+        border-style: solid;
+        padding: 20px;
+        display: none;
+    }
+
 }
 
 /* Media query per schermi più grandi (ad esempio, desktop) */
@@ -166,6 +181,21 @@
     #myDeckAdvancedSearch button {
         width: 100px;
     }
+    
+    #gameInvitation {
+        height: 30%;
+        position: absolute;
+        top: 35%;
+        width: 30%;
+        left: 35%;
+        z-index: 9999;
+        background-color: var(--option_Background_color);
+        border-radius: 10px;
+        border-style: solid;
+        padding: 20px;
+        display: none;
+    }
+
 }
 
 #myDeckAdvancedSearch .row {
@@ -335,20 +365,6 @@
 
 
 
-
-#gameInvitation {
-    height: 30%;
-    position: absolute;
-    top: 35%;
-    width: 30%;
-    left: 35%;
-    z-index: 9999;
-    background-color: var(--option_Background_color);
-    border-radius: 10px;
-    border-style: solid;
-    padding: 20px;
-    display: none;
-}
 
 #loginForm {
     position: absolute;

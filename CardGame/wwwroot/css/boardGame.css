@@ -334,7 +334,8 @@
 }
 
 #acceptGameInvitation{
-  margin-bottom:5px;
+  margin-top:15px;
+  margin-bottom:15px;
 }
 #rulesGameButton,
 #gameModeGameButton,
