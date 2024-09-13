@@ -24,7 +24,43 @@
   height: 100%;
   position: absolute;
   background-color: var(--option_Background_color);
+  top:0;
 }
+
+@media screen and (max-width: 1200px) {
+
+
+  #inviteSection {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    padding: 2%;
+    z-index: 9999;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+
+
+  #inviteSection {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 34%;
+    height: 54%;
+    top: 23%;
+    left: 33%;
+    padding: 2%;
+    z-index: 9999;
+  }
+}
+
 
 #cardInGameContextMenu,#cardSneakedContextMenu {
   position: absolute;
@@ -119,18 +155,6 @@
   border-radius: 8px;
 }
 
-#inviteSection {
-  position: absolute;
-  background: var(--option_Background_color);
-  border-radius: 10px;
-  border: 2px solid var(--option_Border_color);
-  width: 34%;
-  height: 54%;
-  top: 23%;
-  left: 33%;
-  padding: 2%;
-  z-index: 9999;
-}
 
 #boardGame {
   width: 80%;
@@ -238,7 +262,9 @@
   justify-content: space-around;
 }
 
-
+.gameValidities {
+  color: green;
+}
 .gameValidities[disabled] {
   color: red;
 }
