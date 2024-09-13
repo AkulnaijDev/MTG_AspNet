@@ -150,12 +150,12 @@
     width: 50px;
     margin: 5px;
   }
-  #myDeckAdvancedSearchSearchButton,
-  #startTheGameButton{
+  #myDeckAdvancedSearchSearchButton
+  {
     margin-right:5px;
   }
-  #myDeckAdvancedSearchCloseButton,
-  #backTheGameButton{
+  #myDeckAdvancedSearchCloseButton
+  {
     margin-left:5px;
   }
 
