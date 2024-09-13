@@ -27,6 +27,25 @@
   top:0;
 }
 
+@media screen and (max-width: 660px) {
+  #zoomedHoveredCard {
+    display: none !important;
+  }
+
+  #rulesGameButton,
+  #gameModeGameButton,
+  #beginTheGameButton,
+  #quitTheGameButton {
+    font-size: 11px;
+  }
+
+  
+  .teams{
+    font-size: 11px;
+  }
+}
+
+
 @media screen and (max-width: 1200px) {
 
 
@@ -112,6 +131,7 @@
     width: 50px;
     margin: 5px;
   }
+
 }
 
 @media screen and (min-width: 1201px) {
@@ -266,25 +286,14 @@
   float: left;
 }
 
-/* #boardPlayer1 {
-  background: #DDD;
-}
 
-#boardPlayer2 {
-  background: #AAA;
-}
-
-#boardPlayer3 {
-  background: #777;
-}
-
-#boardPlayer4 {
-  background: #444;
-} */
 
 #rulesGameButton,
-#gameModeGameButton {
-  width: 49%
+#gameModeGameButton,
+#beginTheGameButton,
+#quitTheGameButton
+ {
+  width: 100%
 }
 
 
@@ -423,20 +432,20 @@
 }
 
 .playerName {
-  text-align: right;
+  text-align: left;
 }
 
 .playerHp {
-  text-align: left;
+  text-align: center;
 }
 
 .playerName[disabled] {
   color: red;
 }
 
-.player {
+/* .player {
   columns: 4;
-}
+} */
 
 .teamTitle {
   text-align: center;

@@ -1218,11 +1218,11 @@ function DisplayTeamWaiting(teams) {
             var teamName = "." + team.TeamName.toLowerCase();
 
             team.Teammates.forEach(teammate => {
-                var teammateDiv = "<div class='player'>" +
-                    "<div disabled='disabled' playerid='" + teammate.Id + "' class='playerName'>" + teammate.Name + "</div>" +
-                    "<button class='decreaseHpButton' playerid='" + teammate.Id + "'>-</button>" +
-                    "<div class='playerHp'>20 HP</div>" +
-                    "<button class='increaseHpButton' playerid='" + teammate.Id + "'>+</button>" +
+                var teammateDiv = "<div class='player row'>" +
+                    "<div disabled='disabled' playerid='" + teammate.Id + "' class='col-4 col-md-4 playerName'>" + teammate.Name + "</div>" +
+                    "<button class='col-2 col-md-2 decreaseHpButton' playerid='" + teammate.Id + "'>-</button>" +
+                    "<div class='playerHp col-4 col-md-4'>20 HP</div>" +
+                    "<button class='increaseHpButton col-2 col-md-2' playerid='" + teammate.Id + "'>+</button>" +
                     "</div>";
 
                 if ($(document).find('.playerName[playerid="' + teammate.Id + '"]').length == 0) {
