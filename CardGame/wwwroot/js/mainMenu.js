@@ -397,6 +397,15 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#contextCardGameMenuCountersSelector option[value='DoubleStrike']").text("DoppioAttacco");
         $("#contextCardGameMenuCountersSelector option[value='FirstStrike']").text("AttaccoImprovviso");
         $("#contextCardGameMenuCountersSelector option[value='DeathTouch']").text("Toccoletale");
+        $("#contextCardGameMenuCountersSelector option[value='Lifelink']").text("Legame vitale");
+        $("#contextCardGameMenuCountersSelector option[value='Shroud']").text("Velo");
+        $("#contextCardGameMenuCountersSelector option[value='Hexproof']").text("Antimalocchio");
+        $("#contextCardGameMenuCountersSelector option[value='Caution']").text("Cautela");
+        $("#contextCardGameMenuCountersSelector option[value='Poison']").text("Veleno");
+        $("#contextCardGameMenuCountersSelector option[value='Infect']").text("Infettare");
+        $("#contextCardGameMenuCountersSelector option[value='Flying']").text("Volare");
+
+        $("#contextListOfAllCountersText").text("Segnalini assegnati");
     } else {
         $('.translatedAbility').hide();
         $('.defaultAbility').show();
@@ -559,6 +568,15 @@ $('body').on('change', '#languageChooseOptions', function () {
         $("#contextCardGameMenuCountersSelector option[value='DoubleStrike']").text("DoubleStrike");
         $("#contextCardGameMenuCountersSelector option[value='FirstStrike']").text("FirstStrike");
         $("#contextCardGameMenuCountersSelector option[value='DeathTouch']").text("DeathTouch");
+        $("#contextCardGameMenuCountersSelector option[value='Lifelink']").text("Lifelink");
+        $("#contextCardGameMenuCountersSelector option[value='Shroud']").text("Shroud");
+        $("#contextCardGameMenuCountersSelector option[value='Hexproof']").text("Hexproof");
+        $("#contextCardGameMenuCountersSelector option[value='Caution']").text("Caution");
+        $("#contextCardGameMenuCountersSelector option[value='Poison']").text("Poison");
+        $("#contextCardGameMenuCountersSelector option[value='Infect']").text("Infect");
+        $("#contextCardGameMenuCountersSelector option[value='Flying']").text("Flying");
+
+        $("#contextListOfAllCountersText").text("Attached counters");
     }
 });
 //options END

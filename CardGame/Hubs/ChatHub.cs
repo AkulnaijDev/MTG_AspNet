@@ -1738,6 +1738,20 @@ namespace CardGame.Hubs
                     return "AttaccoImprovviso";
                 case "deathTouch":
                     return "ToccoLetale";
+                case "lifelink":
+                    return "Legame Vitale";
+                case "shroud":
+                    return "Velo";
+                case "hexproof":
+                    return "Antimalocchio";
+                case "caution":
+                    return "Cautela";
+                case "poison":
+                    return "Veleno";
+                case "infect":
+                    return "Infettare";
+                case "flying":
+                    return "Volare";
                 default:
                     return counterType;
             }
