@@ -1290,6 +1290,73 @@ namespace CardGame.Hubs
             }
         }
 
+        public async Task UpdateState_RemoveCounterFromCard(string action)
+        {
+            try
+            {
+                var gameAction = JsonConvert.DeserializeObject<ActionCardCounterRemoved>(action);
+                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+
+                var storedGame = storedGameStatus.Game;
+                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
+
+                var newGameStatus = storedGameStatus;
+                foreach (var playerStatus in storedPlayerStatuses)
+                {
+                    if (playerStatus.Name == gameAction.Player)
+                    {
+                        if (gameAction.Zone == "landZone")
+                        {
+                            var cardCounters = playerStatus.LandZone.Where(x => x.Guid == gameAction.CardGuid).FirstOrDefault().Counters;
+                            var cardHasCounters  = cardCounters.Any(x => x.Type == gameAction.Type);
+                            
+                            if (cardHasCounters)
+                            {
+                                var newQuantity = cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity - 1;
+                                if (newQuantity > 0)
+                                {
+                                    cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity = newQuantity;
+                                }
+                                else
+                                {
+                                    cardCounters.Remove(cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault());
+                                }
+                            }
+                        }
+
+                        if (gameAction.Zone == "cardZone")
+                        {
+                            var cardCounters = playerStatus.GameZone.Where(x => x.Guid == gameAction.CardGuid).FirstOrDefault().Counters;
+                            var cardHasCounters = cardCounters.Any(x => x.Type == gameAction.Type);
+
+                            if (cardHasCounters)
+                            {
+                                var newQuantity = cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity - 1;
+                                if (newQuantity > 0)
+                                {
+                                    cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity = newQuantity;
+                                }
+                                else
+                                {
+                                    cardCounters.Remove(cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault());
+                                }
+                            }
+                        }
+                    }
+                }
+                _matchesCurrentlyOn.Remove(storedGameStatus);
+                _matchesCurrentlyOn.Add(newGameStatus);
+
+                var roomId = newGameStatus.Game.RoomId;
+                await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public async Task UpdateState_CardChangeStatusFromGame(string action)
         {
             try

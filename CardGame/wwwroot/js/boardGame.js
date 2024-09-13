@@ -410,7 +410,9 @@ $('body').on('contextmenu', '.cardContainer', function () {
                     var type = parts[1].trim();
                     
                     // Crea un nuovo div con la quantità e la tipologia
-                    var newDiv = '<div class="quantityCounterContainer">Quantity: ' + quantity + ', Type: ' + type + '</div>';
+                    var newSpan = '<div class="quantityTypeCounter">Quantity: ' + quantity + ', Type: ' + type + '</div>';
+                    var newButton = '<div class="removeCounter" cardId='+cardId+' type="'+type+'"> Remove one counter</div>';
+                    var newDiv = '<div class="quantityCounterContainer">'+newSpan+newButton +'</div>';
                     
                     // Aggiungi il nuovo div a #textone
                    
@@ -420,6 +422,34 @@ $('body').on('contextmenu', '.cardContainer', function () {
         }
         
     }
+});
+
+$('body').on('click', '.removeCounter', function () {
+    var cardId = $(this).attr('cardid');
+    var type = $(this).attr('type');
+    console.log(cardId+"----"+type);
+    var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
+   
+    var playerFrom = $('body').find('div[id="'+cardId+'"]').first()
+    .closest('.playerBoardContainer')  // Supponendo che .playerContainer sia un parent comune contenente sia il div che il .playerNameBoardContainer
+    .find('.playerNameBoardContainer')
+    .text();
+
+    var action = {
+        "Game": state.Game,
+        "CardGuid": cardId,
+        "Player":playerFrom,
+        "Zone":fromZone,
+        "Type": type
+    }
+    
+    connection.invoke("UpdateState_RemoveCounterFromCard", JSON.stringify(action)).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    $('#cardInGameContextMenu').hide();
+    $('#zoneInspector').hide();
+
 });
 
 $('body').on('click', '#closeCardInGameContextMenu', function () {

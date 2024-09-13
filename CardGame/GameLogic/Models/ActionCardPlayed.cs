@@ -15,6 +15,15 @@ namespace CardGame.GameLogic.Models
         public GameZone To { get; set; }
     }
 
+    public class ActionCardCounterRemoved
+    {
+        public Game Game { get; set; }
+        public string CardGuid { get; set; }
+        public string Player { get; set; }
+        public string Zone { get; set; }
+        public string Type { get; set; }
+    }
+
     public class ActionCardPlayedTopOrBottom
     {
         public Game Game { get; set; }

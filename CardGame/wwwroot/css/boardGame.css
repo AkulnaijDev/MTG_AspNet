@@ -829,3 +829,20 @@
 #contextCardGameMenuToDeckButton{
   width:100% !important;
 }
+
+.quantityCounterContainer{
+  display:flex;
+  width:100%
+}
+
+.removeCounter{
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+
+.quantityTypeCounter{
+  float: right;
+  width: 50%;
+  text-align: left;
+}
