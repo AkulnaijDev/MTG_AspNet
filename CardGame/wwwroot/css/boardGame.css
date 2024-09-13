@@ -42,6 +42,24 @@
     padding: 2%;
     z-index: 9999;
   }
+
+  #contextMenu {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 80%;
+    height: 60%;
+    top: 20%;
+    left: 10%;
+    padding: 2%;
+    z-index: 9997;
+    display: none;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 @media screen and (min-width: 1201px) {
@@ -58,6 +76,24 @@
     left: 33%;
     padding: 2%;
     z-index: 9999;
+  }
+
+  #contextMenu {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 24%;
+    height: 50%;
+    top: 25%;
+    left: 38%;
+    padding: 2%;
+    z-index: 9997;
+    display: none;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
 
@@ -80,23 +116,7 @@
   flex-direction: column;
 }
 
-#contextMenu {
-  position: absolute;
-  background: var(--option_Background_color);
-  border-radius: 10px;
-  border: 2px solid var(--option_Border_color);
-  width: 24%;
-  height: 50%;
-  top: 25%;
-  left: 38%;
-  padding: 2%;
-  z-index: 9997;
-  display: none;
-  overflow-y: auto;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+
 
 #contextMenu>button {
   width: 50%;
@@ -598,7 +618,11 @@
 }
 
 #contextMenuExileCards{
-  width:10%;
+  width:15%;
+}
+#contextMenuExileDiscardActionSelector,
+#contextMenuExileDeckSelector{
+  width:35%;
 }
 #contextMenuExileDeck{
   width: 15% !important;
@@ -633,6 +657,9 @@
   margin-bottom:3px;
 }
 
+#contextMenuExileContainer{
+  display:flex;
+}
 #contextMenuScryContainer, #contextMenuExileContainer, #contextMenuToken, .contextSelectMenuContainers{
   width:80%;
 }
