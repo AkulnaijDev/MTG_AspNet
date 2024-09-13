@@ -73,6 +73,7 @@
 #myDeckMenuBackButton{
     margin-top:5px;
     margin-bottom:5px;
+    width:50%;
 }
 #myDeckDecksNormalSearchValue{
     width:100%
@@ -240,8 +241,14 @@
         overflow-x: hidden; /* Evita scroll orizzontale non desiderato */
         border: 3px solid solid #212529;
         border-radius: 16px;
-        font-size: 12px;
+        font-size: 11px;
     }
+
+    .cardRowActionPlus,
+    .cardRowActionMinus{
+        font-size: 10px;
+    }
+
 
 
     #myDeckSetPickerContainer {
@@ -544,4 +551,9 @@
         -webkit-transform: rotateY(0);
         transform: rotateY(0);
     }
+}
+
+#advancedSearchStatsValueStats,
+#advancedSearchStatsValueEqual{
+    width:100%
 }

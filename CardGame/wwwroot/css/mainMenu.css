@@ -161,9 +161,7 @@
         left: 30%;
     }
 
-    #myDeckAdvancedSearch select {
-        height: 30px;
-    }
+
 
     #myDeckAdvancedSearch button {
         width: 100px;
@@ -435,7 +433,7 @@
 
 #rulesMenu {
     position: absolute;
-    z-index: 3;
+    z-index: 9999;
     display: none;
     background-color: var(--option_Background_color);
     padding: 20px;

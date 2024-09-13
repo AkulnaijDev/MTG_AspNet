@@ -51,7 +51,7 @@
 
     <div class="optionsVoices">
         <div class="optionsText" id="optionsSongText">Music:</div>
-        <select name="background" id="musicChooseOptions">
+        <select class="form-select-sm" name="background" id="musicChooseOptions">
             <option value="default">Default</option>
             <option value="A_Time_Forgotten">A Time Forgotten</option>
             <option value="Now-We-Ride">Now We Ride</option>
@@ -61,7 +61,7 @@
 
     <div class="optionsVoices">
         <div class="optionsText" id="optionsBackgroundText">Background:</div>
-        <select name="background" id="backgroundChooseOptions">
+        <select class="form-select-sm" name="background" id="backgroundChooseOptions">
             <option value="chandra">Chandra</option>
             <option value="jace">Jace</option>
             <option value="nissa">Nissa</option>
@@ -72,7 +72,7 @@
 
     <div class="optionsVoices">
         <div class="optionsText" id="optionsStyleText">Style:</div>
-        <select name="theme" id="themeChooseOptions">
+        <select class="form-select-sm" name="theme" id="themeChooseOptions">
             <option value="default">Default</option>
             <option value="plain">Plain</option>
             <option value="swamp">Swamp</option>
@@ -85,7 +85,7 @@
 
     <div class="optionsVoices">
         <div class="optionsText" id="optionsLanguageText">Language:</div>
-        <select name="theme" id="languageChooseOptions">
+        <select class="form-select-sm" name="theme" id="languageChooseOptions">
             <option default value="english">English</option>
             <option value="italian">Italiano</option>
         </select>
@@ -122,15 +122,15 @@
 <div class="col-12 col-md-12" id="myDeckMenu">
 
     <div id="myDeckMenuContainer" class="container-fluid">
-         <div class="row">
-            <button id="myDeckMenuBackButton" >Back to menu</button>
+        <div class="row justify-content-center">
+            <button id="myDeckMenuBackButton" class="btn btn-sm btn-light" >Back to menu</button>
         </div>
 
         <div class="row">
             <div id="myDeck" class="col-12 col-md-3">
                 <div id="myDeckCardPreview" class="mb-3">
                     <div style="display: inline-flex; position: relative; width: 100%;">
-                        <button id="myDeckCardPreviewImageButton" >Hide Preview</button>
+                        <button class="btn btn-light" id="myDeckCardPreviewImageButton" >Hide Preview</button>
                     </div>
                     <img id="myDeckCardPreviewImage" class="img-fluid" src="../resources/cardBack.jpg">
                 </div>
@@ -142,7 +142,7 @@
                     <div id="myDeckAlert" class="mb-2">You can't add any more copy of this card!</div>
                     <div id="myDeckList" class="mb-2"></div>
                     <div id="myDeckSaveButtonContainer" class="mb-2">
-                        <button id="myDeckSaveButton">SAVE THE DECK</button>
+                        <button class="btn btn-light btn-sm" id="myDeckSaveButton">SAVE THE DECK</button>
                     </div>
                 </div>
             </div>
@@ -152,7 +152,7 @@
                     <!-- Selettore Mazzi -->
                     <div id="myDeckDecksSelector" class="d-flex align-items-center col-12 col-md-3 mb-3">
                         <span id="myDeckDecksSelectorText" class="mr-2">My decks</span>
-                        <select class="myDecksPickerSelector mr-2" id="myDecksPickerSelector"></select>
+                        <select class="form-select-sm myDecksPickerSelector mr-2" id="myDecksPickerSelector"></select>
                         <span id="myDecksPickerSelectorDelete" class="ml-2">🗑️</span>
                         <span id="myDecksPickerSelectorAdd" class="ml-2">➕</span>
                     </div>
@@ -165,14 +165,14 @@
 
                     <!-- Ricerca normale -->
                     <div id="myDeckDecksSearch" class="d-flex align-items-center col-12 col-md-3 mb-3">
-                        <input placeholder="Search by name" class=" mr-2" id="myDeckDecksNormalSearchValue" />
-                        <button id="myDeckDecksNormalSearchButton" class="mr-2">Search</button>
+                        <input placeholder="Search by name" class="form-control-sm mr-2" id="myDeckDecksNormalSearchValue" />
+                        <button id="myDeckDecksNormalSearchButton" class="btn btn-light btn-sm mr-2">Search</button>
                         <span id="normalSearchSpinner" class="spinner"></span>
                     </div>
 
                     <!-- Filtro avanzato -->
                     <div id="myDeckDecksSearchFilters" class="d-flex align-items-center col-12 col-md-2 mb-3">
-                        <button id="myDeckDecksSearchButton">Advanced Search</button>
+                        <button class="btn btn-light btn-sm" id="myDeckDecksSearchButton">Advanced Search</button>
                     </div>
 
                     <!-- Zoom -->
@@ -267,7 +267,7 @@
                     </div>
                 </div>
                 <div>
-                    <select name="valueStats" id="advancedSearchStatsValueType">
+                    <select class="form-select-sm" name="valueStats" id="advancedSearchStatsValueType">
                         <option value="exact">Exactly these colors</option>
                         <option value="including">Including these colors</option>
                         <option value="atMost">At most these colors</option>
@@ -321,7 +321,7 @@
                 <div class="advancedSearchText" id="advancedSearchFieldCmC">Mana Cost</div>
             </div>
             <div class="col-12 col-md-9">
-                <input class="advancedSearchLargeInput" type="text" id="advancedSearchCmC"
+                <input class="form-control advancedSearchLargeInput" type="text" id="advancedSearchCmC"
                     placeholder="Any mana symbols, eg '{W}{W}'">
             </div>
         </div>
@@ -331,15 +331,15 @@
                 <div class="advancedSearchText" id="advancedSearchStats">Stats</div>
             </div>
             <div class="col-12 col-md-3">
-                <select name="valueStats" id="advancedSearchStatsValueStats">
+                <select class="form-select" name="valueStats" id="advancedSearchStatsValueStats">
                     <option value="cmc">Mana value</option>
                     <option value="power">Power</option>
                     <option value="toughness">Toughness</option>
                     <option value="loyalty">Loyalty</option>
                 </select>
             </div>
-            <div class="col-12 col-md-4">
-                <select name="valueEquals" id="advancedSearchStatsValueEqual">
+            <div class="col-12 col-md-3">
+                <select class="form-select" name="valueEquals" id="advancedSearchStatsValueEqual">
                     <option value="1">Equal to</option>
                     <option value="2">Less than</option>
                     <option value="3">Greater than</option>
@@ -348,8 +348,8 @@
                     <option value="6">Not equal to</option>
                 </select>
             </div>
-            <div class="col-12 col-md-2">
-                <input class="advancedSearchLargeInput" type="text" id="advancedSearchStatsValueAmount"
+            <div class="col-12 col-md-3">
+                <input class="form-control advancedSearchLargeInput" type="text" id="advancedSearchStatsValueAmount"
                     placeholder="Any value, e.g '2'">
             </div>
         </div>
@@ -395,7 +395,7 @@
                 <div class="advancedSearchText" id="advancedSearchFieldFlavorText">Flavor text</div>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" class="advancedSearchLargeInput" placeholder="Any flavor text, e.g 'Jhoira'"
+                <input type="text" class="form-control advancedSearchLargeInput" placeholder="Any flavor text, e.g 'Jhoira'"
                     id="advancedSearchFlavorText">
             </div>
         </div>
@@ -410,10 +410,10 @@
 
         <div class="row mb-3">
             <div class="col-12 col-md-6 text-end">
-                <button id="myDeckAdvancedSearchSearchButton" class="w-100">Search</button>
+                <button id="myDeckAdvancedSearchSearchButton" class="btn btn-light btn-sm w-100">Search</button>
             </div>
             <div class="col-12 col-md-6 text-start">
-                <button id="myDeckAdvancedSearchCloseButton" class="w-100">Close</button>
+                <button id="myDeckAdvancedSearchCloseButton"class="btn btn-light btn-sm w-100">Close</button>
             </div>
         </div>
 
@@ -422,10 +422,10 @@
     <div id="myDeckCreateName">
         <div id="myDeckCreateNameText">Insert the name for your deck</div>
         <div>
-            <input id="myDeckCreateNameInput" type="text">
+            <input  class="form-control" id="myDeckCreateNameInput" type="text">
         </div>
-        <button id="myDeckCreateNameSaveButton">Save</button>
-        <button id="myDeckCreateNameBackButton">Back</button>
+        <button class="btn btn-light" id="myDeckCreateNameSaveButton">Save</button>
+        <button class="btn btn-light" id="myDeckCreateNameBackButton">Back</button>
     </div>
 
     <div id="myDeckDelete">
@@ -436,7 +436,7 @@
 
     <div id="myDeckEdit">
         <div id="myDeckEditText">Your changes have been saved</div>
-        <button id="myDeckEditBackButton">Back</button>
+        <button class="btn btn-light" id="myDeckEditBackButton">Back</button>
 
     </div>
 
@@ -456,7 +456,7 @@
     </div>
 
     <div class="row">
-        <button id="acceptGameInvitation">Accept</button>
-        <button id="declineGameInvitation">Decline</button>
+        <button class="btn btn-light" id="acceptGameInvitation">Accept</button>
+        <button class="btn btn-light" id="declineGameInvitation">Decline</button>
     </div>
 </div>

@@ -55,6 +55,7 @@
   #beginTheGameButton,
   #quitTheGameButton {
     font-size: 11px;
+    margin-bottom:5px;
   }
   
   .teams{
@@ -149,7 +150,20 @@
     width: 50px;
     margin: 5px;
   }
+  #myDeckAdvancedSearchSearchButton,
+  #startTheGameButton{
+    margin-right:5px;
+  }
+  #myDeckAdvancedSearchCloseButton,
+  #backTheGameButton{
+    margin-left:5px;
+  }
 
+  #notificationFromOtherPlayers {
+    font-size:10px;
+    scrollbar-width: none;
+  }
+  
 }
 
 @media screen and (min-width: 1201px) {
@@ -236,7 +250,14 @@
     margin: 5px;
   }
 
-
+  #myDeckAdvancedSearchSearchButton,
+  #startTheGameButton{
+    margin-right:5px;
+  }
+  #myDeckAdvancedSearchCloseButton,
+  #backTheGameButton{
+    margin-left:5px;
+  }
 }
 
 
@@ -308,17 +329,31 @@
   float: left;
 }
 
+.teammateName{
+  margin-left:5px;
+}
 
-
+#acceptGameInvitation{
+  margin-bottom:5px;
+}
 #rulesGameButton,
 #gameModeGameButton,
 #beginTheGameButton,
 #quitTheGameButton
  {
-  width: 100%
+  width: 100%;
+  margin-bottom:5px;
 }
 
+.decreaseHpButton,.increaseHpButton{
+  max-width: 30px;
+  max-height:30px;
+}
 
+#myDeckSetPickerSelector,
+#zoneInspector{
+  scrollbar-width: none;
+}
 .handZone,
 .deckZone,
 .graveyardZone,
@@ -431,6 +466,9 @@
   margin-top: 2%;
 }
 
+#validValidity {
+  display:none !important;
+}
 #gameModesText,
 #validValidity {
   text-align: center;
@@ -448,7 +486,9 @@
 
 .teamSelectPlayer {
   width: 100%;
-  height: 20px;
+}
+.removeFromTeam{
+  margin-left:5px;
 }
 
 #inviteError {
@@ -564,7 +604,7 @@
 }
 
 #zoomedHoveredCard {
-  width: 90%;
+  width: 80%;
   border-radius: 18px;
 }
 

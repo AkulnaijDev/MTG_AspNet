@@ -4,7 +4,7 @@
         <div class="row friendRow">
             <div class="col-12 col-md-6">
                 <div id="inviteFriendsText">Invite a friend</div>
-                <select name="" id="inviteFriends"></select>
+                <select class="form-select-sm" name="" id="inviteFriends"></select>
                 <span id="addFriendToGame">➕</span>
             </div>
             <div class="col-12 col-md-6">
@@ -16,11 +16,11 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div id="deckSelectionText">Select a deck</div>
-                <select name="" class="myDecksPickerSelector" id="selectDeckToPlay"></select>
+                <select name="" class="form-select-sm myDecksPickerSelector" id="selectDeckToPlay"></select>
             </div>
             <div class="col-12 col-md-6">
                 <div id="modeSelectionText">Select a game mode</div>
-                <select name="" id="modeSelection">
+                <select name="" class="form-select-sm" id="modeSelection">
                     <option value="commander">Commander</option>
                     <option value="pauper">Pauper</option>
                     <option value="standard">Standard</option>
@@ -34,7 +34,7 @@
         <div class="gameModesRow row">
             <div class="col-12 col-md-6">
                 <div class="row">
-                    <div id="gameModesText"> Game modes</div>
+                    <div id="gameModesText"> Format deck validity</div>
                 </div>
                 <div class="row">
                     <div class="col-6 col-md-6 gameValidities" id="commanderValidity">Commander</div>
@@ -60,7 +60,7 @@
                 <div class="teamRow row">
                     <div class="col-3 col-md-3"> Team 1 </div>
                     <div class="teamSelectContainer col-6 col-md-6">
-                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <select class="form-select-sm teamSelectPlayer" name="" id=""></select>
                         <span class="addPlayerToTeam">➕</span>
                     </div>
                     <div class="teammateContainer col-3 col-md-3">
@@ -69,7 +69,7 @@
                 <div class="teamRow row">
                     <div class="col-3 col-md-3"> Team 2</div>
                     <div class="teamSelectContainer col-6 col-md-6">
-                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <select class="form-select-sm teamSelectPlayer" name="" id=""></select>
                         <span class="addPlayerToTeam">➕</span>
                     </div>
                     <div class="teammateContainer col-3 col-md-3">
@@ -78,7 +78,7 @@
                 <div class="teamRow row">
                     <div class="col-3 col-md-3"> Team 3 </div>
                     <div class="teamSelectContainer col-6 col-md-6">
-                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <select class="form-select-sm teamSelectPlayer" name="" id=""></select>
                         <span class="addPlayerToTeam">➕</span>
                     </div>
                     <div class="teammateContainer col-3 col-md-3">
@@ -87,7 +87,7 @@
                 <div class="teamRow row">
                     <div class="col-3 col-md-3"> Team 4 </div>
                     <div class="teamSelectContainer col-6 col-md-6">
-                        <select class="teamSelectPlayer" name="" id=""></select>
+                        <select class="form-select-sm teamSelectPlayer" name="" id=""></select>
                         <span class="addPlayerToTeam">➕</span>
                     </div>
                     <div class="teammateContainer col-3 col-md-3">
@@ -103,9 +103,11 @@
         </div>
 
         <div class="startGameButtonContainerrow row">
-            <div id="startGameButtonContainer" class="col-12 col-md-12">
-                <button id="startTheGameButton">START THE GAME</button>
-                <button id="backTheGameButton">BACK</button>
+            <div id="startGameButtonContainer" class="col-6 col-md-6">
+                <button class="btn btn-light btn-sm" id="startTheGameButton">START THE GAME</button>
+            </div>
+             <div id="startGameButtonContainer" class="col-6 col-md-6">
+                <button class="btn btn-light btn-sm" id="backTheGameButton">BACK</button>
             </div>
         </div>
 
@@ -114,62 +116,62 @@
     <div class="" id="contextMenu">
 
         <div class="contextMenuActionContainers">
-            <button class="btn btn-primary" id="contextMenuShuffleDeck">Shuffle deck</button>
+            <button class="btn btn-light" id="contextMenuShuffleDeck">Shuffle deck</button>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button class="btn btn-primary" id="contextMenuViewDeck">View deck</button>
+            <button class="btn btn-light" id="contextMenuViewDeck">View deck</button>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button class="btn btn-primary" id="contextMenuMulligan">Mulligan</button>
+            <button class="btn btn-light" id="contextMenuMulligan">Mulligan</button>
         </div>
 
         <div class="contextMenuActionContainers">
             <div id="contextMenuScryContainer">
                 <input class="form-control" type="number" placeholder="X" id="contextMenuScryCards">
-                <button class="btn btn-primary" id="contextMenuScryDeck">View first X cards </button>
+                <button class="btn btn-light" id="contextMenuScryDeck">View first X cards </button>
             </div>
         </div>
 
         <div class="contextMenuActionContainers">
             <div id="contextMenuExileContainer">
                 <input class="form-control" type="number" placeholder="X" id="contextMenuExileCards">
-                <select class="form-select" id="contextMenuExileDiscardActionSelector">
+                <select class="form-select-sm" id="contextMenuExileDiscardActionSelector">
                     <option class="optionDiscard" value="discard">Discard cards</option>
                     <option class="optionExile" value="exile">Exile cards</option>
                 </select>
-                <select class="form-select" id="contextMenuExileDeckSelector">
+                <select class="form-select-sm" id="contextMenuExileDeckSelector">
                     <option class="optionFromTop" value="top">From top</option>
                     <option class="optionFromBottom" value="bottom">From bottom</option>
                 </select>
-                <button class="btn btn-primary" id="contextMenuExileDeck"> OK </button>
+                <button class="btn btn-light" id="contextMenuExileDeck"> OK </button>
             </div>
         </div>
 
         <div class="contextMenuActionContainers">
             <div id="contextMenuToken">
-                <select class="form-select" id="contextMenuTokenSelector"></select>
+                <select class="form-select-sm" id="contextMenuTokenSelector"></select>
                 <input class="form-control" type="number" placeholder="X" id="contextMenuTokenQuantity">
-                <button class="btn btn-primary" id="contextMenuPlayToken">Play token </button>
+                <button class="btn btn-light" id="contextMenuPlayToken">Play token </button>
             </div>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button class="btn btn-primary" id="contextMenuViewHand">View hand</button>
+            <button class="btn btn-light" id="contextMenuViewHand">View hand</button>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button class="btn btn-primary" id="contextMenuViewGraveyard">View graveyard</button>
+            <button class="btn btn-light" id="contextMenuViewGraveyard">View graveyard</button>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button class="btn btn-primary" id="contextMenuViewExiled">View exiled</button>
+            <button class="btn btn-light" id="contextMenuViewExiled">View exiled</button>
         </div>
 
 
         <div class="contextMenuActionContainers">
-            <button class="btn btn-primary" id="closeContextMenu">Close</button>
+            <button class="btn btn-light" id="closeContextMenu">Close</button>
         </div>
 
     </div>
@@ -184,7 +186,7 @@
                     </select>
                 </div>
                 <div class="col-6 col-md-6">
-                    <button id="contextCardGameMenuToDeckButton" class="btn btn-primary"> Put card on my deck </button>
+                    <button id="contextCardGameMenuToDeckButton" class="btn btn-light"> Put card on my deck </button>
                 </div>
 
 
@@ -212,7 +214,7 @@
                         min="1">
                 </div>
                 <div class="col-6 col-md-6">
-                    <button class="btn btn-primary" id="contextCardGameMenuCountersButton"> Put counter on card
+                    <button class="btn btn-light" id="contextCardGameMenuCountersButton"> Put counter on card
                     </button>
                 </div>
             </div>
@@ -224,15 +226,15 @@
         </div>
 
         <div class="contextMenuActionContainers row">
-            <button class="btn btn-primary" id="contextCardGameMenuRotateButton"> Rotate </button>
+            <button class="btn btn-light" id="contextCardGameMenuRotateButton"> Rotate </button>
         </div>
 
         <div class="contextMenuActionContainers row">
-            <button class="btn btn-primary" id="contextCardGameMenuPlayMorphedButton"> Play Morphed </button>
+            <button class="btn btn-light" id="contextCardGameMenuPlayMorphedButton"> Play Morphed </button>
         </div>
 
         <div class="contextMenuActionContainers row">
-            <button class="btn btn-primary" id="closeCardInGameContextMenu">Close</button>
+            <button class="btn btn-light" id="closeCardInGameContextMenu">Close</button>
         </div>
 
 
@@ -241,7 +243,7 @@
     <div id="cardSneakedContextMenu">
         <div class="contextMenuActionContainers row">
             <div class="col-4 col-md-4">
-                <select class="form-select" id="contextCardSneakedToZoneSelector">
+                <select class="form-select-sm" id="contextCardSneakedToZoneSelector">
                     <option class="optionFromTop" value="handZone">Hand</option>
                     <option class="optionFromBottom" value="graveyardZone">Graveyard zone</option>
                     <option class="optionFromBottom" value="landZone">Land zone</option>
@@ -252,26 +254,26 @@
                 </select>
             </div>
             <div class="col-4 col-md-4">
-                <select class="form-select" id="contextCardSneakedToZoneOwnerSelector">
+                <select class="form-select-sm" id="contextCardSneakedToZoneOwnerSelector">
                     <option class="optionFromTop" value="mine">My zone</option>
                     <option class="optionFromBottom" value="owner">Deck owner</option>
                 </select>
             </div>
             <div class="col-4 col-md-4">
-                <button class="btn btn-primary" id="contextCardSneakedToZoneButton"> Send card to </button>
+                <button class="btn btn-light" id="contextCardSneakedToZoneButton"> Send card to </button>
             </div>
 
 
 
         </div>
         <div class="row">
-            <button class="btn btn-primary" id="closeCardSneakedContextMenu">Close</button>
+            <button class="btn btn-light" id="closeCardSneakedContextMenu">Close</button>
 
         </div>
     </div>
 
     <div class="zoneInspector2" id="zoneInspector">
-        <div id="zoneInspectorButtonContainer"><button class="btn btn-primary" id="closeInspectorButton">Close
+        <div id="zoneInspectorButtonContainer"><button class="btn btn-light" id="closeInspectorButton">Close
                 inspector</button></div>
         <div id="zoneInspectorCardContainer"></div>
     </div>
@@ -369,10 +371,10 @@
         <div class="uninteractable col-3 col-md-3" id="gameMenuZone">
             <div class="menuIconsContainer row">
                  <div class="col-12 col-md-12">
-                    <button id="rulesGameButton">Check rules</button>
+                    <button class="btn btn-light" id="rulesGameButton">Check rules</button>
                 </div>
                  <div class="col-12 col-md-12">
-                   <button id="gameModeGameButton">Check game modes</button>
+                   <button class="btn btn-light" id="gameModeGameButton">Check game modes</button>
                 </div>
             </div>
 
@@ -401,13 +403,13 @@
 
             <div class="row">
                 <div class="col-12 col-md-12">
-                    <button disabled id="beginTheGameButton">START THE GAME</button>
+                    <button class="btn btn-light" disabled id="beginTheGameButton">START THE GAME</button>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12 col-md-12">
-                    <button disabled id="quitTheGameButton">QUIT THE GAME</button>
+                    <button class="btn btn-light" disabled id="quitTheGameButton">QUIT THE GAME</button>
                 </div>
             </div>
 

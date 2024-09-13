@@ -290,7 +290,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#quitTheGameButton').text("Abbandona partita")
         $('#rulesGameButton').text("Controlla regole")
 
-        $('#gameModesText').text("Modalità della partita")
+        $('#gameModesText').text("Formati validi per questo deck")
 
         $('#inviteFriendsText').text("Invita un amico")
         $('#invitedFriendsText').text("Altri giocatori")
@@ -446,7 +446,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#quitTheGameButton').text("Quit the game")
         $('#rulesGameButton').text("Check rules")
 
-        $('#gameModesText').text("Game modes")
+        $('#gameModesText').text("Format deck validity")
 
         $('#inviteFriendsText').text("Invite a friend")
         $('#invitedFriendsText').text("Other players")
