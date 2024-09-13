@@ -1,20 +1,16 @@
 ﻿<div id="boardGameContainer">
 
     <div class="container" id="inviteSection">
-
         <div class="row friendRow">
-
             <div class="col-12 col-md-6">
                 <div id="inviteFriendsText">Invite a friend</div>
                 <select name="" id="inviteFriends"></select>
                 <span id="addFriendToGame">➕</span>
             </div>
-
             <div class="col-12 col-md-6">
                 <div id="invitedFriendsText">Other players</div>
                 <div id="invitedFriendsArea"> </div>
             </div>
-
         </div>
 
         <div class="row">
@@ -36,7 +32,6 @@
         </div>
 
         <div class="gameModesRow row">
-
             <div class="col-12 col-md-6">
                 <div class="row">
                     <div id="gameModesText"> Game modes</div>
@@ -102,7 +97,7 @@
             </div>
 
         </div>
-        
+
         <div class="row">
             <div id="inviteError">Can't invite, not enough players or deck not valid for the selected game mode</div>
         </div>
@@ -116,147 +111,172 @@
 
     </div>
 
-
     <div class="" id="contextMenu">
 
         <div class="contextMenuActionContainers">
-            <button id="contextMenuShuffleDeck">Shuffle deck</button>
+            <button class="btn btn-primary" id="contextMenuShuffleDeck">Shuffle deck</button>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button id="contextMenuViewDeck">View deck</button>
+            <button class="btn btn-primary" id="contextMenuViewDeck">View deck</button>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button id="contextMenuMulligan">Mulligan</button>
+            <button class="btn btn-primary" id="contextMenuMulligan">Mulligan</button>
         </div>
 
         <div class="contextMenuActionContainers">
             <div id="contextMenuScryContainer">
-                <input type="number" placeholder="X" id="contextMenuScryCards">
-                <button id="contextMenuScryDeck">View first X cards </button>
+                <input class="form-control" type="number" placeholder="X" id="contextMenuScryCards">
+                <button class="btn btn-primary" id="contextMenuScryDeck">View first X cards </button>
             </div>
         </div>
 
         <div class="contextMenuActionContainers">
             <div id="contextMenuExileContainer">
-                <input type="number" placeholder="X" id="contextMenuExileCards">
-                <select id="contextMenuExileDiscardActionSelector">
+                <input class="form-control" type="number" placeholder="X" id="contextMenuExileCards">
+                <select class="form-select" id="contextMenuExileDiscardActionSelector">
                     <option class="optionDiscard" value="discard">Discard cards</option>
                     <option class="optionExile" value="exile">Exile cards</option>
                 </select>
-                <select id="contextMenuExileDeckSelector">
+                <select class="form-select" id="contextMenuExileDeckSelector">
                     <option class="optionFromTop" value="top">From top</option>
                     <option class="optionFromBottom" value="bottom">From bottom</option>
                 </select>
-                <button id="contextMenuExileDeck"> OK </button>
+                <button class="btn btn-primary" id="contextMenuExileDeck"> OK </button>
             </div>
         </div>
 
         <div class="contextMenuActionContainers">
             <div id="contextMenuToken">
-                <select id="contextMenuTokenSelector"></select>
-                <input type="number" placeholder="X" id="contextMenuTokenQuantity">
-                <button id="contextMenuPlayToken">Play token </button>
+                <select class="form-select" id="contextMenuTokenSelector"></select>
+                <input class="form-control" type="number" placeholder="X" id="contextMenuTokenQuantity">
+                <button class="btn btn-primary" id="contextMenuPlayToken">Play token </button>
             </div>
         </div>
 
-        <div class="contextMenuActionContainers"> 
-            <button id="contextMenuViewHand">View hand</button>
+        <div class="contextMenuActionContainers">
+            <button class="btn btn-primary" id="contextMenuViewHand">View hand</button>
         </div>
 
         <div class="contextMenuActionContainers">
-            <button id="contextMenuViewGraveyard">View graveyard</button>
+            <button class="btn btn-primary" id="contextMenuViewGraveyard">View graveyard</button>
         </div>
 
         <div class="contextMenuActionContainers">
-             <button id="contextMenuViewExiled">View exiled</button></div>
-      
+            <button class="btn btn-primary" id="contextMenuViewExiled">View exiled</button>
+        </div>
+
 
         <div class="contextMenuActionContainers">
-            <button id="closeContextMenu">Close</button>
+            <button class="btn btn-primary" id="closeContextMenu">Close</button>
         </div>
 
     </div>
 
     <div id="cardInGameContextMenu">
-         <div class="contextMenuActionContainers">
-            <div class="contextSelectMenuContainers">
-                <select id="contextCardGameMenuToDeckSelector">
-                    <option class="optionFromTop" value="top">On top</option>
-                    <option class="optionFromBottom" value="bottom">On bottom</option>
-                </select>
-                <button id="contextCardGameMenuToDeckButton"> Put card on my deck </button>
-            </div>
-        </div>
+        <div class="contextMenuActionContainers">
+            <div class="contextSelectMenuContainers row">
+                <div class="col-6 col-md-6">
+                    <select id="contextCardGameMenuToDeckSelector" class="form-select">
+                        <option class="optionFromTop" value="top">On top</option>
+                        <option class="optionFromBottom" value="bottom">On bottom</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-6">
+                    <button id="contextCardGameMenuToDeckButton" class="btn btn-primary"> Put card on my deck </button>
+                </div>
 
-         <div class="contextMenuActionContainers">
-            <div class="contextSelectMenuContainers">
-                <select id="contextCardGameMenuCountersSelector">
-                    <option class="optionCounters" value="+0&#47;+1">+0/+1</option>
-                    <option class="optionCounters" value="+1&#47;+0">+1/+0</option>
-                    <option class="optionCounters" value="+1&#47;+1">+1/+1</option>
-                    <option class="optionCounters" value="+0&#47;-1">+0/-1</option>
-                    <option class="optionCounters" value="-1&#47;+0">-1/+0</option>
-                    <option class="optionCounters" value="-1&#47;-1">-1/-1</option>
-                    <option class="optionCounters" value="Trample">Trample</option>
-                    <option class="optionCounters" value="DoubleStrike">DoubleStrike</option>
-                    <option class="optionCounters" value="FirstStrike">FirstStrike</option>
-                    <option class="optionCounters" value="DeathTouch">DeathTouch</option>
-                </select>
-                <input id="contextCardGameMenuCountersQuantitySelector" type="number" value="1" min="1">
-                <button id="contextCardGameMenuCountersButton"> Put counter on card </button>
-            </div>
-        </div>
 
-         <div class="contextMenuActionContainers">
-            <div id="contextListOfAllCounters">                
             </div>
         </div>
 
         <div class="contextMenuActionContainers">
-             <button id="contextCardGameMenuRotateButton"> Rotate </button>
+            <div class="contextSelectMenuContainers row">
+                <div class="col-4 col-md-4">
+                    <select id="contextCardGameMenuCountersSelector" class="form-select">
+                        <option class="optionCounters" value="+0&#47;+1">+0/+1</option>
+                        <option class="optionCounters" value="+1&#47;+0">+1/+0</option>
+                        <option class="optionCounters" value="+1&#47;+1">+1/+1</option>
+                        <option class="optionCounters" value="+0&#47;-1">+0/-1</option>
+                        <option class="optionCounters" value="-1&#47;+0">-1/+0</option>
+                        <option class="optionCounters" value="-1&#47;-1">-1/-1</option>
+                        <option class="optionCounters" value="Trample">Trample</option>
+                        <option class="optionCounters" value="DoubleStrike">DoubleStrike</option>
+                        <option class="optionCounters" value="FirstStrike">FirstStrike</option>
+                        <option class="optionCounters" value="DeathTouch">DeathTouch</option>
+                    </select>
+                </div>
+                <div class="col-2 col-md-2">
+                    <input id="contextCardGameMenuCountersQuantitySelector" class="form-control" type="number" value="1"
+                        min="1">
+                </div>
+                <div class="col-6 col-md-6">
+                    <button class="btn btn-primary" id="contextCardGameMenuCountersButton"> Put counter on card
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="contextMenuActionContainers">
-             <button id="contextCardGameMenuPlayMorphedButton"> Play Morphed </button>
-        </div>
-        
-        <div class="contextMenuActionContainers">
-           <button id="closeCardInGameContextMenu">Close</button>
+        <div class="contextMenuActionContainers row">
+            <div id="contextListOfAllCounters">
+            </div>
         </div>
 
-        
+        <div class="contextMenuActionContainers row">
+            <button class="btn btn-primary" id="contextCardGameMenuRotateButton"> Rotate </button>
+        </div>
+
+        <div class="contextMenuActionContainers row">
+            <button class="btn btn-primary" id="contextCardGameMenuPlayMorphedButton"> Play Morphed </button>
+        </div>
+
+        <div class="contextMenuActionContainers row">
+            <button class="btn btn-primary" id="closeCardInGameContextMenu">Close</button>
+        </div>
+
+
     </div>
 
-     <div id="cardSneakedContextMenu">
-       <div class="contextMenuActionContainers">
-            <select id="contextCardSneakedToZoneSelector">
-                <option class="optionFromTop" value="handZone">Hand</option>
-                <option class="optionFromBottom" value="graveyardZone">Graveyard zone</option>
-                <option class="optionFromBottom" value="landZone">Land zone</option>
-                <option class="optionFromBottom" value="cardZone">Game zone</option>
-                <option class="optionFromBottom" value="planeswalkerZone">Planeswalker zone</option>
-                <option class="optionFromBottom" value="exiledZone">Exiled zone</option>
-                <option class="optionFromBottom" value="commanderZone">Commander zone</option>
-            </select>
-            <select id="contextCardSneakedToZoneOwnerSelector">
-                <option class="optionFromTop" value="mine">My zone</option>
-                <option class="optionFromBottom" value="owner">Deck owner</option>
-            </select>
-            <button id="contextCardSneakedToZoneButton"> Send card to </button>
+    <div id="cardSneakedContextMenu">
+        <div class="contextMenuActionContainers row">
+            <div class="col-4 col-md-4">
+                <select class="form-select" id="contextCardSneakedToZoneSelector">
+                    <option class="optionFromTop" value="handZone">Hand</option>
+                    <option class="optionFromBottom" value="graveyardZone">Graveyard zone</option>
+                    <option class="optionFromBottom" value="landZone">Land zone</option>
+                    <option class="optionFromBottom" value="cardZone">Game zone</option>
+                    <option class="optionFromBottom" value="planeswalkerZone">Planeswalker zone</option>
+                    <option class="optionFromBottom" value="exiledZone">Exiled zone</option>
+                    <option class="optionFromBottom" value="commanderZone">Commander zone</option>
+                </select>
+            </div>
+            <div class="col-4 col-md-4">
+                <select class="form-select" id="contextCardSneakedToZoneOwnerSelector">
+                    <option class="optionFromTop" value="mine">My zone</option>
+                    <option class="optionFromBottom" value="owner">Deck owner</option>
+                </select>
+            </div>
+            <div class="col-4 col-md-4">
+                <button class="btn btn-primary" id="contextCardSneakedToZoneButton"> Send card to </button>
+            </div>
+
+
+
         </div>
-        <button id="closeCardSneakedContextMenu">Close</button>
+        <div class="row">
+            <button class="btn btn-primary" id="closeCardSneakedContextMenu">Close</button>
+
+        </div>
     </div>
 
     <div class="zoneInspector2" id="zoneInspector">
-        <div id="zoneInspectorButtonContainer"><button id="closeInspectorButton">Close inspector</button></div>
+        <div id="zoneInspectorButtonContainer"><button class="btn btn-primary" id="closeInspectorButton">Close
+                inspector</button></div>
         <div id="zoneInspectorCardContainer"></div>
     </div>
 
-
     <div class="uninteractable" id="boardGame">
-
         <div id="boardPlayer1" class="playerBoard">
             <div class="container playerBoardContainer">
                 <div class="row" style="height: 100%;">
@@ -301,7 +321,6 @@
                 </div>
             </div>
         </div>
-
         <div id="boardPlayer2" class="playerBoard">
             <div class="container playerBoardContainer">
                 <div class="row" style="height: 100%;">
@@ -347,7 +366,6 @@
     </div>
 
     <div class="uninteractable" id="gameMenuZone">
-
         <div class="menuIconsContainer row">
             <div class="col-12">
                 <button id="rulesGameButton">Check rules</button>
@@ -389,4 +407,5 @@
             </div>
         </div>
     </div>
+    
 </div>

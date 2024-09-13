@@ -49,14 +49,13 @@ connection.on("AdoptSettings", function (myUserSettings) {
     var myUserSettingsParsed = JSON.parse(myUserSettings);
     mySettings = myUserSettingsParsed;
 
-    // DEVI DECOMMENTARE A OPERA FINITA! RIMETTENDO SUONI
-    // if(!!mySettings.Volume){
-    //     $('#myRange').val(parseInt(mySettings.Volume)).trigger('change');
-    // }
-    //
-    // if(!!mySettings.Soundtrack){
-    //     $('#musicChooseOptions').val(mySettings.Soundtrack).trigger('change');
-    // }
+    if(!!mySettings.Volume){
+        $('#myRange').val(parseInt(mySettings.Volume)).trigger('change');
+    }
+    
+    if(!!mySettings.Soundtrack){
+        $('#musicChooseOptions').val(mySettings.Soundtrack).trigger('change');
+    }
 
     if (!!mySettings.Background) {
         $('#backgroundChooseOptions').val(mySettings.Background).trigger('change');

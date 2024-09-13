@@ -52,13 +52,65 @@
     height: 60%;
     top: 20%;
     left: 10%;
-    padding: 2%;
+    padding: 20px;
     z-index: 9997;
     display: none;
     overflow-y: auto;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  #cardInGameContextMenu,#cardSneakedContextMenu {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 90%;
+    height: 60%;
+    top: 20%;
+    left: 5%;
+    padding: 20px;
+    z-index: 9999;
+    display: none;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size:13px;
+  }
+
+  #zoneInspector {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 90%;
+    height: 80%;
+    top: 10%;
+    left: 5%;
+    padding: 15px;
+    z-index: 9998;
+    display: none;
+    overflow-y: auto;
+  }
+  
+  #zoneInspectorCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    height: -5%;
+  }
+  
+
+
+  .cardContainerSneaked {
+    flex-basis: calc(50% - 20px);
+    max-width: calc(50% - 20px);
+    height: 200px;
+    width: 50px;
+    margin: 5px;
   }
 }
 
@@ -95,27 +147,69 @@
     align-items: center;
     flex-direction: column;
   }
+
+  #cardInGameContextMenu,#cardSneakedContextMenu {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 24%;
+    height: 50%;
+    top: 25%;
+    left: 38%;
+    padding: 20px;
+    z-index: 9999;
+    display: none;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #zoneInspector {
+    position: absolute;
+    background: var(--option_Background_color);
+    border-radius: 10px;
+    border: 2px solid var(--option_Border_color);
+    width: 50%;
+    height: 60%;
+    top: 20%;
+    left: 25%;
+    padding: 15px;
+    z-index: 9998;
+    display: none;
+    overflow-y: auto;
+  }
+  
+  #zoneInspectorCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    height: -5%;
+  }
+  
+
+  .cardContainerSneaked {
+    flex-basis: calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    height: 200px;
+    width: 50px;
+    margin: 5px;
+  }
 }
 
+#contextCardSneakedToZoneButton{
+  width:100%;
+}
 
-#cardInGameContextMenu,#cardSneakedContextMenu {
-  position: absolute;
-  background: var(--option_Background_color);
-  border-radius: 10px;
-  border: 2px solid var(--option_Border_color);
-  width: 24%;
-  height: 50%;
-  top: 25%;
-  left: 38%;
-  padding: 2%;
-  z-index: 9999;
-  display: none;
-  overflow-y: auto;
+#zoneInspectorButtonContainer{
+
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  margin-bottom: 5px;
 }
-
 
 
 #contextMenu>button {
@@ -124,51 +218,19 @@
 
 #contextMenuToken {
   display: flex;
-  height: 30px;
 }
 
 #contextMenuTokenSelector{
   width:100%
 }
 #contextMenuTokenQuantity {
-  width: 30px;
+  max-width: 50px;
+  width:50px
 }
 
-#zoneInspector {
-  position: absolute;
-  background: var(--option_Background_color);
-  border-radius: 10px;
-  border: 2px solid var(--option_Border_color);
-  width: 50%;
-  height: 60%;
-  top: 20%;
-  left: 25%;
-  padding: 2%;
-  z-index: 9998;
-  display: none;
-  overflow-y: auto;
-}
 
-#zoneInspectorCardContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 10px;
-  height: -5%;
-}
 
-#zoneInspectorButtonContainer{
-  display: inline-flex;
-  align-items: center;
-}
 
-.cardContainerSneaked {
-  flex-basis: calc(25% - 20px);
-  max-width: calc(25% - 20px);
-  height: 200px;
-  width: 50px;
-  margin: 5px;
-}
 
 .cardOnTheTableSneaked {
   height: 100%;
@@ -630,23 +692,22 @@
 
 #contextMenuScryCards
 {
-  width:10% !important;
+  width:20% !important;
 }
 
-#contextCardGameMenuCountersButton,
-#contextCardGameMenuToDeckButton
+#contextCardGameMenuCountersButton
 {
-  width:60% !important;
+  width:100%;
 }
 
 #contextCardGameMenuToDeckSelector,
 #contextCardGameMenuCountersSelector
 {
-  width:35% !important;
+  width:100%;
 }
 
 #contextMenuScryDeck{
-  width:50%;
+  width:80% !important;
 }
 
 .contextMenuActionContainers {
@@ -660,13 +721,17 @@
 #contextMenuExileContainer{
   display:flex;
 }
-#contextMenuScryContainer, #contextMenuExileContainer, #contextMenuToken, .contextSelectMenuContainers{
-  width:80%;
+#contextMenuScryContainer, #contextMenuExileContainer, #contextMenuToken{
+  width:100%;
+  display:flex;
 }
 
+.contextSelectMenuContainers{
+  width:100%
+}
 #contextMenu button,
 #cardInGameContextMenu button{
-  width:80%
+  width:100%
 }
 
 #closeCardInGameContextMenu,
@@ -678,17 +743,19 @@
 
 #contextListOfAllCounters{
   max-height: 100px;
+  min-height:100px;
   overflow-y: auto;
-  width: 80%;
+  width: 100%;
   border: 2px solid var(--option_Border_color);
   padding: 5px;
   border-radius: 10px;
 }
 
 #contextCardGameMenuCountersQuantitySelector{
-  width:10%
+  width:100%
 }
 
-#contextCardGameMenuCountersButton{
-  width:52% !important;
+#contextCardGameMenuCountersButton,
+#contextCardGameMenuToDeckButton{
+  width:100% !important;
 }
