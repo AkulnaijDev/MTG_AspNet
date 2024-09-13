@@ -27,6 +27,24 @@
   top:0;
 }
 
+@media screen and (max-width: 500px) {
+  .deckBackCardOnTheTable {
+    position: relative;
+    overflow: hidden;
+    border-radius:8px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .deckBackCardOnTheTable {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius:8px;
+  }
+}
+
+
 @media screen and (max-width: 660px) {
   #zoomedHoveredCard {
     display: none !important;
@@ -38,11 +56,11 @@
   #quitTheGameButton {
     font-size: 11px;
   }
-
   
   .teams{
     font-size: 11px;
   }
+  
 }
 
 
@@ -217,7 +235,11 @@
     width: 50px;
     margin: 5px;
   }
+
+
 }
+
+
 
 #contextCardSneakedToZoneButton{
   width:100%;
@@ -297,19 +319,28 @@
 }
 
 
+.handZone,
+.deckZone,
+.graveyardZone,
+.exiledZone,
+.landZone,
+.planeswalkerZone,
+.cardZone,
+.commanderZone
+{
+  scrollbar-width: none;
+}
+
 .handZone {
-  /* background-color: aliceblue; */
   height: 33%;
 }
 
 .deckZone {
   height: 33%;
-  /* background-color: brown; */
 }
 
 .graveyardZone {
   height: 33%;
-  /* background-color: yellow; */
   flex-direction: row;
   justify-content: flex-start;
 
@@ -317,37 +348,31 @@
 
 .exiledZone {
   height: 33%;
-  /* background-color: green; */
   flex-direction: row;
   justify-content: flex-start;
 }
 
 .landZone {
-  /* background-color: bisque; */
   height: 33%;
 }
 
 .tokenZone {}
 
 .cardZone {
-  /* background-color: blueviolet; */
   height: 34%;
 }
 
 .commanderZone {
   height: 34%;
-  /* background-color: pink; */
 }
 
 .planeswalkerZone {
   height: 33%;
-  /* background-color: aqua; */
 }
 
 
 .playerNameZone {
   height: 34%;
-  /* background-color: cornflowerblue; */
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -523,12 +548,7 @@
   margin-left: 20px;
 }
 
-.deckBackCardOnTheTable {
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  border-radius:8px;
-}
+
 
 .cardOnTheTable {
   width: 100%;
