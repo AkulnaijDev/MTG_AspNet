@@ -607,10 +607,13 @@ function setCardsImages(cardArray) {
     var plus = "<span class='addCardToDeck'>➕</span>"
     var minus = "<span class='removeCardFromDeck'>➖</span>"
 
-    if (isPrecon == true || amIEditing == false) {
-        plus = "<span class='notVisible addCardToDeck'>➕</span>"
-        minus = "<span class='notVisible removeCardFromDeck'>➖</span>"
+    if( $('#myDeckSaveButton').attr('disabled',false).length!=1){
+        if (isPrecon == true || amIEditing == false ) {
+            plus = "<span class='notVisible addCardToDeck'>➕</span>"
+            minus = "<span class='notVisible removeCardFromDeck'>➖</span>"
+        }
     }
+    
 
     cardArray.forEach(element => {
         var name = (element.name).replaceAll(" ", "&quot;");

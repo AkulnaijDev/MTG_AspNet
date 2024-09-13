@@ -285,6 +285,22 @@
     .cardImageTextActionContainer {
         font-size: 12px;
     }
+    #myDeckCreateName,
+#myDeckDelete,
+#myDeckEdit {
+    display: none;
+    z-index: 9999;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    width: 80%;
+    height: 30%;
+    padding: 2%;
+    background-color: var(--option_Background_color);
+    border-radius: 10px;
+    border-style: solid;
+}
+
 }
 
 /* Media query per schermi più grandi (ad esempio, desktop) */
@@ -397,8 +413,28 @@
         text-align: center;
         height: 75px !important;
     }
+    #myDeckCreateName,
+#myDeckDelete,
+#myDeckEdit {
+    display: none;
+    z-index: 9999;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 20%;
+    height: 20%;
+    padding: 2%;
+    background-color: var(--option_Background_color);
+    border-radius: 10px;
+    border-style: solid;
 }
 
+}
+
+
+#myDeckCreateNameSaveButton,#myDeckCreateNameBackButton,#myDeckCreateNameInput{
+    margin-top:15px;
+}
 #myDeckMenuContainer {
     height: 100%;
     width: 100%
@@ -468,21 +504,6 @@
     visibility: hidden !important;
 }
 
-#myDeckCreateName,
-#myDeckDelete,
-#myDeckEdit {
-    display: none;
-    z-index: 9999;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    width: 20%;
-    height: 20%;
-    padding: 2%;
-    background-color: var(--option_Background_color);
-    border-radius: 10px;
-    border-style: solid;
-}
 
 @-webkit-keyframes flip-vertical-left {
     0% {

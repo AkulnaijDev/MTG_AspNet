@@ -59,25 +59,39 @@ connection.on("ConfirmLogin", function (tokenSql) {
   }
 })
 
-connection.on("ApprovedLogin", function () {
+// connection.on("ApprovedLogin", function () {
   
-    myUsername = $('#myname').val();
+//     myUsername = $('#myname').val();
 
-    connection.invoke("ReadAllSets").catch(function (err) {
-      return console.error(err.toString());
-    });
+//     connection.invoke("ReadAllSets").catch(function (err) {
+//       return console.error(err.toString());
+//     });
 
-    connection.invoke("ReadAllCardsLastSet").catch(function (err) {
-      return console.error(err.toString());
-    });
+//     connection.invoke("ReadAllCardsLastSet").catch(function (err) {
+//       return console.error(err.toString());
+//     });
 
-    connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
-      return console.error(err.toString());
-    });
-    connection.invoke("GetUserSetting", myUsername).catch(function (err) {
-      return console.error(err.toString());
-    });
-})
+//     connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
+//       return console.error(err.toString());
+//     });
+//     connection.invoke("GetUserSetting", myUsername).catch(function (err) {
+//       return console.error(err.toString());
+//     });
+// })
+
+connection.on("ApprovedLogin", async function () {
+  try {
+      myUsername = $('#myname').val();
+
+      await connection.invoke("ReadAllSets");
+      await connection.invoke("ReadAllCardsLastSet");
+      await connection.invoke("ReadAllDecks", myUsername);
+      await connection.invoke("GetUserSetting", myUsername);
+
+  } catch (err) {
+      console.error(err.toString());
+  }
+});
 
 connection.on("SetMyConnectionId", function (userId) {
   myConnectionId = userId;

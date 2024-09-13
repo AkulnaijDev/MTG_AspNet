@@ -112,7 +112,7 @@
 
 #logoTitle {
     display: none;
-    position: relative;
+    position: absolute;
 }
 
 .logoText {
