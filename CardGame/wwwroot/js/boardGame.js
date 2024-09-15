@@ -1048,12 +1048,23 @@ connection.on("GameModesForDeck", function (gameModes) {
     var modern = gameModesParsed.Modern;
     var valid = gameModesParsed.Valid;
 
-    $('#commanderValidity').attr('disabled', !commander)
-    $('#pauperValidity').attr('disabled', !pauper)
-    $('#standardValidity').attr('disabled', !standard)
-    $('#pioneerValidity').attr('disabled', !pioneer)
-    $('#extendedValidity').attr('disabled', !extended)
-    $('#modernValidity').attr('disabled', !modern)
+    if(!valid){
+        $('#commanderValidity').attr('disabled', true)
+        $('#pauperValidity').attr('disabled', true)
+        $('#standardValidity').attr('disabled', true)
+        $('#pioneerValidity').attr('disabled', true)
+        $('#extendedValidity').attr('disabled', true)
+        $('#modernValidity').attr('disabled', true)
+    } 
+    else {
+        $('#commanderValidity').attr('disabled', !commander)
+        $('#pauperValidity').attr('disabled', !pauper)
+        $('#standardValidity').attr('disabled', !standard)
+        $('#pioneerValidity').attr('disabled', !pioneer)
+        $('#extendedValidity').attr('disabled', !extended)
+        $('#modernValidity').attr('disabled', !modern)
+    }
+
     $('#validValidity').attr('disabled', !valid)
 
     $('#startTheGameButton').removeAttr('disabled')
@@ -1286,6 +1297,7 @@ function CheckDeckValidityForGameMode() {
     var modeValidity = $(validity).attr('disabled') == 'disabled';
     var deckValidity = $('#validValidity').attr('disabled') == 'disabled';
     var atLeastTwoTeams = CountHowManyTeamsWithAtLeastOnePlayer();
+
 
     if (atLeastTwoTeams && !deckValidity && !modeValidity) {
         return true;
