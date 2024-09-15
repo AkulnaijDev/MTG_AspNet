@@ -242,7 +242,7 @@ $('body').on('change', '#myDecksPickerSelector', function () {
 
             if (element.Name != undefined) {
                 var tmpCard = "<div class='cardRow' sourcepath='" +
-                    element.Source + "'" +
+                    element.Source.replace(/'/g, "&#39;") + "'" +
                     "key='" + element.Key + "'" +
                     "><div cardlimit='" + element.Cardlimit + "'" +
                     " class='cardRowActions'><span class='cardRowActionPlus'>➕</span><span class='cardRowActionMinus'>➖</span></div><div class='cardRowCount'>" +
@@ -357,7 +357,7 @@ $('body').on('click', '.addCardToDeck', function () {
     var basicLand = card.attr("basicLand");
     var key = card.attr("key");
     var name = card.attr("name").replaceAll('"', " ");
-    var source = card.attr('sourcePath');
+    var source = card.attr('sourcePath').replace(/'/g, "&#39;");
     var token = card.attr('token');
 
     var alreadyPresent = document.querySelectorAll('.cardRow[key="' + key + '"]').length > 0 ? true : false;
@@ -401,7 +401,7 @@ $('body').on('click', '.addCardToDeck', function () {
     if (canPut) {
         var count = Number(numberOfCopiesInList) + 1;
         if (!alreadyPresent) {
-            var row = "<div class='cardRow' sourcePath='" + source + "' key='" + key + "'>" +
+            var row = "<div class='cardRow' sourcePath='" + source.replace(/'/g, "&#39;") + "' key='" + key + "'>" +
                 "<div cardLimit=" + cardLimit + " class='cardRowActions'><span class='cardRowActionPlus'>➕</span><span class='cardRowActionMinus'>➖</span></div>" +
                 "<div class='cardRowCount'>" + count + "</div><div key='" + key + "' class='cardRowName'>" + name + "</div></div>";
             $('#myDeckList').append(row);
@@ -458,7 +458,7 @@ function checkResourceExistence(url, successCallback, errorCallback) {
 
 
 $('body').on('mouseenter', '.cardRow', function () {
-    var sourcePath = $(this).attr('sourcePath');
+    var sourcePath = $(this).attr('sourcePath').replace(/'/g, "&#39;");
 
     checkResourceExistence(
         sourcePath,
@@ -493,13 +493,27 @@ $('body').on('click', '#myDeckSaveButton', function () {
     var cardList = [];
 
     var list = document.querySelectorAll('.cardRow')
+    
     list.forEach(element => {
-        var source = element.attributes[1].nodeValue;
-        var key = element.attributes[2].nodeValue;
-        var cardCount = element.children[1].innerHTML;
-        var name = element.children[2].innerHTML;
-        var cardlimit = element.children[0].attributes[0].nodeValue;
-        var obj = { "Source": source, "CardCount": cardCount, "Name": name, "Cardlimit": cardlimit, "Key": key };
+        var source = element.getAttribute('sourcepath').replace(/'/g, "&#39;");
+        var key = element.getAttribute('key');
+
+        if (!key || key === "''") {
+            key = element.getAttribute('s_gate');
+        }
+
+        var cardCount = element.querySelector('.cardRowCount').innerHTML;
+        var name = element.querySelector('.cardRowName').innerHTML;
+        var cardLimit = element.querySelector('.cardRowActions').getAttribute('cardlimit');
+
+        var obj = {
+            "Source": source,
+            "CardCount": cardCount,
+            "Name": name,
+            "Cardlimit": cardLimit,
+            "Key": key
+        };
+
         cardList.push(obj);
     });
 
@@ -568,7 +582,7 @@ function showCardsImage(array) {
 
         let filePath = "";
 
-        if (element.Name.includes("//") && element.Layout != "split") {
+        if (element.Name.includes("//") && (element.Layout != "split" && element.Layout != "adventure")) {
             doubleFace = true;
             filePath = '../resources/cards_images/' + selectedSetCode + '_' + selectedSetName + '/' + selectedSetCode + '_front_' + element.Id + '.jpg';
         } else {
@@ -576,7 +590,7 @@ function showCardsImage(array) {
             filePath = '../resources/cards_images/' + selectedSetCode + '_' + selectedSetName + '/' + selectedSetCode + '_' + element.Id + '.jpg';
         }
 
-        if (element.Layout == "split") {
+        if (element.Layout == "split" || element.Layout == "adventure") {
             doubleFace = false;
         }
 
@@ -621,7 +635,7 @@ function setCardsImages(cardArray) {
         checkResourceExistence(
             element.source,
             function () {
-                var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
+                var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source.replace(/'/g, "&#39;") + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
                     "legendary=" + element.legendary + ">" +
                     "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src=" + element.source + " alt=" + name + ">" +
                     "</img><div class='cardImageTextActionContainer'>" + plus + element.name + minus + "</div></div>"
@@ -629,7 +643,7 @@ function setCardsImages(cardArray) {
                 $('#myDeckCardPickerContainer').append(div);
             },
             function () {
-                var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
+                var div = "<div token=" + element.token + " set=" + element.set + " sourcePath =" + element.source.replace(/'/g, "&#39;") + " basicLand=" + element.basicLand + " land=" + element.land + " name=" + name + " key=" + element.key + " class='cardImageContainer' " +
                     "legendary=" + element.legendary + ">" +
                     "<img class='cardImagePreview' doubleFace=" + element.doubleFace + " src='../resources/cardBack.jpg' alt=" + name + ">" +
                     "</img><div class='cardImageTextActionContainer'>" + plus + element.name + minus + "</div></div>"
@@ -655,7 +669,7 @@ function checkResourceExistence(url, successCallback, errorCallback) {
 
 
 $('body').on('mouseenter', '.cardRow', function () {
-    var sourcePath = $(this).attr('sourcePath');
+    var sourcePath = $(this).attr('sourcePath').replace(/'/g, "&#39;");
 
     checkResourceExistence(
         sourcePath,

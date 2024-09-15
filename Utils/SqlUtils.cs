@@ -91,13 +91,13 @@ namespace Utils
                 command.Connection = connection;
                 command.Parameters.AddWithValue("@deckId", deckId);
 
-                for (var i = 0; i < deck.Cards.Count; i++)
+                for (var i = 1; i <= deck.Cards.Count; i++)
                 {
-                    if (deck.Cards[i] != null)
+                    if (deck.Cards[i-1] != null)
                     {
                         var paramName = $"@Card{i.ToString().PadLeft(3, '0')}";
                         var text1 = $", [Card{i.ToString().PadLeft(3, '0')}] = {paramName}";
-                        var deckString = JsonConvert.SerializeObject(deck.Cards[i]).Replace("'", "''");
+                        var deckString = JsonConvert.SerializeObject(deck.Cards[i-1]).Replace("'", "''");
 
                         queryString.Append(text1);
                         command.Parameters.AddWithValue(paramName, deckString);
@@ -105,8 +105,9 @@ namespace Utils
                 }
 
                 queryString.Append(" WHERE Id = @deckId");
-                command.CommandText = queryString.ToString();
+                Console.WriteLine(queryString);
 
+                command.CommandText = queryString.ToString();
                 connection.Open();
                 command.ExecuteNonQuery();
             }
