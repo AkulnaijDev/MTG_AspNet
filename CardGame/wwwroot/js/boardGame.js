@@ -19,12 +19,6 @@ connection.on("DispatchLogGameEvent", function (log) {
 
 })
 
-function LogInGame(text) {
-    connection.invoke("LogGameEvents", text, JSON.stringify(state.Game)).catch(function (err) {
-        return console.error(err.toString());
-    });
-}
-
 function LogInGameNew(action, words) {
     connection.invoke("LogGameEventsNew", action, JSON.stringify(words), JSON.stringify(state.Game)).catch(function (err) {
         return console.error(err.toString());
@@ -251,7 +245,6 @@ $('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
     var name = $(ev.target).parent().parent().parent().parent().find('.playerNameBoardContainer').text();
     if (myUsername == name) {
         DrawCardFromMyDeck(myUsername);
-        //LogInGame(myUsername + " is drawing a card from " + name + " deck");
         LogInGameNew("drawingCard", [myUsername, name]);
     }
 });
@@ -275,7 +268,6 @@ $('body').on('dblclick', '.cardContainer', function () {
             if (el.attr('tapped') !== undefined) {
                 //el.removeClass('tapped');
 
-                //LogInGame(myUsername + " untapped " + $(this).attr('name'));
                 LogInGameNew("untappingCard", [myUsername, $(this).attr('name')]);
 
                 var action = {
@@ -291,9 +283,6 @@ $('body').on('dblclick', '.cardContainer', function () {
                 });
 
             } else {
-                //el.addClass('tapped');
-
-                //LogInGame(myUsername + " tapped " + $(this).attr('name'));
                 LogInGameNew("tappingCard", [myUsername, $(this).attr('name')]);
 
                 var action = {
@@ -367,12 +356,6 @@ function PlayFromContext(){
     });
 
    
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(myUsername+" played a card from "+playerFrom + " deck");
-    //     LogInGameNew("cardFromDeck", [myUsername, playerFrom]);
-    // } else {
-    //     LogInGame(myUsername+" ha giocato una carta dal deck di "+myUsername);
-    // }
     LogInGameNew("cardFromDeck", [myUsername, playerFrom]);
 }
 
@@ -521,44 +504,6 @@ function ApplyActionToCard(actionType){
 }
 
 
-
-
-// function AddCountersOnCard(){
-//     var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
-//     var cardName = $('#cardInGameContextMenu').attr('sneakedCardName');
-//     var counterType ="";
-//     var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
-   
-//     var playerFrom = $('body').find('div[id="'+cardId+'"]').first()
-//     .closest('.playerBoardContainer')  // Supponendo che .playerContainer sia un parent comune contenente sia il div che il .playerNameBoardContainer
-//     .find('.playerNameBoardContainer')
-//     .text();
-
-//     var topOrBottom = $('#contextCardGameMenuToDeckSelector').val();
-
-//     var action = {
-//         "Game": state.Game,
-//         "CardGuid": cardId,
-//         "From": {
-//             "Player": playerFrom,
-//             "Zone": fromZone
-//         },
-//         "To": {
-//             "Player": myUsername,
-//             "Zone": "deckZone"
-//         },
-//         "TopBottom": topOrBottom
-//     }
-
-//     connection.invoke("UpdateState_CardToDeckFromGame", JSON.stringify(action)).catch(function (err) {
-//         return console.error(err.toString());
-//     });
-
-//     LogInGameNew("counterOnCard", [myUsername,counterType,cardName ]);
-// }
-
-
-
 $('body').on('click', '#contextCardGameMenuToDeckButton', function () {
     CardBackToMyDeck();
     $('#cardInGameContextMenu').hide();
@@ -595,12 +540,7 @@ function CardBackToMyDeck(){
         return console.error(err.toString());
     });
 
-   
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(myUsername+" put a card back to "+myUsername + " deck");
-    // } else {
-    //     LogInGame(myUsername+" ha messo una carta nel deck di "+myUsername);
-    // }
+
     LogInGameNew("cardIntoDeck", [myUsername]);
 }
 
@@ -677,12 +617,6 @@ $('body').on('click', '#contextMenuScryDeck', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, howManyCards, "deck")
     $('#zoneInspector').show();
 
-
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(playerInspecting + " is checking " + playerInspected + " deck");
-    // } else {
-    //     LogInGame(playerInspecting + " sta guardando il deck di " + playerInspected);
-    // }
     LogInGameNew("playerInspecting", [playerInspecting, playerInspected]);
 });
 
@@ -706,23 +640,16 @@ $('body').on('click', '#contextMenuExileDeck', function () {
             if (whichAction == "discard") {
                 actionText = " discarded "
             }
-            //LogInGame(targetPlayer + actionText + howManyCards + " cards from his/her deck");
         } else {
             var actionText = " ha esiliato ";
             if (whichAction == "discard") {
                 actionText = " ha scartato "
             }
-            //LogInGame(targetPlayer + actionText + howManyCards + " carte dal suo deck");
         }
 
         LogInGameNew("playerAction", [targetPlayer, actionText, howManyCards]);
 
     } else {
-        // if (IsEnglishLanguageOn()) {
-        //     LogInGame(targetPlayer + " can't complete this action");
-        // } else {
-        //     LogInGame(targetPlayer + " non può fare questa azione");
-        // }
         LogInGameNew("playerCantDoAction", [targetPlayer]);
     }
 
@@ -747,12 +674,6 @@ $('body').on('click', '#contextMenuShuffleDeck', function () {
         return console.error(err.toString());
     });
 
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(playerInspecting + " shuffled " + playerInspected + " deck");
-    // } else {
-    //     LogInGame(playerInspecting + " sta mescolando il deck di " + playerInspected);
-    // }
-
     LogInGameNew("shuffleDeck", [playerInspecting, playerInspected]);
 });
 
@@ -772,11 +693,6 @@ $('body').on('click', '#contextMenuViewDeck', function () {
 
     $('#zoneInspector').show();
 
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(playerInspecting + " is checking " + playerInspected + " deck");
-    // } else {
-    //     LogInGame(playerInspecting + " sta guardando il deck di " + playerInspected);
-    // }
     LogInGameNew("checkingDeck", [playerInspecting, playerInspected]);
 });
 
@@ -792,11 +708,6 @@ $('body').on('click', '#contextMenuMulligan', function () {
         return console.error(err.toString());
     });
 
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(myUsername + " is mulligan");
-    // } else {
-    //     LogInGame(myUsername + " sta mulligando");
-    // }
     LogInGameNew("mulligan", [myUsername]);
 });
 
@@ -810,11 +721,6 @@ $('body').on('click', '#contextMenuViewGraveyard', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "graveyard")
     $('#zoneInspector').show();
 
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(playerInspecting + " is checking " + playerInspected + " graveyard");
-    // } else {
-    //     LogInGame(playerInspecting + " sta guardando il cimitero di " + playerInspected);
-    // }
     LogInGameNew("cemeteryLooking", [playerInspecting, playerInspected]);
 });
 
@@ -827,11 +733,6 @@ $('body').on('click', '#contextMenuViewExiled', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "exiled")
     $('#zoneInspector').show();
 
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(playerInspecting + " is checking " + playerInspected + " exiled zone");
-    // } else {
-    //     LogInGame(playerInspecting + " sta guardando l'esilio di " + playerInspected);
-    // }
     LogInGameNew("exiledLooking", [playerInspecting, playerInspected]);
 });
 
@@ -844,11 +745,6 @@ $('body').on('click', '#contextMenuViewHand', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "hand")
     $('#zoneInspector').show();
 
-    // if (IsEnglishLanguageOn()) {
-    //     LogInGame(playerInspecting + " is checking " + playerInspected + " hand");
-    // } else {
-    //     LogInGame(playerInspecting + " sta guardando la mano di " + playerInspected);
-    // }
     LogInGameNew("handLooking", [playerInspecting, playerInspected]);
 });
 
@@ -863,7 +759,6 @@ $('body').on('click', '#closeInspectorButton', function () {
 
 $('body').on('click', '.decreaseHpButton', function () {
     var targetPlayer = $(this).parent().find('.playerName').text();
-    //LogInGame(myUsername + " is decreasing " + targetPlayer + " hp");
     LogInGameNew("hpDecreasing", [myUsername, targetPlayer]);
 
     connection.invoke("ModifyPlayerHp", targetPlayer, "decrease", JSON.stringify(state.Game)).catch(function (err) {
@@ -873,7 +768,6 @@ $('body').on('click', '.decreaseHpButton', function () {
 
 $('body').on('click', '.increaseHpButton', function () {
     var targetPlayer = $(this).parent().find('.playerName').text();
-    //LogInGame(myUsername + " is increasing " + targetPlayer + " hp");
     LogInGameNew("hpIncreasing", [myUsername, targetPlayer]);
 
     connection.invoke("ModifyPlayerHp", targetPlayer, "increase", JSON.stringify(state.Game)).catch(function (err) {

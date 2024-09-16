@@ -110,8 +110,6 @@ namespace CardGame.Hubs
                 await Clients.Caller.SendAsync("ApprovedLogin");
                 await Clients.All.SendAsync("Notify_Login", obj);
             }
-
-           
         }
 
        
@@ -1760,26 +1758,6 @@ namespace CardGame.Hubs
                 }
 
                 await Clients.Client(requestingPlayer).SendAsync("ShowSneakedZone", JsonConvert.SerializeObject(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        public async Task LogGameEvents(string text, string game)
-        {
-            try
-            {
-                var gameAction = JsonConvert.DeserializeObject<Game>(game);
-
-                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.RoomId);
-                var storedGame = storedGameStatus.Game;
-                var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
-
-                var roomId = gameAction.RoomId;
-
-                await Clients.Group(roomId).SendAsync("DispatchLogGameEvent", JsonConvert.SerializeObject(text));
             }
             catch (Exception ex)
             {
