@@ -8,7 +8,7 @@ function drag(ev) {
   
 }
 
-function drop(ev) {
+async function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
 
@@ -52,9 +52,9 @@ function drop(ev) {
     
         var cardName = cardMoved.attr('name');
         //GESTISCI QUI L'UPDATE DI STATO!!!!!!! avanti e indietro!!!
-        LogInGameNew("cardMoving", [myUsername, cardName, playerFrom, zoneFrom, playerTo, zoneTo]);
+        await LogInGameNew("cardMoving", [myUsername, cardName, playerFrom, zoneFrom, playerTo, zoneTo]);
 
-        connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
+        await connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
             return console.error(err.toString());
         });
     }
@@ -62,7 +62,7 @@ function drop(ev) {
 
 
 
-function DrawCardFromMyDeck(myUsername) {
+async function DrawCardFromMyDeck(myUsername) {
 
     var zoneFrom = "deckZone";
     var playerFrom = myUsername;
@@ -82,7 +82,7 @@ function DrawCardFromMyDeck(myUsername) {
         }
     }
 
-    connection.invoke("UpdateState_CardDrawn", JSON.stringify(action)).catch(function (err) {
+    await connection.invoke("UpdateState_CardDrawn", JSON.stringify(action)).catch(function (err) {
         return console.error(err.toString());
     });
 }
@@ -107,8 +107,6 @@ function UpdateBoard(newGameStatus) {
                 counters += (item.Quantity + ' _of_ ' + item.Type + ";");
             });
             counters += "'";
-
-            console.log(counters);
 
             var div = '<div id="' + card.Guid + '" ' + counters + " " + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
             parentBoard.find('.cardZone').append(div);

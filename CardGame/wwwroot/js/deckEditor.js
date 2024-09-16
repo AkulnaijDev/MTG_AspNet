@@ -71,23 +71,23 @@ connection.on("AdoptSettings", function (myUserSettings) {
 
 })
 
-connection.on("ConfirmDeckEdited", function () {
-    connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
+connection.on("ConfirmDeckEdited", async function () {
+    await connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
         return console.error(err.toString());
     });
 })
 
-connection.on("ConfirmDeckSaved", function (insertedId) {
+connection.on("ConfirmDeckSaved", async function (insertedId) {
     $('#myDeckSaveButton').attr('editing', insertedId)
     $('.myDecksPickerSelector').empty()
-    connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
+    await connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
         return console.error(err.toString());
     });
 })
 
-connection.on("ConfirmDeckDeleted", function () {
+connection.on("ConfirmDeckDeleted", async function () {
     $('#myDeckDelete').hide();
-    connection.invoke("ReadAllDecksResetView", myUsername).catch(function (err) {
+    await connection.invoke("ReadAllDecksResetView", myUsername).catch(function (err) {
         return console.error(err.toString());
     });
 })
@@ -151,7 +151,7 @@ $('body').on('click', '#myDeckEditBackButton', function () {
     $('#myDeckEdit').hide();
 });
 
-$('body').on('click', '#myDeckDeleteConfirmButton', function () {
+$('body').on('click', '#myDeckDeleteConfirmButton', async function () {
 
     if ($('#myDeckSaveButton').attr('editing') == "") {
         $('#myDeckDelete').hide();
@@ -160,7 +160,7 @@ $('body').on('click', '#myDeckDeleteConfirmButton', function () {
     } else {
         var optionSelected = $('#myDecksPickerSelector').find("option:selected");
         var valueSelected = optionSelected.val();
-        connection.invoke("DeleteDeck", valueSelected, myUsername).catch(function (err) {
+        await connection.invoke("DeleteDeck", valueSelected, myUsername).catch(function (err) {
             return console.error(err.toString());
         });
     }
@@ -489,7 +489,7 @@ $('body').on('click', '#myDeckCardPreviewImageButton', function () {
     $('#myDeckCardPreviewImage').removeAttr("zoomedPreview");
 });
 
-$('body').on('click', '#myDeckSaveButton', function () {
+$('body').on('click', '#myDeckSaveButton', async function () {
     var cardList = [];
 
     var list = document.querySelectorAll('.cardRow')
@@ -527,7 +527,7 @@ $('body').on('click', '#myDeckSaveButton', function () {
         //saving a new deck
     }
 
-    connection.invoke("SaveDeck", JSON.stringify(deck), editingDeckId).catch(function (err) {
+    await connection.invoke("SaveDeck", JSON.stringify(deck), editingDeckId).catch(function (err) {
         return console.error(err.toString());
     });
 
@@ -543,13 +543,6 @@ function CountCardsInDeck() {
     $('#myDeckCardCount').text(count);
 }
 
-function showCards() {
-    var selectedSetName = $('#myDeckSetPickerSelector option:selected').text();
-
-    connection.invoke("ReadAllCardsThisSet", selectedSetName).catch(function (err) {
-        return console.error(err.toString());
-    });
-}
 
 function showCardsImage(array) {
     let cardArray = [];

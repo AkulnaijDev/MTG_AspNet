@@ -37,7 +37,7 @@ $('body').on('click', '#mainMenuOptions', function () {
     }
 });
 
-$('body').on('click', '#closeOptionsMenu', function () {
+$('body').on('click', '#closeOptionsMenu', async function () {
     var desktop = $('#backgroundChooseOptions').val();
     var theme = $('#themeChooseOptions').val();
     var music = $('#musicChooseOptions').val();
@@ -45,7 +45,7 @@ $('body').on('click', '#closeOptionsMenu', function () {
     var language = $('#languageChooseOptions').val();
     var myId = myConnectionId;
 
-    connection.invoke("SaveMySettings", myId, myUsername, chosenVolume, desktop, theme, language, music).catch(function (err) {
+    await connection.invoke("SaveMySettings", myId, myUsername, chosenVolume, desktop, theme, language, music).catch(function (err) {
         return console.error(err.toString());
     });
 
@@ -182,15 +182,15 @@ $('body').on('click', '#myDeckAdvancedSearchCloseButton', function () {
     });
 });
 
-$('body').on('click', '#myDeckDecksNormalSearchButton', function () {
+$('body').on('click', '#myDeckDecksNormalSearchButton', async function () {
     $('#normalSearchSpinner').show();
     var name = $('#myDeckDecksNormalSearchValue').val();
-    connection.invoke("NormalSearchCards", name).catch(function (err) {
+    await connection.invoke("NormalSearchCards", name).catch(function (err) {
         return console.error(err.toString());
     });
 });
 
-$('body').on('click', '#myDeckAdvancedSearchSearchButton', function () {
+$('body').on('click', '#myDeckAdvancedSearchSearchButton', async function () {
 
     var searchObject = {
         name: $('#advancedSearchName').val(),
@@ -227,7 +227,7 @@ $('body').on('click', '#myDeckAdvancedSearchSearchButton', function () {
 
     $('#advancedSearchSpinner').show();
 
-    connection.invoke("AdvancedSearchCards", JSON.stringify(searchObject)).catch(function (err) {
+    await connection.invoke("AdvancedSearchCards", JSON.stringify(searchObject)).catch(function (err) {
         $('#advancedSearchSpinner').hide();
         $('#advancedSearchError').show().delay(2000).fadeOut();
         return console.error(err.toString());

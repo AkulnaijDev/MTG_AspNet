@@ -183,7 +183,6 @@ namespace CardGame.Hubs
         {
             var userSetting = SqlUtils.GetUserSettings(username);
             var obj = JsonConvert.SerializeObject(userSetting);
-            Console.WriteLine(obj);
             await Clients.Caller.SendAsync("AdoptSettings", obj);
         }
 
@@ -300,7 +299,6 @@ namespace CardGame.Hubs
             }
 
             var obj = JsonConvert.SerializeObject(gamesMode);
-            Console.WriteLine(obj);
             await Clients.Caller.SendAsync("GameModesForDeck", obj);
         }
 
@@ -474,7 +472,6 @@ namespace CardGame.Hubs
                 var advancedSearch = JsonConvert.DeserializeObject<SearchObject>(searchObject);
                 var query = await AdvancedSearchQueryCreator(advancedSearch);
 
-                Console.WriteLine(query);
                 var cards = SqlUtils.QueryRequestCards(query);
 
                 if (advancedSearch.Singleton)

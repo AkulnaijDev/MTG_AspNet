@@ -8,7 +8,6 @@ connection.on("DispatchLogGameEvent", function (log) {
     if(!IsEnglishLanguageOn()){
         text = json.Item2;
     }
-    console.log(json);
 
     var loggedElement = "<div class='loggedEvent'>" + text + "</div>"
     $('#notificationFromOtherPlayers').append(loggedElement);
@@ -19,8 +18,8 @@ connection.on("DispatchLogGameEvent", function (log) {
 
 })
 
-function LogInGameNew(action, words) {
-    connection.invoke("LogGameEventsNew", action, JSON.stringify(words), JSON.stringify(state.Game)).catch(function (err) {
+async function LogInGameNew(action, words) {
+    await connection.invoke("LogGameEventsNew", action, JSON.stringify(words), JSON.stringify(state.Game)).catch(function (err) {
         return console.error(err.toString());
     });
 }
@@ -49,24 +48,24 @@ $('body').on('click', '#mainMenuNewGame', function () {
     }
 });
 
-$('body').on('click', '#quitTheGameButton', function () {
+$('body').on('click', '#quitTheGameButton', async function () {
     $('.teammateContainer').empty();
     ResetInviteScreen();
-    connection.invoke("AbandonGame", myUsername).catch(function (err) {
+    await connection.invoke("AbandonGame", myUsername).catch(function (err) {
         return console.error(err.toString());
     });
     $('#boardGameContainer').hide();
     $('#quitTheGameButton').attr('disabled',true)
 });
 
-$('body').on('change', '#selectDeckToPlay', function () {
+$('body').on('change', '#selectDeckToPlay', async function () {
     var deckId = $('#selectDeckToPlay').find(":selected").val();
     if (deckId != "") {
 
         $('#startTheGameButton').attr('disabled', true)
         $('#backTheGameButton').attr('disabled', true)
 
-        connection.invoke("VerifyGameModes", deckId, myUsername).catch(function (err) {
+        await connection.invoke("VerifyGameModes", deckId, myUsername).catch(function (err) {
             return console.error(err.toString());
         });
     }
@@ -145,7 +144,7 @@ function ClearFieldsInInvitationView() {
     $('#modeSelection').val("commander").trigger('change')
 }
 
-$('body').on('click', '#startTheGameButton', function () {
+$('body').on('click', '#startTheGameButton', async function () {
 
     var roomId = $(this).attr('roomId')
     var myId = myConnectionId;
@@ -155,7 +154,7 @@ $('body').on('click', '#startTheGameButton', function () {
 
         if (CheckDeckValidityForGameMode()) {
             //send accepted game
-            connection.invoke("AcceptGameInvitation", roomId, myId, myUsername, deckId).catch(function (err) {
+            await connection.invoke("AcceptGameInvitation", roomId, myId, myUsername, deckId).catch(function (err) {
                 return console.error(err.toString());
             });
 
@@ -172,7 +171,7 @@ $('body').on('click', '#startTheGameButton', function () {
     } else {
         //you are creating the game
         if (CheckDeckValidityForGameMode()) {
-            SendGameInvitations();
+            await SendGameInvitations();
             $('#inviteSection').hide();
             // $('#boardGame').removeClass('uninteractable');
             $('#gameMenuZone').removeClass('uninteractable');
@@ -198,10 +197,10 @@ $('body').on('click', '#acceptGameInvitation', function () {
     //ricordati di resettare l'invite una volta in game
 });
 
-$('body').on('click', '#declineGameInvitation', function () {
+$('body').on('click', '#declineGameInvitation', async function () {
     var invitingPlayerId = $(this).attr('invitingId');
 
-    connection.invoke("RefuseGameInvitation", invitingPlayerId, myConnectionId).catch(function (err) {
+    await connection.invoke("RefuseGameInvitation", invitingPlayerId, myConnectionId).catch(function (err) {
         return console.error(err.toString());
     });
 
@@ -218,9 +217,9 @@ $('body').on('click', '#gameModeGameButton', function () {
 
 
 
-$('body').on('click', '#beginTheGameButton', function () {
+$('body').on('click', '#beginTheGameButton', async function () {
     var teams = GetTeams();
-    connection.invoke("StartTheActualGame", myConnectionId, teams).catch(function (err) {
+    await connection.invoke("StartTheActualGame", myConnectionId, teams).catch(function (err) {
         return console.error(err.toString());
     });
 });
@@ -241,17 +240,17 @@ $('body').on('mouseleave', '.cardOnTheTable', function () {
 });
 
 
-$('body').on('dblclick', '.deckBackCardOnTheTable', function (ev) {
+$('body').on('dblclick', '.deckBackCardOnTheTable', async function (ev) {
     var name = $(ev.target).parent().parent().parent().parent().find('.playerNameBoardContainer').text();
     if (myUsername == name) {
-        DrawCardFromMyDeck(myUsername);
-        LogInGameNew("drawingCard", [myUsername, name]);
+        await DrawCardFromMyDeck(myUsername);
+        await LogInGameNew("drawingCard", [myUsername, name]);
     }
 });
 
 
 
-$('body').on('dblclick', '.cardContainer', function () {
+$('body').on('dblclick', '.cardContainer', async function () {
     var el = $(this);
     var seeBack = el.attr('seeonlyback');
 
@@ -268,7 +267,7 @@ $('body').on('dblclick', '.cardContainer', function () {
             if (el.attr('tapped') !== undefined) {
                 //el.removeClass('tapped');
 
-                LogInGameNew("untappingCard", [myUsername, $(this).attr('name')]);
+                await LogInGameNew("untappingCard", [myUsername, $(this).attr('name')]);
 
                 var action = {
                     "Game": state.Game,
@@ -278,12 +277,12 @@ $('body').on('dblclick', '.cardContainer', function () {
                     "Zone": zoneTo
                 }
 
-                connection.invoke("TapCard", JSON.stringify(action)).catch(function (err) {
+                await connection.invoke("TapCard", JSON.stringify(action)).catch(function (err) {
                     return console.error(err.toString());
                 });
 
             } else {
-                LogInGameNew("tappingCard", [myUsername, $(this).attr('name')]);
+                await LogInGameNew("tappingCard", [myUsername, $(this).attr('name')]);
 
                 var action = {
                     "Game": state.Game,
@@ -293,7 +292,7 @@ $('body').on('dblclick', '.cardContainer', function () {
                     "Zone": zoneTo
                 }
 
-                connection.invoke("TapCard", JSON.stringify(action)).catch(function (err) {
+                await connection.invoke("TapCard", JSON.stringify(action)).catch(function (err) {
                     return console.error(err.toString());
                 });
             }
@@ -318,14 +317,14 @@ $('body').on('click', '#closeCardSneakedContextMenu', function () {
     $('#cardSneakedContextMenu').hide();
 });
 
-$('body').on('click', '#contextCardSneakedToZoneButton', function () {
-    PlayFromContext();
+$('body').on('click', '#contextCardSneakedToZoneButton', async function () {
+    await PlayFromContext();
     $('#cardSneakedContextMenu').hide();
     $('#zoneInspector').hide();
     
 });
 
-function PlayFromContext(){
+async function PlayFromContext(){
     var zoneTo = $('#contextCardSneakedToZoneSelector').val();
     var cardId = $('#cardSneakedContextMenu').attr('sneakedCardId');
 
@@ -351,12 +350,12 @@ function PlayFromContext(){
         }
     }
 
-    connection.invoke("UpdateState_CardPlayedFromDeck", JSON.stringify(action)).catch(function (err) {
+    await connection.invoke("UpdateState_CardPlayedFromDeck", JSON.stringify(action)).catch(function (err) {
         return console.error(err.toString());
     });
 
    
-    LogInGameNew("cardFromDeck", [myUsername, playerFrom]);
+    await LogInGameNew("cardFromDeck", [myUsername, playerFrom]);
 }
 
 
@@ -407,10 +406,9 @@ $('body').on('contextmenu', '.cardContainer', function () {
     }
 });
 
-$('body').on('click', '.removeCounter', function () {
+$('body').on('click', '.removeCounter', async function () {
     var cardId = $(this).attr('cardid');
     var type = $(this).attr('type');
-    console.log(cardId+"----"+type);
     var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
    
     var playerFrom = $('body').find('div[id="'+cardId+'"]').first()
@@ -426,7 +424,7 @@ $('body').on('click', '.removeCounter', function () {
         "Type": type
     }
     
-    connection.invoke("UpdateState_RemoveCounterFromCard", JSON.stringify(action)).catch(function (err) {
+    await connection.invoke("UpdateState_RemoveCounterFromCard", JSON.stringify(action)).catch(function (err) {
         return console.error(err.toString());
     });
 
@@ -439,26 +437,26 @@ $('body').on('click', '#closeCardInGameContextMenu', function () {
     $('#cardInGameContextMenu').hide();
 });
 
-$('body').on('click', '#contextCardGameMenuPlayMorphedButton', function () {
-    ApplyActionToCard("Morphed");
+$('body').on('click', '#contextCardGameMenuPlayMorphedButton', async function () {
+    await ApplyActionToCard("Morphed");
     $('#cardInGameContextMenu').hide();
     $('#zoneInspector').hide();
 });
 
 
-$('body').on('click', '#contextCardGameMenuRotateButton', function () {
-    ApplyActionToCard("Transformed");
+$('body').on('click', '#contextCardGameMenuRotateButton',async function () {
+    await ApplyActionToCard("Transformed");
     $('#cardInGameContextMenu').hide();
     $('#zoneInspector').hide();
 });
 
-$('body').on('click', '#contextCardGameMenuCountersButton', function () {
-    ApplyActionToCard("CounterOnCard");
+$('body').on('click', '#contextCardGameMenuCountersButton', async function () {
+    await ApplyActionToCard("CounterOnCard");
     $('#cardInGameContextMenu').hide();
     $('#zoneInspector').hide();
 });
 
-function ApplyActionToCard(actionType){
+async function ApplyActionToCard(actionType){
     var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
     var cardName = $('#cardInGameContextMenu').attr('sneakedCardName');
 
@@ -486,31 +484,31 @@ function ApplyActionToCard(actionType){
         "Counters": [counters]
     }
     
-    connection.invoke("UpdateState_CardChangeStatusFromGame", JSON.stringify(action)).catch(function (err) {
+    await connection.invoke("UpdateState_CardChangeStatusFromGame", JSON.stringify(action)).catch(function (err) {
         return console.error(err.toString());
     });
 
     if(actionType == "Transformed"){
-        LogInGameNew("transformedCard", [myUsername, cardName]);
+        await LogInGameNew("transformedCard", [myUsername, cardName]);
     }
    
     if(actionType == "Morphed"){
-        LogInGameNew("morphedCard", [myUsername]);
+        await LogInGameNew("morphedCard", [myUsername]);
     }
 
     if(actionType =="CounterOnCard" && (fromZone =="gameZone" || fromZone =="landZone")){
-        LogInGameNew("counterOnCard", [myUsername,counterType,cardName,counterQuantity ]);
+        await LogInGameNew("counterOnCard", [myUsername,counterType,cardName,counterQuantity ]);
     }
 }
 
 
-$('body').on('click', '#contextCardGameMenuToDeckButton', function () {
-    CardBackToMyDeck();
+$('body').on('click', '#contextCardGameMenuToDeckButton', async function () {
+    await CardBackToMyDeck();
     $('#cardInGameContextMenu').hide();
     $('#zoneInspector').hide();
 });
 
-function CardBackToMyDeck(){
+async function CardBackToMyDeck(){
     var cardId = $('#cardInGameContextMenu').attr('sneakedCardId');
 
     var fromZone = $('body').find('div[id="'+cardId+'"]').first().parent().attr('class');
@@ -536,12 +534,12 @@ function CardBackToMyDeck(){
         "TopBottom": topOrBottom
     }
 
-    connection.invoke("UpdateState_CardToDeckFromGame", JSON.stringify(action)).catch(function (err) {
+    await connection.invoke("UpdateState_CardToDeckFromGame", JSON.stringify(action)).catch(function (err) {
         return console.error(err.toString());
     });
 
 
-    LogInGameNew("cardIntoDeck", [myUsername]);
+    await LogInGameNew("cardIntoDeck", [myUsername]);
 }
 
 
@@ -566,7 +564,7 @@ function CardBackToMyDeck(){
 
 
 //menu context 
-$('.deckZone').on('contextmenu', function (event) {
+$('.deckZone').on('contextmenu', async function (event) {
     event.preventDefault();  //blocks opening console etc
     var playerInspecting = myUsername
     var playerInspected = $(this).parent().parent().find('.playerNameBoardContainer').text();
@@ -574,7 +572,7 @@ $('.deckZone').on('contextmenu', function (event) {
 
     //popola select tokens
     if ($('#contextMenuTokenSelector').children().length === 0) {
-        connection.invoke("GetListOfAllTheTokens", JSON.stringify(state.Game)).catch(function (err) {
+        await connection.invoke("GetListOfAllTheTokens", JSON.stringify(state.Game)).catch(function (err) {
             return console.error(err.toString());
         });
     }
@@ -595,19 +593,19 @@ connection.on("ShowTokens", function (listOfTokens) {
     }
 })
 
-$('body').on('click', '#contextMenuPlayToken', function () {
+$('body').on('click', '#contextMenuPlayToken', async function () {
 
     var selectedToken = $('#contextMenuTokenSelector').val();
     var howManyToken = $('#contextMenuTokenQuantity').val();
 
-    connection.invoke("PlaySelectedToken", myUsername, selectedToken, howManyToken, JSON.stringify(state.Game)).catch(function (err) {
+    await connection.invoke("PlaySelectedToken", myUsername, selectedToken, howManyToken, JSON.stringify(state.Game)).catch(function (err) {
         return console.error(err.toString());
     });
 
 });
 
 
-$('body').on('click', '#contextMenuScryDeck', function () {
+$('body').on('click', '#contextMenuScryDeck', async function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent().parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
@@ -617,10 +615,10 @@ $('body').on('click', '#contextMenuScryDeck', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, howManyCards, "deck")
     $('#zoneInspector').show();
 
-    LogInGameNew("playerInspecting", [playerInspecting, playerInspected]);
+    await LogInGameNew("playerInspecting", [playerInspecting, playerInspected]);
 });
 
-$('body').on('click', '#contextMenuExileDeck', function () {
+$('body').on('click', '#contextMenuExileDeck', async function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent().parent().parent();
     var targetPlayer = contextMenu.attr('inspecting');
@@ -631,7 +629,7 @@ $('body').on('click', '#contextMenuExileDeck', function () {
     var fromTop = $('#contextMenuExileDeckSelector').val();
 
     if (targetPlayer == playerInspected) {
-        connection.invoke("ExileCardsFromPlayerDeck", targetPlayer, whichAction, howManyCards, fromTop, JSON.stringify(state.Game)).catch(function (err) {
+        await connection.invoke("ExileCardsFromPlayerDeck", targetPlayer, whichAction, howManyCards, fromTop, JSON.stringify(state.Game)).catch(function (err) {
             return console.error(err.toString());
         });
 
@@ -647,10 +645,10 @@ $('body').on('click', '#contextMenuExileDeck', function () {
             }
         }
 
-        LogInGameNew("playerAction", [targetPlayer, actionText, howManyCards]);
+        await LogInGameNew("playerAction", [targetPlayer, actionText, howManyCards]);
 
     } else {
-        LogInGameNew("playerCantDoAction", [targetPlayer]);
+        await LogInGameNew("playerCantDoAction", [targetPlayer]);
     }
 
 });
@@ -664,22 +662,22 @@ function IsEnglishLanguageOn() {
     }
 }
 
-$('body').on('click', '#contextMenuShuffleDeck', function () {
+$('body').on('click', '#contextMenuShuffleDeck', async function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent().parent();
 
     var targetPlayer = contextMenu.attr('inspected');
 
-    connection.invoke("ShufflePlayerDeck", targetPlayer, JSON.stringify(state.Game)).catch(function (err) {
+    await connection.invoke("ShufflePlayerDeck", targetPlayer, JSON.stringify(state.Game)).catch(function (err) {
         return console.error(err.toString());
     });
 
-    LogInGameNew("shuffleDeck", [playerInspecting, playerInspected]);
+    await LogInGameNew("shuffleDeck", [playerInspecting, playerInspected]);
 });
 
 
 
-$('body').on('click', '#contextMenuViewDeck', function () {
+$('body').on('click', '#contextMenuViewDeck', async function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
@@ -693,26 +691,26 @@ $('body').on('click', '#contextMenuViewDeck', function () {
 
     $('#zoneInspector').show();
 
-    LogInGameNew("checkingDeck", [playerInspecting, playerInspected]);
+    await LogInGameNew("checkingDeck", [playerInspecting, playerInspected]);
 });
 
 
 
-$('body').on('click', '#contextMenuMulligan', function () {
+$('body').on('click', '#contextMenuMulligan', async function () {
     var obj = {
         "Username": myUsername,
         "Game": state.Game
     }
     $('#contextMenu').hide();
-    connection.invoke("UpdateState_Mulligan", JSON.stringify(obj)).catch(function (err) {
+    await connection.invoke("UpdateState_Mulligan", JSON.stringify(obj)).catch(function (err) {
         return console.error(err.toString());
     });
 
-    LogInGameNew("mulligan", [myUsername]);
+    await LogInGameNew("mulligan", [myUsername]);
 });
 
 
-$('body').on('click', '#contextMenuViewGraveyard', function () {
+$('body').on('click', '#contextMenuViewGraveyard', async function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
@@ -721,10 +719,10 @@ $('body').on('click', '#contextMenuViewGraveyard', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "graveyard")
     $('#zoneInspector').show();
 
-    LogInGameNew("cemeteryLooking", [playerInspecting, playerInspected]);
+    await LogInGameNew("cemeteryLooking", [playerInspecting, playerInspected]);
 });
 
-$('body').on('click', '#contextMenuViewExiled', function () {
+$('body').on('click', '#contextMenuViewExiled', async function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
@@ -733,19 +731,19 @@ $('body').on('click', '#contextMenuViewExiled', function () {
     FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "exiled")
     $('#zoneInspector').show();
 
-    LogInGameNew("exiledLooking", [playerInspecting, playerInspected]);
+    await LogInGameNew("exiledLooking", [playerInspecting, playerInspected]);
 });
 
-$('body').on('click', '#contextMenuViewHand', function () {
+$('body').on('click', '#contextMenuViewHand', async function () {
     $('#contextMenu').hide();
     var contextMenu = $(this).parent().parent();
     var playerInspecting = contextMenu.attr('inspecting');
     var playerInspected = contextMenu.attr('inspected');
 
-    FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "hand")
+    await FillZoneInspectorWithCards(playerInspecting, playerInspected, "0", "hand")
     $('#zoneInspector').show();
 
-    LogInGameNew("handLooking", [playerInspecting, playerInspected]);
+    await LogInGameNew("handLooking", [playerInspecting, playerInspected]);
 });
 
 
@@ -757,20 +755,20 @@ $('body').on('click', '#closeInspectorButton', function () {
     $('#zoneInspector').hide();
 });
 
-$('body').on('click', '.decreaseHpButton', function () {
+$('body').on('click', '.decreaseHpButton', async function () {
     var targetPlayer = $(this).parent().find('.playerName').text();
-    LogInGameNew("hpDecreasing", [myUsername, targetPlayer]);
+    await LogInGameNew("hpDecreasing", [myUsername, targetPlayer]);
 
-    connection.invoke("ModifyPlayerHp", targetPlayer, "decrease", JSON.stringify(state.Game)).catch(function (err) {
+    await connection.invoke("ModifyPlayerHp", targetPlayer, "decrease", JSON.stringify(state.Game)).catch(function (err) {
         return console.error(err.toString());
     });
 });
 
-$('body').on('click', '.increaseHpButton', function () {
+$('body').on('click', '.increaseHpButton', async function () {
     var targetPlayer = $(this).parent().find('.playerName').text();
-    LogInGameNew("hpIncreasing", [myUsername, targetPlayer]);
+    await LogInGameNew("hpIncreasing", [myUsername, targetPlayer]);
 
-    connection.invoke("ModifyPlayerHp", targetPlayer, "increase", JSON.stringify(state.Game)).catch(function (err) {
+    await connection.invoke("ModifyPlayerHp", targetPlayer, "increase", JSON.stringify(state.Game)).catch(function (err) {
         return console.error(err.toString());
     });
 });
@@ -796,9 +794,9 @@ connection.on("DispatchExiledCards", function (newGameState) {
 })
 
 
-function FillZoneInspectorWithCards(playerInspecting, playerInspected, howManyCards, inspectedZone,) {
+async function FillZoneInspectorWithCards(playerInspecting, playerInspected, howManyCards, inspectedZone,) {
     var game = state.Game;
-    connection.invoke("ShowMeCertainZone", playerInspecting, playerInspected, inspectedZone, howManyCards, JSON.stringify(game)).catch(function (err) {
+    await connection.invoke("ShowMeCertainZone", playerInspecting, playerInspected, inspectedZone, howManyCards, JSON.stringify(game)).catch(function (err) {
         return console.error(err.toString());
     });
 }
@@ -852,10 +850,9 @@ function GetTeams() {
 }
 
 connection.on("SomeoneLeft",function (leavingPlayer){
-    console.log("è uscito "+ leavingPlayer);
+    console.log("someoneleft -> "+ leavingPlayer);
 });
 connection.on("YouWon", function (leavingPlayer){
-    console.log("no more in game "+ leavingPlayer);
     $('.teammateContainer').empty();
     ResetInviteScreen();
     $('#boardGameContainer').hide();
@@ -1065,7 +1062,7 @@ function ResetInviteScreen() {
 
 }
 
-function SendGameInvitations() {
+async function SendGameInvitations() {
     var invitedId = [];
     var gameMode = $('#modeSelection').val();
     var teams = [];
@@ -1134,7 +1131,7 @@ function SendGameInvitations() {
 
     var obj = { "InvitingId": myConnectionId, "InvitingPlayerName": myUsername, "DeckId": deckId, "InvitedIds": invitedId, "GameMode": gameMode, "Teams": teams, "RoomId": GuidGenerator(), "Rooms": null }
 
-    connection.invoke("SendGameInvitation", JSON.stringify(obj)).catch(function (err) {
+    await connection.invoke("SendGameInvitation", JSON.stringify(obj)).catch(function (err) {
         return console.error(err.toString());
     });
 

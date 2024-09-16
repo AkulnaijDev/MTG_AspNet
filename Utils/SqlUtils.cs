@@ -105,7 +105,6 @@ namespace Utils
                 }
 
                 queryString.Append(" WHERE Id = @deckId");
-                Console.WriteLine(queryString);
 
                 command.CommandText = queryString.ToString();
                 connection.Open();
@@ -313,8 +312,6 @@ namespace Utils
         public static List<Card> QueryRequestCards(string filter)
         {
             var queryString = "SELECT * From Cards " + filter;
-
-            Console.WriteLine(queryString);
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -642,8 +639,6 @@ namespace Utils
 
         public static List<string> AdvancedSearchedCards(string queryString)
         {
-            Console.WriteLine(queryString);
-
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();

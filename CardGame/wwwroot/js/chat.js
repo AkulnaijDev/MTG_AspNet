@@ -28,27 +28,27 @@ $(document).on("mouseup", "#mypasswordchecker", function () {
 })
 
 
-$(document).on("click", "#loginbutton", function () {
+$(document).on("click", "#loginbutton", async function () {
 
   $('#loginSpinner').show();
   $(this).attr('disabled', 'true') //to avoid multiple calls
   var username = $("#myname").val();
   var password = $("#mypassword").val();
 
-  connection.invoke("VerifyLogin", username, password).catch(function (err) {
+  await connection.invoke("VerifyLogin", username, password).catch(function (err) {
     return console.error(err.toString());
   });
 
   event.preventDefault();
 });
 
-connection.on("ConfirmLogin", function (tokenSql) {
+connection.on("ConfirmLogin", async function (tokenSql) {
   myToken = tokenSql;
 
   if (tokenSql != "") {
     myUsername = $('#myname').val();
 
-    connection.invoke("Login", myUsername).catch(function (err) {
+    await connection.invoke("Login", myUsername).catch(function (err) {
       return console.error(err.toString());
     });
 
@@ -58,26 +58,6 @@ connection.on("ConfirmLogin", function (tokenSql) {
     $('#loginbutton').removeAttr('disabled')
   }
 })
-
-// connection.on("ApprovedLogin", function () {
-  
-//     myUsername = $('#myname').val();
-
-//     connection.invoke("ReadAllSets").catch(function (err) {
-//       return console.error(err.toString());
-//     });
-
-//     connection.invoke("ReadAllCardsLastSet").catch(function (err) {
-//       return console.error(err.toString());
-//     });
-
-//     connection.invoke("ReadAllDecks", myUsername).catch(function (err) {
-//       return console.error(err.toString());
-//     });
-//     connection.invoke("GetUserSetting", myUsername).catch(function (err) {
-//       return console.error(err.toString());
-//     });
-// })
 
 connection.on("ApprovedLogin", async function () {
   try {
@@ -154,7 +134,7 @@ connection.on("NotifyMe_Disconnected", function (userObj) {
 
 //actual chat start
 
-$('body').on('click', '.openToChatIcon', function () {
+$('body').on('click', '.openToChatIcon', async function () {
   var targetUserId = $(this).parent().find('.onlineUserName').attr("userid");
   var targetUsername = $(this).parent().find('.onlineUserName').text();
   var roomGuid = GuidGenerator();
@@ -166,14 +146,13 @@ $('body').on('click', '.openToChatIcon', function () {
 
   if (!duplicateExists) {
     // Non esistono duplicati, quindi puoi invocare la funzione
-    connection.invoke("PutMeAndFriendInRoom", myConnectionId, myUsername, targetUserId, targetUsername, roomGuid).catch(function (err) {
+    await connection.invoke("PutMeAndFriendInRoom", myConnectionId, myUsername, targetUserId, targetUsername, roomGuid).catch(function (err) {
         return console.error(err.toString());
     });
   } else {
     $('body .personalChat').filter(function() {
       return $(this).attr('targetUserId') === targetUserId;
     }).show();
-    console.log("Esiste già una chat aperta con questo utente.");
   }
 });
 
@@ -207,14 +186,14 @@ $('body').on('click', '.maximizePersonalChat', function () {
 });
 
 
-$('body').on('keyup', '.myChatTextSenderInput', function (e) {
+$('body').on('keyup', '.myChatTextSenderInput', async function (e) {
   var message = $(this).val();
   var roomGuid = $(this).parent().parent().attr('guid')
   var textBox = $(this).parent().parent().find('.myChatTextContainer')
 
   if (e.key == "Enter" && $(this).val().replaceAll(" ", "") != "") {
 
-    connection.invoke("SendChatMessage", myConnectionId, roomGuid, message).catch(function (err) {
+    await connection.invoke("SendChatMessage", myConnectionId, roomGuid, message).catch(function (err) {
       return console.error(err.toString());
     });
 
