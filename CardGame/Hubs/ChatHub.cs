@@ -219,30 +219,64 @@ namespace CardGame.Hubs
 
         public async Task AbandonGame(string username)
         {
-            var room = _roomList.Where(x => x.Players.Any(y => y.Name == username)).FirstOrDefault();
-            var roomId = room?.RoomId;
+            var room = _roomList.FirstOrDefault(x => x.Players.Any(y => y.Name == username));
 
-            var currentMatch = _matchesCurrentlyOn.Where(x => x.PlayerStatuses.Any(y => y.Name == username)).FirstOrDefault();
+            if (room == null)
+            {
+                // Gestisci il caso in cui non esiste una stanza per l'utente
+                Console.WriteLine("Room not found for user: " + username);
+                return;
+            }
 
-            var teamOfLeavingPlayer = currentMatch.Game.Teams.Where(x=> x.Teammates.Any(y=> y.Name==username));
-            var teammates = teamOfLeavingPlayer?.Select(x=> x.Teammates).FirstOrDefault();
-            var otherPlayers = teammates?.Where(x => x.Name != username);
+            var roomId = room.RoomId;
 
+            var currentMatch = _matchesCurrentlyOn.FirstOrDefault(x => x.PlayerStatuses.Any(y => y.Name == username));
 
-            await _matchesCurrentlyOn.Where(x => x.Game.RoomId == roomId).FirstOrDefault().RemovePlayer(username);
-            await _roomList.Where(x => x.RoomId == roomId).FirstOrDefault().RemovePlayer(username);
+            if (currentMatch == null)
+            {
+                // Gestisci il caso in cui non esiste una partita per l'utente
+                Console.WriteLine("Match not found for user: " + username);
+                return;
+            }
 
-            if (otherPlayers?.Count()>0)
+            var teamOfLeavingPlayer = currentMatch.Game.Teams
+                .Where(x => x.Teammates.Any(y => y.Name == username))
+                .Select(x => x.Teammates)
+                .FirstOrDefault();
+
+            var otherPlayers = teamOfLeavingPlayer?.Where(x => x.Name != username);
+
+            // Rimuovi il giocatore dalla partita e dalla stanza
+            var matchToRemovePlayer = _matchesCurrentlyOn.FirstOrDefault(x => x.Game.RoomId == roomId);
+            var roomToRemovePlayer = _roomList.FirstOrDefault(x => x.RoomId == roomId);
+
+            if (matchToRemovePlayer != null)
+            {
+                await matchToRemovePlayer.RemovePlayer(username);
+            }
+
+            if (roomToRemovePlayer != null)
+            {
+                await roomToRemovePlayer.RemovePlayer(username);
+            }
+
+            if (otherPlayers != null && otherPlayers.Any())
             {
                 await Clients.Group(roomId).SendAsync("SomeoneLeft", username);
-            } 
-            else 
+            }
+            else
             {
                 await Clients.Group(roomId).SendAsync("YouWon", username);
-                _matchesCurrentlyOn.Remove(_matchesCurrentlyOn.Where(x=>x.Game.RoomId==roomId).FirstOrDefault());
+
+                if (matchToRemovePlayer != null)
+                {
+                    _matchesCurrentlyOn.Remove(matchToRemovePlayer);
+                }
+
                 _roomList.Remove(room);
             }
         }
+
 
         public async Task VerifyGameModes(string deckId, string username)
         {
@@ -371,7 +405,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
 
         }
@@ -392,7 +426,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
 
         }
@@ -461,7 +495,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -490,7 +524,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -538,7 +572,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -879,7 +913,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
                 return "";
             }
         }
@@ -939,7 +973,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1117,7 +1151,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1167,7 +1201,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1247,7 +1281,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1298,7 +1332,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1365,7 +1399,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1538,7 +1572,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1646,7 +1680,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1715,7 +1749,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1758,7 +1792,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1781,7 +1815,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1903,7 +1937,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -1939,7 +1973,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
@@ -2011,7 +2045,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + ex.StackTrace);
             }
         }
 
