@@ -34,6 +34,12 @@ body {
   width: 10px;
 }
 
+@media screen and (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+}
+
 ::-webkit-scrollbar-track {
   background: var(--option_Background_color_lighter);
 }
