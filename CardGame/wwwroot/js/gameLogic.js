@@ -4,8 +4,6 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.currentTarget.attributes[0].nodeValue);
-
-  
 }
 
 async function drop(ev) {
@@ -13,8 +11,7 @@ async function drop(ev) {
     var data = ev.dataTransfer.getData("text");
 
     if(data!=null){
-        $('#contextMenu').hide();
-        $('#cardInGameContextMenu').hide();
+       
         
         var zoneTo = ev.target.className;
 
@@ -28,35 +25,52 @@ async function drop(ev) {
         var cardMoved = $('#' + data);
         var zoneFrom = cardMoved.parent()[0].className;
         var playerFrom = cardMoved.parent().parent().parent().find('.playerNameBoardContainer').text();
+        
+        var availableZones = ["cardZone","handZone","landZone","exiledZone","graveyardZone", "planeswalkerZone","commanderZone", "deckZone" ]
+        
+        if(!availableZones.includes(zoneTo) || !availableZones.includes(zoneFrom)){
+            console.log("Unavailable drop zone");
+        } 
+        else 
+        {
+            $('#contextMenu').hide();
+            $('#cardInGameContextMenu').hide();
     
-        var action = {
-            "Game": state.Game,
-            "CardGuid": data,
-            "From": {
-                "Player": playerFrom,
-                "Zone": zoneFrom
-            },
-            "To": {
-                "Player": playerTo,
-                "Zone": zoneTo
+            var action = {
+                "Game": state.Game,
+                "CardGuid": data,
+                "From": {
+                    "Player": playerFrom,
+                    "Zone": zoneFrom
+                },
+                "To": {
+                    "Player": playerTo,
+                    "Zone": zoneTo
+                }
             }
-        }
-    
-    
-        if (zoneTo === 'cardOnTheTable') {
-            var targetZone = $(ev.target).parent().parent();
-            cardMoved.appendTo(targetZone);
-        } else {
-            ev.target.appendChild(document.getElementById(data));
-        }
-    
-        var cardName = cardMoved.attr('name');
-        //GESTISCI QUI L'UPDATE DI STATO!!!!!!! avanti e indietro!!!
-        await LogInGameNew("cardMoving", [myUsername, cardName, playerFrom, zoneFrom, playerTo, zoneTo]);
+        
+        
+            if (zoneTo === 'cardOnTheTable') {
+                var targetZone = $(ev.target).parent().parent();
+                cardMoved.appendTo(targetZone);
+            } else {
+                ev.target.appendChild(document.getElementById(data));
+            }
+        
+            var cardName = cardMoved.attr('name');
 
-        await connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
-            return console.error(err.toString());
-        });
+            if((zoneTo==='handZone' && zoneFrom==='handZone') || cardMoved.attr('morphed')){
+                cardName = " ??? ";
+            }
+
+            await LogInGameNew("cardMoving", [myUsername, cardName, playerFrom, zoneFrom, playerTo, zoneTo]);
+    
+            await connection.invoke("UpdateState_CardPlayed", JSON.stringify(action)).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
+
+       
     }
 }
 
