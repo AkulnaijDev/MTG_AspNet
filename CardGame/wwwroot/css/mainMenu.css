@@ -130,8 +130,8 @@
 
     #optionsMenu {
         width: 26%;
-        height: 36%;
-        top: 32%;
+        height: 44%;
+        top: 28%;
         left: 37%;
     }
 
@@ -393,7 +393,7 @@
     border-style: solid;
     align-items: center;
     text-align: center;
-    max-height: 300px;
+    max-height: 400px;
     max-width: 300px;
 }
 
