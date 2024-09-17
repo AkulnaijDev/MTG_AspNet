@@ -380,7 +380,7 @@ $('body').on('contextmenu', '.cardContainer', function () {
 
         $('#contextListOfAllCounters').empty();
         
-        if(cardCounters!=""){
+        if(cardCounters!="" && cardCounters.trim() !== ""){
             var entries = cardCounters.split(';').filter(Boolean); // Usa filter(Boolean) per rimuovere stringhe vuote
 
             // Itera attraverso ogni parte dell'array
@@ -884,6 +884,9 @@ connection.on("DisplayGameBoard", function (gameState) {
     
     if (gameStatus.PlayerStatuses.length >= 3) {
         DisplayBoardForMoreThanTwoPlayers();
+        if(gameStatus.PlayerStatuses <= 3){
+            $('#boardPlayer4').find('.deckBackCardContainer').hide()
+        }
     }
     else {
         DisplayBoardForTwoPlayers();

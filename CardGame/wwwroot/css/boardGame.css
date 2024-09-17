@@ -27,6 +27,15 @@
   top:0;
 }
 
+@media screen and (max-height: 700px) {
+  #rulesGameButton,
+  #gameModeGameButton,
+  #beginTheGameButton,
+  #quitTheGameButton {
+    font-size:11px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .deckBackCardOnTheTable {
     position: relative;
@@ -351,7 +360,7 @@
   max-height:30px;
 }
 
-#myDeckSetPickerSelector,
+
 #zoneInspector{
   scrollbar-width: none;
 }
@@ -378,14 +387,14 @@
 .graveyardZone {
   height: 33%;
   flex-direction: row;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
 
 }
 
 .exiledZone {
   height: 33%;
   flex-direction: row;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
 }
 
 .landZone {
@@ -555,7 +564,7 @@
 .planeswalkerZone,
 .exiledZone,
 .graveyardZone {
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
@@ -748,6 +757,16 @@
   border-right:1px solid var(--option_Border_color); 
   border-top:1px solid var(--option_Border_color); 
 }
+#boardPlayer3 .deckZone,
+#boardPlayer3 .planeswalkerZone,
+#boardPlayer3 .commanderZone,
+#boardPlayer4 .playerNameZone,
+#boardPlayer4 .exiledZone,
+#boardPlayer4 .graveyardZone
+{
+  border-left:1px solid var(--option_Border_color);
+}
+
 
 #contextMenuExileCards{
   width:15%;
@@ -846,3 +865,35 @@
   width: 50%;
   text-align: left;
 }
+
+.cardZone, .landZone, .graveyardZone, .exiledZone, .handZone, .planeswalkerZone, .commanderZone{
+  overflow-x: auto;
+  scrollbar-width: auto;
+}
+
+
+/* .planeswalkerZone {
+  display: flex !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.cardContainer {
+  padding: 3px !important;
+  height: 100% !important;
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: transform 0.3s !important;
+  z-index: 9996 !important;
+}
+
+.cardOnTheTable {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 6px !important;
+} */
