@@ -101,99 +101,143 @@ async function DrawCardFromMyDeck(myUsername) {
     });
 }
 
-function UpdateBoard(newGameStatus) {
 
-    JSON.parse(newGameStatus).PlayerStatuses.forEach(element => {
-        var parentBoard = $('.playerNameBoardContainer:contains(' + element.Name + ')').parent().parent().parent().parent();
-        var attributeCantSeeCard = false;
+async function UpdateBoard(newGameStatus) {
+    try {
+        var parsedGameStatus = JSON.parse(newGameStatus);
+        console.log("Parsed game status:", parsedGameStatus); 
 
-        parentBoard.find('.cardZone').empty();
-        element.GameZone.forEach(card => {
-            var cardStatus = card.Statuses || []; // Se card.Statuses è undefined, sarà un array vuoto
-            var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSourceImg = card.Source;
-            if(cardStatus.includes("Morphed")){
-                cardSourceImg = "../resources/cardBack.jpg"
+        parsedGameStatus.PlayerStatuses.forEach(element => {
+
+            var parentBoard = $('.playerNameBoardContainer:contains(' + element.Name + ')').parent().parent().parent().parent();
+
+            if (!parentBoard.length || parentBoard.length <1) {
+                return;
             }
 
-            var counters = "counters='";
-            card.Counters.forEach(function(item) {
-                counters += (item.Quantity + ' _of_ ' + item.Type + ";");
+            var attributeCantSeeCard = false;
+
+            // Card Zone
+            parentBoard.find('.cardZone').empty();
+            element.GameZone.forEach(card => {
+                var cardStatus = card.Statuses || [];
+                var statusAttributes = cardStatus.map(status => status).join(" ");
+                var cardSourceImg = card.Source;
+
+                console.log("Card in GameZone:", card);
+
+                if (cardStatus.includes("Morphed")) {
+                    cardSourceImg = "../resources/cardBack.jpg";
+                }
+
+                var counters = "counters='";
+                (card.Counters || []).forEach(function(item) {
+                    counters += (item.Quantity + ' _of_ ' + item.Type + ";");
+                });
+                counters += "'";
+
+                var div = '<div id="' + card.Guid + '" ' + counters + ' ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
+                parentBoard.find('.cardZone').append(div);
             });
-            counters += "'";
 
-            var div = '<div id="' + card.Guid + '" ' + counters + " " + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
-            parentBoard.find('.cardZone').append(div);
-        })
+            // Hand Zone
+            parentBoard.find('.handZone').empty();
+            element.Hand.forEach(card => {
+                var cardStatus = card.Statuses || [];
+                var statusAttributes = cardStatus.map(status => status).join(" ");
+                var cardSource = card.Source;
 
-        parentBoard.find('.handZone').empty();
-        element.Hand.forEach(card => {
-            var cardStatus = card.Statuses || [];
-            var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSource = card.Source;
-            if (element.Name != myUsername) {
-                cardSource = "../resources/cardBack.jpg"
-                attributeCantSeeCard = true;
-            }
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
-            parentBoard.find('.handZone').append(div);
-        })
+                if (element.Name != myUsername) {
+                    cardSource = "../resources/cardBack.jpg";
+                    attributeCantSeeCard = true;
+                }
 
-        parentBoard.find('.landZone').empty();
-        element.LandZone.forEach(card => {
-            var cardStatus = card.Statuses || [];
-            var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSourceImg = card.Source;
-            if(cardStatus.includes("Morphed")){
-                cardSourceImg = "../resources/cardBack.jpg"
-            }
-            var counters = "counters='";
-            card.Counters.forEach(function(item) {
-                counters += (item.Quantity + ' _of_ ' + item.Type + ";");
+                console.log("Card in HandZone:", card);
+
+                var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+                parentBoard.find('.handZone').append(div);
             });
-            counters += "'";
-            var div = '<div id="' + card.Guid + '" ' + counters + " " + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
-            parentBoard.find('.landZone').append(div);
-        })
 
-        parentBoard.find('.exiledZone').empty();
-        element.Exiled.forEach(card => {
-            var cardStatus = card.Statuses || [];
-            var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
-            parentBoard.find('.exiledZone').append(div);
-        })
+            // Land Zone
+            parentBoard.find('.landZone').empty();
+            element.LandZone.forEach(card => {
+                var cardStatus = card.Statuses || [];
+                var statusAttributes = cardStatus.map(status => status).join(" ");
+                var cardSourceImg = card.Source;
+                if (cardStatus.includes("Morphed")) {
+                    cardSourceImg = "../resources/cardBack.jpg";
+                }
+                var counters = "counters='";
+                (card.Counters || []).forEach(function(item) {
+                    counters += (item.Quantity + ' _of_ ' + item.Type + ";");
+                });
+                counters += "'";
 
-        parentBoard.find('.graveyardZone').empty();
-        element.Graveyard.forEach(card => {
-            var cardStatus = card.Statuses || [];
-            var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
-            parentBoard.find('.graveyardZone').append(div);
-        })
+                console.log("Card in LandZone:", card);
 
-        parentBoard.find('.planeswalkerZone').empty();
-        element.PlaneswalkerZone.forEach(card => {
-            var cardStatus = card.Statuses || [];
-            var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
-            parentBoard.find('.planeswalkerZone').append(div);
-        })
+                var div = '<div id="' + card.Guid + '" ' + counters + ' ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSourceImg + '"></div>';
+                parentBoard.find('.landZone').append(div);
+            });
 
-        parentBoard.find('.commanderZone').empty();
-        element.CommanderZone.forEach(card => {
-            var cardStatus = card.Statuses || [];
-            var statusAttributes = cardStatus.map(status => status).join(" ");
-            var cardSource = card.Source;
-            var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
-            parentBoard.find('.commanderZone').append(div);
-        })
+            // Exiled Zone
+            parentBoard.find('.exiledZone').empty();
+            element.Exiled.forEach(card => {
+                var cardStatus = card.Statuses || [];
+                var statusAttributes = cardStatus.map(status => status).join(" ");
+                var cardSource = card.Source;
 
-    });
+                console.log("Card in ExiledZone:", card);
+
+                var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+                parentBoard.find('.exiledZone').append(div);
+            });
+
+            // Graveyard Zone
+            parentBoard.find('.graveyardZone').empty();
+            element.Graveyard.forEach(card => {
+                var cardStatus = card.Statuses || [];
+                var statusAttributes = cardStatus.map(status => status).join(" ");
+                var cardSource = card.Source;
+
+                console.log("Card in GraveyardZone:", card);
+
+                var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+                parentBoard.find('.graveyardZone').append(div);
+            });
+
+            // Planeswalker Zone
+            parentBoard.find('.planeswalkerZone').empty();
+            element.PlaneswalkerZone.forEach(card => {
+                var cardStatus = card.Statuses || [];
+                var statusAttributes = cardStatus.map(status => status).join(" ");
+                var cardSource = card.Source;
+
+                console.log("Card in PlaneswalkerZone:", card);
+
+                var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+                parentBoard.find('.planeswalkerZone').append(div);
+            });
+
+            // Commander Zone
+            parentBoard.find('.commanderZone').empty();
+            element.CommanderZone.forEach(card => {
+                var cardStatus = card.Statuses || [];
+                var statusAttributes = cardStatus.map(status => status).join(" ");
+                var cardSource = card.Source;
+
+                console.log("Card in CommanderZone:", card);
+
+                var div = '<div id="' + card.Guid + '" ' + statusAttributes + ' cardId="' + card.CardId + '" seeOnlyBack="' + attributeCantSeeCard + '" source="' + card.Source + '" name="' + card.Name + '" draggable="true" ondragstart="drag(event)" class="cardContainer"><img class="cardOnTheTable" src="' + cardSource + '"></div>';
+                parentBoard.find('.commanderZone').append(div);
+            });
+
+        });
+    } catch (err) {
+        console.error("Error updating board:", err);
+    }
 }
+
+
 
 function DealCardToPlayer(indexPlayer, indexZone) {
     state.PlayerStatuses[indexPlayer].Hand.forEach(card => {

@@ -149,6 +149,11 @@ $('body').on('click', '#startTheGameButton', async function () {
     var roomId = $(this).attr('roomId')
     var myId = myConnectionId;
     var deckId = $('#selectDeckToPlay').val();
+    $(this).attr('disabled',true)
+
+    setTimeout(function() {
+        $(this).removeAttrattr('disabled');  // Riabilita il pulsante dopo 10 secondi
+    }, 10000);
 
     if ($(this).attr('invited') == 'true') {
 
@@ -788,9 +793,9 @@ connection.on("DispatchPlayerHP", function (playerStatus) {
     });
 })
 
-connection.on("DispatchExiledCards", function (newGameState) {
+connection.on("DispatchExiledCards", async function (newGameState) {
     state = JSON.parse(newGameState);
-    UpdateBoard(newGameState);
+    await UpdateBoard(newGameState);
 })
 
 
@@ -901,9 +906,9 @@ connection.on("DisplayGameBoard", function (gameState) {
 })
 
 
-connection.on("UpdateGameBoard", function (newGameState) {
+connection.on("UpdateGameBoard", async function (newGameState) {
     state = JSON.parse(newGameState);
-    UpdateBoard(newGameState);
+    await UpdateBoard(newGameState);
 })
 
 function DisplayInitialHP(mode) {
