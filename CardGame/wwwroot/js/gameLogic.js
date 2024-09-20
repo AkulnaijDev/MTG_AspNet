@@ -22,7 +22,8 @@ async function drop(ev) {
             zoneTo = $(ev.target).parent().parent()[0].className;;
         }
     
-        var cardMoved = $('#' + data);
+        var cardMoved = $('.cardContainer[id="'+data+'"]');
+        
         var zoneFrom = cardMoved.parent()[0].className;
         var playerFrom = cardMoved.parent().parent().parent().find('.playerNameBoardContainer').text();
         

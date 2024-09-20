@@ -1219,63 +1219,99 @@ namespace CardGame.Hubs
             try
             {
                 var gameAction = JsonConvert.DeserializeObject<ActionCardPlayed>(action);
-                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
+                var storedGameStatus = _matchesCurrentlyOn.FirstOrDefault(x => x.Game.RoomId == gameAction.Game.RoomId);
+
+                if (storedGameStatus == null)
+                {
+                    Console.WriteLine("Game status not found for RoomId: " + gameAction.Game.RoomId);
+                    return;
+                }
+
                 _matchesCurrentlyOn.Remove(storedGameStatus);
 
-                var storedGame = storedGameStatus.Game;
                 var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
-
                 var newGameStatus = storedGameStatus;
                 var card = new GameCard();
 
                 foreach (var playerStatus in storedPlayerStatuses)
                 {
+                    // Gestisci la zona "deckZone" del giocatore che gioca la carta
                     if (playerStatus.Name == gameAction.From.Player)
                     {
                         if (gameAction.From.Zone == "deckZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
-                            var cardToRemove = updatedPlayer.Deck.First();
-                            card = cardToRemove;
-                            updatedPlayer.Deck.Remove(cardToRemove);
+                            var updatedPlayer = newGameStatus.PlayerStatuses.FirstOrDefault(x => x.Name == playerStatus.Name);
+                            if (updatedPlayer == null)
+                            {
+                                Console.WriteLine("Player not found in PlayerStatuses: " + playerStatus.Name);
+                                continue; // Salta al prossimo player se non trovato
+                            }
+
+                            if (string.IsNullOrEmpty(gameAction.CardGuid))
+                            {
+                                var cardToRemove = updatedPlayer.Deck.FirstOrDefault();
+                                if (cardToRemove == null)
+                                {
+                                    Console.WriteLine("No card found in deck for player: " + playerStatus.Name);
+                                    continue; // Salta se non ci sono carte nel deck
+                                }
+
+                                card = cardToRemove;
+                                updatedPlayer.Deck.Remove(cardToRemove);
+                            } 
+                            else
+                            {
+                                var cardToRemove = updatedPlayer.Deck.Where(x=> x.Guid == gameAction.CardGuid).FirstOrDefault();
+                                if (cardToRemove == null)
+                                {
+                                    Console.WriteLine("No card found in deck for player: " + playerStatus.Name);
+                                    continue; // Salta se non ci sono carte nel deck
+                                }
+
+                                card = cardToRemove;
+                                updatedPlayer.Deck.Remove(cardToRemove);
+                            }
+                            
+                            
                         }
                     }
 
+                    // Gestisci il giocatore che riceve la carta
                     if (playerStatus.Name == gameAction.To.Player)
                     {
+                        var updatedPlayer = newGameStatus.PlayerStatuses.FirstOrDefault(x => x.Name == playerStatus.Name);
+                        if (updatedPlayer == null)
+                        {
+                            Console.WriteLine("Player not found in PlayerStatuses: " + playerStatus.Name);
+                            continue; // Salta al prossimo player se non trovato
+                        }
+
                         if (gameAction.To.Zone == "cardZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.GameZone.Add(card);
                         }
-                        if (gameAction.To.Zone == "handZone")
+                        else if (gameAction.To.Zone == "handZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.Hand.Add(card);
                         }
-                        if (gameAction.To.Zone == "landZone")
+                        else if (gameAction.To.Zone == "landZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.LandZone.Add(card);
                         }
-                        if (gameAction.To.Zone == "exiledZone")
+                        else if (gameAction.To.Zone == "exiledZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.Exiled.Add(card);
                         }
-                        if (gameAction.To.Zone == "graveyardZone")
+                        else if (gameAction.To.Zone == "graveyardZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.Graveyard.Add(card);
                         }
-                        if (gameAction.To.Zone == "planeswalkerZone")
+                        else if (gameAction.To.Zone == "planeswalkerZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.PlaneswalkerZone.Add(card);
                         }
-                        if (gameAction.To.Zone == "commanderZone")
+                        else if (gameAction.To.Zone == "commanderZone")
                         {
-                            var updatedPlayer = newGameStatus.PlayerStatuses.First(x => x.Name == playerStatus.Name);
                             updatedPlayer.CommanderZone.Add(card);
                         }
                     }
@@ -1284,12 +1320,11 @@ namespace CardGame.Hubs
                 _matchesCurrentlyOn.Add(newGameStatus);
 
                 var roomId = newGameStatus.Game.RoomId;
-
                 await Clients.Group(roomId).SendAsync("UpdateGameBoard", JsonConvert.SerializeObject(newGameStatus));
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + ex.StackTrace);
+                Console.WriteLine("Error in UpdateState_CardPlayedFromDeck: " + ex.Message + " - " + ex.StackTrace);
             }
         }
 

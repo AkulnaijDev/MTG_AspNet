@@ -391,7 +391,7 @@ $('body').on('change', '#languageChooseOptions', function () {
         $('#contextCardSneakedToZoneButton').text("Manda carta")
 
         $("#contextCardSneakedToZoneOwnerSelector option[value='mine']").text("Mia");
-        $("#contextCardSneakedToZoneOwnerSelector option[value='onwer']").text("Proprietario");
+        $("#contextCardSneakedToZoneOwnerSelector option[value='owner']").text("Proprietario");
 
         $("#contextCardGameMenuCountersSelector option[value='Trample']").text("Travolgere");
         $("#contextCardGameMenuCountersSelector option[value='DoubleStrike']").text("DoppioAttacco");
@@ -561,7 +561,7 @@ $('body').on('change', '#languageChooseOptions', function () {
 
         
         $("#contextCardSneakedToZoneOwnerSelector option[value='mine']").text("Mine");
-        $("#contextCardSneakedToZoneOwnerSelector option[value='onwer']").text("Deck owner");
+        $("#contextCardSneakedToZoneOwnerSelector option[value='owner']").text("Deck owner");
 
 
         $("#contextCardGameMenuCountersSelector option[value='Trample']").text("Trample");
