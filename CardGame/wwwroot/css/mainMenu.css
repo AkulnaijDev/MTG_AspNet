@@ -17,51 +17,24 @@
     --watermarkLands:"Lands";
 }
 
-/* Regole di base per la tua classe */
 .myResponsiveTextBig {
     font-size: 16px;
 }
-
-/* .myResponsiveTextMedium {
-    font-size: 25px;
-} */
-
 .myResponsiveTextSmall {
     font-size: 18px;
 }
 
-
 #myDeckCardCount{
     width:100%;
 }
-/* Media query per schermi più piccoli (ad esempio, dispositivi mobili) */
+
 @media screen and (max-width: 920px) {
     .myResponsiveTextBig {
         font-size: 25px;
     }
 
-    /* .myResponsiveTextMedium {
-        font-size: 18px;
-    } */
-
     .myResponsiveTextSmall {
         font-size: 14px;
-    }
-
-    
-
-    #optionsMenu {
-        top: 27%;
-        left: 22%;
-        height: 45%;
-        width: 60%;
-    }
-
-    #rulesMenu {
-        top: 5%;
-        left: 10%;
-        height: 90%;
-        width: 80%;
     }
 
     #gameModeMenu {
@@ -97,49 +70,15 @@
         overflow-y: auto;
         top:0;
     }
-    
-    #gameInvitation {
-        height: 30%;
-        position: absolute;
-        top: 35%;
-        width: 80%;
-        left: 10%;
-        z-index: 9999;
-        background-color: var(--option_Background_color);
-        border-radius: 10px;
-        border-style: solid;
-        padding: 20px;
-        display: none;
-    }
-
 }
 
-/* Media query per schermi più grandi (ad esempio, desktop) */
 @media screen and (min-width: 921px) {
     .myResponsiveTextBig {
         font-size: 35px;
     }
 
-    /* .myResponsiveTextMedium {
-        font-size: 25px;
-    } */
-
     .myResponsiveTextSmall {
         font-size: 18px;
-    }
-
-    #optionsMenu {
-        width: 26%;
-        height: 44%;
-        top: 28%;
-        left: 37%;
-    }
-
-    #rulesMenu {
-        height: 800px;
-        width: 600px;
-        top: 6%;
-        left: 35%;
     }
 
     #gameModeMenu {
@@ -176,26 +115,10 @@
         left: 30%;
     }
 
-
-
     #myDeckAdvancedSearch button {
         width: 100px;
     }
     
-    #gameInvitation {
-        height: 30%;
-        position: absolute;
-        top: 35%;
-        width: 30%;
-        left: 35%;
-        z-index: 9999;
-        background-color: var(--option_Background_color);
-        border-radius: 10px;
-        border-style: solid;
-        padding: 20px;
-        display: none;
-    }
-
 }
 
 #myDeckAdvancedSearch .row {
@@ -221,33 +144,10 @@
     filter: blur(15px);
 }
 
-.inputLogin {
-    width: 90%;
-    float: left;
-    font-family: Arial, Helvetica, sans-serif;
-}
 
-#loginForm .form-group {
-    margin-bottom: 10px;
-}
-
-.heightfivepercent {
-    height: 15%;
-}
-
-.passwordContainer {
-    display: flex;
-}
-
-#loginError,
-#loginErrorAlreadyLoggedin,
 #advancedSearchError {
     color: red;
     display: none;
-}
-
-#loginbutton {
-    width: 50%;
 }
 
 .spinner {
@@ -277,35 +177,6 @@
     }
 }
 
-/* #mainMenu {
-    background-image: url("../resources/Chandra.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 9997;
-    display: flex;
-    align-items: center;
-}
-
-#mainMenuVoices {
-    left: 4%;
-    position: absolute;
-}
-
-.mainMenuVoicesText {
-    padding: 10px;
-    font-weight: 500;
-    color: var(--light_Text_color);
-    text-shadow: -1px -1px 0 var(--dark_Text_contour), 1px -1px 0 var(--dark_Text_contour), -1px 1px 0 var(--dark_Text_contour), 1px 1px 0 var(--dark_Text_contour);
-}
-
-.mainMenuVoicesText:hover {
-    color: var(--option_Text_hover);
-    text-decoration: underline;
-} */
 
 #mainMenu {
     background-image: url("../resources/Chandra.jpg");
@@ -322,7 +193,6 @@
     top:0;
 }
 
-/* Main Menu Voices */
 #mainMenuVoices {
     display: flex;
     flex-direction: column;
@@ -342,159 +212,19 @@
     text-decoration: underline;
 }
 
-/* Media query per la responsiveness */
+
 @media (max-width: 768px) {
     .mainMenuVoicesText {
-        font-size: 1.5rem; /* Ridimensiona il testo per schermi medi */
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 576px) {
     .mainMenuVoicesText {
-        font-size: 1.25rem; /* Ridimensiona il testo per schermi piccoli */
+        font-size: 1.25rem;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-#loginForm {
-    position: absolute;
-    z-index: 9998;
-    display: none;
-    background-color: var(--option_Background_color);
-    border-radius: 10px;
-    border-style: solid;
-    align-items: center;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    max-width: 400px;
-    padding: 20px;
-}
-
-#optionsMenu {
-    position: absolute;
-    z-index: 4;
-    display: none;
-    background-color: var(--option_Background_color);
-    padding: 20px;
-    border-radius: 10px;
-    border-style: solid;
-    align-items: center;
-    text-align: center;
-    max-height: 400px;
-    max-width: 300px;
-}
-
-
-#optionsTitle {
-    font-size: 20px;
-    color: var(--light_Text_color);
-    padding-bottom: 20px;
-}
-
-.optionsVoices {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    columns: 2;
-}
-
-.optionsText {
-    color: var(--light_Text_color);
-    text-align: left;
-    width: 100%;
-}
-
-.optionsLowestVoices {
-    position: absolute;
-    bottom: 0;
-    width: 90%;
-    margin-bottom: 10px;
-    color: var(--light_Text_color);
-}
-
-.optionsLowestVoicesForRules {
-    width: 94%;
-}
-
-.optionsVoices select {
-    width: 100%;
-}
-
-#myRange {
-    width: 100%;
-}
-
-/* Options end */
-
-
-/* Rules :start */
-#rulesTitle,
-#gameModeTitle {
-    font-size: 30px;
-    color: var(--light_Text_color);
-    padding-bottom: 20px;
-}
-
-#rulesMenu {
-    position: absolute;
-    z-index: 9999;
-    display: none;
-    background-color: var(--option_Background_color);
-    padding: 20px;
-    border-radius: 10px;
-    border-style: solid;
-    align-items: center;
-    text-align: center;
-}
-
-#rulesAbilitiesList,
-#gameModeList {
-    text-align: left;
-    overflow-y: auto;
-    padding-top: 1%;
-    height: 86%;
-    padding-right: 3%;
-}
-
-.abilityHeader {
-    display: flex;
-}
-
-.abilityMinusIcon,
-.gameModeMinusIcon {
-    display: none;
-}
-
-.abilityName,
-.gameModeName {
-    color: var(--light_Text_color);
-    margin-left: 10px;
-}
-
-.abilityDescription,
-.gameModeDescription {
-    display: none;
-    color: var(--light_Text_color);
-    margin-bottom: 10px;
-}
-
-.translatedAbility {
-    display: none
-}
-
-/* Rules end */
 @-webkit-keyframes fade-out {
     0% {
         opacity: 1;
@@ -514,5 +244,3 @@
         opacity: 0;
     }
 }
-
-/* LOGO SCREEN END */

@@ -1,0 +1,44 @@
+#loginForm .form-group {
+    margin-bottom: 10px;
+}
+
+.heightfivepercent {
+    height: 15%;
+}
+
+#loginError,
+#loginErrorAlreadyLoggedin{
+    color: red;
+    display: none;
+}
+
+#loginbutton {
+    width: 50%;
+}
+
+#loginForm {
+    position: absolute;
+    z-index: 9998;
+    display: none;
+    background-color: var(--option_Background_color);
+    border-radius: 10px;
+    border-style: solid;
+    align-items: center;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.inputLogin {
+    width: 90%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.passwordContainer {
+    display: flex;
+}

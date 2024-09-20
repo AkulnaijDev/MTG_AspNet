@@ -1,0 +1,88 @@
+#rulesMenu {
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    background-color: var(--option_Background_color);
+    padding: 20px;
+    border-radius: 10px;
+    border-style: solid;
+    align-items: center;
+    text-align: center;
+}
+
+#rulesTitle{
+    font-size: 30px;
+    color: var(--light_Text_color);
+    padding-bottom: 20px;
+}
+
+#rulesAbilitiesList{
+    text-align: left;
+    overflow-y: auto;
+    padding-top: 1%;
+    height: 86%;
+    padding-right: 3%;
+}
+
+.optionsLowestVoicesForRules {
+    width: 94%;
+}
+
+#gameModeTitle {
+    font-size: 30px;
+    color: var(--light_Text_color);
+    padding-bottom: 20px;
+}
+
+#gameModeList {
+    text-align: left;
+    overflow-y: auto;
+    padding-top: 1%;
+    height: 86%;
+    padding-right: 3%;
+}
+
+.abilityHeader {
+    display: flex;
+}
+
+.abilityMinusIcon,
+.gameModeMinusIcon {
+    display: none;
+}
+
+.abilityName,
+.gameModeName {
+    color: var(--light_Text_color);
+    margin-left: 10px;
+}
+
+.abilityDescription,
+.gameModeDescription {
+    display: none;
+    color: var(--light_Text_color);
+    margin-bottom: 10px;
+}
+
+.translatedAbility {
+    display: none
+}
+
+@media screen and (max-width: 920px) {
+    
+    #rulesMenu {
+        top: 5%;
+        left: 10%;
+        height: 90%;
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 921px) {
+    #rulesMenu {
+        height: 800px;
+        width: 600px;
+        top: 6%;
+        left: 35%;
+    }
+}

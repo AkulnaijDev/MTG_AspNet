@@ -1,0 +1,68 @@
+.optionsLowestVoices {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    margin-bottom: 10px;
+    color: var(--light_Text_color);
+}
+
+.optionsVoices {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    columns: 2;
+}
+
+.optionsText {
+    color: var(--light_Text_color);
+    text-align: left;
+    width: 100%;
+}
+
+#myRange {
+    width: 100%;
+}
+
+.optionsVoices select {
+    width: 100%;
+}
+
+#optionsTitle {
+    font-size: 20px;
+    color: var(--light_Text_color);
+    padding-bottom: 20px;
+}
+
+#optionsMenu {
+    position: absolute;
+    z-index: 4;
+    display: none;
+    background-color: var(--option_Background_color);
+    padding: 20px;
+    border-radius: 10px;
+    border-style: solid;
+    align-items: center;
+    text-align: center;
+    max-height: 400px;
+    max-width: 300px;
+}
+
+@media screen and (max-width: 920px) {
+
+    #optionsMenu {
+        top: 27%;
+        left: 22%;
+        height: 45%;
+        width: 60%;
+    }
+
+}
+@media screen and (min-width: 921px) {
+
+    #optionsMenu {
+        width: 26%;
+        height: 44%;
+        top: 28%;
+        left: 37%;
+    }
+
+}

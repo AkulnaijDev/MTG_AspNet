@@ -5,9 +5,15 @@
 }
 
 @await Html.PartialAsync("_LoadingScreen")
+@await Html.PartialAsync("_LoginForm")
+@await Html.PartialAsync("_OptionsMenu")
+@await Html.PartialAsync("_GameModeMenu")
+@await Html.PartialAsync("_MyDeckMenu")
+@await Html.PartialAsync("_RulesMenu")
 @await Html.PartialAsync("_BoardGame")
 @await Html.PartialAsync("_MainMenu")
 @await Html.PartialAsync("_Chat")
+@await Html.PartialAsync("_GameInvitation")
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>

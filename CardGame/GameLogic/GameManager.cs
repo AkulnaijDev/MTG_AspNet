@@ -30,9 +30,9 @@ public static class GameUtils
         var selectedCards = new List<GameCard>();
         var remainingCards = new List<GameCard>();
 
-        for ( int i = 0;i<shuffledDeck.Count; i++)
+        for (int i = 0; i < shuffledDeck.Count; i++)
         {
-            if (i< cardsToDraw)
+            if (i < cardsToDraw)
             {
                 selectedCards.Add(shuffledDeck[i]);
             }

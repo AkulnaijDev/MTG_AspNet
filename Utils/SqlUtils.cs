@@ -1,7 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Text;
 using Utils.Models;
 
@@ -93,11 +91,11 @@ namespace Utils
 
                 for (var i = 1; i <= deck.Cards.Count; i++)
                 {
-                    if (deck.Cards[i-1] != null)
+                    if (deck.Cards[i - 1] != null)
                     {
                         var paramName = $"@Card{i.ToString().PadLeft(3, '0')}";
                         var text1 = $", [Card{i.ToString().PadLeft(3, '0')}] = {paramName}";
-                        var deckString = JsonConvert.SerializeObject(deck.Cards[i-1]).Replace("'", "''");
+                        var deckString = JsonConvert.SerializeObject(deck.Cards[i - 1]).Replace("'", "''");
 
                         queryString.Append(text1);
                         command.Parameters.AddWithValue(paramName, deckString);
@@ -554,9 +552,9 @@ namespace Utils
                     while (reader.Read())
                     {
                         var setName = "Phyrexia__All_Will_Be_One";
-                        setName = reader["Set_Name"].ToString().Replace(" ","_").Replace(":","_");
+                        setName = reader["Set_Name"].ToString().Replace(" ", "_").Replace(":", "_");
 
-                        var name = reader["Name"].ToString() + " " + reader["Power"] + "/" + reader["Toughness"]; 
+                        var name = reader["Name"].ToString() + " " + reader["Power"] + "/" + reader["Toughness"];
 
                         if (string.IsNullOrEmpty(reader["Power"].ToString()) && string.IsNullOrEmpty(reader["Toughness"].ToString()))
                         {

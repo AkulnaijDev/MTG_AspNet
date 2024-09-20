@@ -1,17 +1,10 @@
-﻿using CardGame.GameLogic;
-using CardGame.GameLogic.Models;
+﻿using CardGame.GameLogic.Models;
 using CardGame.Models;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Globalization;
-using System.IO.Pipelines;
-using System.Linq;
 using System.Text.RegularExpressions;
 using Utils;
-using static System.Collections.Specialized.BitVector32;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CardGame.Hubs
 {
@@ -1356,57 +1349,97 @@ namespace CardGame.Hubs
             try
             {
                 var gameAction = JsonConvert.DeserializeObject<ActionCardCounterRemoved>(action);
-                var storedGameStatus = _matchesCurrentlyOn.First(x => x.Game.RoomId == gameAction.Game.RoomId);
+                var storedGameStatus = _matchesCurrentlyOn.FirstOrDefault(x => x.Game.RoomId == gameAction.Game.RoomId);
+
+                if (storedGameStatus == null)
+                {
+                    Console.WriteLine("Game status not found for RoomId: " + gameAction.Game.RoomId);
+                    return; // Esce dalla funzione se non si trova il game status
+                }
+
                 _matchesCurrentlyOn.Remove(storedGameStatus);
 
                 var storedGame = storedGameStatus.Game;
                 var storedPlayerStatuses = storedGameStatus.PlayerStatuses;
 
                 var newGameStatus = storedGameStatus;
+
                 foreach (var playerStatus in storedPlayerStatuses)
                 {
                     if (playerStatus.Name == gameAction.Player)
                     {
                         if (gameAction.Zone == "landZone")
                         {
-                            var cardCounters = playerStatus.LandZone.Where(x => x.Guid == gameAction.CardGuid).FirstOrDefault().Counters;
-                            var cardHasCounters = cardCounters.Any(x => x.Type == gameAction.Type);
+                            var card = playerStatus.LandZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                            if (cardHasCounters)
+                            if (card == null)
                             {
-                                var newQuantity = cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity - 1;
+                                Console.WriteLine("Card not found in LandZone for Player: " + playerStatus.Name);
+                                continue; // Salta questa carta se non trovata
+                            }
+
+                            var cardCounters = card.Counters;
+
+                            if (cardCounters == null || !cardCounters.Any(x => x.Type == gameAction.Type))
+                            {
+                                Console.WriteLine("No matching counter found on the card for removal.");
+                                continue; // Se non ci sono counters o nessuno corrisponde al tipo, salta
+                            }
+
+                            var counter = cardCounters.FirstOrDefault(x => x.Type == gameAction.Type);
+
+                            if (counter != null)
+                            {
+                                var newQuantity = counter.Quantity - 1;
+
                                 if (newQuantity > 0)
                                 {
-                                    cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity = newQuantity;
+                                    counter.Quantity = newQuantity;
                                 }
                                 else
                                 {
-                                    cardCounters.Remove(cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault());
+                                    cardCounters.Remove(counter);
                                 }
                             }
                         }
 
                         if (gameAction.Zone == "cardZone")
                         {
-                            var cardCounters = playerStatus.GameZone.Where(x => x.Guid == gameAction.CardGuid).FirstOrDefault().Counters;
-                            var cardHasCounters = cardCounters.Any(x => x.Type == gameAction.Type);
+                            var card = playerStatus.GameZone.FirstOrDefault(x => x.Guid == gameAction.CardGuid);
 
-                            if (cardHasCounters)
+                            if (card == null)
                             {
-                                var newQuantity = cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity - 1;
+                                Console.WriteLine("Card not found in GameZone for Player: " + playerStatus.Name);
+                                continue; // Salta questa carta se non trovata
+                            }
+
+                            var cardCounters = card.Counters;
+
+                            if (cardCounters == null || !cardCounters.Any(x => x.Type == gameAction.Type))
+                            {
+                                Console.WriteLine("No matching counter found on the card for removal.");
+                                continue; // Se non ci sono counters o nessuno corrisponde al tipo, salta
+                            }
+
+                            var counter = cardCounters.FirstOrDefault(x => x.Type == gameAction.Type);
+
+                            if (counter != null)
+                            {
+                                var newQuantity = counter.Quantity - 1;
+
                                 if (newQuantity > 0)
                                 {
-                                    cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault().Quantity = newQuantity;
+                                    counter.Quantity = newQuantity;
                                 }
                                 else
                                 {
-                                    cardCounters.Remove(cardCounters.Where(x => x.Type == gameAction.Type).FirstOrDefault());
+                                    cardCounters.Remove(counter);
                                 }
                             }
                         }
                     }
                 }
-                _matchesCurrentlyOn.Remove(storedGameStatus);
+
                 _matchesCurrentlyOn.Add(newGameStatus);
 
                 var roomId = newGameStatus.Game.RoomId;
@@ -1414,7 +1447,7 @@ namespace CardGame.Hubs
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + ex.StackTrace);
+                Console.WriteLine("Error in UpdateState_RemoveCounterFromCard: " + ex.Message + " - " + ex.StackTrace);
             }
         }
 
