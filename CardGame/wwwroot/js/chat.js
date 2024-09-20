@@ -57,6 +57,7 @@ connection.on("ConfirmLogin", async function (tokenSql) {
     $('#loginError').show().delay(2000).fadeOut();
     $('#loginbutton').removeAttr('disabled')
   }
+
 })
 
 connection.on("ApprovedLogin", async function () {
@@ -67,6 +68,8 @@ connection.on("ApprovedLogin", async function () {
       await connection.invoke("ReadAllCardsLastSet");
       await connection.invoke("ReadAllDecks", myUsername);
       await connection.invoke("GetUserSetting", myUsername);
+      await connection.invoke("EnableMainMenu", myUsername);
+
 
   } catch (err) {
       console.error(err.toString());
@@ -83,7 +86,7 @@ connection.on("TellAlreadyLoggedIn", function () {
   $('#loginbutton').delay(2000).removeAttr('disabled')
 })
 
-connection.on("Notify_Login", function (userList) {
+connection.on("Notify_Login", async function (userList) {
 
   $('#loginSpinner').hide();
   $("#loginForm").hide();
@@ -101,6 +104,7 @@ connection.on("Notify_Login", function (userList) {
     if (user.ConnectionId != myConnectionId) {
       chatSpan = "<div class='openToChatIcon'>&#128172;</div>";
     }
+
     var div = $("<div class='onlineUser'><div class='myResponsiveTextMedium randomIconEmoji'>" + avatar + "</div><div userid='" + user.ConnectionId + "' class='myResponsiveTextMedium onlineUserName'> " + user.UserName + "</div>" + chatSpan + "</div>");
 
     $("#onlineUserContainer").append(div);
@@ -109,11 +113,14 @@ connection.on("Notify_Login", function (userList) {
 
     if (user.ConnectionId != myConnectionId) {
       $("#inviteFriends").append(option)
+    } 
+    else{
+      $("#mainMenu").removeClass("uninteractable");
+      $("#chatContainer").removeClass("uninteractable");
     }
+
   });
 
-  $("#mainMenu").removeClass("uninteractable");
-  $("#chatContainer").removeClass("uninteractable");
 })
 
 connection.on("NotifyMe_Disconnected", function (userObj) {

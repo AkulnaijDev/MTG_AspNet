@@ -98,11 +98,14 @@ namespace CardGame.Hubs
             else
             {
                 UserHandler.Users.Add(user);
-                var obj = JsonConvert.SerializeObject(UserHandler.Users);
-
                 await Clients.Caller.SendAsync("ApprovedLogin");
-                await Clients.All.SendAsync("Notify_Login", obj);
             }
+        }
+
+        public async Task EnableMainMenu(string username)
+        {
+           var obj = JsonConvert.SerializeObject(UserHandler.Users);
+           await Clients.All.SendAsync("Notify_Login", obj);
         }
 
 
