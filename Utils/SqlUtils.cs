@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
+using System.Data.SQLite;
 using System.Text;
 using Utils.Models;
 
@@ -7,13 +8,23 @@ namespace Utils
 {
     public class SqlUtils
     {
-        public static string _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog = MagicTheGathering; Integrated Security = True";
+        //public static string _connectionString = "Data Source=/home/akulnaij/Dekstop/magicApp/MagicTheGathering.db;";
+
+        //public static string _connectionString = "Data Source=/home/akulnaij/Desktop/myappdb/MagicTheGathering.db;Version=3;";
+        public static string _connectionString = "Data Source = G:\\MagicTheGathering.db";
 
         public static void NonQueryRequest(string queryString)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            
+            //using (SqlConnection connection = new SqlConnection(_connectionString))
+            //{
+            //    SqlCommand command = new SqlCommand(queryString, connection);
+            //    command.Connection.Open();
+            //    command.ExecuteNonQuery();
+            //}
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -40,9 +51,9 @@ namespace Utils
                 SELECT @OperationResult AS OperationResult;
             ";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@Username", userSettings.Username);
                 command.Parameters.AddWithValue("@Volume", userSettings.Volume);
                 command.Parameters.AddWithValue("@BackgroundImage", userSettings.Background);
@@ -68,9 +79,9 @@ namespace Utils
         {
             var queryString = "DELETE FROM Decks WHERE UserId = @username AND Id = @deckId";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@deckId", deckId);
 
@@ -83,9 +94,9 @@ namespace Utils
         {
             var queryString = new StringBuilder("UPDATE Decks SET Id = @deckId");
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand();
+                SQLiteCommand command = new SQLiteCommand(connection);
                 command.Connection = connection;
                 command.Parameters.AddWithValue("@deckId", deckId);
 
@@ -147,9 +158,9 @@ namespace Utils
             deckString +
             $" ) ";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Connection.Open();
                 var id = command.ExecuteScalar();
                 return id.ToString();
@@ -160,14 +171,14 @@ namespace Utils
         {
             var queryString = $"SELECT * From UserSettings Where Username = @username";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@username", username);
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     var userSetting = new UserSettings { };
 
@@ -192,16 +203,16 @@ namespace Utils
         {
             var queryString = $"SELECT * From Users Where Username =@username and Password =@password";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
 
                 var results = 0;
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -235,13 +246,13 @@ namespace Utils
                 "AND (Set_type != 'funny' AND Set_type != 'token' AND Set_type != 'minigame' AND Set_type != 'promo') " +
                 "AND c.[Set] IS NOT NULL GROUP BY c.[Set] HAVING COUNT(*) > 0) ORDER BY s.released_at DESC ";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 var results = new List<Sets>();
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -270,16 +281,16 @@ namespace Utils
         {
             var queryString = $"SELECT * From Decks WHERE UserId='' or UserId = @username";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@username", username);
 
                 var results = new List<Deck>();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -311,13 +322,13 @@ namespace Utils
         {
             var queryString = "SELECT * From Cards " + filter;
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 var results = new List<Card>();
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -435,16 +446,16 @@ namespace Utils
         {
             var queryString = $"SELECT * From Decks WHERE (UserId = @username or UserId ='') AND Id=@deckId ";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@deckId", deckId);
 
                 var deck = new Deck();
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -475,15 +486,15 @@ namespace Utils
         {
             var queryString = $"select [Set],Rarity,Color_Identity,Released_at from Cards where Id = @cardId";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@cardId", cardId);
 
                 var cardCheck = new CardCheck();
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -506,13 +517,13 @@ namespace Utils
         {
             var queryString = $"select top 5 Code from [Sets] where Set_type = 'expansion' order by Released_at desc ";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 var setList = new List<string>();
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -539,15 +550,15 @@ namespace Utils
                 "ON c.Name = groupedCards.Name AND c.Power = groupedCards.Power AND c.Toughness = groupedCards.Toughness AND c.Released_at = groupedCards.MaxReleaseDate " +
                 "ORDER BY c.Name, c.Power, c.Toughness";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
 
                 var jsonCards = new List<string>();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -584,16 +595,16 @@ namespace Utils
         {
             var deck = new List<GameCard>();
             var queryString = $"SELECT * From Decks WHERE Id=@deckId";
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 command.Parameters.AddWithValue("@deckId", deckId);
 
                 var jsonCards = new List<string>();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -637,14 +648,14 @@ namespace Utils
 
         public static List<string> AdvancedSearchedCards(string queryString)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                SQLiteCommand command = new SQLiteCommand(queryString, connection);
                 var cardIdList = new List<string>();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
